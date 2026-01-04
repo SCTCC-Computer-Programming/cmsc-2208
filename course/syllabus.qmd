@@ -1,5 +1,5 @@
 ---
-title: "CMSC 1217 – Introduction to Data Analytics"
+title: "CMSC 2208 – Introduction to Machine Learning"
 subtitle: "Syllabus"
 title-block-banner: false
 
@@ -41,17 +41,13 @@ format:
 
 #### Prerequisites:
 
-CMSC 1203 - Structured Programming Logic
+- CMSC 1203 - Structured Programming Logic (Minimum grade: 1.67 GPA Equivalent)
+- CMSC 1236 - Advanced Python Programming (Minimum grade: 1.67 GPA Equivalent)
+- CMSC 1217 - Introduction to Data Analytics (Minimum grade: 1.67 GPA Equivalent)
 
 ## Course Description
 
-This course introduces data analytics using Python to extract and communicate insights from datasets.
-
-Students acquire foundational skills in data manipulation, including transformation and cleansing, alongside techniques for visualizing data distributions and managing file-based data input/output, preparing them for machine learning applications in subsequent semesters. The course focuses on technical concepts such as trend identification through graphical analysis, data structuring for computational efficiency, and processing real-world datasets for artificial intelligence applications. Through programming exercises and a capstone project analyzing a representative dataset, students develop practical Python programming competencies essential for advanced coursework in machine learning.
-
-### Course Philosophy
-
-This course follows a **tools-first** approach to “data analytics.” Our focus is on the Python programming skills and the data library ecosystem (especially **pandas** and related tools) used to manipulate, process, clean, and summarize real datasets. We will cover analytical concepts only as needed to motivate a tool or technique, but this course is **not** focused on statistical methodology (hypothesis testing, inference, or model theory), which is addressed in other courses.
+This course introduces students to the fundamentals of machine learning using Python, equipping them with practical, hands-on skills that build on foundational data analytics and advanced programming proficiencies from CMSC1217 and CMSC1236. Students will explore key concepts including supervised and unsupervised learning, data preparation, model training, evaluation, and project structuring. Emphasizing a programming-focused approach, the course enables learners to create simple machine learning tools, ultimately preparing them for advanced technical roles and enhancing their employability in an Al-driven tech industry. By the end of the course, students will be able to design, implement, and evaluate basic machine learning models for real-world problem solving.
 
 ***This online class requires extensive use of your webcam***
 
@@ -59,35 +55,24 @@ This course follows a **tools-first** approach to “data analytics.” Our focu
 
 #### Upon completion of this course the student will:
 
--   Identify fundamental concepts of data analytics and their role in preparing data for machine learning applications.
-
--   Explain how Python programming streamlines data analysis processes for real-world datasets.
-
--   Manipulate datasets in Python, including filtering, sorting, and handling missing values.
-
--   Compare Python data visualization techniques to represent data trends effectively.
-
--   Assess the quality of a dataset's preparation in Python, identifying areas for improvement in data cleaning and transformation for machine learning readiness.
-
--   Design a data analytics project in Python to extract insights from a real-world dataset.
+- Describe the fundamental programming-based concepts of machine learning, including supervised and unsupervised learning, and their practical programming applications using Python.
+- Explain how programming tools automate and enhance machine learning processes for real- world datasets.
+- Use Python to implement basic supervised learning models, such as linear regression or classification, on simple datasets.
+- Compare different programming-based evaluation metrics to assess model performance effectively for machine learning tasks.
+- Assess the effectiveness of data preparation techniques using Python for improving machine learning model outcomes.
+- Develop a machine learning project using Python, integrating data preparation, a basic model, programming-based evaluation, and project structuring.
 
 ## Course Content
 
-1.  Introduction to Data Analytics with Python
-
-2.  Python Libraries for Data Manipulation (Pandas)
-
-3.  Data Cleaning and Preparation in Python
-
-4.  Data Visualization with Matplotlib and Seaborn
-
-5.  Working with File-Based Data (CSV, JSON)
-
-6.  Capstone Data Analytics Project
+1. Introduction to Machine Learning Concepts
+2. Data Preparation for Machine Learning Using Python
+3. Basic Supervised Learning Using Python
+4. Basic Unsupervised Learning Using Python
+5. Programming-Focused Capstone Machine Learning Project
 
 ## Required Materials
 
-Python for Data Analyis, 3rd Edition : Wes McKinney
+Introduction to Machine Learning with Python 1st Edition : Andreas C. Muller & Sarah Guido
 
 Computer running current OS that supports Microsoft Office
 
@@ -121,9 +106,9 @@ F = Below 60 %
 
 Grades are weighted as follows:
 
--   Labs - 45%
--   Video Activities – 40%
--   D2L Quizzes/Tests – 15%
+-   Labs and Video Activities - 50%
+-   Final Projects – 20%
+-   D2L Quizzes/Tests – 30%
 
 Some assignments will be based off a pass/fail criterion. Grading Rubrics will be assigned to most course activities. Some assignments are automatically graded. Activities may be assigned but not be graded, these are for self-review to prepare you for graded activities. ‘Proof’ files will be provided to you on occasion to help you identify any issues with your assignment. It is expected that you review these when you receive your rubric feedback. Extra credit assignments or additional assignments are not offered in this course.
 

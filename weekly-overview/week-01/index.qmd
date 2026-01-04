@@ -1,6 +1,6 @@
 ---
 title: Week 1 Guide
-subtitle: Core tools and notebook workflow
+subtitle: What machine learning is and how this course approaches it
 format:
   html:
     toc: true
@@ -8,87 +8,140 @@ format:
 
 ## Week 1 focus
 
-You are coming into this course with Python experience from Structured Programming Logic. That course focused on writing and running Python programs in a more traditional editor-and-console workflow.
+This week is about building the starting point for the semester. Chapter 1 introduces the language and workflow used throughout the book. Your focus is to understand what machine learning means in this course, what problems it is used for, and how the textbook organizes the steps from data to a trained model.
 
-In this course, you will still write Python, but the workspace will look different. We will use Jupyter notebooks as the main place to practice and show your work. A notebook combines explanation text, code, and output in one document, which makes it easier to follow examples, retry steps, and keep your work organized.
+Chapter 1 of Introduction to Machine Learning with Python sets the foundation for the rest of the book by introducing the core vocabulary and framing used throughout. It explains what machine learning is used for, outlines the kinds of tasks the book focuses on, and emphasizes the importance of understanding your problem and your data before choosing a model. The chapter also introduces the main tools used in the course (especially scikit-learn and the supporting Python ecosystem) and shows a complete first example so you can see what an end-to-end machine learning task looks like in practice.
 
-Week 1 is where you learn that workflow and get your course setup working. You will also be introduced to the tool ecosystem used throughout the textbook: pandas and NumPy for working with data, and matplotlib for basic plotting. Chapter 1 introduces this ecosystem and why it exists. Chapter 2 introduces notebooks and the interactive workflow.
+## How this course approaches machine learning
 
-This week is also a chance to get comfortable navigating the textbook and looking up unfamiliar terms. Do not be a passive learner. In an AI-driven environment, it is easy to copy an answer without understanding it, and it is also easy to get a confident answer that is wrong. Your job is to read, test, and confirm.
+This course approaches machine learning as a programming workflow carried out in Python. Chapter 1 reflects that approach by introducing machine learning through concrete tasks and examples, using the Python tool ecosystem and scikit-learn’s model interface. In Chapter 1, the authors focus on:
 
-Section 1.6 in the textbook is especially useful this week. It explains how to navigate the book, how to read the code examples, and the import conventions used throughout (for example, numpy as np and pandas as pd). Treat 1.6 as your guide for how to read and use the book effectively.
+* framing a real-world question as a machine learning task,
+* representing the problem with a dataset (features and targets),
+* training a model using scikit-learn,
+* and checking performance using held-out test data.
 
-One note before you start comparing your output to the book: the book often shows examples in an interactive In/Out style. Your notebook output may look similar but not identical, and that is fine. Focus on whether your code produces the correct result, not whether the formatting matches perfectly.
+In this course, you will primarily be asked to implement and evaluate models using existing tools, interpret what the results mean, and explain your choices using correct terminology. While mathematical ideas may appear as needed to support interpretation, the course emphasis is on building practical skill with the workflow and developing good habits for working with models and data.
 
-## Course focus and expectations
 
-This course is focused on the Python tools used to work with data. You will learn how to load data, inspect it, clean it, reshape it, summarize it, and visualize it. The emphasis is on building practical skill with the core libraries and the day-to-day workflow used in data work.
+## What machine learning means in this book
 
-This course is not a statistics class. We are not spending the semester on statistical theory, inference, or formal methodology. When we use analytical ideas, it will be to support a tool we are learning and to help you interpret what your code produced. Think of this course as learning how to do the work in Python; your statistics elective covers more of the theory behind the methods.
+Chapter 1 introduces machine learning as extracting knowledge from data, and it motivates machine learning by contrasting it with systems built from hand-coded decision rules. The chapter uses examples such as spam filtering and face detection to show why rule-based approaches can break down, and how learning from data can be a practical alternative.
 
-## Core tools we will be using
+Two ideas are introduced early:
 
-The course uses a small set of tools repeatedly. You do not need to master them in Week 1. You do need to recognize the names and understand what each tool is used for.
+* Machine learning methods automate decision-making by generalizing from known examples, rather than relying on a fixed set of hand-built rules.
+* The quality of what a model can learn depends on what information is actually present in the dataset, especially in the features used to describe each example. 
 
-| Tool | What it is used for in this course | When you will notice it |
-|------------------------|------------------------|------------------------|
-| NumPy | Working with numbers and arrays efficiently. It also supports many operations that pandas relies on. | When you see `import numpy as np`, or when we work with numeric operations and arrays. |
-| pandas | Working with tables (DataFrames): loading data, cleaning it, reshaping it, combining it, and summarizing it. | Most weeks, because it is the main tool for manipulating data in this course. |
-| matplotlib | Creating plots so you can see patterns and communicate results. | When we move into visualization, and whenever we need a chart to understand data. |
-| Jupyter notebooks | A workspace that keeps explanations, code, and output together. This is how you will practice and show your work. | Every week, since most work will be done and submitted in notebooks. |
+For that reason, Chapter 1 spends time defining how data is described in machine learning. It introduces the “table” framing (samples as rows and features as columns), names the key terms sample and feature, and emphasizes that no algorithm can make predictions using information that is not represented in the features.
 
-## Jupyter notebooks
 
-In Structured Programming Logic, you typically wrote Python in a file and ran the whole program from start to finish. Each run started fresh.
+## Supervised vs unsupervised learning
 
-A Jupyter notebook is different. A notebook is a single document that mixes:
+Chapter 1 distinguishes two broad categories of machine learning problems:
 
--   text (explanations and notes)
--   code (Python)
--   output (tables, printed results, charts)
+* supervised learning, where you have input data along with a known outcome you want to predict
+* unsupervised learning, where you have input data but no known outcomes provided to the algorithm
 
-Instead of running one program from top to bottom every time, a notebook is built from cells. You run the notebook one cell at a time, in the order you choose.
+The chapter gives concrete examples of both kinds of tasks, and it emphasizes that supervised learning requires building a dataset that includes the desired outcome.
 
-This is powerful for learning and working with data because you can try something, see the result immediately, adjust it, and continue. The textbook discusses this interactive workflow and how notebooks fit into it.
+Chapter 1 then walks through a supervised learning example: predicting iris species from flower measurements. This example is used to introduce the vocabulary you will see repeatedly:
 
-The most important new idea is that the notebook runs in a live Python session. That session keeps everything you have already created (variables, imported libraries, data you loaded). If you run cells out of order, you can end up in a confusing state where your notebook depends on something you ran earlier but forgot to rerun.
+* samples (rows/data points) and features (columns/properties)
+* targets/labels (the known outcomes in supervised learning)
+* training data versus test data (evaluating on data not used to fit the model)
 
-Because of that, this course uses one consistent habit:
+You do not need to memorize every detail yet. The goal is to recognize what makes a problem supervised, and to understand why the book spends time on data representation and evaluation before expanding into more algorithms in later chapters.
 
-**Restart Kernel and Run All**
+Note: the formal “classification vs regression” distinction is introduced in Chapter 2, even though Chapter 1’s iris walkthrough is a classification example.
 
-That is how you confirm your notebook works from a clean start and in the correct order.
 
-Notebooks are a great learning tool, but they can also make it easy to skip real understanding. If you only change a few lines and press run, you can end up with working output without knowing why it works. Your goal in this class is not just to produce output, but to understand what your code is doing. When you use examples from the book, from a class notebook, or from AI, your job is to test small changes and confirm you still understand the result.
+## Datasets, features, and targets
 
-Using notebooks does not mean you are not writing code. You will still write Python in this course, but you will write it in smaller pieces and run it as you go. Many examples in the book are meant to be typed, run, and modified so you can see how changes affect the result. Chapter 2 discusses this interactive workflow and how to work effectively in notebooks.
+Chapter 1 introduces the vocabulary the book uses to describe data in machine learning.
+
+* A dataset is a collection of examples (also called samples or data points).
+* Each example is described by features, which are measurable properties used as inputs to a model.
+* In supervised learning, each example also has a target value (often called a label). In classification problems, the possible target values are sometimes called classes.
+
+Chapter 1 also describes datasets in a “table” form: samples are organized as rows and features as columns.
+
+The book uses the notation X for the input data (the features) and y for the target values. You will see X and y throughout the text and in scikit-learn examples.
+
+This week, focus on recognizing what X and y represent conceptually rather than worrying about exact shapes or implementation details.
+
+## Training data and test data
+
+Chapter 1 introduces the distinction between training data and test data as part of its first complete machine learning example.
+
+The chapter explains that:
+
+* a model is fit using one portion of the available data (the training set),
+* and performance is evaluated using a separate portion of the data that was not used during training (the test set).
+
+This separation allows you to check how well a model performs on new, unseen data, rather than just how well it fits the data it was trained on. Chapter 1 emphasizes that evaluating a model on the same data used for training can give an overly optimistic view of its performance.
+
+You should understand why this separation is necessary, even though the mechanics of splitting data and evaluating models will be explored in more detail in later chapters.
+
+## A first end-to-end example
+
+Chapter 1 includes a complete, small-scale machine learning example using the iris flower dataset. The purpose of this example is not to teach you every detail, but to show what an end-to-end machine learning task looks like in practice and to introduce the workflow the book will return to throughout the course.
+
+As you read this example, focus on the sequence of steps:
+
+1. load a dataset,
+2. separate features and targets,
+3. inspect the data (for example, with simple visualizations),
+4. split the data into training and test sets,
+5. train a model on the training data,
+6. evaluate the model on the test data.
+
+Do not worry if some parts feel unfamiliar at first. The goal in Week 1 is to recognize what each step is doing and why it appears in the workflow.
+
+
+## Tools introduced in Chapter 1
+
+Chapter 1 introduces the main Python libraries used throughout the book:
+
+| Tool | Role in the book |
+|------------------|------------------------------------------------------|
+| NumPy | Provides efficient numerical arrays and supports many operations used by other libraries |
+| pandas | Used for working with structured, tabular data |
+| matplotlib | Used for basic visualization and inspecting data |
+| scikit-learn | Provides machine learning algorithms and workflows |
+
+You are not expected to master these tools in Week 1. You are expected to recognize their names and understand why each one exists.
+
+## Reading expectations and habits
+
+Chapter 1 is short but dense. You should read it slowly and actively.
+
+When you encounter unfamiliar terms:
+
+-   pause and reread the surrounding paragraph,
+-   connect the term to the example being shown,
+-   avoid memorizing definitions in isolation.
+
+The goal is to build conceptual familiarity, not technical mastery.
+
+If you compare your output to the book’s examples later, remember that small differences in formatting or values are normal. Focus on whether the ideas and results make sense, not whether they look identical.
 
 ## Week 1 tasks
 
-Complete the following this week:
+This week, you should:
 
-1.  Read Chapters 1 and 2 in the textbook in full. Work through the examples and exercises as you read.
-2.  Follow the guided setup videos to get your course environment setup.
-3.  Follow the Week 1 assignment instructions.
-4.  Complete the D2L quiz on Chapters 1 and 2.
-
-## Chapter overview for Week 1
-
-### Chapter 1: Preliminaries
-
-Chapter 1 sets the direction for the book and the course. It explains what the book is focused on, the kinds of structured data you will work with, and the core Python libraries used throughout. It also explains the conventions used in the book (especially import conventions) and how to read the code examples.
-
-### Chapter 2: Python Language Basics, IPython, and Jupyter Notebooks
-
-Chapter 2 introduces the interactive workflow used in the book. It explains what notebooks are, how running code interactively differs from running a script, and how tools like tab completion and built-in help make it easier to explore unfamiliar code and data as you work.
+1.  Read Chapter 1 of the textbook carefully.
+2.  Follow the course setup instructions and complete the Week 1 verification assignment.
+3.  Complete the D2L quiz for Chapter 1.
+4.  Reflect on how machine learning problems are structured in the book.
 
 ## Knowledge goals for Week 1
 
-By the end of Week 1, you should be able to explain:
+By the end of this week, you should be able to explain:
 
--   What the book means by working with data in Python (the focus of the course)
--   The difference between NumPy and pandas at a high level
--   What a Jupyter notebook is, and how it differs from running a Python script
--   What a kernel is in the context of notebooks
--   What an environment is and why we use one for this course
--   What the book’s import conventions mean (for example, np and pd)
+-   What the book means by *machine learning*
+-   The difference between classification and regression
+-   What a dataset, feature, and target are
+-   Why data is split into training and test sets
+-   What the basic machine learning workflow looks like
+-   Why data representation matters before algorithm choice

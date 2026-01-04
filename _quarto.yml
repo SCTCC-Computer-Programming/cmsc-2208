@@ -50,6 +50,8 @@ website:
             text: Assignment Policies
           - href: shared/policies/general-policies.qmd
             text: General Policies
+          - href: shared/policies/ai-policy.qmd
+            text: AI Policy
 
 
       - section: "Weekly Overview"
