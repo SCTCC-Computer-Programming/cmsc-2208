@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Office Hours – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 2 Demo: Classification vs Regression Targets – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -72,13 +107,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../shared/assets/course.css">
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -273,7 +311,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 2 Demo: Classification vs Regression Targets</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -320,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
@@ -406,14 +444,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#build-a-tiny-dataset" id="toc-build-a-tiny-dataset" class="nav-link active" data-scroll-target="#build-a-tiny-dataset">Build a Tiny Dataset</a></li>
+  <li><a href="#review-the-difference-in-targets" id="toc-review-the-difference-in-targets" class="nav-link" data-scroll-target="#review-the-difference-in-targets">Review the Difference in Targets</a>
+  <ul class="collapse">
+  <li><a href="#classification-target-labels" id="toc-classification-target-labels" class="nav-link" data-scroll-target="#classification-target-labels">Classification target (labels)</a></li>
+  <li><a href="#regression-target-numeric" id="toc-regression-target-numeric" class="nav-link" data-scroll-target="#regression-target-numeric">Regression target (numeric)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Office Hours</h1>
+<h1 class="title">Week 2 Demo: Classification vs Regression Targets</h1>
 </div>
 
 
@@ -430,17 +481,317 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Mondays</strong> - <strong>3:00–4:00 PM</strong> and <strong>6:00–7:00 PM</strong></p>
-<p><strong>Persistent Zoom link:</strong> <a href="https://minnstate.zoom.us/j/9906791485">Join Zoom meeting</a></p>
-<section id="no-office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="no-office-hours">No office hours</h2>
-<p>Office hours are <strong>not held</strong> on:</p>
-<p><strong>Jan 19</strong> — Martin Luther King — No Classes — College Closed<br>
-<strong>Feb 16</strong> — President’s Day — No Classes — College Closed<br>
-<strong>Mar 9–13</strong> — Spring Break — No Classes<br>
-<strong>May 11–15</strong> — Final Exams</p>
+<p>This page demonstrates how the same <em>inputs</em> (student features) can pair with two different <em>targets</em>:</p>
+<ul>
+<li><strong>Regression target</strong>: <code>final_score</code> (numeric)</li>
+<li><strong>Classification target</strong>: <code>pass_fail</code> (categorical)</li>
+</ul>
+<section id="build-a-tiny-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="build-a-tiny-dataset">Build a Tiny Dataset</h2>
+<div id="327ea2d3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"attendance"</span>: rng.integers(<span class="dv">60</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"homework_rate"</span>: rng.integers(<span class="dv">50</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"quiz_avg"</span>: rng.integers(<span class="dv">40</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"exam_avg"</span>: rng.integers(<span class="dv">40</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric target (regression)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>] <span class="op">=</span> (<span class="fl">0.2</span><span class="op">*</span>df[<span class="st">"homework_rate"</span>] <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>df[<span class="st">"quiz_avg"</span>] <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>df[<span class="st">"exam_avg"</span>]).<span class="bu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># categorical target (classification)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>] <span class="op">=</span> np.where(df[<span class="st">"final_score"</span>] <span class="op">&gt;=</span> <span class="dv">70</span>, <span class="st">"pass"</span>, <span class="st">"fail"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">attendance</th>
+<th data-quarto-table-cell-role="th">homework_rate</th>
+<th data-quarto-table-cell-role="th">quiz_avg</th>
+<th data-quarto-table-cell-role="th">exam_avg</th>
+<th data-quarto-table-cell-role="th">final_score</th>
+<th data-quarto-table-cell-role="th">pass_fail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>94</td>
+<td>75</td>
+<td>64</td>
+<td>44</td>
+<td>56.0</td>
+<td>fail</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>86</td>
+<td>80</td>
+<td>92</td>
+<td>58</td>
+<td>73.0</td>
+<td>pass</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>80</td>
+<td>99</td>
+<td>73</td>
+<td>69</td>
+<td>76.0</td>
+<td>pass</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>71</td>
+<td>87</td>
+<td>42</td>
+<td>65</td>
+<td>62.0</td>
+<td>fail</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>72</td>
+<td>82</td>
+<td>86</td>
+<td>64</td>
+<td>74.0</td>
+<td>pass</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>61</td>
+<td>77</td>
+<td>84</td>
+<td>41</td>
+<td>61.0</td>
+<td>fail</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>63</td>
+<td>78</td>
+<td>91</td>
+<td>40</td>
+<td>63.0</td>
+<td>fail</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>60</td>
+<td>97</td>
+<td>50</td>
+<td>47</td>
+<td>58.0</td>
+<td>fail</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>67</td>
+<td>64</td>
+<td>45</td>
+<td>40</td>
+<td>46.0</td>
+<td>fail</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>93</td>
+<td>91</td>
+<td>92</td>
+<td>80</td>
+<td>86.0</td>
+<td>pass</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>86</td>
+<td>84</td>
+<td>41</td>
+<td>72</td>
+<td>65.0</td>
+<td>fail</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>97</td>
+<td>50</td>
+<td>73</td>
+<td>79</td>
+<td>71.0</td>
+<td>pass</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>This cell creates a tiny, fake dataset so we can focus on the idea of <strong>inputs (features)</strong> and <strong>outputs (targets)</strong> without needing a real file yet. By the end of the cell, we’ll have a table (<code>df</code>) where each row represents one student.</p>
+<ol type="1">
+<li><strong>Loading the tools we need</strong></li>
+</ol>
+<p>The first two lines load two libraries:</p>
+<ul>
+<li><strong>NumPy (<code>np</code>)</strong>: used here for generating random numbers and doing simple numeric operations.</li>
+<li><strong>pandas (<code>pd</code>)</strong>: used to create and display a table called a <strong>DataFrame</strong> (think: spreadsheet in Python).</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Making the randomness repeatable</strong></li>
+</ol>
+<p>Next, the cell creates a random number generator:</p>
+<ul>
+<li><code>rng</code> is a “random number generator” object we’ll use to create fake attendance and scores.</li>
+<li>The <code>0</code> is a <strong>seed</strong>, which makes the results repeatable. That means if you run the notebook again, you’ll get the same random dataset each time (useful for teaching and debugging).</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Choosing how many students to generate</strong></li>
+</ol>
+<ul>
+<li><code>n = 12</code> means we’re generating <strong>12 rows</strong>, so our dataset will represent 12 students.</li>
+<li>If we changed <code>n</code> to 100, we’d generate 100 students instead.</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>Building the DataFrame (our dataset table)</strong></li>
+</ol>
+<p>The <code>DataFrame</code> is created with four columns that represent <strong>student features</strong> (inputs):</p>
+<ul>
+<li><code>attendance</code></li>
+<li><code>homework_rate</code></li>
+<li><code>quiz_avg</code></li>
+<li><code>exam_avg</code></li>
+</ul>
+<p>Each column is filled with random whole numbers in a chosen range. Those ranges are just meant to look realistic (for example, attendance between about 60 and 100).</p>
+<p>So at this point:</p>
+<ul>
+<li>each <strong>row</strong> = one student</li>
+<li>each <strong>column</strong> = one measured input about that student</li>
+</ul>
+<ol start="5" type="1">
+<li><strong>Creating a numeric target for regression</strong></li>
+</ol>
+<p>Next the cell creates a new column: and * <code>final_score</code> is calculated as a <strong>weighted combination</strong> of homework, quizzes, and exams. * This is meant to imitate how a course grade might be computed (exams count more than quizzes, etc.). * This column is a <strong>number</strong>, so it can be used as a <strong>regression target</strong> (predict a numeric value).</p>
+<ol start="6" type="1">
+<li><strong>Creating a label target for classification</strong></li>
+</ol>
+<p>Then the cell creates another new column:</p>
+<ul>
+<li><code>pass_fail</code> turns the numeric <code>final_score</code> into a <strong>category label</strong>: <code>"pass"</code> or <code>"fail"</code>.</li>
+<li>This column is a <strong>classification target</strong>, because the output must be one of a fixed set of options.</li>
+</ul>
+<ol start="7" type="1">
+<li><strong>Displaying the result</strong></li>
+</ol>
+<p>The last line tells Jupyter/Quarto to display <code>df</code>, so you can see the dataset you just created as a table.</p>
+</section>
+<section id="review-the-difference-in-targets" class="level2">
+<h2 class="anchored" data-anchor-id="review-the-difference-in-targets">Review the Difference in Targets</h2>
+<p>This section zooms in on the <strong>target column</strong> for classification: <code>pass_fail</code>. The goal is to make the idea of a <em>classification target</em> visible: it isn’t a wide range of numbers — it’s a <strong>small set of labels</strong>.</p>
+<section id="classification-target-labels" class="level3">
+<h3 class="anchored" data-anchor-id="classification-target-labels">Classification target (labels)</h3>
+<section id="counting-how-many-of-each-label-we-have" class="level4">
+<h4 class="anchored" data-anchor-id="counting-how-many-of-each-label-we-have">Counting how many of each label we have</h4>
+<p>This first line counts how many students fall into each class:</p>
+<ul>
+<li><p><code>df["pass_fail"]</code> selects the <code>pass_fail</code> column from the DataFrame.</p></li>
+<li><p><code>.value_counts()</code> counts how many times each label appears.</p></li>
+<li><p>The output should look like a small summary table showing something like:</p>
+<ul>
+<li>how many students are <code>"pass"</code></li>
+<li>how many students are <code>"fail"</code></li>
+</ul></li>
+</ul>
+<p>This is useful because classification targets often come in <strong>classes</strong>, and it helps to know whether your dataset has a reasonable spread of those classes (for example, not <em>all</em> pass and <em>none</em> fail).</p>
+<div id="28c1221d" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>pass_fail
+fail    7
+pass    5
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="making-the-label-counts-visual-with-a-bar-chart" class="level4">
+<h4 class="anchored" data-anchor-id="making-the-label-counts-visual-with-a-bar-chart">Making the label counts visual with a bar chart</h4>
+<p>The next cell turns those same counts into a picture.</p>
+<ul>
+<li><p><code>import matplotlib.pyplot as plt</code> loads the plotting library we’ll use to draw the chart.</p></li>
+<li><p><code>df["pass_fail"].value_counts().plot(kind="bar")</code> does two steps at once:</p>
+<ol type="1">
+<li>it recomputes the counts of <code>"pass"</code> vs <code>"fail"</code></li>
+<li>it plots them as a <strong>bar chart</strong></li>
+</ol></li>
+<li><p><code>plt.title(...)</code> adds a title so the chart clearly communicates what it represents.</p></li>
+<li><p><code>plt.xlabel("label")</code> labels the horizontal axis: the category names (<code>pass</code> and <code>fail</code>).</p></li>
+<li><p><code>plt.ylabel("count")</code> labels the vertical axis: how many students are in each category.</p></li>
+<li><p><code>plt.show()</code> displays the plot.</p></li>
+</ul>
+<p>The key takeaway from this plot: a <strong>classification target</strong> is made up of <strong>labels</strong> from a fixed set of options, and we can summarize it by counting how many examples fall into each label.</p>
+<div id="3190551c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>].value_counts().plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Classification target: pass/fail"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"label"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"count"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week-2-demo_files/figure-html/cell-4-output-1.png" width="576" height="467" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="regression-target-numeric" class="level3">
+<h3 class="anchored" data-anchor-id="regression-target-numeric">Regression target (numeric)</h3>
+<div id="e55b32ff" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>count    12.000000
+mean     65.916667
+std      10.672465
+min      46.000000
+25%      60.250000
+50%      64.000000
+75%      73.250000
+max      86.000000
+Name: final_score, dtype: float64</code></pre>
+</div>
+</div>
+<div id="1a0da661" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>].plot(kind<span class="op">=</span><span class="st">"hist"</span>, bins<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Regression target: final score"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"score"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"count"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week-2-demo_files/figure-html/cell-6-output-1.png" width="589" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
