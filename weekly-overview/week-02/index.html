@@ -422,6 +422,12 @@ ul.task-list li input[type="checkbox"] {
 
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">January 1, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -856,12 +862,12 @@ ul.task-list li input[type="checkbox"] {
       var ariaLabel = elements[i].getAttribute('aria-label');
       elements[i].setAttribute('data-bs-title', ariaLabel);
       elements[i].setAttribute('data-bs-toggle', 'tooltip');
-      elements[i].setAttribute('data-bs-placement', 'bottom');  // Change to 'top' if you prefer above the icon
+      elements[i].setAttribute('data-bs-placement', 'bottom');
     }
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   });
-</script> - styles.css
+</script>
 
 
 
