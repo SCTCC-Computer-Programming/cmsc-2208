@@ -23,15 +23,12 @@ format:
 
 - **Final project due:** **May 11, 2026**
 
-
-## Schedule
-
 ## Schedule
 
 | Week | Topics (with chapter/section anchors) | Deliverable | Reading (Müller & Guido) |
 | ---: | --- | --- | --- |
 | 1 (Jan 12–Jan 18) | Course onboarding + “What is ML?” + environment setup + notebook workflow | **Week 1 Verification Assignment** (setup + screenshots + video) + D2L Quiz 1 | **Ch. 1** |
-| 2 (Jan 19–Jan 25) | First supervised model + scikit-learn workflow: kNN | Practice Notebook 1 (completion): *“Classify player archetypes (kNN)”* + D2L Quiz 2 | **Ch. 2.1.1** (kNN) |
+| 2 (Jan 19–Jan 25) | First supervised model + scikit-learn workflow: kNN | D2L Quiz 2 | **Ch. 2.1.1** (kNN) |
 | 3 (Jan 26–Feb 01) | Linear models: classification + regression | Practice Notebook 2 (completion): *“Predict player performance (linear/logistic)”* + D2L Quiz 3 | **Ch. 2.2** (Linear Models) |
 | 4 (Feb 02–Feb 08) | Trees + ensembles: random forests / gradient boosting | **Skill Check 1 (autograded)**: train + report results on game stats + D2L Quiz 4 | **Ch. 2.3** (Decision Trees) + **2.3.2** (Ensembles) |
 | 5 (Feb 09–Feb 15) | Classifier outputs and confidence: decision function vs predicted probabilities | Reflection 1 (video): *“Using uncertainty to compare models”* + D2L Quiz 5 | **Ch. 2.4: Uncertainty Estimates from Classifiers** |
@@ -47,14 +44,11 @@ format:
 | 15 (Apr 20–Apr 26) | Text data intro (chat/reviews) **or** capstone prep emphasis | Reflection 2 / Project Proposal (graded): dataset + goal + metric + plan + D2L Quiz 14 | **Ch. 7 (+ Ch. 8 possible)** |
 | 16 (Apr 27–May 03) | Final project work time (milestone: clean data + baseline + evaluation plan) | — (work week) | As needed (review Ch. 4–6) |
 | 17 (May 04–May 10) | Final project work time (milestone: tuned model + results + narrative + video) | — (work week) | As needed |
-                                               |
+
 
 ### Final project (Apr 27–May 11)
 
 **Due May 11, 2026:** notebook report (pipeline + evaluation + interpretation) + short video walkthrough.
 
-### Final project (Apr 27–May 11)
 
-**Due May 11, 2026:**
-A notebook-based report demonstrating an end-to-end ML workflow (data prep → model → evaluation → interpretation) **plus a short video walkthrough**.
 

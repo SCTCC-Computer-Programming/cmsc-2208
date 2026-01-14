@@ -1,0 +1,3 @@
+::: {.last-updated}
+Last updated: {{< meta date-modified >}}
+:::

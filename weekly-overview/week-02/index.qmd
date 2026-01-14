@@ -1,5 +1,95 @@
 ---
-title: "Week 2"
+title: Week 2 Guide
+subtitle: kNN
+format:
+  html:
+    toc: true
 ---
 
-This page will be published before Week 2 begins.
+
+## Week 2 focus
+
+This week focuses learning the *core structure* that Chapter 2 uses for the rest of supervised learning:
+
+* how we name the **inputs** (**X**, the feature columns) and the **output** (**y**, the target/label),
+* how we decide whether a task is **classification** or **regression**,
+* why **generalization** is the real goal (not “doing well on the training rows”),
+* and how **overfitting vs underfitting** connects to **model complexity**.
+
+Then the chapter uses **k-nearest neighbors (kNN)** as the first algorithm where you can *see* these ideas clearly. 
+
+## Chapter 2 Concepts
+
+### Classification vs regression
+
+Chapter 2 starts by defining the two major supervised learning task types:
+
+* **Classification:** predict a class label from a fixed list of possibilities (binary or multiclass). 
+* **Regression:** predict a numeric value where “in-between” outcomes make sense (continuity). 
+
+A good reading habit here: ask “Does the output have **continuity** (regression) or **distinct categories** (classification)?” 
+
+
+### Generalization as the goal
+
+The book is explicit: we train on one set of examples, but we care about performance on **new, unseen data**. That ability is **generalization**. 
+
+It also emphasizes why training accuracy can be misleading using a “boat buyer” example: you can make a complex rule that matches the training rows perfectly, but that doesn’t mean it will work for new customers. 
+
+
+### Overfitting vs underfitting
+
+Chapter 2 frames these as the two common failure modes against the generalization goal:
+
+* **Overfitting:** model fits the training set “too closely,” performs well on training but worse on new data. 
+* **Underfitting:** model is too simple to capture the pattern; does poorly even on training. 
+
+The book also names the key idea: there’s usually a sweet spot where test performance is best. 
+
+
+### Model complexity vs dataset size
+
+A distinct concept (separate from “overfitting is bad”): how complex a model you can use depends on how much variety you have in your training data—more variety/larger datasets can support more complex models without overfitting. 
+
+
+## kNN: the first algorithm 
+
+### What the algorithm *is* 
+
+The book describes kNN as “arguably the simplest” algorithm: building the model is storing the training set. Predictions happen by finding the closest training points (“neighbors”). 
+
+For classification, the book uses the term **voting** exactly the way you’ve been using it: count how many neighbors are in each class and pick the **majority class**. 
+
+**k is the knob** that changes complexity:
+
+* small k → more flexible / can overfit
+* larger k → smoother / can underfit
+
+
+## Reading expectations for Week 2
+
+As you read, keep a running checklist:
+
+1. Can you identify **X** and **y** in each example? 
+2. Is it **classification** or **regression**, and why?
+3. What would it mean for the model to **generalize** here? 
+4. If performance differs between training and test, is that pointing toward **overfitting** or **underfitting**? 
+5. For kNN specifically: how does changing k move you along the complexity scale? 
+
+## Week 2 Tasks
+
+1. Watch the Week 2 demo
+2. Read Chapter 2 **through the kNN section**, and stop **before Linear Models**. 
+3. Complete the Chapter 2 D2L quiz
+
+
+## Knowledge goals for Week 2
+
+By the end of the week, students should be able to:
+
+* decide whether a task is **classification or regression** and explain why
+* define **generalization** in plain terms and explain why test performance matters
+* explain **overfitting vs underfitting** using the training/test pattern 
+* describe what kNN does at prediction time (neighbors + voting; mean for regression)
+* explain how changing **k** changes complexity and can shift generalization performance 
+
