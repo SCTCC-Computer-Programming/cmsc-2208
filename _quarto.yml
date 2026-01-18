@@ -57,22 +57,28 @@ website:
         contents:
           - href: weekly-overview/week-01/index.qmd
             text: Week 1
-          #- href: weekly-overview/week-02/
-            #text: Week 2
+          - href: weekly-overview/week-02/index.qmd
+            text: Week 2
 
       - section: "Weekly Assignments"
         contents:
           - href: assignments/week-01/index.qmd
             text: Week 1
-           
-      
-      
+          - href: assignments/week-02/index.qmd
+            text: Week 2
+
       - section: "Guides"
         contents:
-          - href: shared/guides/setup/miniconda.qmd
-            text: Miniconda Setup
-          - href: shared/guides/setup/jupyter-learning-links.qmd
-            text: Jupyter Learning Links
+          - section: "Week 1"
+            contents:
+              - href: shared/guides/setup/miniconda.qmd
+                text: Miniconda Setup
+              - href: shared/guides/setup/jupyter-learning-links.qmd
+                text: Jupyter Learning Links
+          - section: "Week 2"
+            contents:
+              - href: shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.qmd
+                text: Chapter 3 Reference Videos
 
 
 format:

@@ -1,0 +1,107 @@
+---
+title: "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    fig-responsive: true
+---
+
+## How to use these videos
+These are optional “extra help” videos for Week 2.  
+Watch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.  
+A good strategy is:  
+- Watch one short video first (to get the basic idea)  
+- Then come back to the demo and re-run the relevant section  
+- If you want more depth, watch one “long-form” talk (PyCon / conference style)
+
+## Exceptions and safe processing (`try/except`)
+
+**Try / Except | Python (Tutorial)**
+*by Socratica* — A focused explanation of what `try` and `except` actually do, and why this pattern is useful when you want to keep processing after one failure.
+
+{{< video https://www.youtube.com/watch?v=nlCKrKGHSSk >}}
+
+## Parsing: turning one line into fields you can work with
+
+
+## List comprehensions (compact “build a new list” loops)
+
+**Learn Python LIST COMPREHENSIONS in 10 minutes!**  
+*by Bro Code* — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.  
+{{< video https://www.youtube.com/embed/YlY2g2xrl6Q >}}
+
+**List Comprehensions | Python (Tutorial)**
+*by Socratica* — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets.
+
+{{< video [https://www.youtube.com/embed/5K08WcjGV6c](https://www.youtube.com/embed/5K08WcjGV6c) >}}
+
+
+## Sorting, ranking, and the `key=` idea
+
+
+**Python sorted() Function – key Parameter Explained**  
+*by Real Python* — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures.  
+{{< video https://www.youtube.com/embed/5K08WcjGV6c >}}
+
+## Lambda (a small function used inline)
+
+**Learn Python LAMBDA in 6 minutes!**  
+*by Bro Code* — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.  
+{{< video https://www.youtube.com/embed/IljPHDyBRog >}}
+
+**Python Lambda Functions – Anonymous Functions Explained**  
+*by Tech With Tim* — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more.  
+{{< video https://www.youtube.com/embed/0vShPnWj0n0 >}}
+
+## Generators and iteration (`yield`, streaming one row at a time)
+
+**Python Generators Explained – yield Keyword Tutorial**  
+*by Tech With Tim* — Shows what generators are, how yield works, and why they save memory when processing large data.  
+{{< video https://www.youtube.com/embed/bD05uGo_sVI >}}
+
+**Understanding Generators and yield in Python**  
+*by Corey Schafer* — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.  
+{{< video https://www.youtube.com/embed/txC9HvAAZx8 >}}
+
+### Optional long-form (advanced, but very good)
+
+**Python Generators: The Final Frontier**  
+*by David Beazley (PyCon)* — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system.  
+{{< video https://www.youtube.com/embed/5-qadlG7tWo >}}
+
+
+
+
+
+## Exceptions: handling bad rows without crashing
+
+
+
+## List comprehensions (building lists from other sequences)
+
+
+
+**Python Tutorial: List Comprehensions**
+*by Corey Schafer* — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form.
+
+{{< video [https://www.youtube.com/embed/3dt4OGnU5sM](https://www.youtube.com/embed/3dt4OGnU5sM) >}}
+
+## Sorting, ranking, and `key=` with lambda
+
+**Python Tutorial: Lambda Functions**
+*by Corey Schafer* — Explains what a `lambda` is, when it’s useful, and how it connects to patterns like `sorted(..., key=...)` and `max(..., key=...)`.
+
+{{< video [https://www.youtube.com/embed/Ob9rY6PQMfI](https://www.youtube.com/embed/Ob9rY6PQMfI) >}}
+
+## Generators and streaming (processing one row at a time)
+
+**Python Tutorial: Generators**
+*by Corey Schafer* — A practical explanation of `yield`, how generator functions behave differently from normal functions, and what changes when you iterate over a generator.
+
+{{< video [https://www.youtube.com/embed/bD05uGo_sVI](https://www.youtube.com/embed/bD05uGo_sVI) >}}
+
+
+

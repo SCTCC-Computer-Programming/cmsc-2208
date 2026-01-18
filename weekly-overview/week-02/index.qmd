@@ -78,7 +78,9 @@ As you read, keep a running checklist:
 
 ## Week 2 Tasks
 
-1. Watch the Week 2 demo
+1. Watch the **Week 2 demo overview** in your cmsc-1217 YouTube playsist.   
+- Here is the link to the **[Week 2 demo](../../assignments/week-02/week-2-demo.html)**. 
+- <a href="week-2-demo.ipynb" download="week-2-demo.ipynb"> Download Jupyter Notebook </a>
 2. Read Chapter 2 **through the kNN section**, and stop **before Linear Models**. 
 3. Complete the Chapter 2 D2L quiz
 

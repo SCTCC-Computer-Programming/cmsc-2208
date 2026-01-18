@@ -1,5 +1,56 @@
 ---
-title: "Week 2"
+title: "Week 2 Assignments"
+subtitle: "Chapter 2 Reading and D2L Quiz"
+format:
+  html:
+    toc: true
+    css:
+      - /styles.css
 ---
 
-This page will be published before Week 2 begins.
+
+## Week 2 Assignments
+
+**Submission location:** No Dropbox submission this week. All work is completed in D2L.
+
+## Part 1: Reading
+
+Read the assigned section of **Chapter 2** on **k-nearest neighbors (kNN)**.
+
+As you read, focus on these ideas (these are also the ideas the quiz will test):
+
+- **Supervised learning structure:** how datasets are organized as **X (features)** and **y (target/label)**
+- **Classification vs regression:** what changes when **y is a label** vs **y is a number**
+- **Generalization:** why we care about performance on **new, unseen data**
+- **Training set vs test set:** what each one is used for and why we split the data
+- **Overfitting vs underfitting:** two common ways models fail to generalize
+- **kNN mechanics (conceptually):** neighbors, distance, and majority vote
+- **The role of k:** how changing k changes model behavior and can affect training vs test performance
+
+## Part 2: Week 2 Demo
+
+Use the demo to reinforce the Chapter 2 vocabulary:
+
+- seeing **X and y** in a concrete dataset
+- seeing a **train/test split**
+- seeing **training accuracy vs test accuracy**
+- seeing how changing **k** affects results
+
+## Part 3: D2L Quiz
+
+Complete the **Week 2 D2L quiz**.
+
+The quiz focuses on:
+
+- identifying **X vs y** in a small scenario
+- classification vs regression (based on what **y** represents)
+- what “generalization” means in the book’s terms
+- what training vs test accuracy mean (and what each one evaluates)
+- recognizing overfitting vs underfitting patterns (training high/test low vs both low)
+- kNN basics: what neighbors are and what “vote” means
+- what happens at extreme k values (very small vs very large)
+
+## Completion checklist
+
+- Chapter 2 reading (kNN section)
+- Week 2 D2L quiz
