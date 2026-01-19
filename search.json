@@ -28,7 +28,7 @@
     "href": "weekly-overview/week-02/index.html#chapter-2-concepts",
     "title": "Week 2 Guide",
     "section": "Chapter 2 Concepts",
-    "text": "Chapter 2 Concepts\n\nClassification vs regression\nChapter 2 starts by defining the two major supervised learning task types:\n\nClassification: predict a class label from a fixed list of possibilities (binary or multiclass).\nRegression: predict a numeric value where “in-between” outcomes make sense (continuity).\n\nA good reading habit here: ask “Does the output have continuity (regression) or distinct categories (classification)?”\n\n\nGeneralization as the goal\nThe book is explicit: we train on one set of examples, but we care about performance on new, unseen data. That ability is generalization.\nIt also emphasizes why training accuracy can be misleading using a “boat buyer” example: you can make a complex rule that matches the training rows perfectly, but that doesn’t mean it will work for new customers.\n\n\nOverfitting vs underfitting\nChapter 2 frames these as the two common failure modes against the generalization goal:\n\nOverfitting: model fits the training set “too closely,” performs well on training but worse on new data.\nUnderfitting: model is too simple to capture the pattern; does poorly even on training.\n\nThe book also names the key idea: there’s usually a sweet spot where test performance is best.\n\n\nModel complexity vs dataset size\nA distinct concept (separate from “overfitting is bad”): how complex a model you can use depends on how much variety you have in your training data—more variety/larger datasets can support more complex models without overfitting.",
+    "text": "Chapter 2 Concepts\n\nClassification vs regression\nChapter 2 starts by defining the two major supervised learning task types:\n\nClassification: predict a class label from a fixed list of possibilities (binary or multiclass).\nRegression: predict a numeric value where “in-between” outcomes make sense (continuity).\n\nA good reading habit here: ask “Does the output have continuity (regression) or distinct categories (classification)?”\n\n\nGeneralization as the goal\nThe book is explicit: we train on one set of examples, but we care about performance on new, unseen data. That ability is generalization.\nIt also emphasizes why training accuracy can be misleading using a “boat buyer” example: you can make a complex rule that matches the training rows perfectly, but that doesn’t mean it will work for new customers.\n\n\nOverfitting vs underfitting\nChapter 2 frames these as the two common failure modes against the generalization goal:\n\nOverfitting: model fits the training set “too closely,” performs well on training but worse on new data.\nUnderfitting: model is too simple to capture the pattern; does poorly even on training.\n\n\n\nModel complexity vs dataset size\nA distinct concept (separate from “overfitting is bad”): how complex a model you can use depends on how much variety you have in your training data—more variety/larger datasets can support more complex models without overfitting.",
     "crumbs": [
       "Home",
       "Weekly Overview",
@@ -40,7 +40,7 @@
     "href": "weekly-overview/week-02/index.html#knn-the-first-algorithm",
     "title": "Week 2 Guide",
     "section": "kNN: the first algorithm",
-    "text": "kNN: the first algorithm\n\nWhat the algorithm is\nThe book describes kNN as “arguably the simplest” algorithm: building the model is storing the training set. Predictions happen by finding the closest training points (“neighbors”).\nFor classification, the book uses the term voting exactly the way you’ve been using it: count how many neighbors are in each class and pick the majority class.\nk is the knob that changes complexity:\n\nsmall k → more flexible / can overfit\nlarger k → smoother / can underfit",
+    "text": "kNN: the first algorithm\n\nWhat the algorithm is\nThe book describes kNN as “arguably the simplest” algorithm: building the model is storing the training set. Predictions happen by finding the closest training points (“neighbors”).\nk is the knob that changes complexity:\n\nsmall k → more flexible / can overfit\nlarger k → smoother / can underfit",
     "crumbs": [
       "Home",
       "Weekly Overview",
@@ -76,7 +76,7 @@
     "href": "weekly-overview/week-02/index.html#knowledge-goals-for-week-2",
     "title": "Week 2 Guide",
     "section": "Knowledge goals for Week 2",
-    "text": "Knowledge goals for Week 2\nBy the end of the week, students should be able to:\n\ndecide whether a task is classification or regression and explain why\ndefine generalization in plain terms and explain why test performance matters\nexplain overfitting vs underfitting using the training/test pattern\ndescribe what kNN does at prediction time (neighbors + voting; mean for regression)\nexplain how changing k changes complexity and can shift generalization performance",
+    "text": "Knowledge goals for Week 2\nBy the end of the week, you should be able to:\n\ndecide whether a task is classification or regression and explain why\ndefine generalization in plain terms and explain why test performance matters\nexplain overfitting vs underfitting using the training/test pattern\ndescribe what kNN does at prediction time (neighbors + voting; mean for regression)\nexplain how changing k changes complexity and can shift generalization performance",
     "crumbs": [
       "Home",
       "Weekly Overview",
@@ -348,88 +348,39 @@
     "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+    "text": "Try / Except | Python (Tutorial)\nby Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#exceptions-and-safe-processing-tryexcept",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#exceptions-and-safe-processing-tryexcept",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+    "text": "Try / Except | Python (Tutorial)\nby Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions and safe processing (try/except)",
-    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Parsing: turning one line into fields you can work with",
-    "text": "Parsing: turning one line into fields you can work with"
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#list-comprehensions-compact-build-a-new-list-loops",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#list-comprehensions-compact-build-a-new-list-loops",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "List comprehensions (compact “build a new list” loops)",
-    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial)\nby CS Dojo — List comprehension basics in Python - let’s go!\n\nPython Tutorial: List Comprehensions\nby Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and the key= idea",
-    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#lambda-a-small-function-used-inline",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#lambda-a-small-function-used-inline",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Lambda (a small function used inline)",
-    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Tutorial: Lambda Functions\nby Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Generators and iteration (yield, streaming one row at a time)",
-    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions: handling bad rows without crashing",
-    "text": "Exceptions: handling bad rows without crashing"
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "List comprehensions (building lists from other sequences)",
-    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and key= with lambda",
-    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Generators and streaming (processing one row at a time)",
-    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained\nby Programming with Mosh — Clear, beginner-friendly explanation of generators, how they work, and why they’re useful for memory-efficient data processing.\n\nPython Tutorial: Generators - How to use them and the benefits you receive\nby Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
   },
   {
     "objectID": "course/syllabus.html",
@@ -623,55 +574,6 @@
     "text": "kNN\nNow that we have a training set and a test set, we can train a model on the training students and see how well it generalizes to the test students.\nWe’ll use k-nearest neighbors (kNN) for classification. kNN predicts the label for a new student by finding the k closest students in the training set and using a majority vote. Changing k changes how flexible the model is.\n\nStep 1: Train one kNN model and check train vs test performance\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\nknn = KNeighborsClassifier(n_neighbors=3)\nknn.fit(X_train, y_train)\n\nprint(\"Training accuracy:\", knn.score(X_train, y_train))\nprint(\"Test accuracy:\", knn.score(X_test, y_test))\n\nTraining accuracy: 1.0\nTest accuracy: 1.0\n\n\n\nKNeighborsClassifier(...) creates a kNN classifier.\nn_neighbors=3 sets k = 3, meaning the model looks at the 3 nearest training students when it predicts a label.\nknn.fit(X_train, y_train) trains the model using the training set.\n\nFor kNN, “training” mostly means storing the training data so the model can look up neighbors later.\n\nknn.score(...) reports accuracy: the fraction of predictions that match the true labels.\n\nThe training accuracy is how well it predicts the training students.\nThe test accuracy is how well it predicts the held-back test students.\n\n\nThis is our first concrete look at generalization: test accuracy is the estimate of how well this model works on new students.\n\n\nStep 2: Watch what happens when we change k\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\nmax_k = len(X_train)  # k can't be bigger than the number of training rows\nks = range(1, max_k + 1)\n\ntrain_scores = []\ntest_scores = []\n\nfor k in ks:\n    knn = KNeighborsClassifier(n_neighbors=k)\n    knn.fit(X_train, y_train)\n    train_scores.append(knn.score(X_train, y_train))\n    test_scores.append(knn.score(X_test, y_test))\n\n\nresults = pd.DataFrame({\n    \"k\": list(ks),\n    \"train_acc\": train_scores,\n    \"test_acc\": test_scores\n})\nresults.round(3)\n\n\n\n\n\n\n\n\nk\ntrain_acc\ntest_acc\n\n\n\n\n0\n1\n1.000\n1.000\n\n\n1\n2\n1.000\n0.667\n\n\n2\n3\n1.000\n1.000\n\n\n3\n4\n1.000\n0.667\n\n\n4\n5\n1.000\n1.000\n\n\n5\n6\n0.667\n0.333\n\n\n6\n7\n0.667\n0.333\n\n\n7\n8\n0.667\n0.333\n\n\n8\n9\n0.667\n0.333\n\n\n\n\n\n\n\nImporting the model\n\nfrom sklearn.neighbors import KNeighborsClassifier imports the kNN classification model from scikit-learn.\nWe import it inside this cell so the cell works even if it’s run on its own.\n\nChoosing the k values we’re allowed to test\n\nmax_k = len(X_train) gets the number of rows in the training set.\nFor kNN, k cannot be larger than the number of training examples, because the model can’t look for “10 nearest neighbors” if you only have 9 training students.\nks = range(1, max_k + 1) creates the list of k values we’ll test. If max_k is 9, then this produces k values from 1 through 9.\n\nCreating containers to store our results\n\ntrain_scores = [] creates an empty list that will store training accuracy for each k.\ntest_scores = [] creates an empty list that will store test accuracy for each k.\n\nThese lists start empty, and we’ll fill them as we loop.\nLooping over k values\n\nfor k in ks: starts a loop. That means we will run the indented code once for each k value.\n\nInside the loop:\n\nknn = KNeighborsClassifier(n_neighbors=k) creates a new kNN model using the current k value.\nknn.fit(X_train, y_train) trains the model on the training set. For kNN, this mainly means the model stores the training data so it can compare new points to it later.\ntrain_scores.append(knn.score(X_train, y_train)) calculates accuracy on the training set and adds it to the train_scores list.\ntest_scores.append(knn.score(X_test, y_test)) calculates accuracy on the test set and adds it to the test_scores list.\n\nSo after the loop finishes:\n\ntrain_scores[i] is the training accuracy for k = ks[i]\ntest_scores[i] is the test accuracy for k = ks[i]\n\nDisplaying the results\n\nWe build a small table called results with three columns: k, train_acc, and test_acc.\npd.DataFrame({...}) creates the table by lining up each k value with its training accuracy and test accuracy.\nresults.round(3) rounds the accuracy values to three decimals so the table is easier to read.\nThe final line displays the table so we can quickly compare training vs test accuracy for each k before plotting.\n\nAt this stage, the important thing is not the exact numbers—it’s that we now have a way to compare training performance vs test performance as k changes.\n\n\nStep 3: Plot train vs test accuracy as k changes\n\nplt.plot(list(ks), train_scores, label=\"training accuracy\")\nplt.plot(list(ks), test_scores, label=\"test accuracy\")\nplt.xlabel(\"k (number of neighbors)\")\nplt.ylabel(\"accuracy\")\nplt.title(\"kNN: training vs test accuracy as k changes\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nPlotting the training accuracy line\n\nplt.plot(list(ks), train_scores, label=\"training accuracy\") draws a line graph of training accuracy.\nlist(ks) provides the x-values (the k values we tested).\ntrain_scores provides the y-values (the training accuracy for each k).\nlabel=\"training accuracy\" gives this line a name so it can appear in the legend.\n\nPlotting the test accuracy line\n\nplt.plot(list(ks), test_scores, label=\"test accuracy\") draws a second line on the same plot for test accuracy.\nIt uses the same x-values (k), but a different set of y-values (test_scores).\nThis lets us compare training and test performance at the same k values.\n\nLabeling the axes\n\nplt.xlabel(\"k (number of neighbors)\") labels the horizontal axis so it’s clear what the x-values represent.\nplt.ylabel(\"accuracy\") labels the vertical axis so it’s clear we’re measuring accuracy (from 0 to 1).\n\nAdding a title\n\nplt.title(\"kNN: training vs test accuracy as k changes\") adds a title that summarizes what the plot is showing.\n\nAdding a legend\n\nplt.legend() displays a legend box that matches each line to its label (“training accuracy” vs “test accuracy”).\nWithout this, you’d see two lines but wouldn’t know which is which.\n\nDisplaying the plot\n\nplt.show() tells Python to render the chart.\n\nThis plot is valuable because it shows how changing k changes model behavior:\n\nWhen k is small, the model can fit the training data very closely, so training accuracy is often high.\nAs k increases, the model becomes less flexible, so training accuracy usually drops.\nThe test accuracy is the estimate of generalization, and we watch how it changes as k changes.\n\nBecause our dataset is tiny, the test line may jump around, but the key idea still holds: k controls how complex the model is, and training vs test accuracy helps us see overfitting vs underfitting."
   },
   {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "Classification vs Regression",
-    "text": "Classification vs Regression\nRegression vs. Classification — What’s the difference?\nby AWS Educate (2020s, ~5–10 min) — Beginner explanation of what changes when your target is a number vs a label."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "Generalization: why we split into training vs test",
-    "text": "Generalization: why we split into training vs test\nTrain/Test Split (and why training accuracy can mislead you)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why we don’t evaluate on the same rows we trained on.\n\nCross Validation (bonus idea for small datasets)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why results can be unstable when you don’t have many rows."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "Underfitting and Overfitting",
-    "text": "Underfitting and Overfitting\nOverfitting (video)\nby deeplizard (~4 min) — Explains what overfitting is and what it tends to look like when you compare training vs test performance.\n\nUnderfitting (video)\nby deeplizard (~3–4 min) — Explains underfitting (model too simple to learn the real pattern) and why it performs poorly."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "k-Nearest Neighbors (kNN)",
-    "text": "k-Nearest Neighbors (kNN)\nK-Nearest Neighbors (kNN) clearly explained\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Neighbors “vote” and how changing k changes behavior."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
-    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
-    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
-    "section": "Accuracy: what does “correct” mean?",
-    "text": "Accuracy: what does “correct” mean?\nThe Confusion Matrix (what accuracy is measuring)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — What “correct vs incorrect” means in classification."
-  },
-  {
     "objectID": "assignments/week-01/index.html",
     "href": "assignments/week-01/index.html",
     "title": "Week 1 Assignment (CMSC-2208)",
@@ -689,90 +591,6 @@
     "title": "About",
     "section": "",
     "text": "About this site"
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions and safe processing (try/except)",
-    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Parsing: turning one line into fields you can work with",
-    "text": "Parsing: turning one line into fields you can work with"
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "List comprehensions (compact “build a new list” loops)",
-    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and the key= idea",
-    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Lambda (a small function used inline)",
-    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Generators and iteration (yield, streaming one row at a time)",
-    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions: handling bad rows without crashing",
-    "text": "Exceptions: handling bad rows without crashing"
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "List comprehensions (building lists from other sequences)",
-    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and key= with lambda",
-    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
-  },
-  {
-    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Generators and streaming (processing one row at a time)",
-    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
   },
   {
     "objectID": "assignments/week-02/index.html",
