@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jupyter Notebooks &amp; JupyterLab Learning Resources – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN) – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,8 +70,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../../shared/assets/course.css">
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../shared/assets/course.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">CMSC 2208 : Introduction to Machine Learning</span>
     </a>
   </div>
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guides</li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/miniconda.html">Week 1</a></li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/jupyter-learning-links.html">Jupyter Learning Links</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -142,37 +142,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">General Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI Policy</span></a>
   </div>
 </li>
@@ -189,13 +189,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-01/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-01/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -212,13 +212,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-01/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-01/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -235,22 +235,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Week 1</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Miniconda Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter Learning Links</span></a>
   </div>
 </li>
@@ -267,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3 Reference Videos</span></a>
   </div>
 </li>
@@ -285,17 +285,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction-to-jupyter-notebooks" id="toc-introduction-to-jupyter-notebooks" class="nav-link active" data-scroll-target="#introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</a></li>
-  <li><a href="#recent-developments-in-the-jupyter-ecosystem" id="toc-recent-developments-in-the-jupyter-ecosystem" class="nav-link" data-scroll-target="#recent-developments-in-the-jupyter-ecosystem">Recent Developments in the Jupyter Ecosystem</a></li>
+  <li><a href="#how-to-use-these-videos" id="toc-how-to-use-these-videos" class="nav-link active" data-scroll-target="#how-to-use-these-videos">How to use these videos</a></li>
+  <li><a href="#classification-vs-regression" id="toc-classification-vs-regression" class="nav-link" data-scroll-target="#classification-vs-regression">Classification vs Regression</a></li>
+  <li><a href="#generalization-why-we-split-into-training-vs-test" id="toc-generalization-why-we-split-into-training-vs-test" class="nav-link" data-scroll-target="#generalization-why-we-split-into-training-vs-test">Generalization: why we split into training vs test</a></li>
+  <li><a href="#underfitting-and-overfitting" id="toc-underfitting-and-overfitting" class="nav-link" data-scroll-target="#underfitting-and-overfitting">Underfitting and Overfitting</a></li>
+  <li><a href="#k-nearest-neighbors-knn" id="toc-k-nearest-neighbors-knn" class="nav-link" data-scroll-target="#k-nearest-neighbors-knn">k-Nearest Neighbors (kNN)</a></li>
+  <li><a href="#accuracy-what-does-correct-mean" id="toc-accuracy-what-does-correct-mean" class="nav-link" data-scroll-target="#accuracy-what-does-correct-mean">Accuracy: what does “correct” mean?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guides</li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/miniconda.html">Week 1</a></li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/jupyter-learning-links.html">Jupyter Learning Links</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jupyter Notebooks &amp; JupyterLab Learning Resources</h1>
+<h1 class="title">Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)</h1>
 </div>
 
 
@@ -307,7 +311,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 11, 2026</p>
+      <p class="date-modified">January 16, 2026</p>
     </div>
   </div>
     
@@ -318,27 +322,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction-to-jupyter-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</h2>
-<p><strong>Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough</strong><br>
-<em>by Corey Schafer</em> (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HW29067qVWk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Jupyter Notebooks Tutorial | How to use them &amp; tips and tricks!</strong><br>
-<em>by AssemblyAI</em> (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LW2Rye_l8L0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Jupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!</strong><br>
-<em>by Rob Mulla</em> (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/5pf0_bpNbkw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Getting Started with Jupyter Notebooks in VS Code</strong><br>
-<em>by Visual Studio Code</em> (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/suAkMeWJ1yE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="how-to-use-these-videos" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-these-videos">How to use these videos</h2>
+<p>These are optional “extra help” videos for Week 2.<br>
+Watch them when the reading feels abstract or when you want a second explanation of the same concept.</p>
+<hr>
 </section>
-<section id="recent-developments-in-the-jupyter-ecosystem" class="level2">
-<h2 class="anchored" data-anchor-id="recent-developments-in-the-jupyter-ecosystem">Recent Developments in the Jupyter Ecosystem</h2>
-<p><strong>Jupyter Frontends &amp; JupyterLite updates | Jupyter Open Studio Day 2025</strong><br>
-(2025, ~30 min) — Overview of current features and updates from the official Jupyter community.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/7kS_xfKEOmM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Additional resources and interactive examples are available on the <a href="https://jupyter.org/">official Jupyter website</a>.</p>
+<section id="classification-vs-regression" class="level2">
+<h2 class="anchored" data-anchor-id="classification-vs-regression">Classification vs Regression</h2>
+<p><strong>Regression vs.&nbsp;Classification — What’s the difference?</strong><br>
+<em>by AWS Educate</em> (2020s, ~5–10 min) — Beginner explanation of what changes when your target is a <strong>number</strong> vs a <strong>label</strong>.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/E0Hmnixke2g" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<hr>
+</section>
+<section id="generalization-why-we-split-into-training-vs-test" class="level2">
+<h2 class="anchored" data-anchor-id="generalization-why-we-split-into-training-vs-test">Generalization: why we split into training vs test</h2>
+<p><strong>Train/Test Split (and why training accuracy can mislead you)</strong><br>
+<em>by StatQuest (Josh Starmer)</em> (2018–2020s, ~10–15 min) — Why we don’t evaluate on the same rows we trained on.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/fSytzGwwBVw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><strong>Cross Validation (bonus idea for small datasets)</strong><br>
+<em>by StatQuest (Josh Starmer)</em> (2018–2020s, ~10–15 min) — Why results can be unstable when you don’t have many rows.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Gv9_4yMHFhI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="underfitting-and-overfitting" class="level2">
+<h2 class="anchored" data-anchor-id="underfitting-and-overfitting">Underfitting and Overfitting</h2>
+<p><strong>Overfitting (video)</strong><br>
+by deeplizard (~4 min) — Explains what overfitting is and what it tends to look like when you compare training vs test performance.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/DEMmkFC6IGM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><strong>Underfitting (video)</strong><br>
+by deeplizard (~3–4 min) — Explains underfitting (model too simple to learn the real pattern) and why it performs poorly.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0h8lAm5Ki5g" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="k-nearest-neighbors-knn" class="level2">
+<h2 class="anchored" data-anchor-id="k-nearest-neighbors-knn">k-Nearest Neighbors (kNN)</h2>
+<p><strong>K-Nearest Neighbors (kNN) clearly explained</strong><br>
+<em>by StatQuest (Josh Starmer)</em> (2018–2020s, ~10–15 min) — Neighbors “vote” and how changing <strong>k</strong> changes behavior.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HVXime0nQeI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<hr>
+</section>
+<section id="accuracy-what-does-correct-mean" class="level2">
+<h2 class="anchored" data-anchor-id="accuracy-what-does-correct-mean">Accuracy: what does “correct” mean?</h2>
+<p><strong>The Confusion Matrix (what accuracy is measuring)</strong><br>
+<em>by StatQuest (Josh Starmer)</em> (2018–2020s, ~10–15 min) — What “correct vs incorrect” means in classification.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Kdsp6soqA7o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 </section>

@@ -397,6 +397,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -414,6 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -425,6 +437,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
@@ -437,6 +458,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Jupyter Learning Links</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -454,6 +494,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#classification-target-labels" id="toc-classification-target-labels" class="nav-link" data-scroll-target="#classification-target-labels">Classification target (labels)</a></li>
   <li><a href="#regression-target-numeric" id="toc-regression-target-numeric" class="nav-link" data-scroll-target="#regression-target-numeric">Regression target (numeric)</a></li>
+  </ul></li>
+  <li><a href="#generalization-train-vs-test-split" id="toc-generalization-train-vs-test-split" class="nav-link" data-scroll-target="#generalization-train-vs-test-split">Generalization: Train vs Test Split</a></li>
+  <li><a href="#knn" id="toc-knn" class="nav-link" data-scroll-target="#knn">kNN</a>
+  <ul class="collapse">
+  <li><a href="#step-1-train-one-knn-model-and-check-train-vs-test-performance" id="toc-step-1-train-one-knn-model-and-check-train-vs-test-performance" class="nav-link" data-scroll-target="#step-1-train-one-knn-model-and-check-train-vs-test-performance">Step 1: Train one kNN model and check train vs test performance</a></li>
+  <li><a href="#step-2-watch-what-happens-when-we-change-k" id="toc-step-2-watch-what-happens-when-we-change-k" class="nav-link" data-scroll-target="#step-2-watch-what-happens-when-we-change-k">Step 2: Watch what happens when we change k</a></li>
+  <li><a href="#step-3-plot-train-vs-test-accuracy-as-k-changes" id="toc-step-3-plot-train-vs-test-accuracy-as-k-changes" class="nav-link" data-scroll-target="#step-3-plot-train-vs-test-accuracy-as-k-changes">Step 3: Plot train vs test accuracy as k changes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -476,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 11, 2026</p>
+      <p class="date-modified">January 13, 2026</p>
     </div>
   </div>
     
@@ -487,14 +534,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This page demonstrates how the same <em>inputs</em> (student features) can pair with two different <em>targets</em>:</p>
-<ul>
-<li><strong>Regression target</strong>: <code>final_score</code> (numeric)</li>
-<li><strong>Classification target</strong>: <code>pass_fail</code> (categorical)</li>
-</ul>
+<p><a href="week-2-demo.ipynb" download="week-2-demo.ipynb"> Download Jupyter Notebook </a></p>
+<p>This page builds a tiny student-performance dataset to demonstrate the core ideas Chapter 2 introduces.</p>
 <section id="build-a-tiny-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="build-a-tiny-dataset">Build a Tiny Dataset</h2>
-<div id="327ea2d3" class="cell" data-execution_count="1">
+<p>This cell creates a tiny, fake dataset so we can focus on the idea of <strong>inputs (features)</strong> and <strong>outputs (targets)</strong> without needing a real file yet. By the end of the cell, we’ll have a table (<code>df</code>) where each row represents one student.</p>
+<div id="3d84e5af" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -646,33 +691,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This cell creates a tiny, fake dataset so we can focus on the idea of <strong>inputs (features)</strong> and <strong>outputs (targets)</strong> without needing a real file yet. By the end of the cell, we’ll have a table (<code>df</code>) where each row represents one student.</p>
-<ol type="1">
-<li><strong>Loading the tools we need</strong></li>
-</ol>
+<p><strong>Loading the tools we need</strong></p>
 <p>The first two lines load two libraries:</p>
 <ul>
 <li><strong>NumPy (<code>np</code>)</strong>: used here for generating random numbers and doing simple numeric operations.</li>
 <li><strong>pandas (<code>pd</code>)</strong>: used to create and display a table called a <strong>DataFrame</strong> (think: spreadsheet in Python).</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>Making the randomness repeatable</strong></li>
-</ol>
+<p><strong>Making the randomness repeatable</strong></p>
 <p>Next, the cell creates a random number generator:</p>
 <ul>
 <li><code>rng</code> is a “random number generator” object we’ll use to create fake attendance and scores.</li>
 <li>The <code>0</code> is a <strong>seed</strong>, which makes the results repeatable. That means if you run the notebook again, you’ll get the same random dataset each time (useful for teaching and debugging).</li>
 </ul>
-<ol start="3" type="1">
-<li><strong>Choosing how many students to generate</strong></li>
-</ol>
+<p><strong>Choosing how many students to generate</strong></p>
 <ul>
 <li><code>n = 12</code> means we’re generating <strong>12 rows</strong>, so our dataset will represent 12 students.</li>
 <li>If we changed <code>n</code> to 100, we’d generate 100 students instead.</li>
 </ul>
-<ol start="4" type="1">
-<li><strong>Building the DataFrame (our dataset table)</strong></li>
-</ol>
+<p><strong>Building the DataFrame (our dataset table)</strong></p>
 <p>The <code>DataFrame</code> is created with four columns that represent <strong>student features</strong> (inputs):</p>
 <ul>
 <li><code>attendance</code></li>
@@ -686,22 +722,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>each <strong>row</strong> = one student</li>
 <li>each <strong>column</strong> = one measured input about that student</li>
 </ul>
-<ol start="5" type="1">
-<li><strong>Creating a numeric target for regression</strong></li>
-</ol>
+<p><strong>Creating a numeric target for regression</strong></p>
 <p>Next the cell creates a new column: and * <code>final_score</code> is calculated as a <strong>weighted combination</strong> of homework, quizzes, and exams. * This is meant to imitate how a course grade might be computed (exams count more than quizzes, etc.). * This column is a <strong>number</strong>, so it can be used as a <strong>regression target</strong> (predict a numeric value).</p>
-<ol start="6" type="1">
-<li><strong>Creating a label target for classification</strong></li>
-</ol>
+<p><strong>Creating a label target for classification</strong></p>
 <p>Then the cell creates another new column:</p>
 <ul>
 <li><code>pass_fail</code> turns the numeric <code>final_score</code> into a <strong>category label</strong>: <code>"pass"</code> or <code>"fail"</code>.</li>
 <li>This column is a <strong>classification target</strong>, because the output must be one of a fixed set of options.</li>
 </ul>
-<ol start="7" type="1">
-<li><strong>Displaying the result</strong></li>
-</ol>
+<p><strong>Displaying the result</strong></p>
 <p>The last line tells Jupyter/Quarto to display <code>df</code>, so you can see the dataset you just created as a table.</p>
+<p>In supervised learning, we organize our data in a table:</p>
+<ul>
+<li>Each <strong>row</strong> is one example (here, one student).</li>
+<li>The columns split into:
+<ul>
+<li><strong>X (features):</strong> the input information we use to make a prediction<br>
+(<code>attendance</code>, <code>homework_rate</code>, <code>quiz_avg</code>, <code>exam_avg</code>)</li>
+<li><strong>y (target/label):</strong> the output we want to predict</li>
+</ul></li>
+</ul>
+<p>In our demo, we keeping <strong>X</strong> the same, and we show two choices for <strong>y</strong>:</p>
+<ul>
+<li><code>pass_fail</code> is a <strong>classification</strong> target (the model chooses a label from {pass, fail})</li>
+<li><code>final_score</code> is a <strong>regression</strong> target (the model predicts a numeric value)</li>
+</ul>
 </section>
 <section id="review-the-difference-in-targets" class="level2">
 <h2 class="anchored" data-anchor-id="review-the-difference-in-targets">Review the Difference in Targets</h2>
@@ -721,7 +766,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>This is useful because classification targets often come in <strong>classes</strong>, and it helps to know whether your dataset has a reasonable spread of those classes (for example, not <em>all</em> pass and <em>none</em> fail).</p>
-<div id="28c1221d" class="cell" data-execution_count="2">
+<div id="eca0f893" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>pass_fail
@@ -747,7 +792,7 @@ Name: count, dtype: int64</code></pre>
 <li><p><code>plt.show()</code> displays the plot.</p></li>
 </ul>
 <p>The key takeaway from this plot: a <strong>classification target</strong> is made up of <strong>labels</strong> from a fixed set of options, and we can summarize it by counting how many examples fall into each label.</p>
-<div id="3190551c" class="cell" data-execution_count="3">
+<div id="61809bb3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>].value_counts().plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
@@ -763,11 +808,28 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
+<p>Now that we’ve looked at the classification target as label counts, we’ll look at the regression target as numeric values.</p>
 </section>
 </section>
 <section id="regression-target-numeric" class="level3">
 <h3 class="anchored" data-anchor-id="regression-target-numeric">Regression target (numeric)</h3>
-<div id="e55b32ff" class="cell" data-execution_count="4">
+<p>This next cell looks at the regression target column: <code>final_score</code>. The goal is to show that regression targets are <strong>numeric values</strong>, so we summarize them using numeric statistics and distributions.</p>
+<section id="a-quick-numeric-summary-describe" class="level4">
+<h4 class="anchored" data-anchor-id="a-quick-numeric-summary-describe">A quick numeric summary (<code>describe</code>)</h4>
+<p>The first line:</p>
+<ul>
+<li>selects the <code>final_score</code> column</li>
+<li>produces a standard summary of numeric data</li>
+</ul>
+<p>The output includes common summary statistics like:</p>
+<ul>
+<li>how many values there are (<code>count</code>)</li>
+<li>the average (<code>mean</code>)</li>
+<li>spread (<code>std</code>)</li>
+<li>minimum and maximum (<code>min</code>, <code>max</code>)</li>
+<li>and percentile cutoffs (like 25%, 50%, 75%)</li>
+</ul>
+<div id="f5ccb8d7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>count    12.000000
@@ -781,7 +843,21 @@ max      86.000000
 Name: final_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="1a0da661" class="cell" data-execution_count="5">
+</section>
+<section id="a-histogram-to-show-the-distribution-of-scores" class="level4">
+<h4 class="anchored" data-anchor-id="a-histogram-to-show-the-distribution-of-scores">A histogram to show the distribution of scores</h4>
+<p>The next cell visualizes the same column as a histogram.</p>
+<ul>
+<li>The histogram groups numeric values into bins (ranges) and counts how many students fall into each range.</li>
+<li><code>bins=8</code> controls how many ranges the score axis is divided into. More bins means narrower ranges; fewer bins means wider ranges.</li>
+</ul>
+<p>Then the plot labels make it readable:</p>
+<ul>
+<li>the title explains what you’re looking at</li>
+<li>the x-axis label (“score”) tells you the values are numeric</li>
+<li>the y-axis label (“count”) tells you we’re counting how many students fall into each score range</li>
+</ul>
+<div id="8c53691c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>].plot(kind<span class="op">=</span><span class="st">"hist"</span>, bins<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Regression target: final score"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"score"</span>)</span>
@@ -795,6 +871,323 @@ Name: final_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+</section>
+</section>
+</section>
+<section id="generalization-train-vs-test-split" class="level2">
+<h2 class="anchored" data-anchor-id="generalization-train-vs-test-split">Generalization: Train vs Test Split</h2>
+<p>This section sets up the train/test split so we can check whether a model would work on new students, not just the students in our dataset. We do that by holding back some rows as a test set and using the rest as a training set. By the end of this section, you’ll have X_train, X_test, y_train, and y_test—two groups of students that let us measure generalization later.</p>
+<section id="step-1-choose-x-features-and-y-target" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-choose-x-features-and-y-target">Step 1: Choose X (features) and y (target)</h4>
+<div id="b572836e" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># X = input features (what we use to predict)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[<span class="st">"attendance"</span>, <span class="st">"homework_rate"</span>, <span class="st">"quiz_avg"</span>, <span class="st">"exam_avg"</span>]]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># y = target (what we want to predict)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"pass_fail"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Importing the split tool</strong></p>
+<ul>
+<li><code>from sklearn.model_selection import train_test_split</code> imports a helper function from scikit-learn.</li>
+<li>We’ll use it to split our rows into a training set and a test set in a consistent way.</li>
+</ul>
+<p><strong>Defining X (features)</strong></p>
+<ul>
+<li><p><code>X = df[[...]]</code> selects the feature columns from the DataFrame.</p></li>
+<li><p>We are choosing the same four inputs we’ve been using throughout the demo:</p>
+<ul>
+<li><code>attendance</code></li>
+<li><code>homework_rate</code></li>
+<li><code>quiz_avg</code></li>
+<li><code>exam_avg</code></li>
+</ul></li>
+</ul>
+<p>This creates a new table <code>X</code> that contains only the input information.</p>
+<p><strong>Defining y (target)</strong></p>
+<ul>
+<li><code>y = df["pass_fail"]</code> selects the target column we want to predict.</li>
+<li>Here we are choosing <strong>classification</strong> as our task, so <code>y</code> is the label column (<code>pass</code> or <code>fail</code>).</li>
+</ul>
+<p>At this point, we have separated the dataset into:</p>
+<ul>
+<li><strong>X:</strong> what we use to predict</li>
+<li><strong>y:</strong> what we want to predict</li>
+</ul>
+</section>
+<section id="step-2-split-the-rows-into-training-and-test-sets" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-split-the-rows-into-training-and-test-sets">Step 2: Split the rows into training and test sets</h4>
+<div id="a9a0cd98" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total rows:"</span>, <span class="bu">len</span>(df))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training rows:"</span>, <span class="bu">len</span>(X_train))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test rows:"</span>, <span class="bu">len</span>(X_test))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total rows: 12
+Training rows: 9
+Test rows: 3</code></pre>
+</div>
+</div>
+<p><strong>Splitting X and y together</strong></p>
+<ul>
+<li><code>train_test_split(X, y, ...)</code> splits the dataset into two groups of rows.</li>
+<li>We split <strong>X and y at the same time</strong> so that each feature row stays matched with its correct label.</li>
+</ul>
+<p><strong>This gives us four outputs:</strong></p>
+<ul>
+<li><code>X_train</code>: the feature rows in the training set</li>
+<li><code>X_test</code>: the feature rows in the test set</li>
+<li><code>y_train</code>: the labels that go with the training rows</li>
+<li><code>y_test</code>: the labels that go with the test rows</li>
+</ul>
+<p><strong>Choosing how large the test set is</strong></p>
+<ul>
+<li><code>test_size=0.25</code> means <strong>25% of the rows</strong> go into the test set.</li>
+<li>With 12 total students, this will usually mean about 3 students in the test set and 9 in training.</li>
+</ul>
+<p><strong>Making the split repeatable</strong></p>
+<ul>
+<li><code>random_state=0</code> makes the split repeatable.</li>
+<li>Without it, the split could change each time you run the notebook, which makes it harder to compare results.</li>
+</ul>
+<p><strong>Printing the sizes</strong></p>
+<p>The <code>print(...)</code> lines show how many rows ended up in each group so you can confirm the split happened.</p>
+</section>
+</section>
+<section id="knn" class="level2">
+<h2 class="anchored" data-anchor-id="knn">kNN</h2>
+<p>Now that we have a <strong>training set</strong> and a <strong>test set</strong>, we can train a model on the training students and see how well it generalizes to the test students.</p>
+<p>We’ll use <strong>k-nearest neighbors (kNN)</strong> for classification. kNN predicts the label for a new student by finding the <strong>k closest</strong> students in the training set and using a majority vote. Changing <strong>k</strong> changes how flexible the model is.</p>
+<section id="step-1-train-one-knn-model-and-check-train-vs-test-performance" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-train-one-knn-model-and-check-train-vs-test-performance">Step 1: Train one kNN model and check train vs test performance</h3>
+<div id="f9e0ecd1" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>knn.fit(X_train, y_train)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training accuracy:"</span>, knn.score(X_train, y_train))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test accuracy:"</span>, knn.score(X_test, y_test))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training accuracy: 1.0
+Test accuracy: 1.0</code></pre>
+</div>
+</div>
+<ul>
+<li><p><code>KNeighborsClassifier(...)</code> creates a kNN classifier.</p></li>
+<li><p><code>n_neighbors=3</code> sets <strong>k = 3</strong>, meaning the model looks at the 3 nearest training students when it predicts a label.</p></li>
+<li><p><code>knn.fit(X_train, y_train)</code> trains the model using the training set.</p>
+<ul>
+<li>For kNN, “training” mostly means storing the training data so the model can look up neighbors later.</li>
+</ul></li>
+<li><p><code>knn.score(...)</code> reports accuracy: the fraction of predictions that match the true labels.</p>
+<ul>
+<li>The <strong>training accuracy</strong> is how well it predicts the training students.</li>
+<li>The <strong>test accuracy</strong> is how well it predicts the held-back test students.</li>
+</ul></li>
+</ul>
+<p>This is our first concrete look at <strong>generalization</strong>: test accuracy is the estimate of how well this model works on new students.</p>
+</section>
+<section id="step-2-watch-what-happens-when-we-change-k" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-watch-what-happens-when-we-change-k">Step 2: Watch what happens when we change k</h3>
+<div id="aa57df3a" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>max_k <span class="op">=</span> <span class="bu">len</span>(X_train)  <span class="co"># k can't be bigger than the number of training rows</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ks <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, max_k <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>train_scores <span class="op">=</span> []</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>test_scores <span class="op">=</span> []</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> ks:</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span>k)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    knn.fit(X_train, y_train)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    train_scores.append(knn.score(X_train, y_train))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    test_scores.append(knn.score(X_test, y_test))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"k"</span>: <span class="bu">list</span>(ks),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"train_acc"</span>: train_scores,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"test_acc"</span>: test_scores</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>results.<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">train_acc</th>
+<th data-quarto-table-cell-role="th">test_acc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>1.000</td>
+<td>0.667</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>1.000</td>
+<td>0.667</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>6</td>
+<td>0.667</td>
+<td>0.333</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>7</td>
+<td>0.667</td>
+<td>0.333</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>8</td>
+<td>0.667</td>
+<td>0.333</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>9</td>
+<td>0.667</td>
+<td>0.333</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Importing the model</strong></p>
+<ul>
+<li><code>from sklearn.neighbors import KNeighborsClassifier</code> imports the kNN classification model from scikit-learn.</li>
+<li>We import it inside this cell so the cell works even if it’s run on its own.</li>
+</ul>
+<p><strong>Choosing the k values we’re allowed to test</strong></p>
+<ul>
+<li><code>max_k = len(X_train)</code> gets the number of rows in the training set.</li>
+<li>For kNN, <code>k</code> cannot be larger than the number of training examples, because the model can’t look for “10 nearest neighbors” if you only have 9 training students.</li>
+<li><code>ks = range(1, max_k + 1)</code> creates the list of k values we’ll test. If <code>max_k</code> is 9, then this produces k values from 1 through 9.</li>
+</ul>
+<p><strong>Creating containers to store our results</strong></p>
+<ul>
+<li><code>train_scores = []</code> creates an empty list that will store training accuracy for each k.</li>
+<li><code>test_scores = []</code> creates an empty list that will store test accuracy for each k.</li>
+</ul>
+<p>These lists start empty, and we’ll fill them as we loop.</p>
+<p><strong>Looping over k values</strong></p>
+<ul>
+<li><code>for k in ks:</code> starts a loop. That means we will run the indented code once for each k value.</li>
+</ul>
+<p>Inside the loop:</p>
+<ul>
+<li><code>knn = KNeighborsClassifier(n_neighbors=k)</code> creates a new kNN model using the current k value.</li>
+<li><code>knn.fit(X_train, y_train)</code> trains the model on the training set. For kNN, this mainly means the model stores the training data so it can compare new points to it later.</li>
+<li><code>train_scores.append(knn.score(X_train, y_train))</code> calculates accuracy on the training set and adds it to the <code>train_scores</code> list.</li>
+<li><code>test_scores.append(knn.score(X_test, y_test))</code> calculates accuracy on the test set and adds it to the <code>test_scores</code> list.</li>
+</ul>
+<p>So after the loop finishes:</p>
+<ul>
+<li><code>train_scores[i]</code> is the training accuracy for <code>k = ks[i]</code></li>
+<li><code>test_scores[i]</code> is the test accuracy for <code>k = ks[i]</code></li>
+</ul>
+<p><strong>Displaying the results</strong></p>
+<ul>
+<li>We build a small table called <code>results</code> with three columns: <code>k</code>, <code>train_acc</code>, and <code>test_acc</code>.</li>
+<li><code>pd.DataFrame({...})</code> creates the table by lining up each k value with its training accuracy and test accuracy.</li>
+<li><code>results.round(3)</code> rounds the accuracy values to three decimals so the table is easier to read.</li>
+<li>The final line displays the table so we can quickly compare training vs test accuracy for each k before plotting.</li>
+</ul>
+<p>At this stage, the important thing is not the exact numbers—it’s that we now have a way to compare training performance vs test performance as k changes.</p>
+</section>
+<section id="step-3-plot-train-vs-test-accuracy-as-k-changes" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-plot-train-vs-test-accuracy-as-k-changes">Step 3: Plot train vs test accuracy as k changes</h3>
+<div id="27a0c01b" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">list</span>(ks), train_scores, label<span class="op">=</span><span class="st">"training accuracy"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">list</span>(ks), test_scores, label<span class="op">=</span><span class="st">"test accuracy"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"k (number of neighbors)"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"accuracy"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"kNN: training vs test accuracy as k changes"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week-2-demo_files/figure-html/cell-11-output-1.png" width="589" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Plotting the training accuracy line</strong></p>
+<ul>
+<li><code>plt.plot(list(ks), train_scores, label="training accuracy")</code> draws a line graph of training accuracy.</li>
+<li><code>list(ks)</code> provides the x-values (the k values we tested).</li>
+<li><code>train_scores</code> provides the y-values (the training accuracy for each k).</li>
+<li><code>label="training accuracy"</code> gives this line a name so it can appear in the legend.</li>
+</ul>
+<p><strong>Plotting the test accuracy line</strong></p>
+<ul>
+<li><code>plt.plot(list(ks), test_scores, label="test accuracy")</code> draws a second line on the same plot for test accuracy.</li>
+<li>It uses the same x-values (<code>k</code>), but a different set of y-values (<code>test_scores</code>).</li>
+<li>This lets us compare training and test performance at the same k values.</li>
+</ul>
+<p><strong>Labeling the axes</strong></p>
+<ul>
+<li><code>plt.xlabel("k (number of neighbors)")</code> labels the horizontal axis so it’s clear what the x-values represent.</li>
+<li><code>plt.ylabel("accuracy")</code> labels the vertical axis so it’s clear we’re measuring accuracy (from 0 to 1).</li>
+</ul>
+<p><strong>Adding a title</strong></p>
+<ul>
+<li><code>plt.title("kNN: training vs test accuracy as k changes")</code> adds a title that summarizes what the plot is showing.</li>
+</ul>
+<p><strong>Adding a legend</strong></p>
+<ul>
+<li><code>plt.legend()</code> displays a legend box that matches each line to its label (“training accuracy” vs “test accuracy”).</li>
+<li>Without this, you’d see two lines but wouldn’t know which is which.</li>
+</ul>
+<p><strong>Displaying the plot</strong></p>
+<ul>
+<li><code>plt.show()</code> tells Python to render the chart.</li>
+</ul>
+<p>This plot is valuable because it shows how changing <strong>k</strong> changes model behavior:</p>
+<ul>
+<li>When <strong>k is small</strong>, the model can fit the training data very closely, so training accuracy is often high.</li>
+<li>As <strong>k increases</strong>, the model becomes less flexible, so training accuracy usually drops.</li>
+<li>The test accuracy is the estimate of <strong>generalization</strong>, and we watch how it changes as k changes.</li>
+</ul>
+<p>Because our dataset is tiny, the test line may jump around, but the key idea still holds: <strong>k controls how complex the model is</strong>, and training vs test accuracy helps us see overfitting vs underfitting.</p>
 
 
 </section>

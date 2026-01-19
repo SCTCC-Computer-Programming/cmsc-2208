@@ -1,297 +1,435 @@
 [
   {
-    "objectID": "weekly-overview/week-02/week-2-demo.html",
-    "href": "weekly-overview/week-02/week-2-demo.html",
-    "title": "Week 2 Demo: Classification vs Regression Targets",
+    "objectID": "weekly-overview/week-02/index.html",
+    "href": "weekly-overview/week-02/index.html",
+    "title": "Week 2 Guide",
     "section": "",
-    "text": "This page demonstrates how the same inputs (student features) can pair with two different targets:"
+    "text": "This week focuses learning the core structure that Chapter 2 uses for the rest of supervised learning:\n\nhow we name the inputs (X, the feature columns) and the output (y, the target/label),\nhow we decide whether a task is classification or regression,\nwhy generalization is the real goal (not “doing well on the training rows”),\nand how overfitting vs underfitting connects to model complexity.\n\nThen the chapter uses k-nearest neighbors (kNN) as the first algorithm where you can see these ideas clearly.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
   },
   {
-    "objectID": "weekly-overview/week-02/week-2-demo.html#build-a-tiny-dataset",
-    "href": "weekly-overview/week-02/week-2-demo.html#build-a-tiny-dataset",
-    "title": "Week 2 Demo: Classification vs Regression Targets",
-    "section": "Build a Tiny Dataset",
-    "text": "Build a Tiny Dataset\n\nimport numpy as np\nimport pandas as pd\n\nrng = np.random.default_rng(0)\nn = 12\n\ndf = pd.DataFrame({\n    \"attendance\": rng.integers(60, 101, n),\n    \"homework_rate\": rng.integers(50, 101, n),\n    \"quiz_avg\": rng.integers(40, 101, n),\n    \"exam_avg\": rng.integers(40, 101, n),\n})\n\n# numeric target (regression)\ndf[\"final_score\"] = (0.2*df[\"homework_rate\"] + 0.3*df[\"quiz_avg\"] + 0.5*df[\"exam_avg\"]).round(0)\n\n# categorical target (classification)\ndf[\"pass_fail\"] = np.where(df[\"final_score\"] &gt;= 70, \"pass\", \"fail\")\n\ndf\n\n\n\n\n\n\n\n\nattendance\nhomework_rate\nquiz_avg\nexam_avg\nfinal_score\npass_fail\n\n\n\n\n0\n94\n75\n64\n44\n56.0\nfail\n\n\n1\n86\n80\n92\n58\n73.0\npass\n\n\n2\n80\n99\n73\n69\n76.0\npass\n\n\n3\n71\n87\n42\n65\n62.0\nfail\n\n\n4\n72\n82\n86\n64\n74.0\npass\n\n\n5\n61\n77\n84\n41\n61.0\nfail\n\n\n6\n63\n78\n91\n40\n63.0\nfail\n\n\n7\n60\n97\n50\n47\n58.0\nfail\n\n\n8\n67\n64\n45\n40\n46.0\nfail\n\n\n9\n93\n91\n92\n80\n86.0\npass\n\n\n10\n86\n84\n41\n72\n65.0\nfail\n\n\n11\n97\n50\n73\n79\n71.0\npass\n\n\n\n\n\n\n\nThis cell creates a tiny, fake dataset so we can focus on the idea of inputs (features) and outputs (targets) without needing a real file yet. By the end of the cell, we’ll have a table (df) where each row represents one student.\n\nLoading the tools we need\n\nThe first two lines load two libraries:\n\nNumPy (np): used here for generating random numbers and doing simple numeric operations.\npandas (pd): used to create and display a table called a DataFrame (think: spreadsheet in Python).\n\n\nMaking the randomness repeatable\n\nNext, the cell creates a random number generator:\n\nrng is a “random number generator” object we’ll use to create fake attendance and scores.\nThe 0 is a seed, which makes the results repeatable. That means if you run the notebook again, you’ll get the same random dataset each time (useful for teaching and debugging).\n\n\nChoosing how many students to generate\n\n\nn = 12 means we’re generating 12 rows, so our dataset will represent 12 students.\nIf we changed n to 100, we’d generate 100 students instead.\n\n\nBuilding the DataFrame (our dataset table)\n\nThe DataFrame is created with four columns that represent student features (inputs):\n\nattendance\nhomework_rate\nquiz_avg\nexam_avg\n\nEach column is filled with random whole numbers in a chosen range. Those ranges are just meant to look realistic (for example, attendance between about 60 and 100).\nSo at this point:\n\neach row = one student\neach column = one measured input about that student\n\n\nCreating a numeric target for regression\n\nNext the cell creates a new column: and * final_score is calculated as a weighted combination of homework, quizzes, and exams. * This is meant to imitate how a course grade might be computed (exams count more than quizzes, etc.). * This column is a number, so it can be used as a regression target (predict a numeric value).\n\nCreating a label target for classification\n\nThen the cell creates another new column:\n\npass_fail turns the numeric final_score into a category label: \"pass\" or \"fail\".\nThis column is a classification target, because the output must be one of a fixed set of options.\n\n\nDisplaying the result\n\nThe last line tells Jupyter/Quarto to display df, so you can see the dataset you just created as a table."
-  },
-  {
-    "objectID": "weekly-overview/week-02/week-2-demo.html#review-the-difference-in-targets",
-    "href": "weekly-overview/week-02/week-2-demo.html#review-the-difference-in-targets",
-    "title": "Week 2 Demo: Classification vs Regression Targets",
-    "section": "Review the Difference in Targets",
-    "text": "Review the Difference in Targets\nThis section zooms in on the target column for classification: pass_fail. The goal is to make the idea of a classification target visible: it isn’t a wide range of numbers — it’s a small set of labels.\n\nClassification target (labels)\n\nCounting how many of each label we have\nThis first line counts how many students fall into each class:\n\ndf[\"pass_fail\"] selects the pass_fail column from the DataFrame.\n.value_counts() counts how many times each label appears.\nThe output should look like a small summary table showing something like:\n\nhow many students are \"pass\"\nhow many students are \"fail\"\n\n\nThis is useful because classification targets often come in classes, and it helps to know whether your dataset has a reasonable spread of those classes (for example, not all pass and none fail).\n\ndf[\"pass_fail\"].value_counts()\n\npass_fail\nfail    7\npass    5\nName: count, dtype: int64\n\n\n\n\nMaking the label counts visual with a bar chart\nThe next cell turns those same counts into a picture.\n\nimport matplotlib.pyplot as plt loads the plotting library we’ll use to draw the chart.\ndf[\"pass_fail\"].value_counts().plot(kind=\"bar\") does two steps at once:\n\nit recomputes the counts of \"pass\" vs \"fail\"\nit plots them as a bar chart\n\nplt.title(...) adds a title so the chart clearly communicates what it represents.\nplt.xlabel(\"label\") labels the horizontal axis: the category names (pass and fail).\nplt.ylabel(\"count\") labels the vertical axis: how many students are in each category.\nplt.show() displays the plot.\n\nThe key takeaway from this plot: a classification target is made up of labels from a fixed set of options, and we can summarize it by counting how many examples fall into each label.\n\nimport matplotlib.pyplot as plt\n\ndf[\"pass_fail\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Classification target: pass/fail\")\nplt.xlabel(\"label\")\nplt.ylabel(\"count\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nRegression target (numeric)\n\ndf[\"final_score\"].describe()\n\ncount    12.000000\nmean     65.916667\nstd      10.672465\nmin      46.000000\n25%      60.250000\n50%      64.000000\n75%      73.250000\nmax      86.000000\nName: final_score, dtype: float64\n\n\n\ndf[\"final_score\"].plot(kind=\"hist\", bins=8)\nplt.title(\"Regression target: final score\")\nplt.xlabel(\"score\")\nplt.ylabel(\"count\")\nplt.show()"
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html",
-    "href": "weekly-overview/week-01/index.html",
-    "title": "Week 1 Guide",
+    "objectID": "weekly-overview/week-02/index.html#week-2-focus",
+    "href": "weekly-overview/week-02/index.html#week-2-focus",
+    "title": "Week 2 Guide",
     "section": "",
-    "text": "This week is about building the starting point for the semester. Chapter 1 introduces the language and workflow used throughout the book. Your focus is to understand what machine learning means in this course, what problems it is used for, and how the textbook organizes the steps from data to a trained model.\nChapter 1 of Introduction to Machine Learning with Python sets the foundation for the rest of the book by introducing the core vocabulary and framing used throughout. It explains what machine learning is used for, outlines the kinds of tasks the book focuses on, and emphasizes the importance of understanding your problem and your data before choosing a model. The chapter also introduces the main tools used in the course (especially scikit-learn and the supporting Python ecosystem) and shows a complete first example so you can see what an end-to-end machine learning task looks like in practice.",
+    "text": "This week focuses learning the core structure that Chapter 2 uses for the rest of supervised learning:\n\nhow we name the inputs (X, the feature columns) and the output (y, the target/label),\nhow we decide whether a task is classification or regression,\nwhy generalization is the real goal (not “doing well on the training rows”),\nand how overfitting vs underfitting connects to model complexity.\n\nThen the chapter uses k-nearest neighbors (kNN) as the first algorithm where you can see these ideas clearly.",
     "crumbs": [
       "Home",
       "Weekly Overview",
-      "Week 1"
+      "Week 2"
     ]
   },
   {
-    "objectID": "weekly-overview/week-01/index.html#week-1-focus",
-    "href": "weekly-overview/week-01/index.html#week-1-focus",
-    "title": "Week 1 Guide",
+    "objectID": "weekly-overview/week-02/index.html#chapter-2-concepts",
+    "href": "weekly-overview/week-02/index.html#chapter-2-concepts",
+    "title": "Week 2 Guide",
+    "section": "Chapter 2 Concepts",
+    "text": "Chapter 2 Concepts\n\nClassification vs regression\nChapter 2 starts by defining the two major supervised learning task types:\n\nClassification: predict a class label from a fixed list of possibilities (binary or multiclass).\nRegression: predict a numeric value where “in-between” outcomes make sense (continuity).\n\nA good reading habit here: ask “Does the output have continuity (regression) or distinct categories (classification)?”\n\n\nGeneralization as the goal\nThe book is explicit: we train on one set of examples, but we care about performance on new, unseen data. That ability is generalization.\nIt also emphasizes why training accuracy can be misleading using a “boat buyer” example: you can make a complex rule that matches the training rows perfectly, but that doesn’t mean it will work for new customers.\n\n\nOverfitting vs underfitting\nChapter 2 frames these as the two common failure modes against the generalization goal:\n\nOverfitting: model fits the training set “too closely,” performs well on training but worse on new data.\nUnderfitting: model is too simple to capture the pattern; does poorly even on training.\n\nThe book also names the key idea: there’s usually a sweet spot where test performance is best.\n\n\nModel complexity vs dataset size\nA distinct concept (separate from “overfitting is bad”): how complex a model you can use depends on how much variety you have in your training data—more variety/larger datasets can support more complex models without overfitting.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#knn-the-first-algorithm",
+    "href": "weekly-overview/week-02/index.html#knn-the-first-algorithm",
+    "title": "Week 2 Guide",
+    "section": "kNN: the first algorithm",
+    "text": "kNN: the first algorithm\n\nWhat the algorithm is\nThe book describes kNN as “arguably the simplest” algorithm: building the model is storing the training set. Predictions happen by finding the closest training points (“neighbors”).\nFor classification, the book uses the term voting exactly the way you’ve been using it: count how many neighbors are in each class and pick the majority class.\nk is the knob that changes complexity:\n\nsmall k → more flexible / can overfit\nlarger k → smoother / can underfit",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#reading-expectations-for-week-2",
+    "href": "weekly-overview/week-02/index.html#reading-expectations-for-week-2",
+    "title": "Week 2 Guide",
+    "section": "Reading expectations for Week 2",
+    "text": "Reading expectations for Week 2\nAs you read, keep a running checklist:\n\nCan you identify X and y in each example?\nIs it classification or regression, and why?\nWhat would it mean for the model to generalize here?\nIf performance differs between training and test, is that pointing toward overfitting or underfitting?\nFor kNN specifically: how does changing k move you along the complexity scale?",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#week-2-tasks",
+    "href": "weekly-overview/week-02/index.html#week-2-tasks",
+    "title": "Week 2 Guide",
+    "section": "Week 2 Tasks",
+    "text": "Week 2 Tasks\n\nWatch the Week 2 demo overview in your cmsc-1217 YouTube playsist.\n\n\n\nHere is the link to the Week 2 demo.\n Download Jupyter Notebook \n\n\nRead Chapter 2 through the kNN section, and stop before Linear Models.\nComplete the Chapter 2 D2L quiz",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#knowledge-goals-for-week-2",
+    "href": "weekly-overview/week-02/index.html#knowledge-goals-for-week-2",
+    "title": "Week 2 Guide",
+    "section": "Knowledge goals for Week 2",
+    "text": "Knowledge goals for Week 2\nBy the end of the week, students should be able to:\n\ndecide whether a task is classification or regression and explain why\ndefine generalization in plain terms and explain why test performance matters\nexplain overfitting vs underfitting using the training/test pattern\ndescribe what kNN does at prediction time (neighbors + voting; mean for regression)\nexplain how changing k changes complexity and can shift generalization performance",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "shared/policies/office-hours.html",
+    "href": "shared/policies/office-hours.html",
+    "title": "Office Hours",
     "section": "",
-    "text": "This week is about building the starting point for the semester. Chapter 1 introduces the language and workflow used throughout the book. Your focus is to understand what machine learning means in this course, what problems it is used for, and how the textbook organizes the steps from data to a trained model.\nChapter 1 of Introduction to Machine Learning with Python sets the foundation for the rest of the book by introducing the core vocabulary and framing used throughout. It explains what machine learning is used for, outlines the kinds of tasks the book focuses on, and emphasizes the importance of understanding your problem and your data before choosing a model. The chapter also introduces the main tools used in the course (especially scikit-learn and the supporting Python ecosystem) and shows a complete first example so you can see what an end-to-end machine learning task looks like in practice.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#how-this-course-approaches-machine-learning",
-    "href": "weekly-overview/week-01/index.html#how-this-course-approaches-machine-learning",
-    "title": "Week 1 Guide",
-    "section": "How this course approaches machine learning",
-    "text": "How this course approaches machine learning\nThis course approaches machine learning as a programming workflow carried out in Python. Chapter 1 reflects that approach by introducing machine learning through concrete tasks and examples, using the Python tool ecosystem and scikit-learn’s model interface. In Chapter 1, the authors focus on:\n\nframing a real-world question as a machine learning task,\nrepresenting the problem with a dataset (features and targets),\ntraining a model using scikit-learn,\nand checking performance using held-out test data.\n\nIn this course, you will primarily be asked to implement and evaluate models using existing tools, interpret what the results mean, and explain your choices using correct terminology. While mathematical ideas may appear as needed to support interpretation, the course emphasis is on building practical skill with the workflow and developing good habits for working with models and data.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#what-machine-learning-means-in-this-book",
-    "href": "weekly-overview/week-01/index.html#what-machine-learning-means-in-this-book",
-    "title": "Week 1 Guide",
-    "section": "What machine learning means in this book",
-    "text": "What machine learning means in this book\nChapter 1 introduces machine learning as extracting knowledge from data, and it motivates machine learning by contrasting it with systems built from hand-coded decision rules. The chapter uses examples such as spam filtering and face detection to show why rule-based approaches can break down, and how learning from data can be a practical alternative.\nTwo ideas are introduced early:\n\nMachine learning methods automate decision-making by generalizing from known examples, rather than relying on a fixed set of hand-built rules.\nThe quality of what a model can learn depends on what information is actually present in the dataset, especially in the features used to describe each example.\n\nFor that reason, Chapter 1 spends time defining how data is described in machine learning. It introduces the “table” framing (samples as rows and features as columns), names the key terms sample and feature, and emphasizes that no algorithm can make predictions using information that is not represented in the features.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#supervised-vs-unsupervised-learning",
-    "href": "weekly-overview/week-01/index.html#supervised-vs-unsupervised-learning",
-    "title": "Week 1 Guide",
-    "section": "Supervised vs unsupervised learning",
-    "text": "Supervised vs unsupervised learning\nChapter 1 distinguishes two broad categories of machine learning problems:\n\nsupervised learning, where you have input data along with a known outcome you want to predict\nunsupervised learning, where you have input data but no known outcomes provided to the algorithm\n\nThe chapter gives concrete examples of both kinds of tasks, and it emphasizes that supervised learning requires building a dataset that includes the desired outcome.\nChapter 1 then walks through a supervised learning example: predicting iris species from flower measurements. This example is used to introduce the vocabulary you will see repeatedly:\n\nsamples (rows/data points) and features (columns/properties)\ntargets/labels (the known outcomes in supervised learning)\ntraining data versus test data (evaluating on data not used to fit the model)\n\nYou do not need to memorize every detail yet. The goal is to recognize what makes a problem supervised, and to understand why the book spends time on data representation and evaluation before expanding into more algorithms in later chapters.\nNote: the formal “classification vs regression” distinction is introduced in Chapter 2, even though Chapter 1’s iris walkthrough is a classification example.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#datasets-features-and-targets",
-    "href": "weekly-overview/week-01/index.html#datasets-features-and-targets",
-    "title": "Week 1 Guide",
-    "section": "Datasets, features, and targets",
-    "text": "Datasets, features, and targets\nChapter 1 introduces the vocabulary the book uses to describe data in machine learning.\n\nA dataset is a collection of examples (also called samples or data points).\nEach example is described by features, which are measurable properties used as inputs to a model.\nIn supervised learning, each example also has a target value (often called a label). In classification problems, the possible target values are sometimes called classes.\n\nChapter 1 also describes datasets in a “table” form: samples are organized as rows and features as columns.\nThe book uses the notation X for the input data (the features) and y for the target values. You will see X and y throughout the text and in scikit-learn examples.\nThis week, focus on recognizing what X and y represent conceptually rather than worrying about exact shapes or implementation details.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#training-data-and-test-data",
-    "href": "weekly-overview/week-01/index.html#training-data-and-test-data",
-    "title": "Week 1 Guide",
-    "section": "Training data and test data",
-    "text": "Training data and test data\nChapter 1 introduces the distinction between training data and test data as part of its first complete machine learning example.\nThe chapter explains that:\n\na model is fit using one portion of the available data (the training set),\nand performance is evaluated using a separate portion of the data that was not used during training (the test set).\n\nThis separation allows you to check how well a model performs on new, unseen data, rather than just how well it fits the data it was trained on. Chapter 1 emphasizes that evaluating a model on the same data used for training can give an overly optimistic view of its performance.\nYou should understand why this separation is necessary, even though the mechanics of splitting data and evaluating models will be explored in more detail in later chapters.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#a-first-end-to-end-example",
-    "href": "weekly-overview/week-01/index.html#a-first-end-to-end-example",
-    "title": "Week 1 Guide",
-    "section": "A first end-to-end example",
-    "text": "A first end-to-end example\nChapter 1 includes a complete, small-scale machine learning example using the iris flower dataset. The purpose of this example is not to teach you every detail, but to show what an end-to-end machine learning task looks like in practice and to introduce the workflow the book will return to throughout the course.\nAs you read this example, focus on the sequence of steps:\n\nload a dataset,\nseparate features and targets,\ninspect the data (for example, with simple visualizations),\nsplit the data into training and test sets,\ntrain a model on the training data,\nevaluate the model on the test data.\n\nDo not worry if some parts feel unfamiliar at first. The goal in Week 1 is to recognize what each step is doing and why it appears in the workflow.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#tools-introduced-in-chapter-1",
-    "href": "weekly-overview/week-01/index.html#tools-introduced-in-chapter-1",
-    "title": "Week 1 Guide",
-    "section": "Tools introduced in Chapter 1",
-    "text": "Tools introduced in Chapter 1\nChapter 1 introduces the main Python libraries used throughout the book:\n\n\n\n\n\n\n\nTool\nRole in the book\n\n\n\n\nNumPy\nProvides efficient numerical arrays and supports many operations used by other libraries\n\n\npandas\nUsed for working with structured, tabular data\n\n\nmatplotlib\nUsed for basic visualization and inspecting data\n\n\nscikit-learn\nProvides machine learning algorithms and workflows\n\n\n\nYou are not expected to master these tools in Week 1. You are expected to recognize their names and understand why each one exists.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#reading-expectations-and-habits",
-    "href": "weekly-overview/week-01/index.html#reading-expectations-and-habits",
-    "title": "Week 1 Guide",
-    "section": "Reading expectations and habits",
-    "text": "Reading expectations and habits\nChapter 1 is short but dense. You should read it slowly and actively.\nWhen you encounter unfamiliar terms:\n\npause and reread the surrounding paragraph,\nconnect the term to the example being shown,\navoid memorizing definitions in isolation.\n\nThe goal is to build conceptual familiarity, not technical mastery.\nIf you compare your output to the book’s examples later, remember that small differences in formatting or values are normal. Focus on whether the ideas and results make sense, not whether they look identical.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#week-1-tasks",
-    "href": "weekly-overview/week-01/index.html#week-1-tasks",
-    "title": "Week 1 Guide",
-    "section": "Week 1 tasks",
-    "text": "Week 1 tasks\nThis week, you should:\n\nRead Chapter 1 of the textbook carefully.\nFollow the course setup instructions and complete the Week 1 verification assignment.\nComplete the D2L quiz for Chapter 1.\nReflect on how machine learning problems are structured in the book.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
-    "href": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
-    "title": "Week 1 Guide",
-    "section": "Knowledge goals for Week 1",
-    "text": "Knowledge goals for Week 1\nBy the end of this week, you should be able to explain:\n\nWhat the book means by machine learning\nThe difference between classification and regression\nWhat a dataset, feature, and target are\nWhy data is split into training and test sets\nWhat the basic machine learning workflow looks like\nWhy data representation matters before algorithm choice",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 1"
-    ]
-  },
-  {
-    "objectID": "shared/policies/homework-coursework.html",
-    "href": "shared/policies/homework-coursework.html",
-    "title": "Homework / Coursework policies",
-    "section": "",
-    "text": "Due dates and late work\n\nAll assignments must be submitted by the due date/time in D2L.\nLate work is not accepted. (“Late” = not in the dropbox by the due/end date.)\nSome assignments have multiple required components (video + file); missing any required component makes the assignment ineligible for grading.\nVideo work must be accessible at grading time or it is not accepted.\nStudents should archive/keep their submitted work.\nGroup work (if assigned) is not eligible for makeup.\n\n\n\nSubmission standards\n\nAssignment-specific submission standards will be provided in instructions.\nWork may be rejected or heavily penalized for not following standards, including:\n\nincorrect file format\nincorrect file naming\nnot following submission instructions\n\nStudents should contact the instructor before the due date with submission questions.\nAssignments will not be accepted via email.\n\n\n\nTests / quizzes (D2L)\n\nQuizzes/tests may be scheduled or unannounced; must be completed by the due date.\nPassword-protected test passwords may not be shared (integrity violation).\nMultiple attempts may be allowed, with thresholds:\n\nmust score &gt;60% on attempt 1 to unlock attempt 2\nmust score &gt;80% on attempt 2 to unlock attempt 3 (if offered)\n\nTime limits apply; exceeding the time limit may result in a 0 and block further work.\nStudents may not leave a quiz once started.\nAuto-generated quizzes may prevent backtracking; students are responsible for careful navigation/submission.\nNo make-up tests/quizzes.\n\n\n\nGrading practices (coursework-related)\n\nGrades are posted in D2L; students are responsible for verifying accuracy.\nSome activities may be assigned but not graded (self-review practice).\nRubrics are used for most activities; some items are auto-graded.\n“Proof” files may be provided; students are expected to review feedback/proof files.\nNo extra credit / no additional assignments offered.\nSome assignments may be pass/fail.\n\n\n\nVideo related coursework expectations\n\nSome assignments require webcam-based video submission (and possibly desktop recording).\nStudent must be visable in any video assignment or the assignment will not be graded.\nStudent must introduce themselves by name, assignment, and course at the start of any video submission - “Hello my name is [name], this is the [assignment] for [class]”\nStudents must dress appropriately/considerately for online video assignments.",
+    "text": "Mondays - 3:00–4:00 PM and 6:00–7:00 PM\nPersistent Zoom link: Join Zoom meeting",
     "crumbs": [
       "Home",
       "Course information",
-      "Assignment Policies"
+      "Office Hours"
     ]
   },
   {
-    "objectID": "shared/policies/ai-policy.html",
-    "href": "shared/policies/ai-policy.html",
-    "title": "Using AI as a Learning Tool",
-    "section": "",
-    "text": "Purpose of this policy\nTools that use artificial intelligence are now widely available, and many of you already use them when learning technical material. This course allows the use of AI tools as a learning aid, similar to a tutor or reference source. At the same time, this course requires that submitted work reflect your own understanding and decision-making.\nThis page explains how AI tools may be used productively in this course, and where their use becomes inappropriate.\n\n\nAI as a learning tool\nUsing AI as a learning tool means using it to clarify ideas, terminology, or examples that you do not yet understand.\n\nIdeas An idea is a concept or principle discussed in the course materials, such as how a process works, why a particular approach is used, or what a tool is designed to do. Clarifying an idea means using AI to help you understand the purpose or reasoning behind something you have already encountered in class, rather than asking for a final answer.\nTerminology Terminology refers to the specific words and phrases used in technical subjects. These terms often have precise meanings that differ from everyday usage. Using AI appropriately includes asking for explanations of unfamiliar terms so you can understand how they are used in context, especially when reading textbooks, documentation, or assignment instructions.\nExamples Examples are demonstrations that show how an idea or concept is applied in practice. Using AI to clarify examples means asking for help understanding why an example works, what each part is doing, or how it relates to the underlying concept. It does not mean copying an example and submitting it as your own work.\n\nIn all cases, using AI as a learning tool should help you build understanding, not replace the effort of reading, experimenting, or reasoning through a problem yourself.\n\n\nAI as a crutch\nAI tools can support learning, but they can also be used in ways that reduce learning. This policy uses the term “crutch” to describe situations where the tool is doing the thinking and decision-making that the student is expected to practice.\nUsing AI as a crutch means relying on it to produce work or reasoning that you do not understand well enough to explain and defend. The issue is not that the tool was used; the issue is that the tool replaced the learning process.\nInappropriate uses include:\n\nAsking AI to complete an assignment or lab task for you Example: “Write the solution for this assignment.”\nSubmitting AI-generated code, answers, or explanations that you cannot explain in your own words Example: Copying an explanation of why a solution works without being able to describe the steps yourself.\nTreating AI output as authoritative without verification Example: Accepting an answer that conflicts with course materials, documentation, or results you can reproduce.\nUsing AI to bypass the learning objective Example: Asking for the final answer when the point of the activity is to practice reasoning, debugging, designing, or interpreting results.\nUsing AI to write or script reflections that are meant to describe your own understanding Example: Asking AI to generate a script or talking points for a reflection video instead of explaining the ideas in your own words.\n\nIn these cases, AI is being used to avoid the intended learning work rather than to support it.\n\n\nWhy this matters\nAI can produce output that appears correct even when it contains errors or is based on incorrect assumptions. Because of that, it is important to treat AI output as a starting point for learning, not as an authority.\nThis course emphasizes:\n\nverifying results,\nunderstanding workflows,\nand explaining decisions clearly.\n\nIf you rely on AI answers without testing them or understanding them, you are likely to miss errors and build misunderstandings. Those gaps tend to surface later in the course when tasks require independent problem solving, accurate interpretation, and clear explanations in graded work.\n\n\nExpectations for submitted work\nAll submitted work must reflect your own understanding.\nThis means:\n\nYou should be able to explain any code you submit.\nYou should be able to describe why you made particular choices (model, metric, preprocessing).\nIn reflections, your explanations should sound like you, not like a generic answer generator.\n\nYou are not required to disclose routine AI use for clarification or studying. However, if your work suggests that you do not understand what you submitted, that will be treated the same way as any other lack of understanding, regardless of the source.\nIf you use an AI tool, ask yourself:\n\nCould I explain this answer to another student without looking it up?\nDid I test or verify what the tool suggested?\nDid the tool help me understand, or did it just give me something to submit?\n\nIf the tool helped you understand, you are using it appropriately. If it replaced your thinking, you are not.",
+    "objectID": "shared/policies/office-hours.html#no-office-hours",
+    "href": "shared/policies/office-hours.html#no-office-hours",
+    "title": "Office Hours",
+    "section": "No office hours",
+    "text": "No office hours\nOffice hours are not held on:\nJan 19 — Martin Luther King — No Classes — College Closed\nFeb 16 — President’s Day — No Classes — College Closed\nMar 9–13 — Spring Break — No Classes\nMay 11–15 — Final Exams",
     "crumbs": [
       "Home",
       "Course information",
-      "AI Policy"
+      "Office Hours"
     ]
   },
   {
-    "objectID": "shared/guides/setup/jupyter-learning-links.html",
-    "href": "shared/guides/setup/jupyter-learning-links.html",
-    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
+    "objectID": "shared/policies/general-policies.html",
+    "href": "shared/policies/general-policies.html",
+    "title": "General Course Policies",
     "section": "",
-    "text": "Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough\nby Corey Schafer (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.\n\nJupyter Notebooks Tutorial | How to use them & tips and tricks!\nby AssemblyAI (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.\n\nJupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!\nby Rob Mulla (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.\n\nGetting Started with Jupyter Notebooks in VS Code\nby Visual Studio Code (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.",
+    "text": "Academic integrity\n\nStudents must maintain academic integrity (no cheating, plagiarism, unauthorized materials, falsification, etc.).\nViolations follow SCTCC Academic Integrity Policy/Procedure and may be recorded; disciplinary action may apply.\nAcademic integrity violations result in a grade reduction.\n\n\n\nProfessional conduct and behavior\n\nOnline discussions must be civil, respectful, and relevant.\nDisruptive behavior on any course communication platform is not tolerated; may result in grade penalties and/or removal per the Code of Student Conduct.\nRespect for differing viewpoints is required; maintain professional language and conduct.\nIf disruptive behavior causes a student to miss an assignment, they receive no credit for that assignment.\nIf sanctioned for disruptive behavior, students waive the right to a warning on a second occurrence.\nSubstance policy for online sessions: inebriation/being under the influence, displaying alcohol, or drug paraphernalia results in removal from the session and/or course; no smoking during online school activites.\n\n\n\nStudent privacy / third-party communication\n\nCourse progress is discussed only with the student, not parents/guardians/third parties, unless an Information Release is on file.\nIf a third party contacts the instructor, the instructor will defer communication to the student.\nStudents may not invite third parties to attend any online activity (office hours, group meetings).\nRequests to release progress information to a third party should go through the Dean’s office.\n\n\n\nAttendance / participation\n\nAttendance is expected and monitored; students are responsible for tracking absences.\nAttendance is determined by D2L logins and weekly assignment submissions.\nNot logging in and/or not submitting work for a week counts as an absence (including weeks without due assignments unless it’s a scheduled holiday/break).\nStudents must log in and complete an activity by 11:30 PM on the first Wednesday of week 1 or they may be dropped.\nMissing two consecutive weeks → dropped.\nMissing two total weeks → one-letter-grade reduction (10% of total points).\nMissing three total weeks → an additional one-letter-grade reduction.\nAdditional absences beyond three → additional letter-grade reduction per occurrence.\nAttendance is handled per class (one class doesn’t cover another).\n\n\n\nTechnology and platform expectations\n\nStudents are responsible for having required computer/technology for the course.\nStudents are responsible for learning and using D2L (primary channel for schedules, grades, and announcements).\n\n\n\nEmail communication\n\nEmail is the primary method to contact the instructor; students must use their college email account.\nEmails must include a subject line with course name and section/class time.\nStudents are expected to check email daily and read instructor messages/attachments.\nOn nights homework is due, only administrative email items will be answered; technical homework questions will not be addressed.\nResponse time: by end of next business day; Friday emails answered Monday.",
+    "crumbs": [
+      "Home",
+      "Course information",
+      "General Policies"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html",
+    "href": "shared/guides/setup/miniconda.html",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "",
+    "text": "You will use the same core setup in both of these courses:\nThe difference between the courses is which environment/packages you install and which tools are emphasized. This page includes small callouts to help you follow the right parts at the right time.",
     "crumbs": [
       "Home",
       "Guides",
-      "Jupyter Learning Links"
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "shared/guides/setup/jupyter-learning-links.html#introduction-to-jupyter-notebooks",
-    "href": "shared/guides/setup/jupyter-learning-links.html#introduction-to-jupyter-notebooks",
-    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
-    "section": "",
-    "text": "Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough\nby Corey Schafer (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.\n\nJupyter Notebooks Tutorial | How to use them & tips and tricks!\nby AssemblyAI (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.\n\nJupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!\nby Rob Mulla (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.\n\nGetting Started with Jupyter Notebooks in VS Code\nby Visual Studio Code (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.",
+    "objectID": "shared/guides/setup/miniconda.html#overview",
+    "href": "shared/guides/setup/miniconda.html#overview",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "Overview",
+    "text": "Overview\nIn these courses, you will work inside a conda environment. An environment is an isolated Python installation (Python + packages) stored in a folder on your computer. This helps everyone use consistent tools and reduces setup conflicts.\nYou will use the following tools:\n\nMiniconda Miniconda is a small installer that provides Conda, a system for managing Python installations and packages. Miniconda does not include many data-science packages by default; instead, it gives you a controlled way to install exactly what a course requires.\nConda (the environment manager) Conda is software that can create, activate, and manage environments. It can also install packages (libraries) in a way that keeps them consistent and reduces compatibility problems, especially for scientific packages.\nConda environment A conda environment is a self-contained folder that contains:\n\na specific version of Python, and\na specific set of installed packages. Each environment is separate from other environments on your computer. This means one course can use one set of packages (and versions) without affecting another course or your personal Python installation.\n\nJupyterLab (notebook workspace) JupyterLab is a browser-based programming environment used for data analysis and machine learning. It allows you to write code in cells, run those cells, and view output (tables, plots, printed results) directly below the code. JupyterLab is used in both courses because it supports step-by-step work and makes it easier to review results.\nIPython (interactive Python terminal — CMSC-1217 only) IPython is an enhanced interactive Python terminal. It provides features that support exploratory work, such as command history, tab completion, and built-in help. In CMSC-1217, IPython is used to practice interactive exploration and reinforce core Python concepts in a terminal-based workflow.\n\nHow these pieces fit together\nMiniconda installs Conda, and Conda is the tool you use to create a course environment. When you activate that environment, your terminal temporarily switches so that the python command (and tools like jupyter) run from the environment’s folder. You then start Jupyter (JupyterLab or Jupyter Notebook), and the notebook runs Python from the active environment, using the packages installed there. This sequence—install Miniconda → create environment → activate environment → start Jupyter → run notebooks—is the standard workflow you will use throughout the course.\n\nImportant: During Miniconda installation, do not add Miniconda to PATH. We will use the Miniconda/Anaconda Prompt when working for these courses.",
     "crumbs": [
       "Home",
       "Guides",
-      "Jupyter Learning Links"
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "shared/guides/setup/jupyter-learning-links.html#recent-developments-in-the-jupyter-ecosystem",
-    "href": "shared/guides/setup/jupyter-learning-links.html#recent-developments-in-the-jupyter-ecosystem",
-    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
-    "section": "Recent Developments in the Jupyter Ecosystem",
-    "text": "Recent Developments in the Jupyter Ecosystem\nJupyter Frontends & JupyterLite updates | Jupyter Open Studio Day 2025\n(2025, ~30 min) — Overview of current features and updates from the official Jupyter community.\n\nAdditional resources and interactive examples are available on the official Jupyter website.",
+    "objectID": "shared/guides/setup/miniconda.html#install-miniconda",
+    "href": "shared/guides/setup/miniconda.html#install-miniconda",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "1) Install Miniconda",
+    "text": "1) Install Miniconda\n\nDownload and install Miniconda (64-bit) for Windows. https://www.anaconda.com/download\nDuring installation, do not add Miniconda to PATH.\n\nWhy not add to PATH: Many of you already have a Python installation from python.org. Not adding Miniconda to PATH prevents Miniconda from changing which python runs in non-course terminals.\nMiniconda is a lightweight installer that provides:\n\nConda (a package and environment manager), and\na basic Python installation and its dependencies.\n\nMiniconda is intentionally minimal: it does not install a large collection of data-science packages by default. Instead, you install only the packages required for the course.\nRelationship to Anaconda\nMiniconda and Anaconda are closely related:\n\nAnaconda Distribution is a larger installer that comes with hundreds of packages pre-installed, plus optional tools like Anaconda Navigator.\nMiniconda is a smaller installer that includes only conda, Python, and a small core set of packages, and then you add what you need.\n\nFor these courses, Miniconda is a good fit because it helps us keep your course environment clean, consistent, and easier to troubleshoot.\nWhy Miniconda/Conda is common in data analysis and machine learning\nData analysis and machine learning often rely on libraries that include compiled components. Conda is widely used in these areas because it can install many scientific packages as prebuilt binaries, which reduces installation difficulties (especially on Windows).\nConda also supports creating separate environments so different projects can use different versions of Python/packages without interfering with each other.",
     "crumbs": [
       "Home",
       "Guides",
-      "Jupyter Learning Links"
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "Use this site as your course handbook. It stays up to date all semester.\n\nUse the left sidebar to find weekly materials and guides.\nD2L is the starting point for announcements, grades, and submissions.\nCourse information (syllabus, schedule, policies, office hours) is maintained here.\n\n\nCourse workflow\n\nCheck D2L for announcements, deadlines, and any updates.\nRead the Weekly Overview on this site (Week 1, Week 2, …) and follow the links provided.\nComplete the work (assignments) and submit in D2L.\n\n\n\nSupport\n\nOffice hours: see the Office Hours page.\nZoom: Office Zoom Link\n\nHow to get help:\n\nUse Discord/email for course questions.\nAdd troubleshooting policy.\n\n\n\n\nInstructor contact\n\nInstructor: Joseph Silman\n\nEmail: jsilman@sctcc.edu\nPhone Number: (320) 308 - 6595\n\n\n\nQuick links\n\nSyllabus\nSchedule"
-  },
-  {
-    "objectID": "course/schedule.html",
-    "href": "course/schedule.html",
-    "title": "CMSC 2208 Course Schedule",
-    "section": "",
-    "text": "Weekly module opens: Monday 8:00 AM\nAssignments due: Sunday 11:30 PM\nWork cadence:\n\nMon–Thu: work through reading + practice notebook\nSun: graded items due (when assigned)\n\nSpring break: Mar 9–13, 2026\nFinal project block: Apr 27–May 10, 2026\nFinal project due: May 11, 2026",
+    "objectID": "shared/guides/setup/miniconda.html#open-the-conda-terminal",
+    "href": "shared/guides/setup/miniconda.html#open-the-conda-terminal",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "2) Open the conda terminal",
+    "text": "2) Open the conda terminal\nOpen Anaconda Command Prompt from the Start menu.\nYou should see something like:\n(base) C:\\Users\\yourname&gt;\nWhy we use this terminal\nAnaconda/Miniconda Prompt is a terminal that is already configured to recognize conda commands such as conda createand conda activate. Using this prompt reduces setup errors because it starts with the correct conda settings.\nWhat (base) means\n(base) indicates that you are currently in conda’s default environment. This environment exists mainly so that conda can run and manage other environments. In this course, you will usually not do your work in (base). Instead, you will create and activate a course environment (for example, pydata-book or cmsc-2208) and work there.\nHow to interpret the prompt\nThe name in parentheses is your current environment:\n\n(base) means you are in the default conda environment\n(pydata-book) or (cmsc-2208) means you are in the course environment\n\nA quick habit that prevents many problems: before running course commands, look at the parentheses and confirm you are in the correct environment.",
     "crumbs": [
       "Home",
-      "Course information",
-      "Schedule"
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "course/schedule.html#course-rhythm",
-    "href": "course/schedule.html#course-rhythm",
-    "title": "CMSC 2208 Course Schedule",
-    "section": "",
-    "text": "Weekly module opens: Monday 8:00 AM\nAssignments due: Sunday 11:30 PM\nWork cadence:\n\nMon–Thu: work through reading + practice notebook\nSun: graded items due (when assigned)\n\nSpring break: Mar 9–13, 2026\nFinal project block: Apr 27–May 10, 2026\nFinal project due: May 11, 2026",
+    "objectID": "shared/guides/setup/miniconda.html#configure-conda-package-channels",
+    "href": "shared/guides/setup/miniconda.html#configure-conda-package-channels",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "3) Configure conda package channels",
+    "text": "3) Configure conda package channels\nRun the following two commands, one at a time, pressing Enter after each.\nFirst, run:\nconda config --add channels conda-forge\nThen, run:\nconda config --set channel_priority strict\nConda downloads packages from sources called channels. A channel is a repository that hosts packaged software (similar in purpose to an “app store,” but for programming libraries). When you install a package with conda, conda searches the configured channels to find a compatible version of that package and its dependencies.\nWe use conda-forge because it is a widely used community-maintained channel that provides current, well-tested builds of many scientific and data-analysis libraries (for example, NumPy, pandas, matplotlib, and scikit-learn). Using a consistent channel helps ensure that most students receive the same package builds and reduces platform-specific installation problems.\nSetting strict channel priority means conda will prefer packages from the highest-priority channel (in this case, conda-forge) rather than mixing packages from multiple channels. This matters because mixing package sources can sometimes lead to version conflicts or dependency mismatches. Strict priority reduces those problems by keeping package selection consistent.",
     "crumbs": [
       "Home",
-      "Course information",
-      "Schedule"
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "course/schedule.html#schedule",
-    "href": "course/schedule.html#schedule",
-    "title": "CMSC 2208 Course Schedule",
-    "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\n\n\n\n\nWeek\nTopics (with chapter/section anchors)\nDeliverable\nReading (Müller & Guido)\n\n\n\n\n1 (Jan 12–Jan 18)\nCourse onboarding + “What is ML?” + environment setup + notebook workflow\nWeek 1 Verification Assignment (setup + screenshots + video) + D2L Quiz 1\nCh. 1\n\n\n2 (Jan 19–Jan 25)\nFirst supervised model + scikit-learn workflow: kNN\nPractice Notebook 1 (completion): “Classify player archetypes (kNN)” + D2L Quiz 2\nCh. 2.1.1 (kNN)\n\n\n3 (Jan 26–Feb 01)\nLinear models: classification + regression\nPractice Notebook 2 (completion): “Predict player performance (linear/logistic)” + D2L Quiz 3\nCh. 2.2 (Linear Models)\n\n\n4 (Feb 02–Feb 08)\nTrees + ensembles: random forests / gradient boosting\nSkill Check 1 (autograded): train + report results on game stats + D2L Quiz 4\nCh. 2.3 (Decision Trees) + 2.3.2 (Ensembles)\n\n\n5 (Feb 09–Feb 15)\nClassifier outputs and confidence: decision function vs predicted probabilities\nReflection 1 (video): “Using uncertainty to compare models” + D2L Quiz 5\nCh. 2.4: Uncertainty Estimates from Classifiers\n\n\n6 (Feb 16–Feb 22)\nPreprocessing & scaling workflow: transformations and applying them correctly\nPractice Notebook 3 (completion): “Scale game stats correctly (train vs test)” + D2L Quiz 6\nCh. 3.3.1–3.3.4\n\n\n7 (Feb 23–Mar 01)\nDimensionality reduction + visualization: PCA and t-SNE (“player map”)\nPractice Notebook 4 (completion): “Build a player map (PCA / t-SNE)” + D2L Quiz 7\nCh. 3.4.1 (PCA) + 3.4.3 (t-SNE) (NMF optional)\n\n\n8 (Mar 02–Mar 08)\nClustering: k-means, agglomerative, DBSCAN, and how to compare clusters\nPractice Notebook 5 (completion): “Cluster players by playstyle” + D2L Quiz 8\nCh. 3.5.1–3.5.5\n\n\n9 (Mar 09–Mar 15)\nSpring Break (no due dates)\n—\n—\n\n\n10 (Mar 16–Mar 22)\nRepresenting data + feature engineering (one-hot, binning, interactions)\nPractice Notebook 6 (completion): “Engineer features for matchmaking” + D2L Quiz 9\nCh. 4\n\n\n11 (Mar 23–Mar 29)\nModel evaluation: train/test vs cross-validation + metrics beyond accuracy\nPractice Notebook 7 (completion): “Evaluate models beyond accuracy” + D2L Quiz 10\nCh. 5 (evaluation + metrics)\n\n\n12 (Mar 30–Apr 05)\nModel selection + tuning: grid search + CV workflow\nSkill Check 2 (autograded): metrics + CV + grid search summary + D2L Quiz 11\nCh. 5 (model selection / grid search)\n\n\n13 (Apr 06–Apr 12)\nPipelines: preprocessing + model as one reproducible workflow\nPractice Notebook 8 (completion): “Build a full pipeline for prediction” + D2L Quiz 12\nCh. 6\n\n\n14 (Apr 13–Apr 19)\nPipelines + tuning together (grid search inside pipeline; avoid leakage)\nSkill Check 3 (autograded): pipeline + grid search + report best parameters + D2L Quiz 13\nCh. 6\n\n\n15 (Apr 20–Apr 26)\nText data intro (chat/reviews) or capstone prep emphasis\nReflection 2 / Project Proposal (graded): dataset + goal + metric + plan + D2L Quiz 14\nCh. 7 (+ Ch. 8 possible)\n\n\n16 (Apr 27–May 03)\nFinal project work time (milestone: clean data + baseline + evaluation plan)\n— (work week)\nAs needed (review Ch. 4–6)\n\n\n17 (May 04–May 10)\nFinal project work time (milestone: tuned model + results + narrative + video)\n— (work week)\nAs needed\n\n\n\n\nFinal project (Apr 27–May 11)\nDue May 11, 2026: notebook report (pipeline + evaluation + interpretation) + short video walkthrough.",
+    "objectID": "shared/guides/setup/miniconda.html#create-the-course-environment",
+    "href": "shared/guides/setup/miniconda.html#create-the-course-environment",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "4) Create the course environment",
+    "text": "4) Create the course environment\nYou will create one conda environment for the course you are taking currently.\nWhat an environment is:\nIn programming, an environment is the set of software used to run your code, such as:\n\nthe language runtime (for us, Python),\ninstalled libraries/packages,\nand related tools (such as Jupyter).\n\nMany languages and toolchains support environments (for example, Python can use virtual environments, and other ecosystems have their own dependency managers). The goal is the same: keep project dependencies organized and consistent.\nWhat a conda environment is:\nIn this course we use a conda environment, which is a self-contained folder on your computer that includes:\n\na specific version of Python, and\na specific set of installed packages.\n\nWe use conda because it provides a consistent way to install scientific and data-analysis libraries (especially on Windows) and makes it straightforward to reproduce the same setup across different computers.\nDo not create both environments.\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun this command (then press Enter):\nconda create -n pydata-book python=3.11\nIf prompted, type y.\nThis creates an environment named pydata-book. The name is just a label for this course’s Python setup.\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun this command (then press Enter):\nconda create -n cmsc-2208 python=3.11\nIf prompted, type y.\nThis creates an environment named cmsc-2208. The name is just a label for this course’s Python setup.",
     "crumbs": [
       "Home",
-      "Course information",
-      "Schedule"
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "assignments/week-01/index.html",
-    "href": "assignments/week-01/index.html",
-    "title": "Week 1 Assignment (CMSC-2208)",
-    "section": "",
-    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1.\n\nPart 1: Reading\nRead all of Chapter 1 of Introduction to Machine Learning with Python (Müller & Guido).\nPay special attention to:\n\nEssential libraries and tools (what the course uses and why)\nKey terms used in the chapter: dataset, features (X), target/labels (y), training set, test set\nThe chapter’s first workflow idea: split data → train a model → evaluate results\n\n\n\nPart 2: Jupyter Notebook Verification\n\nA) Launch Jupyter Notebook in the correct folder\nFrom Anaconda Prompt / Miniconda Prompt:\n\nActivate the cmsc-2208 environment\n\nconda activate cmsc-2208\nIf you are using a new terminal window, you must activate the environment again.\n\nNavigate to the course-work folder\n\ncd C:\\cmsc-2208\\course-work\n\nStart jupyter notebook\n\njupyter notebook\nA browser tab will open showing the contents of C:\\cmsc-2208\\course-work\\.\n\n\nB) Create a week01 folder and a verification notebook\n\nIn the Jupyter file list, create a folder named: week01\nOpen the week01 folder\nCreate a new notebook\nSave the notebook as: lastname-nb-verification.ipynb\n\n\n\nC) Run these cells (in order)\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nimport scipy\nimport sklearn\n# Confirm that a built-in dataset can be loaded\nfrom sklearn.datasets import load_iris\niris = load_iris()\nX = iris[\"data\"]\ny = iris[\"target\"]\nX.shape, y.shape\n# Confirm that train/test splitting works (a core workflow step)\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\nX_train.shape, X_test.shape\n\n\n\nPart 3: D2L quiz\nComplete the D2L Chapter 1 quiz.\n\n\nPart 4: Video reflection (graded)\n\nVideo submission instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor compared to running code in a notebook\nWhat the kernel is (in the context of jupyter notebooks)\nWhy “restart the kernel” and “run all” are useful habits\nOne concept from Chapter 1 you can explain accurately\n\nRequirements\n\nClear video and audio quality\nIntro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the [Assignment Name] for CMSC 2208.”\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflection in the link name (this will appear if you copy the link)\n\n\n\n\nD2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\nSubmit your lastname-nb-verification.ipynb file",
+    "objectID": "shared/guides/setup/miniconda.html#activate-the-environment-choose-your-course",
+    "href": "shared/guides/setup/miniconda.html#activate-the-environment-choose-your-course",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "5) Activate the environment (choose your course)",
+    "text": "5) Activate the environment (choose your course)\nBefore installing packages or starting JupyterLab, you must activate your course environment.\nWhat “activate” means: It tells the terminal to use the Python and packages inside your course environment. When the environment is active, commands like python and jupyter will run from the correct course setup.\nYou will activate one environment: the one for the course you are taking now.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun:\nconda activate pydata-book\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun:\nconda activate cmsc-2208\nAfter you activate, your prompt will begin with the environment name, for example:\n\n(pydata-book) ...\n(cmsc-2208) ...\n\nRule: Before you do course work, confirm that the prompt shows your course environment name.",
     "crumbs": [
       "Home",
-      "Weekly Assignments",
-      "Week 1"
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "objectID": "shared/guides/setup/miniconda.html#install-packages-inside-the-active-environment",
+    "href": "shared/guides/setup/miniconda.html#install-packages-inside-the-active-environment",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "6) Install packages (inside the active environment)",
+    "text": "6) Install packages (inside the active environment)\n\nA) CMSC-1217 packages\nWith (pydata-book) active, run:\nconda install -c conda-forge numpy pandas=2.0.3 matplotlib jupyterlab notebook ipykernel\nThis installs:\n\nnumpy: arrays and numerical computing\npandas: data tables (DataFrames)\nmatplotlib: plotting\njupyterlab: notebook interface\nipykernel: the component that allows this environment to run notebooks as a Jupyter kernel\n\n\nCMSC-1217 only: You will also use IPython in this course. IPython will work once the environment is active.\n\n\n\nB) CMSC-2208 packages (required)\nWith (cmsc-2208) active, run:\nconda install -c conda-forge numpy pandas matplotlib jupyterlab notebook ipykernel scikit-learn scipy\nThis installs the data stack plus the machine learning libraries used in CMSC-2208.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
   },
   {
-    "objectID": "assignments/week-02/index.html",
-    "href": "assignments/week-02/index.html",
-    "title": "Week 2",
+    "objectID": "shared/guides/setup/miniconda.html#verify-your-installation-imports-version-confirmation",
+    "href": "shared/guides/setup/miniconda.html#verify-your-installation-imports-version-confirmation",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "7) Verify your installation (imports + version confirmation)",
+    "text": "7) Verify your installation (imports + version confirmation)\nRun this command in the active environment:\npython -c \"import sys; import numpy as np; import pandas as pd; import matplotlib; print('python', sys.version.split()[0]); print('numpy', np.__version__); print('pandas', pd.__version__); print('matplotlib', matplotlib.__version__)\"\nWhat this step is doing (and why it can take a moment):\nThis command does two things:\n\nImports the core libraries (numpy, pandas, matplotlib). Importing is the real verification step. It confirms the packages are installed correctly in this environment and that Python can load them without errors.\nPrints version numbers after the imports succeed. This helps confirm you are using the expected tool versions for the course.\n\nBecause these libraries are large and include compiled components, the first successful import in a new environment may take longer than you expect. That is normal.\n\nCMSC-2208 only\nFor CMSC-2208, also verify:\npython -c \"import sklearn, scipy; print('sklearn', sklearn.__version__); print('scipy', scipy.__version__)\"\nThis confirms that the machine learning libraries required for the course can be imported correctly in the CMSC-2208 environment.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#create-the-course-folder-structure-choose-your-course",
+    "href": "shared/guides/setup/miniconda.html#create-the-course-folder-structure-choose-your-course",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "8) Create the course folder structure (choose your course)",
+    "text": "8) Create the course folder structure (choose your course)\nYou will create a small folder structure on your C: drive so your files stay organized and easy to find.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun the following four commands:\nFirst:\nmkdir C:\\cmsc-1217\nThen:\nmkdir C:\\cmsc-1217\\course-work\nThen:\nmkdir C:\\cmsc-1217\\book\nFinally:\nmkdir C:\\cmsc-1217\\data\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun the following four commands:\nFirst:\nmkdir C:\\cmsc-2208\nThen:\nmkdir C:\\cmsc-2208\\course-work\nThen:\nmkdir C:\\cmsc-2208\\book\nFinally:\nmkdir C:\\cmsc-2208\\data\n\n\nWhat these folders are for (both courses)\n\ncourse-work: your weekly work and submissions\nbook: companion notebooks (reference materials)\ndata: datasets used in course work\n\nNote: If you see a message like “A subdirectory or file already exists,” that usually means you already created the folder. That is fine—continue to the next command.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#install-git-if-needed",
+    "href": "shared/guides/setup/miniconda.html#install-git-if-needed",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "9) Install Git (if needed)",
+    "text": "9) Install Git (if needed)\nCheck:\ngit --version\nIf Git is not installed, install Git for Windows, then re-check git --version.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#download-the-book-companion-files-choose-your-course",
+    "href": "shared/guides/setup/miniconda.html#download-the-book-companion-files-choose-your-course",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "10) Download the book companion files (choose your course)",
+    "text": "10) Download the book companion files (choose your course)\nEach course uses a GitHub repository that contains companion files (notebooks, datasets, and examples). You will download the repository into your course book folder.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nFirst, move into your book folder:\ncd C:\\cmsc-1217\\book\nThen, clone the companion repository:\ngit clone -b 3rd-edition https://github.com/wesm/pydata-book.git\nThis creates the folder:\nC:\\cmsc-1217\\book\\pydata-book\\\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nFirst, move into your book folder:\ncd C:\\cmsc-2208\\book\nThen, clone the companion repository:\ngit clone https://github.com/amueller/introduction_to_ml_with_python.git\nThis creates the folder:\nC:\\cmsc-2208\\book\\introduction_to_ml_with_python\\\nNote: If you see a message that the folder already exists, that usually means you already cloned the repository. That is fine—do not clone it again.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#start-jupyter-notebook-in-the-correct-folder-choose-yourcourse",
+    "href": "shared/guides/setup/miniconda.html#start-jupyter-notebook-in-the-correct-folder-choose-yourcourse",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "11) Start Jupyter Notebook in the correct folder (choose yourcourse)",
+    "text": "11) Start Jupyter Notebook in the correct folder (choose yourcourse)\nYou will start the Jupyter Notebook (Classic) server from your course-work folder. This ensures that when the browser opens, you immediately see the files you are expected to edit and submit.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nFirst, confirm you are in the correct course environment. Conda environments are activated per terminal window. That means:\n\nIf you are using the same Anaconda/Miniconda Prompt window as earlier steps, your environment may already be active.\nIf you opened a new terminal window (or restarted your computer), you must activate the environment again.\n\nRun:\nconda activate pydata-book\nCheck: your prompt should begin with (pydata-book).\nNext, move into your course work folder:\ncd C:\\cmsc-1217\\course-work\nThen start Jupyter Notebook (Classic):\njupyter notebook\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nFirst, confirm you are in the correct course environment. Conda environments are activated per terminal window. That means:\n\nIf you are using the same Anaconda/Miniconda Prompt window as earlier steps, your environment may already be active.\nIf you opened a new terminal window (or restarted your computer), you must activate the environment again.\n\nRun:\nconda activate cmsc-2208\nCheck: your prompt should begin with (pydata-book).\nNext, move into your course work folder:\ncd C:\\cmsc-2208\\course-work\nThen start Jupyter Notebook (Classic):\njupyter notebook\nA browser tab will open showing the contents of your course-work folder.\nImportant: Leave the terminal window open while you use Jupyter Notebook. That terminal is running the notebook server. If you close it, Jupyter will stop.\n\n\nAccessing the book folder (when needed)\nThe course keeps course-work (your work) and book (reference materials) separate on purpose. When you need to view a book notebook:\nStart a second Jupyter Notebook server in the book folder.\n\nOpen a second Anaconda/Miniconda Prompt window\nActivate the same environment\ncd into the book folder\nRun jupyter notebook\n\nFor CMSC-1217 (run each command seperately):\nconda activate pydata-book\ncd C:\\cmsc-1217\\book\njupyter notebook\nFor CMSC-2208 (run each command seperately):\nconda activate cmsc-2208\ncd C:\\cmsc-2208\\book\njupyter notebook\nThis opens a second browser tab rooted in the book folder.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#create-your-first-notebook-and-confirm-the-environment",
+    "href": "shared/guides/setup/miniconda.html#create-your-first-notebook-and-confirm-the-environment",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "12) Create your first notebook and confirm the environment",
+    "text": "12) Create your first notebook and confirm the environment\n\nIn your browser, go to the file list page (the page that shows folders/files).\n\nIf you are currently inside a notebook, click File → Open… to return to the file list.\n\nClick New (top-right), then select Python 3 (ipykernel).\nIn the first cell, run:\n\nimport sys\nsys.executable\n\nConfirm the path includes your course environment:\n\n\nCMSC-1217: \\\\envs\\\\pydata-book\\\\\nCMSC-2208: \\\\envs\\\\cmsc-2208\\\\\n\nWhy this matters: The kernel name shown in menus can vary, but sys.executable reliably confirms the notebook is using the correct environment.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#stop-jupyterlab-when-finished",
+    "href": "shared/guides/setup/miniconda.html#stop-jupyterlab-when-finished",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "13) Stop JupyterLab when finished",
+    "text": "13) Stop JupyterLab when finished\nGo back to the terminal that started JupyterLab and press:\n\nCtrl + C, then type y if prompted.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#optional-cmsc-1217-ipython-in-the-terminal",
+    "href": "shared/guides/setup/miniconda.html#optional-cmsc-1217-ipython-in-the-terminal",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "Optional (CMSC-1217): IPython in the terminal",
+    "text": "Optional (CMSC-1217): IPython in the terminal\n\nCMSC-1217 only: You will use IPython for interactive exploration.\n\nIn Anaconda/Miniconda Prompt:\nconda activate pydata-book\nIPython\nYou should see an In [1]: prompt.\nTo exit:\nexit()",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/miniconda.html#common-issues-and-solutions",
+    "href": "shared/guides/setup/miniconda.html#common-issues-and-solutions",
+    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "section": "Common issues and solutions",
+    "text": "Common issues and solutions\n\nIssue: Imports fail inside a notebook\nMost common cause: the wrong environment/kernel is active.\nSolution\n\nIn the notebook, run sys.executable to confirm the environment path.\nIf it is incorrect, switch the notebook kernel to the correct one:\n\nKernel → Change Kernel (select the environment for your course)\n\n\n\n\nIssue: JupyterLab opens in the wrong folder\nSolution: cd into the correct course-work folder before starting JupyterLab.\n\n\nIssue: You forgot to activate the environment\nSolution: close JupyterLab (Ctrl+C), then re-run the launch commands in Section 11.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Miniconda Setup"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/environment-setup-guide-vscode.html",
+    "href": "shared/guides/setup/environment-setup-guide-vscode.html",
+    "title": "Week 1 — VSCode Setup and First Notebook (Windows)",
     "section": "",
-    "text": "This page will be published before Week 2 begins."
+    "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions and safe processing (try/except)",
+    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Parsing: turning one line into fields you can work with",
+    "text": "Parsing: turning one line into fields you can work with"
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (compact “build a new list” loops)",
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and the key= idea",
+    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Lambda (a small function used inline)",
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and iteration (yield, streaming one row at a time)",
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions: handling bad rows without crashing",
+    "text": "Exceptions: handling bad rows without crashing"
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (building lists from other sequences)",
+    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and key= with lambda",
+    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and streaming (processing one row at a time)",
+    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
   },
   {
     "objectID": "course/syllabus.html",
@@ -450,257 +588,603 @@
     ]
   },
   {
-    "objectID": "shared/guides/setup/environment-setup-guide-vscode.html",
-    "href": "shared/guides/setup/environment-setup-guide-vscode.html",
-    "title": "Week 1 — VSCode Setup and First Notebook (Windows)",
+    "objectID": "assignments/week-02/week-2-demo.html",
+    "href": "assignments/week-02/week-2-demo.html",
+    "title": "Week 2 Demo: Classification vs Regression Targets",
     "section": "",
-    "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
+    "text": "Download Jupyter Notebook\nThis page builds a tiny student-performance dataset to demonstrate the core ideas Chapter 2 introduces."
   },
   {
-    "objectID": "shared/guides/setup/miniconda.html",
-    "href": "shared/guides/setup/miniconda.html",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
+    "objectID": "assignments/week-02/week-2-demo.html#build-a-tiny-dataset",
+    "href": "assignments/week-02/week-2-demo.html#build-a-tiny-dataset",
+    "title": "Week 2 Demo: Classification vs Regression Targets",
+    "section": "Build a Tiny Dataset",
+    "text": "Build a Tiny Dataset\nThis cell creates a tiny, fake dataset so we can focus on the idea of inputs (features) and outputs (targets) without needing a real file yet. By the end of the cell, we’ll have a table (df) where each row represents one student.\n\nimport numpy as np\nimport pandas as pd\n\nrng = np.random.default_rng(0)\nn = 12\n\ndf = pd.DataFrame({\n    \"attendance\": rng.integers(60, 101, n),\n    \"homework_rate\": rng.integers(50, 101, n),\n    \"quiz_avg\": rng.integers(40, 101, n),\n    \"exam_avg\": rng.integers(40, 101, n),\n})\n\n# numeric target (regression)\ndf[\"final_score\"] = (0.2*df[\"homework_rate\"] + 0.3*df[\"quiz_avg\"] + 0.5*df[\"exam_avg\"]).round(0)\n\n# categorical target (classification)\ndf[\"pass_fail\"] = np.where(df[\"final_score\"] &gt;= 70, \"pass\", \"fail\")\n\ndf\n\n\n\n\n\n\n\n\nattendance\nhomework_rate\nquiz_avg\nexam_avg\nfinal_score\npass_fail\n\n\n\n\n0\n94\n75\n64\n44\n56.0\nfail\n\n\n1\n86\n80\n92\n58\n73.0\npass\n\n\n2\n80\n99\n73\n69\n76.0\npass\n\n\n3\n71\n87\n42\n65\n62.0\nfail\n\n\n4\n72\n82\n86\n64\n74.0\npass\n\n\n5\n61\n77\n84\n41\n61.0\nfail\n\n\n6\n63\n78\n91\n40\n63.0\nfail\n\n\n7\n60\n97\n50\n47\n58.0\nfail\n\n\n8\n67\n64\n45\n40\n46.0\nfail\n\n\n9\n93\n91\n92\n80\n86.0\npass\n\n\n10\n86\n84\n41\n72\n65.0\nfail\n\n\n11\n97\n50\n73\n79\n71.0\npass\n\n\n\n\n\n\n\nLoading the tools we need\nThe first two lines load two libraries:\n\nNumPy (np): used here for generating random numbers and doing simple numeric operations.\npandas (pd): used to create and display a table called a DataFrame (think: spreadsheet in Python).\n\nMaking the randomness repeatable\nNext, the cell creates a random number generator:\n\nrng is a “random number generator” object we’ll use to create fake attendance and scores.\nThe 0 is a seed, which makes the results repeatable. That means if you run the notebook again, you’ll get the same random dataset each time (useful for teaching and debugging).\n\nChoosing how many students to generate\n\nn = 12 means we’re generating 12 rows, so our dataset will represent 12 students.\nIf we changed n to 100, we’d generate 100 students instead.\n\nBuilding the DataFrame (our dataset table)\nThe DataFrame is created with four columns that represent student features (inputs):\n\nattendance\nhomework_rate\nquiz_avg\nexam_avg\n\nEach column is filled with random whole numbers in a chosen range. Those ranges are just meant to look realistic (for example, attendance between about 60 and 100).\nSo at this point:\n\neach row = one student\neach column = one measured input about that student\n\nCreating a numeric target for regression\nNext the cell creates a new column: and * final_score is calculated as a weighted combination of homework, quizzes, and exams. * This is meant to imitate how a course grade might be computed (exams count more than quizzes, etc.). * This column is a number, so it can be used as a regression target (predict a numeric value).\nCreating a label target for classification\nThen the cell creates another new column:\n\npass_fail turns the numeric final_score into a category label: \"pass\" or \"fail\".\nThis column is a classification target, because the output must be one of a fixed set of options.\n\nDisplaying the result\nThe last line tells Jupyter/Quarto to display df, so you can see the dataset you just created as a table.\nIn supervised learning, we organize our data in a table:\n\nEach row is one example (here, one student).\nThe columns split into:\n\nX (features): the input information we use to make a prediction\n(attendance, homework_rate, quiz_avg, exam_avg)\ny (target/label): the output we want to predict\n\n\nIn our demo, we keeping X the same, and we show two choices for y:\n\npass_fail is a classification target (the model chooses a label from {pass, fail})\nfinal_score is a regression target (the model predicts a numeric value)"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#review-the-difference-in-targets",
+    "href": "assignments/week-02/week-2-demo.html#review-the-difference-in-targets",
+    "title": "Week 2 Demo: Classification vs Regression Targets",
+    "section": "Review the Difference in Targets",
+    "text": "Review the Difference in Targets\nThis section zooms in on the target column for classification: pass_fail. The goal is to make the idea of a classification target visible: it isn’t a wide range of numbers — it’s a small set of labels.\n\nClassification target (labels)\n\nCounting how many of each label we have\nThis first line counts how many students fall into each class:\n\ndf[\"pass_fail\"] selects the pass_fail column from the DataFrame.\n.value_counts() counts how many times each label appears.\nThe output should look like a small summary table showing something like:\n\nhow many students are \"pass\"\nhow many students are \"fail\"\n\n\nThis is useful because classification targets often come in classes, and it helps to know whether your dataset has a reasonable spread of those classes (for example, not all pass and none fail).\n\ndf[\"pass_fail\"].value_counts()\n\npass_fail\nfail    7\npass    5\nName: count, dtype: int64\n\n\n\n\nMaking the label counts visual with a bar chart\nThe next cell turns those same counts into a picture.\n\nimport matplotlib.pyplot as plt loads the plotting library we’ll use to draw the chart.\ndf[\"pass_fail\"].value_counts().plot(kind=\"bar\") does two steps at once:\n\nit recomputes the counts of \"pass\" vs \"fail\"\nit plots them as a bar chart\n\nplt.title(...) adds a title so the chart clearly communicates what it represents.\nplt.xlabel(\"label\") labels the horizontal axis: the category names (pass and fail).\nplt.ylabel(\"count\") labels the vertical axis: how many students are in each category.\nplt.show() displays the plot.\n\nThe key takeaway from this plot: a classification target is made up of labels from a fixed set of options, and we can summarize it by counting how many examples fall into each label.\n\nimport matplotlib.pyplot as plt\n\ndf[\"pass_fail\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Classification target: pass/fail\")\nplt.xlabel(\"label\")\nplt.ylabel(\"count\")\nplt.show()\n\n\n\n\n\n\n\n\nNow that we’ve looked at the classification target as label counts, we’ll look at the regression target as numeric values.\n\n\n\nRegression target (numeric)\nThis next cell looks at the regression target column: final_score. The goal is to show that regression targets are numeric values, so we summarize them using numeric statistics and distributions.\n\nA quick numeric summary (describe)\nThe first line:\n\nselects the final_score column\nproduces a standard summary of numeric data\n\nThe output includes common summary statistics like:\n\nhow many values there are (count)\nthe average (mean)\nspread (std)\nminimum and maximum (min, max)\nand percentile cutoffs (like 25%, 50%, 75%)\n\n\ndf[\"final_score\"].describe()\n\ncount    12.000000\nmean     65.916667\nstd      10.672465\nmin      46.000000\n25%      60.250000\n50%      64.000000\n75%      73.250000\nmax      86.000000\nName: final_score, dtype: float64\n\n\n\n\nA histogram to show the distribution of scores\nThe next cell visualizes the same column as a histogram.\n\nThe histogram groups numeric values into bins (ranges) and counts how many students fall into each range.\nbins=8 controls how many ranges the score axis is divided into. More bins means narrower ranges; fewer bins means wider ranges.\n\nThen the plot labels make it readable:\n\nthe title explains what you’re looking at\nthe x-axis label (“score”) tells you the values are numeric\nthe y-axis label (“count”) tells you we’re counting how many students fall into each score range\n\n\ndf[\"final_score\"].plot(kind=\"hist\", bins=8)\nplt.title(\"Regression target: final score\")\nplt.xlabel(\"score\")\nplt.ylabel(\"count\")\nplt.show()"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#generalization-train-vs-test-split",
+    "href": "assignments/week-02/week-2-demo.html#generalization-train-vs-test-split",
+    "title": "Week 2 Demo: Classification vs Regression Targets",
+    "section": "Generalization: Train vs Test Split",
+    "text": "Generalization: Train vs Test Split\nThis section sets up the train/test split so we can check whether a model would work on new students, not just the students in our dataset. We do that by holding back some rows as a test set and using the rest as a training set. By the end of this section, you’ll have X_train, X_test, y_train, and y_test—two groups of students that let us measure generalization later.\n\nStep 1: Choose X (features) and y (target)\n\nfrom sklearn.model_selection import train_test_split\n\n# X = input features (what we use to predict)\nX = df[[\"attendance\", \"homework_rate\", \"quiz_avg\", \"exam_avg\"]]\n\n# y = target (what we want to predict)\ny = df[\"pass_fail\"]\n\nImporting the split tool\n\nfrom sklearn.model_selection import train_test_split imports a helper function from scikit-learn.\nWe’ll use it to split our rows into a training set and a test set in a consistent way.\n\nDefining X (features)\n\nX = df[[...]] selects the feature columns from the DataFrame.\nWe are choosing the same four inputs we’ve been using throughout the demo:\n\nattendance\nhomework_rate\nquiz_avg\nexam_avg\n\n\nThis creates a new table X that contains only the input information.\nDefining y (target)\n\ny = df[\"pass_fail\"] selects the target column we want to predict.\nHere we are choosing classification as our task, so y is the label column (pass or fail).\n\nAt this point, we have separated the dataset into:\n\nX: what we use to predict\ny: what we want to predict\n\n\n\nStep 2: Split the rows into training and test sets\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, random_state=0\n)\n\nprint(\"Total rows:\", len(df))\nprint(\"Training rows:\", len(X_train))\nprint(\"Test rows:\", len(X_test))\n\nTotal rows: 12\nTraining rows: 9\nTest rows: 3\n\n\nSplitting X and y together\n\ntrain_test_split(X, y, ...) splits the dataset into two groups of rows.\nWe split X and y at the same time so that each feature row stays matched with its correct label.\n\nThis gives us four outputs:\n\nX_train: the feature rows in the training set\nX_test: the feature rows in the test set\ny_train: the labels that go with the training rows\ny_test: the labels that go with the test rows\n\nChoosing how large the test set is\n\ntest_size=0.25 means 25% of the rows go into the test set.\nWith 12 total students, this will usually mean about 3 students in the test set and 9 in training.\n\nMaking the split repeatable\n\nrandom_state=0 makes the split repeatable.\nWithout it, the split could change each time you run the notebook, which makes it harder to compare results.\n\nPrinting the sizes\nThe print(...) lines show how many rows ended up in each group so you can confirm the split happened."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#knn",
+    "href": "assignments/week-02/week-2-demo.html#knn",
+    "title": "Week 2 Demo: Classification vs Regression Targets",
+    "section": "kNN",
+    "text": "kNN\nNow that we have a training set and a test set, we can train a model on the training students and see how well it generalizes to the test students.\nWe’ll use k-nearest neighbors (kNN) for classification. kNN predicts the label for a new student by finding the k closest students in the training set and using a majority vote. Changing k changes how flexible the model is.\n\nStep 1: Train one kNN model and check train vs test performance\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\nknn = KNeighborsClassifier(n_neighbors=3)\nknn.fit(X_train, y_train)\n\nprint(\"Training accuracy:\", knn.score(X_train, y_train))\nprint(\"Test accuracy:\", knn.score(X_test, y_test))\n\nTraining accuracy: 1.0\nTest accuracy: 1.0\n\n\n\nKNeighborsClassifier(...) creates a kNN classifier.\nn_neighbors=3 sets k = 3, meaning the model looks at the 3 nearest training students when it predicts a label.\nknn.fit(X_train, y_train) trains the model using the training set.\n\nFor kNN, “training” mostly means storing the training data so the model can look up neighbors later.\n\nknn.score(...) reports accuracy: the fraction of predictions that match the true labels.\n\nThe training accuracy is how well it predicts the training students.\nThe test accuracy is how well it predicts the held-back test students.\n\n\nThis is our first concrete look at generalization: test accuracy is the estimate of how well this model works on new students.\n\n\nStep 2: Watch what happens when we change k\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\nmax_k = len(X_train)  # k can't be bigger than the number of training rows\nks = range(1, max_k + 1)\n\ntrain_scores = []\ntest_scores = []\n\nfor k in ks:\n    knn = KNeighborsClassifier(n_neighbors=k)\n    knn.fit(X_train, y_train)\n    train_scores.append(knn.score(X_train, y_train))\n    test_scores.append(knn.score(X_test, y_test))\n\n\nresults = pd.DataFrame({\n    \"k\": list(ks),\n    \"train_acc\": train_scores,\n    \"test_acc\": test_scores\n})\nresults.round(3)\n\n\n\n\n\n\n\n\nk\ntrain_acc\ntest_acc\n\n\n\n\n0\n1\n1.000\n1.000\n\n\n1\n2\n1.000\n0.667\n\n\n2\n3\n1.000\n1.000\n\n\n3\n4\n1.000\n0.667\n\n\n4\n5\n1.000\n1.000\n\n\n5\n6\n0.667\n0.333\n\n\n6\n7\n0.667\n0.333\n\n\n7\n8\n0.667\n0.333\n\n\n8\n9\n0.667\n0.333\n\n\n\n\n\n\n\nImporting the model\n\nfrom sklearn.neighbors import KNeighborsClassifier imports the kNN classification model from scikit-learn.\nWe import it inside this cell so the cell works even if it’s run on its own.\n\nChoosing the k values we’re allowed to test\n\nmax_k = len(X_train) gets the number of rows in the training set.\nFor kNN, k cannot be larger than the number of training examples, because the model can’t look for “10 nearest neighbors” if you only have 9 training students.\nks = range(1, max_k + 1) creates the list of k values we’ll test. If max_k is 9, then this produces k values from 1 through 9.\n\nCreating containers to store our results\n\ntrain_scores = [] creates an empty list that will store training accuracy for each k.\ntest_scores = [] creates an empty list that will store test accuracy for each k.\n\nThese lists start empty, and we’ll fill them as we loop.\nLooping over k values\n\nfor k in ks: starts a loop. That means we will run the indented code once for each k value.\n\nInside the loop:\n\nknn = KNeighborsClassifier(n_neighbors=k) creates a new kNN model using the current k value.\nknn.fit(X_train, y_train) trains the model on the training set. For kNN, this mainly means the model stores the training data so it can compare new points to it later.\ntrain_scores.append(knn.score(X_train, y_train)) calculates accuracy on the training set and adds it to the train_scores list.\ntest_scores.append(knn.score(X_test, y_test)) calculates accuracy on the test set and adds it to the test_scores list.\n\nSo after the loop finishes:\n\ntrain_scores[i] is the training accuracy for k = ks[i]\ntest_scores[i] is the test accuracy for k = ks[i]\n\nDisplaying the results\n\nWe build a small table called results with three columns: k, train_acc, and test_acc.\npd.DataFrame({...}) creates the table by lining up each k value with its training accuracy and test accuracy.\nresults.round(3) rounds the accuracy values to three decimals so the table is easier to read.\nThe final line displays the table so we can quickly compare training vs test accuracy for each k before plotting.\n\nAt this stage, the important thing is not the exact numbers—it’s that we now have a way to compare training performance vs test performance as k changes.\n\n\nStep 3: Plot train vs test accuracy as k changes\n\nplt.plot(list(ks), train_scores, label=\"training accuracy\")\nplt.plot(list(ks), test_scores, label=\"test accuracy\")\nplt.xlabel(\"k (number of neighbors)\")\nplt.ylabel(\"accuracy\")\nplt.title(\"kNN: training vs test accuracy as k changes\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nPlotting the training accuracy line\n\nplt.plot(list(ks), train_scores, label=\"training accuracy\") draws a line graph of training accuracy.\nlist(ks) provides the x-values (the k values we tested).\ntrain_scores provides the y-values (the training accuracy for each k).\nlabel=\"training accuracy\" gives this line a name so it can appear in the legend.\n\nPlotting the test accuracy line\n\nplt.plot(list(ks), test_scores, label=\"test accuracy\") draws a second line on the same plot for test accuracy.\nIt uses the same x-values (k), but a different set of y-values (test_scores).\nThis lets us compare training and test performance at the same k values.\n\nLabeling the axes\n\nplt.xlabel(\"k (number of neighbors)\") labels the horizontal axis so it’s clear what the x-values represent.\nplt.ylabel(\"accuracy\") labels the vertical axis so it’s clear we’re measuring accuracy (from 0 to 1).\n\nAdding a title\n\nplt.title(\"kNN: training vs test accuracy as k changes\") adds a title that summarizes what the plot is showing.\n\nAdding a legend\n\nplt.legend() displays a legend box that matches each line to its label (“training accuracy” vs “test accuracy”).\nWithout this, you’d see two lines but wouldn’t know which is which.\n\nDisplaying the plot\n\nplt.show() tells Python to render the chart.\n\nThis plot is valuable because it shows how changing k changes model behavior:\n\nWhen k is small, the model can fit the training data very closely, so training accuracy is often high.\nAs k increases, the model becomes less flexible, so training accuracy usually drops.\nThe test accuracy is the estimate of generalization, and we watch how it changes as k changes.\n\nBecause our dataset is tiny, the test line may jump around, but the key idea still holds: k controls how complex the model is, and training vs test accuracy helps us see overfitting vs underfitting."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
     "section": "",
-    "text": "You will use the same core setup in both of these courses:\nThe difference between the courses is which environment/packages you install and which tools are emphasized. This page includes small callouts to help you follow the right parts at the right time.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
   },
   {
-    "objectID": "shared/guides/setup/miniconda.html#overview",
-    "href": "shared/guides/setup/miniconda.html#overview",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "Overview",
-    "text": "Overview\nIn these courses, you will work inside a conda environment. An environment is an isolated Python installation (Python + packages) stored in a folder on your computer. This helps everyone use consistent tools and reduces setup conflicts.\nYou will use the following tools:\n\nMiniconda Miniconda is a small installer that provides Conda, a system for managing Python installations and packages. Miniconda does not include many data-science packages by default; instead, it gives you a controlled way to install exactly what a course requires.\nConda (the environment manager) Conda is software that can create, activate, and manage environments. It can also install packages (libraries) in a way that keeps them consistent and reduces compatibility problems, especially for scientific packages.\nConda environment A conda environment is a self-contained folder that contains:\n\na specific version of Python, and\na specific set of installed packages. Each environment is separate from other environments on your computer. This means one course can use one set of packages (and versions) without affecting another course or your personal Python installation.\n\nJupyterLab (notebook workspace) JupyterLab is a browser-based programming environment used for data analysis and machine learning. It allows you to write code in cells, run those cells, and view output (tables, plots, printed results) directly below the code. JupyterLab is used in both courses because it supports step-by-step work and makes it easier to review results.\nIPython (interactive Python terminal — CMSC-1217 only) IPython is an enhanced interactive Python terminal. It provides features that support exploratory work, such as command history, tab completion, and built-in help. In CMSC-1217, IPython is used to practice interactive exploration and reinforce core Python concepts in a terminal-based workflow.\n\nHow these pieces fit together\nMiniconda installs Conda, and Conda is the tool you use to create a course environment. When you activate that environment, your terminal temporarily switches so that the python command (and tools like jupyter) run from the environment’s folder. You then start Jupyter (JupyterLab or Jupyter Notebook), and the notebook runs Python from the active environment, using the packages installed there. This sequence—install Miniconda → create environment → activate environment → start Jupyter → run notebooks—is the standard workflow you will use throughout the course.\n\nImportant: During Miniconda installation, do not add Miniconda to PATH. We will use the Miniconda/Anaconda Prompt when working for these courses.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#install-miniconda",
-    "href": "shared/guides/setup/miniconda.html#install-miniconda",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "1) Install Miniconda",
-    "text": "1) Install Miniconda\n\nDownload and install Miniconda (64-bit) for Windows. https://www.anaconda.com/download\nDuring installation, do not add Miniconda to PATH.\n\nWhy not add to PATH: Many of you already have a Python installation from python.org. Not adding Miniconda to PATH prevents Miniconda from changing which python runs in non-course terminals.\nMiniconda is a lightweight installer that provides:\n\nConda (a package and environment manager), and\na basic Python installation and its dependencies.\n\nMiniconda is intentionally minimal: it does not install a large collection of data-science packages by default. Instead, you install only the packages required for the course.\nRelationship to Anaconda\nMiniconda and Anaconda are closely related:\n\nAnaconda Distribution is a larger installer that comes with hundreds of packages pre-installed, plus optional tools like Anaconda Navigator.\nMiniconda is a smaller installer that includes only conda, Python, and a small core set of packages, and then you add what you need.\n\nFor these courses, Miniconda is a good fit because it helps us keep your course environment clean, consistent, and easier to troubleshoot.\nWhy Miniconda/Conda is common in data analysis and machine learning\nData analysis and machine learning often rely on libraries that include compiled components. Conda is widely used in these areas because it can install many scientific packages as prebuilt binaries, which reduces installation difficulties (especially on Windows).\nConda also supports creating separate environments so different projects can use different versions of Python/packages without interfering with each other.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#open-the-conda-terminal",
-    "href": "shared/guides/setup/miniconda.html#open-the-conda-terminal",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "2) Open the conda terminal",
-    "text": "2) Open the conda terminal\nOpen Anaconda Command Prompt from the Start menu.\nYou should see something like:\n(base) C:\\Users\\yourname&gt;\nWhy we use this terminal\nAnaconda/Miniconda Prompt is a terminal that is already configured to recognize conda commands such as conda createand conda activate. Using this prompt reduces setup errors because it starts with the correct conda settings.\nWhat (base) means\n(base) indicates that you are currently in conda’s default environment. This environment exists mainly so that conda can run and manage other environments. In this course, you will usually not do your work in (base). Instead, you will create and activate a course environment (for example, pydata-book or cmsc-2208) and work there.\nHow to interpret the prompt\nThe name in parentheses is your current environment:\n\n(base) means you are in the default conda environment\n(pydata-book) or (cmsc-2208) means you are in the course environment\n\nA quick habit that prevents many problems: before running course commands, look at the parentheses and confirm you are in the correct environment.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#configure-conda-package-channels",
-    "href": "shared/guides/setup/miniconda.html#configure-conda-package-channels",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "3) Configure conda package channels",
-    "text": "3) Configure conda package channels\nRun the following two commands, one at a time, pressing Enter after each.\nFirst, run:\nconda config --add channels conda-forge\nThen, run:\nconda config --set channel_priority strict\nConda downloads packages from sources called channels. A channel is a repository that hosts packaged software (similar in purpose to an “app store,” but for programming libraries). When you install a package with conda, conda searches the configured channels to find a compatible version of that package and its dependencies.\nWe use conda-forge because it is a widely used community-maintained channel that provides current, well-tested builds of many scientific and data-analysis libraries (for example, NumPy, pandas, matplotlib, and scikit-learn). Using a consistent channel helps ensure that most students receive the same package builds and reduces platform-specific installation problems.\nSetting strict channel priority means conda will prefer packages from the highest-priority channel (in this case, conda-forge) rather than mixing packages from multiple channels. This matters because mixing package sources can sometimes lead to version conflicts or dependency mismatches. Strict priority reduces those problems by keeping package selection consistent.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#create-the-course-environment",
-    "href": "shared/guides/setup/miniconda.html#create-the-course-environment",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "4) Create the course environment",
-    "text": "4) Create the course environment\nYou will create one conda environment for the course you are taking currently.\nWhat an environment is:\nIn programming, an environment is the set of software used to run your code, such as:\n\nthe language runtime (for us, Python),\ninstalled libraries/packages,\nand related tools (such as Jupyter).\n\nMany languages and toolchains support environments (for example, Python can use virtual environments, and other ecosystems have their own dependency managers). The goal is the same: keep project dependencies organized and consistent.\nWhat a conda environment is:\nIn this course we use a conda environment, which is a self-contained folder on your computer that includes:\n\na specific version of Python, and\na specific set of installed packages.\n\nWe use conda because it provides a consistent way to install scientific and data-analysis libraries (especially on Windows) and makes it straightforward to reproduce the same setup across different computers.\nDo not create both environments.\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun this command (then press Enter):\nconda create -n pydata-book python=3.11\nIf prompted, type y.\nThis creates an environment named pydata-book. The name is just a label for this course’s Python setup.\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun this command (then press Enter):\nconda create -n cmsc-2208 python=3.11\nIf prompted, type y.\nThis creates an environment named cmsc-2208. The name is just a label for this course’s Python setup.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#activate-the-environment-choose-your-course",
-    "href": "shared/guides/setup/miniconda.html#activate-the-environment-choose-your-course",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "5) Activate the environment (choose your course)",
-    "text": "5) Activate the environment (choose your course)\nBefore installing packages or starting JupyterLab, you must activate your course environment.\nWhat “activate” means: It tells the terminal to use the Python and packages inside your course environment. When the environment is active, commands like python and jupyter will run from the correct course setup.\nYou will activate one environment: the one for the course you are taking now.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun:\nconda activate pydata-book\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun:\nconda activate cmsc-2208\nAfter you activate, your prompt will begin with the environment name, for example:\n\n(pydata-book) ...\n(cmsc-2208) ...\n\nRule: Before you do course work, confirm that the prompt shows your course environment name.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#install-packages-inside-the-active-environment",
-    "href": "shared/guides/setup/miniconda.html#install-packages-inside-the-active-environment",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "6) Install packages (inside the active environment)",
-    "text": "6) Install packages (inside the active environment)\n\nA) CMSC-1217 packages\nWith (pydata-book) active, run:\nconda install -c conda-forge numpy pandas=2.0.3 matplotlib jupyterlab notebook ipykernel\nThis installs:\n\nnumpy: arrays and numerical computing\npandas: data tables (DataFrames)\nmatplotlib: plotting\njupyterlab: notebook interface\nipykernel: the component that allows this environment to run notebooks as a Jupyter kernel\n\n\nCMSC-1217 only: You will also use IPython in this course. IPython will work once the environment is active.\n\n\n\nB) CMSC-2208 packages (required)\nWith (cmsc-2208) active, run:\nconda install -c conda-forge numpy pandas matplotlib jupyterlab notebook ipykernel scikit-learn scipy\nThis installs the data stack plus the machine learning libraries used in CMSC-2208.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#verify-your-installation-imports-version-confirmation",
-    "href": "shared/guides/setup/miniconda.html#verify-your-installation-imports-version-confirmation",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "7) Verify your installation (imports + version confirmation)",
-    "text": "7) Verify your installation (imports + version confirmation)\nRun this command in the active environment:\npython -c \"import sys; import numpy as np; import pandas as pd; import matplotlib; print('python', sys.version.split()[0]); print('numpy', np.__version__); print('pandas', pd.__version__); print('matplotlib', matplotlib.__version__)\"\nWhat this step is doing (and why it can take a moment):\nThis command does two things:\n\nImports the core libraries (numpy, pandas, matplotlib). Importing is the real verification step. It confirms the packages are installed correctly in this environment and that Python can load them without errors.\nPrints version numbers after the imports succeed. This helps confirm you are using the expected tool versions for the course.\n\nBecause these libraries are large and include compiled components, the first successful import in a new environment may take longer than you expect. That is normal.\n\nCMSC-2208 only\nFor CMSC-2208, also verify:\npython -c \"import sklearn, scipy; print('sklearn', sklearn.__version__); print('scipy', scipy.__version__)\"\nThis confirms that the machine learning libraries required for the course can be imported correctly in the CMSC-2208 environment.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#create-the-course-folder-structure-choose-your-course",
-    "href": "shared/guides/setup/miniconda.html#create-the-course-folder-structure-choose-your-course",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "8) Create the course folder structure (choose your course)",
-    "text": "8) Create the course folder structure (choose your course)\nYou will create a small folder structure on your C: drive so your files stay organized and easy to find.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nRun the following four commands:\nFirst:\nmkdir C:\\cmsc-1217\nThen:\nmkdir C:\\cmsc-1217\\course-work\nThen:\nmkdir C:\\cmsc-1217\\book\nFinally:\nmkdir C:\\cmsc-1217\\data\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nRun the following four commands:\nFirst:\nmkdir C:\\cmsc-2208\nThen:\nmkdir C:\\cmsc-2208\\course-work\nThen:\nmkdir C:\\cmsc-2208\\book\nFinally:\nmkdir C:\\cmsc-2208\\data\n\n\nWhat these folders are for (both courses)\n\ncourse-work: your weekly work and submissions\nbook: companion notebooks (reference materials)\ndata: datasets used in course work\n\nNote: If you see a message like “A subdirectory or file already exists,” that usually means you already created the folder. That is fine—continue to the next command.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#install-git-if-needed",
-    "href": "shared/guides/setup/miniconda.html#install-git-if-needed",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "9) Install Git (if needed)",
-    "text": "9) Install Git (if needed)\nCheck:\ngit --version\nIf Git is not installed, install Git for Windows, then re-check git --version.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#download-the-book-companion-files-choose-your-course",
-    "href": "shared/guides/setup/miniconda.html#download-the-book-companion-files-choose-your-course",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "10) Download the book companion files (choose your course)",
-    "text": "10) Download the book companion files (choose your course)\nEach course uses a GitHub repository that contains companion files (notebooks, datasets, and examples). You will download the repository into your course book folder.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nFirst, move into your book folder:\ncd C:\\cmsc-1217\\book\nThen, clone the companion repository:\ngit clone -b 3rd-edition https://github.com/wesm/pydata-book.git\nThis creates the folder:\nC:\\cmsc-1217\\book\\pydata-book\\\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nFirst, move into your book folder:\ncd C:\\cmsc-2208\\book\nThen, clone the companion repository:\ngit clone https://github.com/amueller/introduction_to_ml_with_python.git\nThis creates the folder:\nC:\\cmsc-2208\\book\\introduction_to_ml_with_python\\\nNote: If you see a message that the folder already exists, that usually means you already cloned the repository. That is fine—do not clone it again.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#start-jupyter-notebook-in-the-correct-folder-choose-yourcourse",
-    "href": "shared/guides/setup/miniconda.html#start-jupyter-notebook-in-the-correct-folder-choose-yourcourse",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "11) Start Jupyter Notebook in the correct folder (choose yourcourse)",
-    "text": "11) Start Jupyter Notebook in the correct folder (choose yourcourse)\nYou will start the Jupyter Notebook (Classic) server from your course-work folder. This ensures that when the browser opens, you immediately see the files you are expected to edit and submit.\nRun the commands for your course only. Run them one at a time, pressing Enter after each command.\n\nIf you are in CMSC-1217 Introduction to Data Analytics\nFirst, confirm you are in the correct course environment. Conda environments are activated per terminal window. That means:\n\nIf you are using the same Anaconda/Miniconda Prompt window as earlier steps, your environment may already be active.\nIf you opened a new terminal window (or restarted your computer), you must activate the environment again.\n\nRun:\nconda activate pydata-book\nCheck: your prompt should begin with (pydata-book).\nNext, move into your course work folder:\ncd C:\\cmsc-1217\\course-work\nThen start Jupyter Notebook (Classic):\njupyter notebook\n\n\nIf you are in CMSC-2208 Introduction to Machine Learning\nFirst, confirm you are in the correct course environment. Conda environments are activated per terminal window. That means:\n\nIf you are using the same Anaconda/Miniconda Prompt window as earlier steps, your environment may already be active.\nIf you opened a new terminal window (or restarted your computer), you must activate the environment again.\n\nRun:\nconda activate cmsc-2208\nCheck: your prompt should begin with (pydata-book).\nNext, move into your course work folder:\ncd C:\\cmsc-2208\\course-work\nThen start Jupyter Notebook (Classic):\njupyter notebook\nA browser tab will open showing the contents of your course-work folder.\nImportant: Leave the terminal window open while you use Jupyter Notebook. That terminal is running the notebook server. If you close it, Jupyter will stop.\n\n\nAccessing the book folder (when needed)\nThe course keeps course-work (your work) and book (reference materials) separate on purpose. When you need to view a book notebook:\nStart a second Jupyter Notebook server in the book folder.\n\nOpen a second Anaconda/Miniconda Prompt window\nActivate the same environment\ncd into the book folder\nRun jupyter notebook\n\nFor CMSC-1217 (run each command seperately):\nconda activate pydata-book\ncd C:\\cmsc-1217\\book\njupyter notebook\nFor CMSC-2208 (run each command seperately):\nconda activate cmsc-2208\ncd C:\\cmsc-2208\\book\njupyter notebook\nThis opens a second browser tab rooted in the book folder.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#create-your-first-notebook-and-confirm-the-environment",
-    "href": "shared/guides/setup/miniconda.html#create-your-first-notebook-and-confirm-the-environment",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "12) Create your first notebook and confirm the environment",
-    "text": "12) Create your first notebook and confirm the environment\n\nIn your browser, go to the file list page (the page that shows folders/files).\n\nIf you are currently inside a notebook, click File → Open… to return to the file list.\n\nClick New (top-right), then select Python 3 (ipykernel).\nIn the first cell, run:\n\nimport sys\nsys.executable\n\nConfirm the path includes your course environment:\n\n\nCMSC-1217: \\\\envs\\\\pydata-book\\\\\nCMSC-2208: \\\\envs\\\\cmsc-2208\\\\\n\nWhy this matters: The kernel name shown in menus can vary, but sys.executable reliably confirms the notebook is using the correct environment.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#stop-jupyterlab-when-finished",
-    "href": "shared/guides/setup/miniconda.html#stop-jupyterlab-when-finished",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "13) Stop JupyterLab when finished",
-    "text": "13) Stop JupyterLab when finished\nGo back to the terminal that started JupyterLab and press:\n\nCtrl + C, then type y if prompted.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#optional-cmsc-1217-ipython-in-the-terminal",
-    "href": "shared/guides/setup/miniconda.html#optional-cmsc-1217-ipython-in-the-terminal",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "Optional (CMSC-1217): IPython in the terminal",
-    "text": "Optional (CMSC-1217): IPython in the terminal\n\nCMSC-1217 only: You will use IPython for interactive exploration.\n\nIn Anaconda/Miniconda Prompt:\nconda activate pydata-book\nIPython\nYou should see an In [1]: prompt.\nTo exit:\nexit()",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/guides/setup/miniconda.html#common-issues-and-solutions",
-    "href": "shared/guides/setup/miniconda.html#common-issues-and-solutions",
-    "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
-    "section": "Common issues and solutions",
-    "text": "Common issues and solutions\n\nIssue: Imports fail inside a notebook\nMost common cause: the wrong environment/kernel is active.\nSolution\n\nIn the notebook, run sys.executable to confirm the environment path.\nIf it is incorrect, switch the notebook kernel to the correct one:\n\nKernel → Change Kernel (select the environment for your course)\n\n\n\n\nIssue: JupyterLab opens in the wrong folder\nSolution: cd into the correct course-work folder before starting JupyterLab.\n\n\nIssue: You forgot to activate the environment\nSolution: close JupyterLab (Ctrl+C), then re-run the launch commands in Section 11.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Miniconda Setup"
-    ]
-  },
-  {
-    "objectID": "shared/policies/general-policies.html",
-    "href": "shared/policies/general-policies.html",
-    "title": "General Course Policies",
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
     "section": "",
-    "text": "Academic integrity\n\nStudents must maintain academic integrity (no cheating, plagiarism, unauthorized materials, falsification, etc.).\nViolations follow SCTCC Academic Integrity Policy/Procedure and may be recorded; disciplinary action may apply.\nAcademic integrity violations result in a grade reduction.\n\n\n\nProfessional conduct and behavior\n\nOnline discussions must be civil, respectful, and relevant.\nDisruptive behavior on any course communication platform is not tolerated; may result in grade penalties and/or removal per the Code of Student Conduct.\nRespect for differing viewpoints is required; maintain professional language and conduct.\nIf disruptive behavior causes a student to miss an assignment, they receive no credit for that assignment.\nIf sanctioned for disruptive behavior, students waive the right to a warning on a second occurrence.\nSubstance policy for online sessions: inebriation/being under the influence, displaying alcohol, or drug paraphernalia results in removal from the session and/or course; no smoking during online school activites.\n\n\n\nStudent privacy / third-party communication\n\nCourse progress is discussed only with the student, not parents/guardians/third parties, unless an Information Release is on file.\nIf a third party contacts the instructor, the instructor will defer communication to the student.\nStudents may not invite third parties to attend any online activity (office hours, group meetings).\nRequests to release progress information to a third party should go through the Dean’s office.\n\n\n\nAttendance / participation\n\nAttendance is expected and monitored; students are responsible for tracking absences.\nAttendance is determined by D2L logins and weekly assignment submissions.\nNot logging in and/or not submitting work for a week counts as an absence (including weeks without due assignments unless it’s a scheduled holiday/break).\nStudents must log in and complete an activity by 11:30 PM on the first Wednesday of week 1 or they may be dropped.\nMissing two consecutive weeks → dropped.\nMissing two total weeks → one-letter-grade reduction (10% of total points).\nMissing three total weeks → an additional one-letter-grade reduction.\nAdditional absences beyond three → additional letter-grade reduction per occurrence.\nAttendance is handled per class (one class doesn’t cover another).\n\n\n\nTechnology and platform expectations\n\nStudents are responsible for having required computer/technology for the course.\nStudents are responsible for learning and using D2L (primary channel for schedules, grades, and announcements).\n\n\n\nEmail communication\n\nEmail is the primary method to contact the instructor; students must use their college email account.\nEmails must include a subject line with course name and section/class time.\nStudents are expected to check email daily and read instructor messages/attachments.\nOn nights homework is due, only administrative email items will be answered; technical homework questions will not be addressed.\nResponse time: by end of next business day; Friday emails answered Monday.",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Classification vs Regression",
+    "text": "Classification vs Regression\nRegression vs. Classification — What’s the difference?\nby AWS Educate (2020s, ~5–10 min) — Beginner explanation of what changes when your target is a number vs a label."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Generalization: why we split into training vs test",
+    "text": "Generalization: why we split into training vs test\nTrain/Test Split (and why training accuracy can mislead you)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why we don’t evaluate on the same rows we trained on.\n\nCross Validation (bonus idea for small datasets)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why results can be unstable when you don’t have many rows."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Underfitting and Overfitting",
+    "text": "Underfitting and Overfitting\nOverfitting (video)\nby deeplizard (~4 min) — Explains what overfitting is and what it tends to look like when you compare training vs test performance.\n\nUnderfitting (video)\nby deeplizard (~3–4 min) — Explains underfitting (model too simple to learn the real pattern) and why it performs poorly."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "k-Nearest Neighbors (kNN)",
+    "text": "k-Nearest Neighbors (kNN)\nK-Nearest Neighbors (kNN) clearly explained\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Neighbors “vote” and how changing k changes behavior."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "href": "assignments/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Accuracy: what does “correct” mean?",
+    "text": "Accuracy: what does “correct” mean?\nThe Confusion Matrix (what accuracy is measuring)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — What “correct vs incorrect” means in classification."
+  },
+  {
+    "objectID": "assignments/week-01/index.html",
+    "href": "assignments/week-01/index.html",
+    "title": "Week 1 Assignment (CMSC-2208)",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1.\n\nPart 1: Reading\nRead all of Chapter 1 of Introduction to Machine Learning with Python (Müller & Guido).\nPay special attention to:\n\nEssential libraries and tools (what the course uses and why)\nKey terms used in the chapter: dataset, features (X), target/labels (y), training set, test set\nThe chapter’s first workflow idea: split data → train a model → evaluate results\n\n\n\nPart 2: Jupyter Notebook Verification\n\nA) Launch Jupyter Notebook in the correct folder\nFrom Anaconda Prompt / Miniconda Prompt:\n\nActivate the cmsc-2208 environment\n\nconda activate cmsc-2208\nIf you are using a new terminal window, you must activate the environment again.\n\nNavigate to the course-work folder\n\ncd C:\\cmsc-2208\\course-work\n\nStart jupyter notebook\n\njupyter notebook\nA browser tab will open showing the contents of C:\\cmsc-2208\\course-work\\.\n\n\nB) Create a week01 folder and a verification notebook\n\nIn the Jupyter file list, create a folder named: week01\nOpen the week01 folder\nCreate a new notebook\nSave the notebook as: lastname-nb-verification.ipynb\n\n\n\nC) Run these cells (in order)\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nimport scipy\nimport sklearn\n# Confirm that a built-in dataset can be loaded\nfrom sklearn.datasets import load_iris\niris = load_iris()\nX = iris[\"data\"]\ny = iris[\"target\"]\nX.shape, y.shape\n# Confirm that train/test splitting works (a core workflow step)\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\nX_train.shape, X_test.shape\n\n\n\nPart 3: D2L quiz\nComplete the D2L Chapter 1 quiz.\n\n\nPart 4: Video reflection (graded)\n\nVideo submission instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor compared to running code in a notebook\nWhat the kernel is (in the context of jupyter notebooks)\nWhy “restart the kernel” and “run all” are useful habits\nOne concept from Chapter 1 you can explain accurately\n\nRequirements\n\nClear video and audio quality\nIntro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the [Assignment Name] for CMSC 2208.”\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflection in the link name (this will appear if you copy the link)\n\n\n\n\nD2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\nSubmit your lastname-nb-verification.ipynb file",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions and safe processing (try/except)",
+    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Parsing: turning one line into fields you can work with",
+    "text": "Parsing: turning one line into fields you can work with"
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (compact “build a new list” loops)",
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and the key= idea",
+    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Lambda (a small function used inline)",
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and iteration (yield, streaming one row at a time)",
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions: handling bad rows without crashing",
+    "text": "Exceptions: handling bad rows without crashing"
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (building lists from other sequences)",
+    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and key= with lambda",
+    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
+  },
+  {
+    "objectID": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "href": "assignments/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and streaming (processing one row at a time)",
+    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
+  },
+  {
+    "objectID": "assignments/week-02/index.html",
+    "href": "assignments/week-02/index.html",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: No Dropbox submission this week. All work is completed in D2L.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#week-2-assignments",
+    "href": "assignments/week-02/index.html#week-2-assignments",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: No Dropbox submission this week. All work is completed in D2L.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-1-reading",
+    "href": "assignments/week-02/index.html#part-1-reading",
+    "title": "Week 2 Assignments",
+    "section": "Part 1: Reading",
+    "text": "Part 1: Reading\nRead the assigned section of Chapter 2 on k-nearest neighbors (kNN).\nAs you read, focus on these ideas (these are also the ideas the quiz will test):\n\nSupervised learning structure: how datasets are organized as X (features) and y (target/label)\nClassification vs regression: what changes when y is a label vs y is a number\nGeneralization: why we care about performance on new, unseen data\nTraining set vs test set: what each one is used for and why we split the data\nOverfitting vs underfitting: two common ways models fail to generalize\nkNN mechanics (conceptually): neighbors, distance, and majority vote\nThe role of k: how changing k changes model behavior and can affect training vs test performance",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-2-week-2-demo",
+    "href": "assignments/week-02/index.html#part-2-week-2-demo",
+    "title": "Week 2 Assignments",
+    "section": "Part 2: Week 2 Demo",
+    "text": "Part 2: Week 2 Demo\nUse the demo to reinforce the Chapter 2 vocabulary:\n\nseeing X and y in a concrete dataset\nseeing a train/test split\nseeing training accuracy vs test accuracy\nseeing how changing k affects results",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "href": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "title": "Week 2 Assignments",
+    "section": "Part 3: D2L Quiz",
+    "text": "Part 3: D2L Quiz\nComplete the Week 2 D2L quiz.\nThe quiz focuses on:\n\nidentifying X vs y in a small scenario\nclassification vs regression (based on what y represents)\nwhat “generalization” means in the book’s terms\nwhat training vs test accuracy mean (and what each one evaluates)\nrecognizing overfitting vs underfitting patterns (training high/test low vs both low)\nkNN basics: what neighbors are and what “vote” means\nwhat happens at extreme k values (very small vs very large)",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#completion-checklist",
+    "href": "assignments/week-02/index.html#completion-checklist",
+    "title": "Week 2 Assignments",
+    "section": "Completion checklist",
+    "text": "Completion checklist\n\nChapter 2 reading (kNN section)\nWeek 2 D2L quiz",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "course/schedule.html",
+    "href": "course/schedule.html",
+    "title": "CMSC 2208 Course Schedule",
+    "section": "",
+    "text": "Weekly module opens: Monday 8:00 AM\nAssignments due: Sunday 11:30 PM\nWork cadence:\n\nMon–Thu: work through reading + practice notebook\nSun: graded items due (when assigned)\n\nSpring break: Mar 9–13, 2026\nFinal project block: Apr 27–May 10, 2026\nFinal project due: May 11, 2026",
     "crumbs": [
       "Home",
       "Course information",
-      "General Policies"
+      "Schedule"
     ]
   },
   {
-    "objectID": "shared/policies/office-hours.html",
-    "href": "shared/policies/office-hours.html",
-    "title": "Office Hours",
+    "objectID": "course/schedule.html#course-rhythm",
+    "href": "course/schedule.html#course-rhythm",
+    "title": "CMSC 2208 Course Schedule",
     "section": "",
-    "text": "Mondays - 3:00–4:00 PM and 6:00–7:00 PM\nPersistent Zoom link: Join Zoom meeting",
+    "text": "Weekly module opens: Monday 8:00 AM\nAssignments due: Sunday 11:30 PM\nWork cadence:\n\nMon–Thu: work through reading + practice notebook\nSun: graded items due (when assigned)\n\nSpring break: Mar 9–13, 2026\nFinal project block: Apr 27–May 10, 2026\nFinal project due: May 11, 2026",
     "crumbs": [
       "Home",
       "Course information",
-      "Office Hours"
+      "Schedule"
     ]
   },
   {
-    "objectID": "shared/policies/office-hours.html#no-office-hours",
-    "href": "shared/policies/office-hours.html#no-office-hours",
-    "title": "Office Hours",
-    "section": "No office hours",
-    "text": "No office hours\nOffice hours are not held on:\nJan 19 — Martin Luther King — No Classes — College Closed\nFeb 16 — President’s Day — No Classes — College Closed\nMar 9–13 — Spring Break — No Classes\nMay 11–15 — Final Exams",
+    "objectID": "course/schedule.html#schedule",
+    "href": "course/schedule.html#schedule",
+    "title": "CMSC 2208 Course Schedule",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\nWeek\nTopics (with chapter/section anchors)\nDeliverable\nReading (Müller & Guido)\n\n\n\n\n1 (Jan 12–Jan 18)\nCourse onboarding + “What is ML?” + environment setup + notebook workflow\nWeek 1 Verification Assignment (setup + screenshots + video) + D2L Quiz 1\nCh. 1\n\n\n2 (Jan 19–Jan 25)\nFirst supervised model + scikit-learn workflow: kNN\nD2L Quiz 2\nCh. 2.1.1 (kNN)\n\n\n3 (Jan 26–Feb 01)\nLinear models: classification + regression\nPractice Notebook 2 (completion): “Predict player performance (linear/logistic)” + D2L Quiz 3\nCh. 2.2 (Linear Models)\n\n\n4 (Feb 02–Feb 08)\nTrees + ensembles: random forests / gradient boosting\nSkill Check 1 (autograded): train + report results on game stats + D2L Quiz 4\nCh. 2.3 (Decision Trees) + 2.3.2 (Ensembles)\n\n\n5 (Feb 09–Feb 15)\nClassifier outputs and confidence: decision function vs predicted probabilities\nReflection 1 (video): “Using uncertainty to compare models” + D2L Quiz 5\nCh. 2.4: Uncertainty Estimates from Classifiers\n\n\n6 (Feb 16–Feb 22)\nPreprocessing & scaling workflow: transformations and applying them correctly\nPractice Notebook 3 (completion): “Scale game stats correctly (train vs test)” + D2L Quiz 6\nCh. 3.3.1–3.3.4\n\n\n7 (Feb 23–Mar 01)\nDimensionality reduction + visualization: PCA and t-SNE (“player map”)\nPractice Notebook 4 (completion): “Build a player map (PCA / t-SNE)” + D2L Quiz 7\nCh. 3.4.1 (PCA) + 3.4.3 (t-SNE) (NMF optional)\n\n\n8 (Mar 02–Mar 08)\nClustering: k-means, agglomerative, DBSCAN, and how to compare clusters\nPractice Notebook 5 (completion): “Cluster players by playstyle” + D2L Quiz 8\nCh. 3.5.1–3.5.5\n\n\n9 (Mar 09–Mar 15)\nSpring Break (no due dates)\n—\n—\n\n\n10 (Mar 16–Mar 22)\nRepresenting data + feature engineering (one-hot, binning, interactions)\nPractice Notebook 6 (completion): “Engineer features for matchmaking” + D2L Quiz 9\nCh. 4\n\n\n11 (Mar 23–Mar 29)\nModel evaluation: train/test vs cross-validation + metrics beyond accuracy\nPractice Notebook 7 (completion): “Evaluate models beyond accuracy” + D2L Quiz 10\nCh. 5 (evaluation + metrics)\n\n\n12 (Mar 30–Apr 05)\nModel selection + tuning: grid search + CV workflow\nSkill Check 2 (autograded): metrics + CV + grid search summary + D2L Quiz 11\nCh. 5 (model selection / grid search)\n\n\n13 (Apr 06–Apr 12)\nPipelines: preprocessing + model as one reproducible workflow\nPractice Notebook 8 (completion): “Build a full pipeline for prediction” + D2L Quiz 12\nCh. 6\n\n\n14 (Apr 13–Apr 19)\nPipelines + tuning together (grid search inside pipeline; avoid leakage)\nSkill Check 3 (autograded): pipeline + grid search + report best parameters + D2L Quiz 13\nCh. 6\n\n\n15 (Apr 20–Apr 26)\nText data intro (chat/reviews) or capstone prep emphasis\nReflection 2 / Project Proposal (graded): dataset + goal + metric + plan + D2L Quiz 14\nCh. 7 (+ Ch. 8 possible)\n\n\n16 (Apr 27–May 03)\nFinal project work time (milestone: clean data + baseline + evaluation plan)\n— (work week)\nAs needed (review Ch. 4–6)\n\n\n17 (May 04–May 10)\nFinal project work time (milestone: tuned model + results + narrative + video)\n— (work week)\nAs needed\n\n\n\n\nFinal project (Apr 27–May 11)\nDue May 11, 2026: notebook report (pipeline + evaluation + interpretation) + short video walkthrough.",
     "crumbs": [
       "Home",
       "Course information",
-      "Office Hours"
+      "Schedule"
     ]
   },
   {
-    "objectID": "weekly-overview/week-02/index.html",
-    "href": "weekly-overview/week-02/index.html",
-    "title": "Week 2",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
     "section": "",
-    "text": "This page will be published before Week 2 begins."
+    "text": "Use this site as your course handbook. It stays up to date all semester.\n\nUse the left sidebar to find weekly materials and guides.\nD2L is the starting point for announcements, grades, and submissions.\nCourse information (syllabus, schedule, policies, office hours) is maintained here.\n\n\nCourse workflow\n\nCheck D2L for announcements, deadlines, and any updates.\nRead the Weekly Overview on this site (Week 1, Week 2, …) and follow the links provided.\nComplete the work (assignments) and submit in D2L.\n\n\n\nSupport\n\nOffice hours: see the Office Hours page.\nZoom: Office Zoom Link\n\nHow to get help:\n\nUse Discord/email for course questions.\nAdd troubleshooting policy.\n\n\n\n\nInstructor contact\n\nInstructor: Joseph Silman\n\nEmail: jsilman@sctcc.edu\nPhone Number: (320) 308 - 6595\n\n\n\nQuick links\n\nSyllabus\nSchedule"
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Classification vs Regression",
+    "text": "Classification vs Regression\nRegression vs. Classification — What’s the difference?\nby AWS Educate (2020s, ~5–10 min) — Beginner explanation of what changes when your target is a number vs a label.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Generalization: why we split into training vs test",
+    "text": "Generalization: why we split into training vs test\nTrain/Test Split (and why training accuracy can mislead you)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why we don’t evaluate on the same rows we trained on.\n\nCross Validation (bonus idea for small datasets)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why results can be unstable when you don’t have many rows.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Underfitting and Overfitting",
+    "text": "Underfitting and Overfitting\nOverfitting (video)\nby deeplizard (~4 min) — Explains what overfitting is and what it tends to look like when you compare training vs test performance.\n\nUnderfitting (video)\nby deeplizard (~3–4 min) — Explains underfitting (model too simple to learn the real pattern) and why it performs poorly.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "k-Nearest Neighbors (kNN)",
+    "text": "k-Nearest Neighbors (kNN)\nK-Nearest Neighbors (kNN) clearly explained\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Neighbors “vote” and how changing k changes behavior.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Accuracy: what does “correct” mean?",
+    "text": "Accuracy: what does “correct” mean?\nThe Confusion Matrix (what accuracy is measuring)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — What “correct vs incorrect” means in classification.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/jupyter-learning-links.html",
+    "href": "shared/guides/setup/jupyter-learning-links.html",
+    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
+    "section": "",
+    "text": "Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough\nby Corey Schafer (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.\n\nJupyter Notebooks Tutorial | How to use them & tips and tricks!\nby AssemblyAI (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.\n\nJupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!\nby Rob Mulla (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.\n\nGetting Started with Jupyter Notebooks in VS Code\nby Visual Studio Code (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Jupyter Learning Links"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/jupyter-learning-links.html#introduction-to-jupyter-notebooks",
+    "href": "shared/guides/setup/jupyter-learning-links.html#introduction-to-jupyter-notebooks",
+    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
+    "section": "",
+    "text": "Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough\nby Corey Schafer (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.\n\nJupyter Notebooks Tutorial | How to use them & tips and tricks!\nby AssemblyAI (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.\n\nJupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!\nby Rob Mulla (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.\n\nGetting Started with Jupyter Notebooks in VS Code\nby Visual Studio Code (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Jupyter Learning Links"
+    ]
+  },
+  {
+    "objectID": "shared/guides/setup/jupyter-learning-links.html#recent-developments-in-the-jupyter-ecosystem",
+    "href": "shared/guides/setup/jupyter-learning-links.html#recent-developments-in-the-jupyter-ecosystem",
+    "title": "Jupyter Notebooks & JupyterLab Learning Resources",
+    "section": "Recent Developments in the Jupyter Ecosystem",
+    "text": "Recent Developments in the Jupyter Ecosystem\nJupyter Frontends & JupyterLite updates | Jupyter Open Studio Day 2025\n(2025, ~30 min) — Overview of current features and updates from the official Jupyter community.\n\nAdditional resources and interactive examples are available on the official Jupyter website.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 1",
+      "Jupyter Learning Links"
+    ]
+  },
+  {
+    "objectID": "shared/policies/ai-policy.html",
+    "href": "shared/policies/ai-policy.html",
+    "title": "Using AI as a Learning Tool",
+    "section": "",
+    "text": "Purpose of this policy\nTools that use artificial intelligence are now widely available, and many of you already use them when learning technical material. This course allows the use of AI tools as a learning aid, similar to a tutor or reference source. At the same time, this course requires that submitted work reflect your own understanding and decision-making.\nThis page explains how AI tools may be used productively in this course, and where their use becomes inappropriate.\n\n\nAI as a learning tool\nUsing AI as a learning tool means using it to clarify ideas, terminology, or examples that you do not yet understand.\n\nIdeas An idea is a concept or principle discussed in the course materials, such as how a process works, why a particular approach is used, or what a tool is designed to do. Clarifying an idea means using AI to help you understand the purpose or reasoning behind something you have already encountered in class, rather than asking for a final answer.\nTerminology Terminology refers to the specific words and phrases used in technical subjects. These terms often have precise meanings that differ from everyday usage. Using AI appropriately includes asking for explanations of unfamiliar terms so you can understand how they are used in context, especially when reading textbooks, documentation, or assignment instructions.\nExamples Examples are demonstrations that show how an idea or concept is applied in practice. Using AI to clarify examples means asking for help understanding why an example works, what each part is doing, or how it relates to the underlying concept. It does not mean copying an example and submitting it as your own work.\n\nIn all cases, using AI as a learning tool should help you build understanding, not replace the effort of reading, experimenting, or reasoning through a problem yourself.\n\n\nAI as a crutch\nAI tools can support learning, but they can also be used in ways that reduce learning. This policy uses the term “crutch” to describe situations where the tool is doing the thinking and decision-making that the student is expected to practice.\nUsing AI as a crutch means relying on it to produce work or reasoning that you do not understand well enough to explain and defend. The issue is not that the tool was used; the issue is that the tool replaced the learning process.\nInappropriate uses include:\n\nAsking AI to complete an assignment or lab task for you Example: “Write the solution for this assignment.”\nSubmitting AI-generated code, answers, or explanations that you cannot explain in your own words Example: Copying an explanation of why a solution works without being able to describe the steps yourself.\nTreating AI output as authoritative without verification Example: Accepting an answer that conflicts with course materials, documentation, or results you can reproduce.\nUsing AI to bypass the learning objective Example: Asking for the final answer when the point of the activity is to practice reasoning, debugging, designing, or interpreting results.\nUsing AI to write or script reflections that are meant to describe your own understanding Example: Asking AI to generate a script or talking points for a reflection video instead of explaining the ideas in your own words.\n\nIn these cases, AI is being used to avoid the intended learning work rather than to support it.\n\n\nWhy this matters\nAI can produce output that appears correct even when it contains errors or is based on incorrect assumptions. Because of that, it is important to treat AI output as a starting point for learning, not as an authority.\nThis course emphasizes:\n\nverifying results,\nunderstanding workflows,\nand explaining decisions clearly.\n\nIf you rely on AI answers without testing them or understanding them, you are likely to miss errors and build misunderstandings. Those gaps tend to surface later in the course when tasks require independent problem solving, accurate interpretation, and clear explanations in graded work.\n\n\nExpectations for submitted work\nAll submitted work must reflect your own understanding.\nThis means:\n\nYou should be able to explain any code you submit.\nYou should be able to describe why you made particular choices (model, metric, preprocessing).\nIn reflections, your explanations should sound like you, not like a generic answer generator.\n\nYou are not required to disclose routine AI use for clarification or studying. However, if your work suggests that you do not understand what you submitted, that will be treated the same way as any other lack of understanding, regardless of the source.\nIf you use an AI tool, ask yourself:\n\nCould I explain this answer to another student without looking it up?\nDid I test or verify what the tool suggested?\nDid the tool help me understand, or did it just give me something to submit?\n\nIf the tool helped you understand, you are using it appropriately. If it replaced your thinking, you are not.",
+    "crumbs": [
+      "Home",
+      "Course information",
+      "AI Policy"
+    ]
+  },
+  {
+    "objectID": "shared/policies/homework-coursework.html",
+    "href": "shared/policies/homework-coursework.html",
+    "title": "Homework / Coursework policies",
+    "section": "",
+    "text": "Due dates and late work\n\nAll assignments must be submitted by the due date/time in D2L.\nLate work is not accepted. (“Late” = not in the dropbox by the due/end date.)\nSome assignments have multiple required components (video + file); missing any required component makes the assignment ineligible for grading.\nVideo work must be accessible at grading time or it is not accepted.\nStudents should archive/keep their submitted work.\nGroup work (if assigned) is not eligible for makeup.\n\n\n\nSubmission standards\n\nAssignment-specific submission standards will be provided in instructions.\nWork may be rejected or heavily penalized for not following standards, including:\n\nincorrect file format\nincorrect file naming\nnot following submission instructions\n\nStudents should contact the instructor before the due date with submission questions.\nAssignments will not be accepted via email.\n\n\n\nTests / quizzes (D2L)\n\nQuizzes/tests may be scheduled or unannounced; must be completed by the due date.\nPassword-protected test passwords may not be shared (integrity violation).\nMultiple attempts may be allowed, with thresholds:\n\nmust score &gt;60% on attempt 1 to unlock attempt 2\nmust score &gt;80% on attempt 2 to unlock attempt 3 (if offered)\n\nTime limits apply; exceeding the time limit may result in a 0 and block further work.\nStudents may not leave a quiz once started.\nAuto-generated quizzes may prevent backtracking; students are responsible for careful navigation/submission.\nNo make-up tests/quizzes.\n\n\n\nGrading practices (coursework-related)\n\nGrades are posted in D2L; students are responsible for verifying accuracy.\nSome activities may be assigned but not graded (self-review practice).\nRubrics are used for most activities; some items are auto-graded.\n“Proof” files may be provided; students are expected to review feedback/proof files.\nNo extra credit / no additional assignments offered.\nSome assignments may be pass/fail.\n\n\n\nVideo related coursework expectations\n\nSome assignments require webcam-based video submission (and possibly desktop recording).\nStudent must be visable in any video assignment or the assignment will not be graded.\nStudent must introduce themselves by name, assignment, and course at the start of any video submission - “Hello my name is [name], this is the [assignment] for [class]”\nStudents must dress appropriately/considerately for online video assignments.",
+    "crumbs": [
+      "Home",
+      "Course information",
+      "Assignment Policies"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html",
+    "href": "weekly-overview/week-01/index.html",
+    "title": "Week 1 Guide",
+    "section": "",
+    "text": "This week is about building the starting point for the semester. Chapter 1 introduces the language and workflow used throughout the book. Your focus is to understand what machine learning means in this course, what problems it is used for, and how the textbook organizes the steps from data to a trained model.\nChapter 1 of Introduction to Machine Learning with Python sets the foundation for the rest of the book by introducing the core vocabulary and framing used throughout. It explains what machine learning is used for, outlines the kinds of tasks the book focuses on, and emphasizes the importance of understanding your problem and your data before choosing a model. The chapter also introduces the main tools used in the course (especially scikit-learn and the supporting Python ecosystem) and shows a complete first example so you can see what an end-to-end machine learning task looks like in practice.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#week-1-focus",
+    "href": "weekly-overview/week-01/index.html#week-1-focus",
+    "title": "Week 1 Guide",
+    "section": "",
+    "text": "This week is about building the starting point for the semester. Chapter 1 introduces the language and workflow used throughout the book. Your focus is to understand what machine learning means in this course, what problems it is used for, and how the textbook organizes the steps from data to a trained model.\nChapter 1 of Introduction to Machine Learning with Python sets the foundation for the rest of the book by introducing the core vocabulary and framing used throughout. It explains what machine learning is used for, outlines the kinds of tasks the book focuses on, and emphasizes the importance of understanding your problem and your data before choosing a model. The chapter also introduces the main tools used in the course (especially scikit-learn and the supporting Python ecosystem) and shows a complete first example so you can see what an end-to-end machine learning task looks like in practice.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#how-this-course-approaches-machine-learning",
+    "href": "weekly-overview/week-01/index.html#how-this-course-approaches-machine-learning",
+    "title": "Week 1 Guide",
+    "section": "How this course approaches machine learning",
+    "text": "How this course approaches machine learning\nThis course approaches machine learning as a programming workflow carried out in Python. Chapter 1 reflects that approach by introducing machine learning through concrete tasks and examples, using the Python tool ecosystem and scikit-learn’s model interface. In Chapter 1, the authors focus on:\n\nframing a real-world question as a machine learning task,\nrepresenting the problem with a dataset (features and targets),\ntraining a model using scikit-learn,\nand checking performance using held-out test data.\n\nIn this course, you will primarily be asked to implement and evaluate models using existing tools, interpret what the results mean, and explain your choices using correct terminology. While mathematical ideas may appear as needed to support interpretation, the course emphasis is on building practical skill with the workflow and developing good habits for working with models and data.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#what-machine-learning-means-in-this-book",
+    "href": "weekly-overview/week-01/index.html#what-machine-learning-means-in-this-book",
+    "title": "Week 1 Guide",
+    "section": "What machine learning means in this book",
+    "text": "What machine learning means in this book\nChapter 1 introduces machine learning as extracting knowledge from data, and it motivates machine learning by contrasting it with systems built from hand-coded decision rules. The chapter uses examples such as spam filtering and face detection to show why rule-based approaches can break down, and how learning from data can be a practical alternative.\nTwo ideas are introduced early:\n\nMachine learning methods automate decision-making by generalizing from known examples, rather than relying on a fixed set of hand-built rules.\nThe quality of what a model can learn depends on what information is actually present in the dataset, especially in the features used to describe each example.\n\nFor that reason, Chapter 1 spends time defining how data is described in machine learning. It introduces the “table” framing (samples as rows and features as columns), names the key terms sample and feature, and emphasizes that no algorithm can make predictions using information that is not represented in the features.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#supervised-vs-unsupervised-learning",
+    "href": "weekly-overview/week-01/index.html#supervised-vs-unsupervised-learning",
+    "title": "Week 1 Guide",
+    "section": "Supervised vs unsupervised learning",
+    "text": "Supervised vs unsupervised learning\nChapter 1 distinguishes two broad categories of machine learning problems:\n\nsupervised learning, where you have input data along with a known outcome you want to predict\nunsupervised learning, where you have input data but no known outcomes provided to the algorithm\n\nThe chapter gives concrete examples of both kinds of tasks, and it emphasizes that supervised learning requires building a dataset that includes the desired outcome.\nChapter 1 then walks through a supervised learning example: predicting iris species from flower measurements. This example is used to introduce the vocabulary you will see repeatedly:\n\nsamples (rows/data points) and features (columns/properties)\ntargets/labels (the known outcomes in supervised learning)\ntraining data versus test data (evaluating on data not used to fit the model)\n\nYou do not need to memorize every detail yet. The goal is to recognize what makes a problem supervised, and to understand why the book spends time on data representation and evaluation before expanding into more algorithms in later chapters.\nNote: the formal “classification vs regression” distinction is introduced in Chapter 2, even though Chapter 1’s iris walkthrough is a classification example.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#datasets-features-and-targets",
+    "href": "weekly-overview/week-01/index.html#datasets-features-and-targets",
+    "title": "Week 1 Guide",
+    "section": "Datasets, features, and targets",
+    "text": "Datasets, features, and targets\nChapter 1 introduces the vocabulary the book uses to describe data in machine learning.\n\nA dataset is a collection of examples (also called samples or data points).\nEach example is described by features, which are measurable properties used as inputs to a model.\nIn supervised learning, each example also has a target value (often called a label). In classification problems, the possible target values are sometimes called classes.\n\nChapter 1 also describes datasets in a “table” form: samples are organized as rows and features as columns.\nThe book uses the notation X for the input data (the features) and y for the target values. You will see X and y throughout the text and in scikit-learn examples.\nThis week, focus on recognizing what X and y represent conceptually rather than worrying about exact shapes or implementation details.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#training-data-and-test-data",
+    "href": "weekly-overview/week-01/index.html#training-data-and-test-data",
+    "title": "Week 1 Guide",
+    "section": "Training data and test data",
+    "text": "Training data and test data\nChapter 1 introduces the distinction between training data and test data as part of its first complete machine learning example.\nThe chapter explains that:\n\na model is fit using one portion of the available data (the training set),\nand performance is evaluated using a separate portion of the data that was not used during training (the test set).\n\nThis separation allows you to check how well a model performs on new, unseen data, rather than just how well it fits the data it was trained on. Chapter 1 emphasizes that evaluating a model on the same data used for training can give an overly optimistic view of its performance.\nYou should understand why this separation is necessary, even though the mechanics of splitting data and evaluating models will be explored in more detail in later chapters.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#a-first-end-to-end-example",
+    "href": "weekly-overview/week-01/index.html#a-first-end-to-end-example",
+    "title": "Week 1 Guide",
+    "section": "A first end-to-end example",
+    "text": "A first end-to-end example\nChapter 1 includes a complete, small-scale machine learning example using the iris flower dataset. The purpose of this example is not to teach you every detail, but to show what an end-to-end machine learning task looks like in practice and to introduce the workflow the book will return to throughout the course.\nAs you read this example, focus on the sequence of steps:\n\nload a dataset,\nseparate features and targets,\ninspect the data (for example, with simple visualizations),\nsplit the data into training and test sets,\ntrain a model on the training data,\nevaluate the model on the test data.\n\nDo not worry if some parts feel unfamiliar at first. The goal in Week 1 is to recognize what each step is doing and why it appears in the workflow.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#tools-introduced-in-chapter-1",
+    "href": "weekly-overview/week-01/index.html#tools-introduced-in-chapter-1",
+    "title": "Week 1 Guide",
+    "section": "Tools introduced in Chapter 1",
+    "text": "Tools introduced in Chapter 1\nChapter 1 introduces the main Python libraries used throughout the book:\n\n\n\n\n\n\n\nTool\nRole in the book\n\n\n\n\nNumPy\nProvides efficient numerical arrays and supports many operations used by other libraries\n\n\npandas\nUsed for working with structured, tabular data\n\n\nmatplotlib\nUsed for basic visualization and inspecting data\n\n\nscikit-learn\nProvides machine learning algorithms and workflows\n\n\n\nYou are not expected to master these tools in Week 1. You are expected to recognize their names and understand why each one exists.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#reading-expectations-and-habits",
+    "href": "weekly-overview/week-01/index.html#reading-expectations-and-habits",
+    "title": "Week 1 Guide",
+    "section": "Reading expectations and habits",
+    "text": "Reading expectations and habits\nChapter 1 is short but dense. You should read it slowly and actively.\nWhen you encounter unfamiliar terms:\n\npause and reread the surrounding paragraph,\nconnect the term to the example being shown,\navoid memorizing definitions in isolation.\n\nThe goal is to build conceptual familiarity, not technical mastery.\nIf you compare your output to the book’s examples later, remember that small differences in formatting or values are normal. Focus on whether the ideas and results make sense, not whether they look identical.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#week-1-tasks",
+    "href": "weekly-overview/week-01/index.html#week-1-tasks",
+    "title": "Week 1 Guide",
+    "section": "Week 1 tasks",
+    "text": "Week 1 tasks\nThis week, you should:\n\nRead Chapter 1 of the textbook carefully.\nFollow the course setup instructions and complete the Week 1 verification assignment.\nComplete the D2L quiz for Chapter 1.\nReflect on how machine learning problems are structured in the book.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
+    "href": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
+    "title": "Week 1 Guide",
+    "section": "Knowledge goals for Week 1",
+    "text": "Knowledge goals for Week 1\nBy the end of this week, you should be able to explain:\n\nWhat the book means by machine learning\nThe difference between classification and regression\nWhat a dataset, feature, and target are\nWhy data is split into training and test sets\nWhat the basic machine learning workflow looks like\nWhy data representation matters before algorithm choice",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   }
 ]

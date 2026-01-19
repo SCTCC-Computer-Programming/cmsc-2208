@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jupyter Notebooks &amp; JupyterLab Learning Resources – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators) – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,8 +72,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../../shared/assets/course.css">
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../shared/assets/course.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -81,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">CMSC 2208 : Introduction to Machine Learning</span>
     </a>
   </div>
@@ -92,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -107,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guides</li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/miniconda.html">Week 1</a></li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/jupyter-learning-links.html">Jupyter Learning Links</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -142,37 +144,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">General Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI Policy</span></a>
   </div>
 </li>
@@ -189,13 +191,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-01/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-01/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -212,13 +214,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-01/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-01/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -235,22 +237,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Week 1</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Miniconda Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter Learning Links</span></a>
   </div>
 </li>
@@ -267,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3 Reference Videos</span></a>
   </div>
 </li>
@@ -285,17 +287,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction-to-jupyter-notebooks" id="toc-introduction-to-jupyter-notebooks" class="nav-link active" data-scroll-target="#introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</a></li>
-  <li><a href="#recent-developments-in-the-jupyter-ecosystem" id="toc-recent-developments-in-the-jupyter-ecosystem" class="nav-link" data-scroll-target="#recent-developments-in-the-jupyter-ecosystem">Recent Developments in the Jupyter Ecosystem</a></li>
+  <li><a href="#how-to-use-these-videos" id="toc-how-to-use-these-videos" class="nav-link active" data-scroll-target="#how-to-use-these-videos">How to use these videos</a></li>
+  <li><a href="#exceptions-and-safe-processing-tryexcept" id="toc-exceptions-and-safe-processing-tryexcept" class="nav-link" data-scroll-target="#exceptions-and-safe-processing-tryexcept">Exceptions and safe processing (<code>try/except</code>)</a></li>
+  <li><a href="#parsing-turning-one-line-into-fields-you-can-work-with" id="toc-parsing-turning-one-line-into-fields-you-can-work-with" class="nav-link" data-scroll-target="#parsing-turning-one-line-into-fields-you-can-work-with">Parsing: turning one line into fields you can work with</a></li>
+  <li><a href="#list-comprehensions-compact-build-a-new-list-loops" id="toc-list-comprehensions-compact-build-a-new-list-loops" class="nav-link" data-scroll-target="#list-comprehensions-compact-build-a-new-list-loops">List comprehensions (compact “build a new list” loops)</a></li>
+  <li><a href="#sorting-ranking-and-the-key-idea" id="toc-sorting-ranking-and-the-key-idea" class="nav-link" data-scroll-target="#sorting-ranking-and-the-key-idea">Sorting, ranking, and the <code>key=</code> idea</a></li>
+  <li><a href="#lambda-a-small-function-used-inline" id="toc-lambda-a-small-function-used-inline" class="nav-link" data-scroll-target="#lambda-a-small-function-used-inline">Lambda (a small function used inline)</a></li>
+  <li><a href="#generators-and-iteration-yield-streaming-one-row-at-a-time" id="toc-generators-and-iteration-yield-streaming-one-row-at-a-time" class="nav-link" data-scroll-target="#generators-and-iteration-yield-streaming-one-row-at-a-time">Generators and iteration (<code>yield</code>, streaming one row at a time)</a></li>
+  <li><a href="#exceptions-handling-bad-rows-without-crashing" id="toc-exceptions-handling-bad-rows-without-crashing" class="nav-link" data-scroll-target="#exceptions-handling-bad-rows-without-crashing">Exceptions: handling bad rows without crashing</a></li>
+  <li><a href="#list-comprehensions-building-lists-from-other-sequences" id="toc-list-comprehensions-building-lists-from-other-sequences" class="nav-link" data-scroll-target="#list-comprehensions-building-lists-from-other-sequences">List comprehensions (building lists from other sequences)</a></li>
+  <li><a href="#sorting-ranking-and-key-with-lambda" id="toc-sorting-ranking-and-key-with-lambda" class="nav-link" data-scroll-target="#sorting-ranking-and-key-with-lambda">Sorting, ranking, and <code>key=</code> with lambda</a></li>
+  <li><a href="#generators-and-streaming-processing-one-row-at-a-time" id="toc-generators-and-streaming-processing-one-row-at-a-time" class="nav-link" data-scroll-target="#generators-and-streaming-processing-one-row-at-a-time">Generators and streaming (processing one row at a time)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guides</li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/miniconda.html">Week 1</a></li><li class="breadcrumb-item"><a href="../../../shared/guides/setup/jupyter-learning-links.html">Jupyter Learning Links</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jupyter Notebooks &amp; JupyterLab Learning Resources</h1>
+<h1 class="title">Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)</h1>
 </div>
 
 
@@ -307,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 11, 2026</p>
+      <p class="date-modified">January 16, 2026</p>
     </div>
   </div>
     
@@ -318,27 +329,78 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction-to-jupyter-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</h2>
-<p><strong>Jupyter Notebook Tutorial: Introduction, Setup, and Walkthrough</strong><br>
-<em>by Corey Schafer</em> (2016, ~30 min) — Comprehensive beginner overview of installation, navigation, cells, kernels, and Markdown.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HW29067qVWk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Jupyter Notebooks Tutorial | How to use them &amp; tips and tricks!</strong><br>
-<em>by AssemblyAI</em> (2022, ~18 min) — Practical guide to common settings, basic operations, cell management, indicators, keyboard shortcuts, and useful tips for data science workflows.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LW2Rye_l8L0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Jupyter Notebook Complete Beginner Guide - From Jupyter to JupyterLab, Google Colab and Kaggle!</strong><br>
-<em>by Rob Mulla</em> (2022, ~25 min) — Covers classic Notebooks, transition to JupyterLab, and cloud-based alternatives.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/5pf0_bpNbkw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p><strong>Getting Started with Jupyter Notebooks in VS Code</strong><br>
-<em>by Visual Studio Code</em> (2024, ~6 min) — Official guide to creating, running, and debugging Jupyter Notebooks directly in VS Code, including environment setup, code execution, Markdown support, variable exploration, and data visualization.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/suAkMeWJ1yE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="how-to-use-these-videos" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-these-videos">How to use these videos</h2>
+<p>These are optional “extra help” videos for Week 2.<br>
+Watch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.<br>
+A good strategy is:<br>
+- Watch one short video first (to get the basic idea)<br>
+- Then come back to the demo and re-run the relevant section<br>
+- If you want more depth, watch one “long-form” talk (PyCon / conference style)</p>
 </section>
-<section id="recent-developments-in-the-jupyter-ecosystem" class="level2">
-<h2 class="anchored" data-anchor-id="recent-developments-in-the-jupyter-ecosystem">Recent Developments in the Jupyter Ecosystem</h2>
-<p><strong>Jupyter Frontends &amp; JupyterLite updates | Jupyter Open Studio Day 2025</strong><br>
-(2025, ~30 min) — Overview of current features and updates from the official Jupyter community.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/7kS_xfKEOmM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Additional resources and interactive examples are available on the <a href="https://jupyter.org/">official Jupyter website</a>.</p>
+<section id="exceptions-and-safe-processing-tryexcept" class="level2">
+<h2 class="anchored" data-anchor-id="exceptions-and-safe-processing-tryexcept">Exceptions and safe processing (<code>try/except</code>)</h2>
+<p><strong>Try / Except | Python (Tutorial)</strong> <em>by Socratica</em> — A focused explanation of what <code>try</code> and <code>except</code> actually do, and why this pattern is useful when you want to keep processing after one failure.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/nlCKrKGHSSk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="parsing-turning-one-line-into-fields-you-can-work-with" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-turning-one-line-into-fields-you-can-work-with">Parsing: turning one line into fields you can work with</h2>
+</section>
+<section id="list-comprehensions-compact-build-a-new-list-loops" class="level2">
+<h2 class="anchored" data-anchor-id="list-comprehensions-compact-build-a-new-list-loops">List comprehensions (compact “build a new list” loops)</h2>
+<p><strong>Learn Python LIST COMPREHENSIONS in 10 minutes!</strong><br>
+<em>by Bro Code</em> — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/YlY2g2xrl6Q" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p><strong>List Comprehensions | Python (Tutorial)</strong> <em>by Socratica</em> — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="[https://www.youtube.com/embed/5K08WcjGV6c](https://www.youtube.com/embed/5K08WcjGV6c)"></video></div>
+</section>
+<section id="sorting-ranking-and-the-key-idea" class="level2">
+<h2 class="anchored" data-anchor-id="sorting-ranking-and-the-key-idea">Sorting, ranking, and the <code>key=</code> idea</h2>
+<p><strong>Python sorted() Function – key Parameter Explained</strong><br>
+<em>by Real Python</em> — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/5K08WcjGV6c" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+</section>
+<section id="lambda-a-small-function-used-inline" class="level2">
+<h2 class="anchored" data-anchor-id="lambda-a-small-function-used-inline">Lambda (a small function used inline)</h2>
+<p><strong>Learn Python LAMBDA in 6 minutes!</strong><br>
+<em>by Bro Code</em> — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/IljPHDyBRog" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p><strong>Python Lambda Functions – Anonymous Functions Explained</strong><br>
+<em>by Tech With Tim</em> — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0vShPnWj0n0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+</section>
+<section id="generators-and-iteration-yield-streaming-one-row-at-a-time" class="level2">
+<h2 class="anchored" data-anchor-id="generators-and-iteration-yield-streaming-one-row-at-a-time">Generators and iteration (<code>yield</code>, streaming one row at a time)</h2>
+<p><strong>Python Generators Explained – yield Keyword Tutorial</strong><br>
+<em>by Tech With Tim</em> — Shows what generators are, how yield works, and why they save memory when processing large data.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bD05uGo_sVI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p><strong>Understanding Generators and yield in Python</strong><br>
+<em>by Corey Schafer</em> — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/txC9HvAAZx8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<section id="optional-long-form-advanced-but-very-good" class="level3">
+<h3 class="anchored" data-anchor-id="optional-long-form-advanced-but-very-good">Optional long-form (advanced, but very good)</h3>
+<p><strong>Python Generators: The Final Frontier</strong><br>
+<em>by David Beazley (PyCon)</em> — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system.<br>
+</p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/5-qadlG7tWo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+</section>
+</section>
+<section id="exceptions-handling-bad-rows-without-crashing" class="level2">
+<h2 class="anchored" data-anchor-id="exceptions-handling-bad-rows-without-crashing">Exceptions: handling bad rows without crashing</h2>
+</section>
+<section id="list-comprehensions-building-lists-from-other-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="list-comprehensions-building-lists-from-other-sequences">List comprehensions (building lists from other sequences)</h2>
+<p><strong>Python Tutorial: List Comprehensions</strong> <em>by Corey Schafer</em> — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="[https://www.youtube.com/embed/3dt4OGnU5sM](https://www.youtube.com/embed/3dt4OGnU5sM)"></video></div>
+</section>
+<section id="sorting-ranking-and-key-with-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="sorting-ranking-and-key-with-lambda">Sorting, ranking, and <code>key=</code> with lambda</h2>
+<p><strong>Python Tutorial: Lambda Functions</strong> <em>by Corey Schafer</em> — Explains what a <code>lambda</code> is, when it’s useful, and how it connects to patterns like <code>sorted(..., key=...)</code> and <code>max(..., key=...)</code>.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="[https://www.youtube.com/embed/Ob9rY6PQMfI](https://www.youtube.com/embed/Ob9rY6PQMfI)"></video></div>
+</section>
+<section id="generators-and-streaming-processing-one-row-at-a-time" class="level2">
+<h2 class="anchored" data-anchor-id="generators-and-streaming-processing-one-row-at-a-time">Generators and streaming (processing one row at a time)</h2>
+<p><strong>Python Tutorial: Generators</strong> <em>by Corey Schafer</em> — A practical explanation of <code>yield</code>, how generator functions behave differently from normal functions, and what changes when you iterate over a generator.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video4" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="[https://www.youtube.com/embed/bD05uGo_sVI](https://www.youtube.com/embed/bD05uGo_sVI)"></video></div>
 
 
 </section>
@@ -758,6 +820,10 @@ ul.task-list li input[type="checkbox"] {
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   });
 </script>
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
+<script>videojs(video_shortcode_videojs_video4);</script>
 
 
 
