@@ -29,7 +29,7 @@ format:
 | ---: | --- | --- | --- |
 | 1 (Jan 12–Jan 18) | Course onboarding + “What is ML?” + environment setup + notebook workflow | **Week 1 Verification Assignment** (setup + screenshots + video) + D2L Quiz 1 | **Ch. 1** |
 | 2 (Jan 19–Jan 25) | First supervised model + scikit-learn workflow: kNN | D2L Quiz 2 | **Ch. 2.1.1** (kNN) |
-| 3 (Jan 26–Feb 01) | Linear models: classification + regression | Practice Notebook 2 (completion): *“Predict player performance (linear/logistic)”* + D2L Quiz 3 | **Ch. 2.2** (Linear Models) |
+| 3 (Jan 26–Feb 01) | Linear models: classification + regression | D2L Quiz 3 | **Ch. 2.2** (Linear Models) |
 | 4 (Feb 02–Feb 08) | Trees + ensembles: random forests / gradient boosting | **Skill Check 1 (autograded)**: train + report results on game stats + D2L Quiz 4 | **Ch. 2.3** (Decision Trees) + **2.3.2** (Ensembles) |
 | 5 (Feb 09–Feb 15) | Classifier outputs and confidence: decision function vs predicted probabilities | Reflection 1 (video): *“Using uncertainty to compare models”* + D2L Quiz 5 | **Ch. 2.4: Uncertainty Estimates from Classifiers** |
 | 6 (Feb 16–Feb 22) | Preprocessing & scaling workflow: transformations and applying them correctly| Practice Notebook 3 (completion): *“Scale game stats correctly (train vs test)”* + D2L Quiz 6 | **Ch. 3.3.1–3.3.4** |

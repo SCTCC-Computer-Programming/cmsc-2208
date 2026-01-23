@@ -1,0 +1,50 @@
+---
+title: "Week 3 Assignments"
+subtitle: "Textbook Chapter 2 (Linear Models), Ridge & Logistic Regression Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 3 demo](../../assignments/week-03/week-3-demo.html)**. 
+- <a href="week-3-demo.ipynb" download="week-3-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **Chapter 2, pages 45-70** (Linear Models section, including Naive Bayes).
+
+This section introduces linear models for regression and classification, including Ridge Regression, Lasso, LinearRegression, LogisticRegression, LinearSVC, and Naive Bayes classifiers. The demo provides a hands-on walkthrough of Ridge and Logistic Regression with detailed explanations of how regularization works and how to interpret learned weights.
+
+## Part 2: Work through the Week 3 Demo
+
+The Week 3 demo covers:
+
+1. Understanding what linear models are and how they differ from kNN
+2. Training Ridge Regression models for predicting numeric values
+3. Understanding regularization and the `alpha` parameter
+4. Interpreting R² scores and learned weights
+5. Training Logistic Regression models for classification
+6. Understanding the `C` parameter and how it differs from `alpha`
+7. Evaluating classification accuracy and interpreting learned weights
+8. Comparing Ridge and Logistic Regression with kNN
+
+## Part 3: D2L Quiz
+
+Complete the **Week 3 D2L quiz** (Linear Models concepts).
+
+The quiz covers:
+
+* Core concepts: linear prediction formulas, regularization (L1 vs L2), overfitting vs underfitting
+* Ridge Regression: alpha parameter, R² scores, when coefficients shrink toward zero
+* Lasso: L1 regularization, sparse models, automatic feature selection
+* Logistic Regression: C parameter, decision boundaries, one-vs-rest multiclass approach
+* Naive Bayes: variant selection (Gaussian, Bernoulli, Multinomial), smoothing parameter
+* Model interpretation: coefficient meanings, learning curves, method chaining in scikit-learn
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 3 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 2 (pages 45-70), understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding how linear models work, how they differ from kNN, and how regularization controls model complexity.

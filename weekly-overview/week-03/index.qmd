@@ -1,0 +1,150 @@
+---
+title: "Week 3 Guide"
+subtitle: "Chapter 2 — Linear Models for Regression and Classification"
+format:
+  html:
+    toc: true
+---
+
+This week marks a shift from instance-based learning (kNN) to **model-based learning** with linear models. Last week, you learned about k-Nearest Neighbors, which makes predictions by finding similar examples in the training data. kNN stores all the training data and searches through it at prediction time, but it doesn't learn a formula or extract patterns.
+
+Linear models work differently. They **learn a formula** during training—a weighted combination of features—and use that same formula to make predictions for any new data point. This approach has several advantages: the models are fast, they work well with high-dimensional data, and they can tell you which features matter most by examining the learned weights.
+
+The Week 3 demo walks through two fundamental linear models: **Ridge Regression** (for predicting numbers like final scores) and **Logistic Regression** (for predicting categories like pass/fail). You'll learn how regularization controls model complexity, how to interpret performance metrics (R² for regression, accuracy for classification), and how to understand which features the model thinks are important.
+
+**📓 Week 3 Demo:**
+
+- Here is the link to the **[Week 3 demo](../../assignments/week-03/week-3-demo.html)**. 
+- <a href="week-3-demo.ipynb" download="week-3-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Chapter 2 concepts used this week (pages 45-70)
+
+### What you'll practice in the demo vs. what you'll learn from the textbook
+
+The **Week 3 demo** teaches you the core workflow by working hands-on with two linear models: Ridge Regression (for predicting numbers) and Logistic Regression (for predicting categories). Once you understand these two, the **textbook** shows you several variations and extensions that follow the same principles.
+
+**You'll code in the demo:**
+- Ridge Regression (regression with L2 regularization)
+- Logistic Regression (classification with L2 regularization)
+
+**You'll read about in the textbook:**
+- Lasso (like Ridge, but uses L1 instead of L2)
+- ElasticNet (combines both L1 and L2)
+- LinearSVC (like LogisticRegression, but with a different optimization approach)
+- Naive Bayes (a different classification approach entirely)
+
+The demo gives you the foundation; the textbook shows you the variations.
+
+### Linear models and the prediction formula
+
+Linear models make predictions using a **weighted sum of features plus an intercept**: `ŷ = w₀×x₀ + w₁×x₁ + ... + wₚ×xₚ + b`. The weights (w) show how much each feature contributes to the prediction, and the intercept (b) adjusts the baseline. During training, the model learns the optimal weights by minimizing prediction errors on the training data.
+
+This weighted formula is the foundation of all linear models. Whether you're using Ridge, Lasso, LogisticRegression, or LinearSVC, they all make predictions using this same basic structure—they just differ in how they learn the weights and control complexity.
+
+### Understanding L1 and L2 regularization
+
+Regularization means constraining the weights to prevent overfitting. There are two main types:
+
+**L2 regularization (used by Ridge, LogisticRegression by default):**
+- Penalizes the **sum of squared coefficients**: w₁² + w₂² + w₃² + ...
+- Think: "Punish large weights extra hard" (squaring makes big values even bigger)
+- Effect: Shrinks all coefficients toward zero, but never makes them exactly zero
+- Spreads influence across all features rather than relying heavily on any one feature
+
+**L1 regularization (used by Lasso):**
+- Penalizes the **sum of absolute values**: |w₁| + |w₂| + |w₃| + ...
+- Think: "Punish any nonzero weight equally"
+- Effect: Can drive coefficients **exactly to zero** (automatic feature selection)
+- Forces the model to pick its favorite features and ignore the rest
+
+**Why this matters:** L2 (Ridge) keeps all features but shrinks their weights. L1 (Lasso) eliminates some features entirely by setting their weights to zero. Both prevent overfitting, but in different ways.
+
+### Ridge Regression and the alpha parameter (in the demo)
+
+**Ridge Regression** is a linear model for regression tasks. It learns weights for each feature, but uses **L2 regularization** to keep weights small. The `alpha` parameter controls regularization strength: larger alpha forces weights toward zero (simpler model), smaller alpha allows larger weights (more complex model). Ridge helps prevent overfitting, especially with many features.
+
+The demo walks you through training Ridge models, interpreting the learned weights, and understanding what the alpha parameter does. This hands-on experience with Ridge gives you the foundation for understanding Lasso and ElasticNet in the textbook.
+
+### R² scores for regression
+
+Ridge uses **R² (R-squared)** as its performance metric, returned by the `.score()` method. R² ranges from 0 to 1 and measures how much variation in the data the model explains. Higher is better, and you want training and test R² to be reasonably close together (if training R² is much higher than test R², you're overfitting).
+
+### Lasso and sparse models (textbook extension of Ridge)
+
+**Lasso** works just like Ridge—it's a linear regression model with regularization—but uses **L1 regularization** instead of L2. The key practical difference: Lasso can set coefficients exactly to zero, effectively ignoring some features. This produces **sparse models** that use only a subset of features, which can make models easier to interpret. Lasso is useful when you expect only a few features to be important.
+
+Since you'll understand Ridge from the demo (L2 regularization, alpha parameter, interpreting weights), Lasso will make immediate sense—it's the same idea with L1 instead of L2.
+
+### ElasticNet: combining both approaches (textbook only)
+
+**ElasticNet** combines both L1 and L2 penalties, giving you both the feature selection of Lasso and the stability of Ridge. It requires tuning two parameters (one for L1, one for L2), but often provides the best performance in practice. Think of it as a hybrid that lets you dial in how much feature selection (L1) vs. weight shrinkage (L2) you want.
+
+### Logistic Regression for classification (in the demo)
+
+**Logistic Regression** is a linear model for classification (despite its name containing "regression"). It learns weights just like Ridge, but converts the weighted sum into a probability between 0 and 1. If the probability is above 0.5, it predicts one class; otherwise, the other.
+
+The `C` parameter controls regularization, but works **opposite to alpha**: larger C means less regularization (more complex), smaller C means more regularization (simpler). This backward relationship takes practice to remember.
+
+The demo walks you through training Logistic Regression models, interpreting accuracy scores and learned weights, and understanding how the C parameter affects model complexity.
+
+### Linear decision boundaries
+
+Linear classification models create **decision boundaries** that are straight lines (in 2D), planes (in 3D), or hyperplanes (in higher dimensions). Any point on one side of the boundary gets one prediction, any point on the other side gets the opposite prediction. This seems restrictive, but works surprisingly well in high-dimensional spaces.
+
+### LinearSVC: an alternative linear classifier (textbook extension of LogisticRegression)
+
+**LinearSVC** is another linear classification algorithm that's very similar to LogisticRegression. It also uses the weighted formula, the C parameter for regularization, and creates linear decision boundaries. The main difference is the mathematical approach used to find the optimal weights (support vector machines vs. logistic loss). In practice, they often perform similarly.
+
+Since you'll understand LogisticRegression from the demo (C parameter, decision boundaries, multiclass classification), LinearSVC will be familiar—it's a variation on the same theme.
+
+### One-vs-rest for multiclass problems
+
+Many linear classifiers are inherently binary (two classes). To handle multiple classes, scikit-learn uses **one-vs-rest (OvR)**: it trains one binary classifier per class (that class vs. all others), then at prediction time picks whichever classifier is most confident. This results in one set of weights per class. The demo shows this briefly; the textbook provides more detail and visualizations.
+
+### Naive Bayes classifiers (textbook only - different approach)
+
+**Naive Bayes** is a family of fast, simple classifiers that work differently from the linear models above. Instead of learning a weighted formula, Naive Bayes calculates probabilities based on simple statistics: it counts how often each feature appears with each class, then uses those counts to predict which class a new data point belongs to.
+
+There are three variants, each suited to different data types:
+- **GaussianNB** for continuous features (assumes features follow a normal distribution per class)
+- **BernoulliNB** for binary features (counts how often each feature is 0 or 1 for each class)
+- **MultinomialNB** for count data (like word counts in text - tracks average feature values per class)
+
+The `alpha` parameter controls "smoothing"—adding virtual data points to avoid zero probabilities. Naive Bayes models are very fast and work well even with limited data, making them excellent baseline models.
+
+**Why "naive"?** They assume features are independent (knowing one feature doesn't tell you about others), which is often not true but works surprisingly well anyway.
+
+### Naive Bayes classifiers
+
+**Naive Bayes** is a family of fast, simple classifiers based on probability. There are three variants: **GaussianNB** (for continuous features), **BernoulliNB** (for binary features), and **MultinomialNB** (for count data like text). They're called "naive" because they assume features are independent, which often isn't true but works surprisingly well anyway.
+
+### Interpreting coefficients and weights
+
+One advantage of linear models is interpretability: you can examine the learned weights to see which features matter most. Larger absolute values mean that feature has more influence. However, be cautious: coefficients can change (even flip sign) when features are correlated or when you change regularization strength. Coefficient interpretation works best when features are relatively independent.
+
+### Learning curves and regularization
+
+**Learning curves** show model performance as training set size increases. They reveal whether you're overfitting (training score much higher than test score) or underfitting (both scores low), and whether more data would help. Regularization becomes less critical as dataset size increases—with enough data, regularized and unregularized models converge to similar performance.
+
+## Reading expectations for Week 3
+
+As you read Chapter 2 (pages 45-67) and work through the demo, check whether you can explain the following in your own words:
+
+1. How do linear models make predictions? What does the formula look like?
+2. What is the difference between kNN (Week 2) and linear models (Week 3)?
+3. What is **regularization**, and why do we use it?
+4. How does the **alpha parameter** in Ridge affect model complexity?
+5. How does the **C parameter** in Logistic Regression affect model complexity?
+6. What is the difference between **L1 regularization** (Lasso) and **L2 regularization** (Ridge)?
+7. What does **R²** measure, and how do you interpret it?
+8. What is a **decision boundary**, and what shape does it have for linear classifiers?
+9. How does **one-vs-rest** extend binary classifiers to multiple classes?
+10. Which Naive Bayes variant should you use for which type of data?
+11. How do you interpret the **learned weights** (coefficients) in a linear model?
+12. Why might coefficient interpretations be misleading when features are correlated?
+
+## Week 3 tasks
+
+1. Read **Chapter 2, pages 45-70** (Linear Models section, including Naive Bayes).
+2. Work through the **[Week 3 demo](../../assignments/week-03/week-3-demo.html)** in your Jupyter environment.
+3. Complete the **Week 3 D2L quiz** (Linear Models concepts).

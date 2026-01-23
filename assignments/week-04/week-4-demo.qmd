@@ -1,0 +1,384 @@
+# Week 2: Supervised Learning Algorithms
+
+## Introduction: New Algorithms, Same Framework
+
+Last week we explored k-Nearest Neighbors (kNN), which makes predictions by finding similar examples in the training data. We learned how to use training and test scores to find the right value of k - not too small (overfitting) and not too large (underfitting).
+
+This week, we're adding two completely different algorithms to our toolkit. While they work in very different ways from kNN, we'll use the same train/test framework to evaluate and tune them.
+
+### Ridge Regression: Predictions Through Weighted Combinations
+
+Ridge Regression makes predictions using a formula. It learns weights for each feature and combines them:
+
+`predicted_score = w₁ × attendance + w₂ × homework + w₃ × quiz + w₄ × exam + b`
+
+Unlike kNN, which stores all the training data and looks up neighbors, Ridge learns these weights once and then uses the same formula for every prediction. This makes it fast and the predictions easy to interpret.
+
+**What makes Ridge different from kNN:**
+- kNN stores training data and searches through it; Ridge learns a formula
+- kNN has no "training" phase (just stores data); Ridge solves for optimal weights
+- kNN predictions depend on nearby points; Ridge uses the same weights for everyone
+
+**The complexity control:** Ridge has a parameter called `alpha` that controls regularization. Higher alpha forces the weights to be smaller, creating a simpler model. We'll explore how different alpha values affect performance.
+
+### Decision Trees: Predictions Through Yes/No Questions
+
+Decision Trees work by learning a series of questions to ask about each student. For example:
+
+- Is their exam average greater than 65?
+  - If yes: Is their quiz average greater than 70?
+  - If no: Is their homework rate greater than 80?
+
+The tree keeps asking questions until it reaches a prediction. Unlike both kNN and Ridge, you can literally draw out the decision-making process and follow along.
+
+**What makes Decision Trees different from kNN:**
+- kNN uses distance/similarity; Trees use yes/no rules
+- kNN considers multiple neighbors; Trees follow one path to a leaf
+- kNN treats all features equally; Trees automatically select which features matter most
+
+**The complexity control:** Trees have a parameter called `max_depth` that limits how many questions they can ask in a row. Deeper trees can capture more complex patterns but risk overfitting.
+
+### What You'll Learn This Week
+
+By the end of this demo, you'll be able to:
+- Train Ridge Regression models and interpret their weights
+- Train Decision Trees and visualize their decision rules
+- Use the train/test pattern to tune `alpha` (for Ridge) and `max_depth` (for Trees)
+- Understand which features are most important for predictions (especially useful with Trees)
+
+Let's start by building our dataset.
+
+---
+
+## Setup: Building a Student Performance Dataset
+
+Before we can train any models, we need data. We're going to create a synthetic dataset of 100 students, each with four measured features: attendance percentage, homework completion rate, quiz average, and exam average. From these features, we'll calculate a final score for each student. We'll also add some random variation to make the data more realistic. In the real world, predictions are never perfect because there are always factors we can't measure (like how much sleep a student got, or whether they were having a bad day).
+
+This dataset will serve two purposes: we'll use the final_score as a numeric target for Ridge Regression, and we'll convert it to a pass/fail label for Decision Trees.
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+
+# Create reproducible random data
+rng = np.random.default_rng(42)
+n = 100
+
+df = pd.DataFrame({
+    "attendance": rng.integers(60, 101, n),
+    "homework_rate": rng.integers(50, 101, n),
+    "quiz_avg": rng.integers(40, 101, n),
+    "exam_avg": rng.integers(40, 101, n),
+})
+
+# Create final score with some realistic noise
+base_score = (0.2*df["homework_rate"] + 0.3*df["quiz_avg"] + 0.5*df["exam_avg"])
+noise = rng.normal(0, 3, n)  # Add random noise
+df["final_score"] = (base_score + noise).round(0)
+
+# Classification target: pass/fail
+df["pass_fail"] = np.where(df["final_score"] >= 70, "pass", "fail")
+
+print(f"Dataset size: {len(df)} students")
+df.head()
+```
+
+**Understanding the code:**
+
+**Importing libraries:**
+- `numpy` (abbreviated as `np`) provides tools for generating random numbers and doing numerical operations
+- `pandas` (abbreviated as `pd`) lets us work with tables of data called DataFrames
+- `matplotlib.pyplot` (abbreviated as `plt`) is for creating visualizations
+- `train_test_split` from scikit-learn will help us split data into training and test sets later
+
+**Creating reproducible random data:**
+- `rng = np.random.default_rng(42)` creates a random number generator with a fixed seed (42). Using a seed means we get the same "random" numbers every time we run this code, making results reproducible.
+- `n = 100` sets our dataset size to 100 students
+
+**Building the DataFrame:**
+- `pd.DataFrame({...})` creates a table with four columns
+- `rng.integers(60, 101, n)` generates 100 random whole numbers between 60 and 100 (inclusive)
+- Each column represents one feature: attendance percentage, homework completion rate, quiz average, and exam average
+- After this step, we have a table where each row is one student and each column is one measurement
+
+**Creating a realistic final score:**
+- `base_score = (0.2*df["homework_rate"] + 0.3*df["quiz_avg"] + 0.5*df["exam_avg"])` calculates a weighted average where exams count for 50%, quizzes for 30%, and homework for 20%. Notice we didn't use attendance in the formula.
+- `noise = rng.normal(0, 3, n)` generates random variation from a bell curve centered at 0 with a spread of 3 points. Think of this as the unpredictable factors we can't measure: maybe a student had a headache during the exam, or got lucky on multiple choice questions, or studied extra hard one week. These small random variations make our data more like the real world.
+- `df["final_score"] = (base_score + noise).round(0)` adds the random variation to the base score and rounds to whole numbers
+- This creates a semi-realistic relationship: final scores are mostly determined by the formula, but not perfectly
+
+**Creating a classification target:**
+- `df["pass_fail"] = np.where(df["final_score"] >= 70, "pass", "fail")` creates a new column that labels each student as "pass" if their final score is 70 or higher, "fail" otherwise
+- This gives us a categorical target for classification tasks
+
+**Displaying the results:**
+- `print(f"Dataset size: {len(df)} students")` shows how many students we created
+- `df.head()` displays the first 5 rows of our dataset so we can see what it looks like
+
+**Key insight:** By adding random variation, we've created a dataset where patterns exist but aren't perfect. This is important because it means there's actually a difference between simple and complex models. A perfectly predictable dataset wouldn't show us overfitting or underfitting.
+
+
+## Part 2: Decision Trees
+
+Decision Trees are fundamentally different from both kNN and Ridge Regression. Instead of calculating distances or learning weights, a Decision Tree builds a flowchart of yes/no questions. Each question splits the data based on one feature, and the tree keeps asking questions until it can make a prediction.
+
+Here's a simple example of what a decision tree might learn:
+```
+Is exam_avg > 65?
+├─ YES → Is quiz_avg > 70?
+│         ├─ YES → Predict: PASS
+│         └─ NO → Is homework_rate > 80?
+│                  ├─ YES → Predict: PASS
+│                  └─ NO → Predict: FAIL
+└─ NO → Predict: FAIL
+```
+
+**What makes Decision Trees different from Ridge and kNN:**
+- Ridge uses a formula with weights; Trees use a sequence of if/then rules
+- kNN looks at similar examples; Trees follow a predetermined path based on feature thresholds
+- Ridge and kNN use all features for every prediction; Trees might only use a few features for any given prediction
+
+**The complexity control (max_depth):** Decision Trees have a parameter called `max_depth` that controls how many questions they can ask in a row. When we create a Decision Tree, we specify this parameter:
+
+```python
+tree = DecisionTreeClassifier(max_depth=3)   # Can ask up to 3 questions
+tree = DecisionTreeClassifier(max_depth=10)  # Can ask up to 10 questions
+```
+
+- **Small max_depth** (like 1 or 2): The tree can only ask a few questions, creating a simple model that might miss important patterns (underfitting)
+- **Large max_depth** (like 10 or unlimited): The tree can ask many questions, creating a complex model that might memorize training data quirks (overfitting)
+
+Max_depth works like a depth limit: it's the longest path from the top of the tree to any prediction at the bottom.
+
+**Accuracy vs R²:** Unlike Ridge, Decision Trees for classification use accuracy as their score instead of R². Accuracy is simpler: it's just the percentage of predictions that were correct. If we predict correctly for 23 out of 25 test students, our test accuracy is 23/25 = 0.92 or 92%.
+
+### Step 1: Prepare classification data
+
+We'll use the same train/test split approach as before, but this time we're predicting pass/fail (classification) instead of final_score (regression). This means we use the categorical target column instead of the numeric one.
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+# Use pass/fail as the target
+y_class = df["pass_fail"]
+
+X_train_class, X_test_class, y_train_class, y_test_class = train_test_split(
+    X, y_class, test_size=0.25, random_state=0
+)
+```
+
+**Understanding the code:**
+
+**Importing the model:**
+- `from sklearn.tree import DecisionTreeClassifier` imports the Decision Tree classifier from scikit-learn
+
+**Selecting the classification target:**
+- `y_class = df["pass_fail"]` extracts the pass/fail column as our target
+- We're using the same features (X) as before, but now predicting a category instead of a number
+
+**Splitting the data:**
+- `train_test_split(X, y_class, test_size=0.25, random_state=0)` splits our data just like we did with Ridge
+- We get training and test sets for both features and labels
+- The `_class` suffix on the variable names helps us remember these are for classification, not regression
+
+### Step 2: Try different max_depth values
+
+Just like we tried different alpha values with Ridge, we'll try different max_depth values with Decision Trees. We'll use a loop to train multiple trees and compare their performance.
+
+```python
+depths = [1, 2, 3, 5, 10, None]  # None = unlimited depth
+tree_results = []
+
+for depth in depths:
+    tree = DecisionTreeClassifier(max_depth=depth, random_state=0)
+    tree.fit(X_train_class, y_train_class)
+    
+    train_acc = tree.score(X_train_class, y_train_class)
+    test_acc = tree.score(X_test_class, y_test_class)
+    
+    depth_str = "unlimited" if depth is None else str(depth)
+    
+    print(f"max_depth={depth_str:9s} → train: {train_acc:.3f}, test: {test_acc:.3f}")
+```
+
+**Understanding the code:**
+
+**Setting up the experiment:**
+- `depths = [1, 2, 3, 5, 10, None]` creates a list of max_depth values to try
+- `None` is a special value that means no limit (the tree can grow as deep as needed to perfectly classify the training data)
+- `tree_results = []` creates an empty list for storing results
+
+**The loop:**
+- `for depth in depths:` loops through each max_depth value
+
+**Training each tree:**
+- `tree = DecisionTreeClassifier(max_depth=depth, random_state=0)` creates a new tree with the current max_depth
+- `random_state=0` ensures reproducible results (trees can make different choices when features are equally good)
+- `tree.fit(X_train_class, y_train_class)` trains the tree. During this step, the tree finds the best questions to ask at each level.
+
+**Evaluating each tree:**
+- `tree.score(X_train_class, y_train_class)` calculates accuracy on training data
+- `tree.score(X_test_class, y_test_class)` calculates accuracy on test data
+- Remember: accuracy is just the fraction of correct predictions
+
+**Formatting the output:**
+- `depth_str = "unlimited" if depth is None else str(depth)` converts the depth to a readable string
+- The print statement displays results for each max_depth value
+
+**What to look for in the output:**
+- If train accuracy is 1.0 (100%) but test accuracy is lower, we're overfitting
+- If both accuracies are low, we're underfitting
+- We want both to be reasonably high and close together
+
+### Step 3: Visualize a simple tree
+
+One of the best features of Decision Trees is that we can actually visualize them and see exactly what questions the model learned. Let's train a tree with max_depth=3 so it's small enough to read comfortably.
+
+```python
+from sklearn.tree import plot_tree
+
+# Train a tree we can actually read
+simple_tree = DecisionTreeClassifier(max_depth=3, random_state=0)
+simple_tree.fit(X_train_class, y_train_class)
+
+plt.figure(figsize=(16, 8))
+plot_tree(simple_tree, 
+          feature_names=["attendance", "homework_rate", "quiz_avg", "exam_avg"],
+          class_names=["fail", "pass"],
+          filled=True, 
+          rounded=True,
+          fontsize=11)
+plt.title("Decision Tree (max_depth=3)")
+plt.show()
+```
+
+**Understanding the code:**
+
+**Importing the visualization tool:**
+- `from sklearn.tree import plot_tree` imports a function specifically for drawing decision trees
+
+**Training a visualization-friendly tree:**
+- `simple_tree = DecisionTreeClassifier(max_depth=3, random_state=0)` creates a shallow tree
+- `simple_tree.fit(X_train_class, y_train_class)` trains it on our data
+- We use max_depth=3 because deeper trees become too large to read
+
+**Creating the visualization:**
+- `plt.figure(figsize=(16, 8))` creates a wide canvas (16 inches by 8 inches) because trees spread horizontally
+- `plot_tree(...)` draws the tree structure
+
+**Visualization parameters:**
+- `feature_names=[...]` tells the plot what to call each feature
+- `class_names=["fail", "pass"]` labels the two classes
+- `filled=True` colors the boxes based on the prediction (makes it easier to read)
+- `rounded=True` makes the boxes have rounded corners (purely aesthetic)
+- `fontsize=11` makes the text readable
+
+**How to read the resulting tree:**
+
+Each box in the tree shows:
+1. **The question being asked** (like "exam_avg <= 62.5")
+2. **The number of samples** that reach this point
+3. **The class distribution** (how many fail vs pass)
+4. **The predicted class** for samples that reach this box
+
+**Following a path through the tree:**
+- Start at the top box (the root)
+- At each box, check if the condition is true
+- If YES (≤), go to the left child
+- If NO (>), go to the right child
+- Continue until you reach a leaf (a box with no children below it)
+- The leaf tells you the prediction
+
+**Understanding the colors:**
+- Orange boxes predict "fail"
+- Blue boxes predict "pass"
+- Darker colors mean the prediction is more confident (more samples agree)
+- Light colors mean the prediction is less certain (samples are mixed)
+
+**Example: Tracing a prediction**
+
+Let's say we have a student with:
+- attendance = 85
+- homework_rate = 75
+- quiz_avg = 68
+- exam_avg = 58
+
+Starting at the root:
+1. Is exam_avg <= 62.5? YES (58 <= 62.5), so go LEFT
+2. Is quiz_avg <= 55.5? NO (68 > 55.5), so go RIGHT
+3. Is homework_rate <= 73.5? NO (75 > 73.5), so go RIGHT
+4. We've reached a leaf that predicts "pass"
+
+This example shows how the tree makes a prediction by asking a specific sequence of questions.
+
+### Step 4: Feature importance
+
+Decision Trees automatically tell us which features were most useful for making predictions. This is called feature importance, and it's one of the most valuable outputs from a tree model.
+
+```python
+tree = DecisionTreeClassifier(max_depth=5, random_state=0)
+tree.fit(X_train_class, y_train_class)
+
+# Create a DataFrame of feature importances
+importance_df = pd.DataFrame({
+    "feature": ["attendance", "homework_rate", "quiz_avg", "exam_avg"],
+    "importance": tree.feature_importances_
+}).sort_values("importance", ascending=False)
+
+# Plot
+plt.figure(figsize=(8, 5))
+plt.barh(importance_df["feature"], importance_df["importance"])
+plt.xlabel("Importance (higher = more useful)")
+plt.ylabel("Feature")
+plt.title("Feature Importance from Decision Tree")
+plt.tight_layout()
+plt.show()
+
+print(importance_df.to_string(index=False))
+```
+
+**Understanding the code:**
+
+**Training a tree for importance analysis:**
+- `tree = DecisionTreeClassifier(max_depth=5, random_state=0)` creates a tree with moderate depth
+- We use depth 5 so the tree has enough structure to make meaningful distinctions
+- `tree.fit(X_train_class, y_train_class)` trains the tree
+
+**Extracting feature importances:**
+- `tree.feature_importances_` is a built-in attribute that contains importance scores for each feature
+- This returns an array with one importance value per feature, in the same order as our feature columns
+
+**Organizing the results:**
+- `pd.DataFrame({...})` creates a table pairing each feature name with its importance
+- `.sort_values("importance", ascending=False)` sorts from most important to least important
+- This makes it easy to see which features matter most at a glance
+
+**Creating the bar chart:**
+- `plt.barh(...)` creates a horizontal bar chart (easier to read feature names)
+- Longer bars mean higher importance
+- The bars represent how much each feature contributed to reducing prediction errors
+
+**Displaying both views:**
+- `plt.show()` displays the chart
+- `print(importance_df.to_string(index=False))` prints the exact numbers
+
+**What feature importance means:**
+
+Feature importance values are numbers between 0 and 1 that always sum to 1.0 (or 100% total). You can think of them as showing how the tree allocated its "decision-making budget" across features:
+
+- **Higher values** (like 0.4 or 0.5) mean the tree used this feature frequently for important splits that significantly improved predictions
+- **Lower values** (like 0.05 or 0.1) mean the feature was used occasionally or only for minor refinements
+- **Zero** means the tree never used this feature at all
+
+For example, if exam_avg has an importance of 0.6, quiz_avg has 0.3, homework_rate has 0.1, and attendance has 0.0, we can interpret this as:
+- exam_avg was the most critical feature, responsible for 60% of the tree's decision-making power
+- quiz_avg was helpful, contributing 30%
+- homework_rate played a minor role at 10%
+- attendance was completely ignored by the tree
+
+**Why might a feature have zero importance?** This happens when other features provide the same information. In our example, if attendance was always perfectly correlated with homework_rate, the tree would only need to use one of them.
+
+**Key insight:** Feature importance helps us understand what the model learned. If we see that attendance has zero importance, we might reconsider whether we need to collect that data at all. Conversely, if exam_avg dominates, it tells us that exam performance is the strongest predictor of pass/fail outcomes in our dataset.
+
