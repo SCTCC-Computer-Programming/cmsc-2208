@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2 Assignments – CMSC 2208 : Introduction to Machine Learning</title>
+<title>week-4-demo – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,10 +111,9 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../shared/assets/course.css">
 <link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -274,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Week 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -379,7 +413,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -464,27 +498,13 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#week-2-assignments" id="toc-week-2-assignments" class="nav-link active" data-scroll-target="#week-2-assignments">Week 2 Assignments</a></li>
-  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
-  <li><a href="#part-2-week-2-demo" id="toc-part-2-week-2-demo" class="nav-link" data-scroll-target="#part-2-week-2-demo">Part 2: Week 2 Demo</a></li>
-  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L Quiz</a></li>
-  <li><a href="#completion-checklist" id="toc-completion-checklist" class="nav-link" data-scroll-target="#completion-checklist">Completion checklist</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Week 2</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 2 Assignments</h1>
-<p class="subtitle lead">Chapter 2 Reading and D2L Quiz</p>
 </div>
 
 
@@ -496,7 +516,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 17, 2026</p>
+      <p class="date-modified">January 21, 2026</p>
     </div>
   </div>
     
@@ -507,56 +527,215 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="week-2-assignments" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-assignments">Week 2 Assignments</h2>
-<p><strong>Submission location:</strong> No Dropbox submission this week. All work is completed in D2L.</p>
+<section id="week-2-supervised-learning-algorithms" class="level1">
+<h1>Week 2: Supervised Learning Algorithms</h1>
+<section id="introduction-new-algorithms-same-framework" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-new-algorithms-same-framework">Introduction: New Algorithms, Same Framework</h2>
+<p>Last week we explored k-Nearest Neighbors (kNN), which makes predictions by finding similar examples in the training data. We learned how to use training and test scores to find the right value of k - not too small (overfitting) and not too large (underfitting).</p>
+<p>This week, we’re adding two completely different algorithms to our toolkit. While they work in very different ways from kNN, we’ll use the same train/test framework to evaluate and tune them.</p>
+<section id="ridge-regression-predictions-through-weighted-combinations" class="level3">
+<h3 class="anchored" data-anchor-id="ridge-regression-predictions-through-weighted-combinations">Ridge Regression: Predictions Through Weighted Combinations</h3>
+<p>Ridge Regression makes predictions using a formula. It learns weights for each feature and combines them:</p>
+<p><code>predicted_score = w₁ × attendance + w₂ × homework + w₃ × quiz + w₄ × exam + b</code></p>
+<p>Unlike kNN, which stores all the training data and looks up neighbors, Ridge learns these weights once and then uses the same formula for every prediction. This makes it fast and the predictions easy to interpret.</p>
+<p><strong>What makes Ridge different from kNN:</strong> - kNN stores training data and searches through it; Ridge learns a formula - kNN has no “training” phase (just stores data); Ridge solves for optimal weights - kNN predictions depend on nearby points; Ridge uses the same weights for everyone</p>
+<p><strong>The complexity control:</strong> Ridge has a parameter called <code>alpha</code> that controls regularization. Higher alpha forces the weights to be smaller, creating a simpler model. We’ll explore how different alpha values affect performance.</p>
 </section>
-<section id="part-1-reading" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h2>
-<p>Read the assigned section of <strong>Chapter 2</strong> on <strong>k-nearest neighbors (kNN)</strong>.</p>
-<p>As you read, focus on these ideas (these are also the ideas the quiz will test):</p>
+<section id="decision-trees-predictions-through-yesno-questions" class="level3">
+<h3 class="anchored" data-anchor-id="decision-trees-predictions-through-yesno-questions">Decision Trees: Predictions Through Yes/No Questions</h3>
+<p>Decision Trees work by learning a series of questions to ask about each student. For example:</p>
 <ul>
-<li><strong>Supervised learning structure:</strong> how datasets are organized as <strong>X (features)</strong> and <strong>y (target/label)</strong></li>
-<li><strong>Classification vs regression:</strong> what changes when <strong>y is a label</strong> vs <strong>y is a number</strong></li>
-<li><strong>Generalization:</strong> why we care about performance on <strong>new, unseen data</strong></li>
-<li><strong>Training set vs test set:</strong> what each one is used for and why we split the data</li>
-<li><strong>Overfitting vs underfitting:</strong> two common ways models fail to generalize</li>
-<li><strong>kNN mechanics (conceptually):</strong> neighbors, distance, and majority vote</li>
-<li><strong>The role of k:</strong> how changing k changes model behavior and can affect training vs test performance</li>
+<li>Is their exam average greater than 65?
+<ul>
+<li>If yes: Is their quiz average greater than 70?</li>
+<li>If no: Is their homework rate greater than 80?</li>
+</ul></li>
 </ul>
+<p>The tree keeps asking questions until it reaches a prediction. Unlike both kNN and Ridge, you can literally draw out the decision-making process and follow along.</p>
+<p><strong>What makes Decision Trees different from kNN:</strong> - kNN uses distance/similarity; Trees use yes/no rules - kNN considers multiple neighbors; Trees follow one path to a leaf - kNN treats all features equally; Trees automatically select which features matter most</p>
+<p><strong>The complexity control:</strong> Trees have a parameter called <code>max_depth</code> that limits how many questions they can ask in a row. Deeper trees can capture more complex patterns but risk overfitting.</p>
 </section>
-<section id="part-2-week-2-demo" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-week-2-demo">Part 2: Week 2 Demo</h2>
-<p>Use the demo to reinforce the Chapter 2 vocabulary:</p>
-<ul>
-<li>seeing <strong>X and y</strong> in a concrete dataset</li>
-<li>seeing a <strong>train/test split</strong></li>
-<li>seeing <strong>training accuracy vs test accuracy</strong></li>
-<li>seeing how changing <strong>k</strong> affects results</li>
-</ul>
+<section id="what-youll-learn-this-week" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn-this-week">What You’ll Learn This Week</h3>
+<p>By the end of this demo, you’ll be able to: - Train Ridge Regression models and interpret their weights - Train Decision Trees and visualize their decision rules - Use the train/test pattern to tune <code>alpha</code> (for Ridge) and <code>max_depth</code> (for Trees) - Understand which features are most important for predictions (especially useful with Trees)</p>
+<p>Let’s start by building our dataset.</p>
+<hr>
 </section>
-<section id="part-3-d2l-quiz" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L Quiz</h2>
-<p>Complete the <strong>Week 2 D2L quiz</strong>.</p>
-<p>The quiz focuses on:</p>
-<ul>
-<li>identifying <strong>X vs y</strong> in a small scenario</li>
-<li>classification vs regression (based on what <strong>y</strong> represents)</li>
-<li>what “generalization” means in the book’s terms</li>
-<li>what training vs test accuracy mean (and what each one evaluates)</li>
-<li>recognizing overfitting vs underfitting patterns (training high/test low vs both low)</li>
-<li>kNN basics: what neighbors are and what “vote” means</li>
-<li>what happens at extreme k values (very small vs very large)</li>
-</ul>
 </section>
-<section id="completion-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="completion-checklist">Completion checklist</h2>
+<section id="setup-building-a-student-performance-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="setup-building-a-student-performance-dataset">Setup: Building a Student Performance Dataset</h2>
+<p>Before we can train any models, we need data. We’re going to create a synthetic dataset of 100 students, each with four measured features: attendance percentage, homework completion rate, quiz average, and exam average. From these features, we’ll calculate a final score for each student. We’ll also add some random variation to make the data more realistic. In the real world, predictions are never perfect because there are always factors we can’t measure (like how much sleep a student got, or whether they were having a bad day).</p>
+<p>This dataset will serve two purposes: we’ll use the final_score as a numeric target for Ridge Regression, and we’ll convert it to a pass/fail label for Decision Trees.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create reproducible random data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"attendance"</span>: rng.integers(<span class="dv">60</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"homework_rate"</span>: rng.integers(<span class="dv">50</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"quiz_avg"</span>: rng.integers(<span class="dv">40</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"exam_avg"</span>: rng.integers(<span class="dv">40</span>, <span class="dv">101</span>, n),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create final score with some realistic noise</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>base_score <span class="op">=</span> (<span class="fl">0.2</span><span class="op">*</span>df[<span class="st">"homework_rate"</span>] <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>df[<span class="st">"quiz_avg"</span>] <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>df[<span class="st">"exam_avg"</span>])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> rng.normal(<span class="dv">0</span>, <span class="dv">3</span>, n)  <span class="co"># Add random noise</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"final_score"</span>] <span class="op">=</span> (base_score <span class="op">+</span> noise).<span class="bu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification target: pass/fail</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pass_fail"</span>] <span class="op">=</span> np.where(df[<span class="st">"final_score"</span>] <span class="op">&gt;=</span> <span class="dv">70</span>, <span class="st">"pass"</span>, <span class="st">"fail"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> students"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong>Importing libraries:</strong> - <code>numpy</code> (abbreviated as <code>np</code>) provides tools for generating random numbers and doing numerical operations - <code>pandas</code> (abbreviated as <code>pd</code>) lets us work with tables of data called DataFrames - <code>matplotlib.pyplot</code> (abbreviated as <code>plt</code>) is for creating visualizations - <code>train_test_split</code> from scikit-learn will help us split data into training and test sets later</p>
+<p><strong>Creating reproducible random data:</strong> - <code>rng = np.random.default_rng(42)</code> creates a random number generator with a fixed seed (42). Using a seed means we get the same “random” numbers every time we run this code, making results reproducible. - <code>n = 100</code> sets our dataset size to 100 students</p>
+<p><strong>Building the DataFrame:</strong> - <code>pd.DataFrame({...})</code> creates a table with four columns - <code>rng.integers(60, 101, n)</code> generates 100 random whole numbers between 60 and 100 (inclusive) - Each column represents one feature: attendance percentage, homework completion rate, quiz average, and exam average - After this step, we have a table where each row is one student and each column is one measurement</p>
+<p><strong>Creating a realistic final score:</strong> - <code>base_score = (0.2*df["homework_rate"] + 0.3*df["quiz_avg"] + 0.5*df["exam_avg"])</code> calculates a weighted average where exams count for 50%, quizzes for 30%, and homework for 20%. Notice we didn’t use attendance in the formula. - <code>noise = rng.normal(0, 3, n)</code> generates random variation from a bell curve centered at 0 with a spread of 3 points. Think of this as the unpredictable factors we can’t measure: maybe a student had a headache during the exam, or got lucky on multiple choice questions, or studied extra hard one week. These small random variations make our data more like the real world. - <code>df["final_score"] = (base_score + noise).round(0)</code> adds the random variation to the base score and rounds to whole numbers - This creates a semi-realistic relationship: final scores are mostly determined by the formula, but not perfectly</p>
+<p><strong>Creating a classification target:</strong> - <code>df["pass_fail"] = np.where(df["final_score"] &gt;= 70, "pass", "fail")</code> creates a new column that labels each student as “pass” if their final score is 70 or higher, “fail” otherwise - This gives us a categorical target for classification tasks</p>
+<p><strong>Displaying the results:</strong> - <code>print(f"Dataset size: {len(df)} students")</code> shows how many students we created - <code>df.head()</code> displays the first 5 rows of our dataset so we can see what it looks like</p>
+<p><strong>Key insight:</strong> By adding random variation, we’ve created a dataset where patterns exist but aren’t perfect. This is important because it means there’s actually a difference between simple and complex models. A perfectly predictable dataset wouldn’t show us overfitting or underfitting.</p>
+</section>
+<section id="part-2-decision-trees" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-decision-trees">Part 2: Decision Trees</h2>
+<p>Decision Trees are fundamentally different from both kNN and Ridge Regression. Instead of calculating distances or learning weights, a Decision Tree builds a flowchart of yes/no questions. Each question splits the data based on one feature, and the tree keeps asking questions until it can make a prediction.</p>
+<p>Here’s a simple example of what a decision tree might learn:</p>
+<pre><code>Is exam_avg &gt; 65?
+├─ YES → Is quiz_avg &gt; 70?
+│         ├─ YES → Predict: PASS
+│         └─ NO → Is homework_rate &gt; 80?
+│                  ├─ YES → Predict: PASS
+│                  └─ NO → Predict: FAIL
+└─ NO → Predict: FAIL</code></pre>
+<p><strong>What makes Decision Trees different from Ridge and kNN:</strong> - Ridge uses a formula with weights; Trees use a sequence of if/then rules - kNN looks at similar examples; Trees follow a predetermined path based on feature thresholds - Ridge and kNN use all features for every prediction; Trees might only use a few features for any given prediction</p>
+<p><strong>The complexity control (max_depth):</strong> Decision Trees have a parameter called <code>max_depth</code> that controls how many questions they can ask in a row. When we create a Decision Tree, we specify this parameter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">3</span>)   <span class="co"># Can ask up to 3 questions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">10</span>)  <span class="co"># Can ask up to 10 questions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Chapter 2 reading (kNN section)</li>
-<li>Week 2 D2L quiz</li>
+<li><strong>Small max_depth</strong> (like 1 or 2): The tree can only ask a few questions, creating a simple model that might miss important patterns (underfitting)</li>
+<li><strong>Large max_depth</strong> (like 10 or unlimited): The tree can ask many questions, creating a complex model that might memorize training data quirks (overfitting)</li>
 </ul>
+<p>Max_depth works like a depth limit: it’s the longest path from the top of the tree to any prediction at the bottom.</p>
+<p><strong>Accuracy vs R²:</strong> Unlike Ridge, Decision Trees for classification use accuracy as their score instead of R². Accuracy is simpler: it’s just the percentage of predictions that were correct. If we predict correctly for 23 out of 25 test students, our test accuracy is 23/25 = 0.92 or 92%.</p>
+<section id="step-1-prepare-classification-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-prepare-classification-data">Step 1: Prepare classification data</h3>
+<p>We’ll use the same train/test split approach as before, but this time we’re predicting pass/fail (classification) instead of final_score (regression). This means we use the categorical target column instead of the numeric one.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pass/fail as the target</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y_class <span class="op">=</span> df[<span class="st">"pass_fail"</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>X_train_class, X_test_class, y_train_class, y_test_class <span class="op">=</span> train_test_split(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    X, y_class, test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong>Importing the model:</strong> - <code>from sklearn.tree import DecisionTreeClassifier</code> imports the Decision Tree classifier from scikit-learn</p>
+<p><strong>Selecting the classification target:</strong> - <code>y_class = df["pass_fail"]</code> extracts the pass/fail column as our target - We’re using the same features (X) as before, but now predicting a category instead of a number</p>
+<p><strong>Splitting the data:</strong> - <code>train_test_split(X, y_class, test_size=0.25, random_state=0)</code> splits our data just like we did with Ridge - We get training and test sets for both features and labels - The <code>_class</code> suffix on the variable names helps us remember these are for classification, not regression</p>
+</section>
+<section id="step-2-try-different-max_depth-values" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-try-different-max_depth-values">Step 2: Try different max_depth values</h3>
+<p>Just like we tried different alpha values with Ridge, we’ll try different max_depth values with Decision Trees. We’ll use a loop to train multiple trees and compare their performance.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>depths <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="va">None</span>]  <span class="co"># None = unlimited depth</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tree_results <span class="op">=</span> []</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> depths:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span>depth, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    tree.fit(X_train_class, y_train_class)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    train_acc <span class="op">=</span> tree.score(X_train_class, y_train_class)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    test_acc <span class="op">=</span> tree.score(X_test_class, y_test_class)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    depth_str <span class="op">=</span> <span class="st">"unlimited"</span> <span class="cf">if</span> depth <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> <span class="bu">str</span>(depth)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"max_depth=</span><span class="sc">{</span>depth_str<span class="sc">:9s}</span><span class="ss"> → train: </span><span class="sc">{</span>train_acc<span class="sc">:.3f}</span><span class="ss">, test: </span><span class="sc">{</span>test_acc<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong>Setting up the experiment:</strong> - <code>depths = [1, 2, 3, 5, 10, None]</code> creates a list of max_depth values to try - <code>None</code> is a special value that means no limit (the tree can grow as deep as needed to perfectly classify the training data) - <code>tree_results = []</code> creates an empty list for storing results</p>
+<p><strong>The loop:</strong> - <code>for depth in depths:</code> loops through each max_depth value</p>
+<p><strong>Training each tree:</strong> - <code>tree = DecisionTreeClassifier(max_depth=depth, random_state=0)</code> creates a new tree with the current max_depth - <code>random_state=0</code> ensures reproducible results (trees can make different choices when features are equally good) - <code>tree.fit(X_train_class, y_train_class)</code> trains the tree. During this step, the tree finds the best questions to ask at each level.</p>
+<p><strong>Evaluating each tree:</strong> - <code>tree.score(X_train_class, y_train_class)</code> calculates accuracy on training data - <code>tree.score(X_test_class, y_test_class)</code> calculates accuracy on test data - Remember: accuracy is just the fraction of correct predictions</p>
+<p><strong>Formatting the output:</strong> - <code>depth_str = "unlimited" if depth is None else str(depth)</code> converts the depth to a readable string - The print statement displays results for each max_depth value</p>
+<p><strong>What to look for in the output:</strong> - If train accuracy is 1.0 (100%) but test accuracy is lower, we’re overfitting - If both accuracies are low, we’re underfitting - We want both to be reasonably high and close together</p>
+</section>
+<section id="step-3-visualize-a-simple-tree" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-visualize-a-simple-tree">Step 3: Visualize a simple tree</h3>
+<p>One of the best features of Decision Trees is that we can actually visualize them and see exactly what questions the model learned. Let’s train a tree with max_depth=3 so it’s small enough to read comfortably.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a tree we can actually read</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simple_tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>simple_tree.fit(X_train_class, y_train_class)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plot_tree(simple_tree, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>          feature_names<span class="op">=</span>[<span class="st">"attendance"</span>, <span class="st">"homework_rate"</span>, <span class="st">"quiz_avg"</span>, <span class="st">"exam_avg"</span>],</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>          class_names<span class="op">=</span>[<span class="st">"fail"</span>, <span class="st">"pass"</span>],</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>          filled<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>          rounded<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>          fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Decision Tree (max_depth=3)"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong>Importing the visualization tool:</strong> - <code>from sklearn.tree import plot_tree</code> imports a function specifically for drawing decision trees</p>
+<p><strong>Training a visualization-friendly tree:</strong> - <code>simple_tree = DecisionTreeClassifier(max_depth=3, random_state=0)</code> creates a shallow tree - <code>simple_tree.fit(X_train_class, y_train_class)</code> trains it on our data - We use max_depth=3 because deeper trees become too large to read</p>
+<p><strong>Creating the visualization:</strong> - <code>plt.figure(figsize=(16, 8))</code> creates a wide canvas (16 inches by 8 inches) because trees spread horizontally - <code>plot_tree(...)</code> draws the tree structure</p>
+<p><strong>Visualization parameters:</strong> - <code>feature_names=[...]</code> tells the plot what to call each feature - <code>class_names=["fail", "pass"]</code> labels the two classes - <code>filled=True</code> colors the boxes based on the prediction (makes it easier to read) - <code>rounded=True</code> makes the boxes have rounded corners (purely aesthetic) - <code>fontsize=11</code> makes the text readable</p>
+<p><strong>How to read the resulting tree:</strong></p>
+<p>Each box in the tree shows: 1. <strong>The question being asked</strong> (like “exam_avg &lt;= 62.5”) 2. <strong>The number of samples</strong> that reach this point 3. <strong>The class distribution</strong> (how many fail vs pass) 4. <strong>The predicted class</strong> for samples that reach this box</p>
+<p><strong>Following a path through the tree:</strong> - Start at the top box (the root) - At each box, check if the condition is true - If YES (≤), go to the left child - If NO (&gt;), go to the right child - Continue until you reach a leaf (a box with no children below it) - The leaf tells you the prediction</p>
+<p><strong>Understanding the colors:</strong> - Orange boxes predict “fail” - Blue boxes predict “pass” - Darker colors mean the prediction is more confident (more samples agree) - Light colors mean the prediction is less certain (samples are mixed)</p>
+<p><strong>Example: Tracing a prediction</strong></p>
+<p>Let’s say we have a student with: - attendance = 85 - homework_rate = 75 - quiz_avg = 68 - exam_avg = 58</p>
+<p>Starting at the root: 1. Is exam_avg &lt;= 62.5? YES (58 &lt;= 62.5), so go LEFT 2. Is quiz_avg &lt;= 55.5? NO (68 &gt; 55.5), so go RIGHT 3. Is homework_rate &lt;= 73.5? NO (75 &gt; 73.5), so go RIGHT 4. We’ve reached a leaf that predicts “pass”</p>
+<p>This example shows how the tree makes a prediction by asking a specific sequence of questions.</p>
+</section>
+<section id="step-4-feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-feature-importance">Step 4: Feature importance</h3>
+<p>Decision Trees automatically tell us which features were most useful for making predictions. This is called feature importance, and it’s one of the most valuable outputs from a tree model.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tree.fit(X_train_class, y_train_class)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame of feature importances</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>importance_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"feature"</span>: [<span class="st">"attendance"</span>, <span class="st">"homework_rate"</span>, <span class="st">"quiz_avg"</span>, <span class="st">"exam_avg"</span>],</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"importance"</span>: tree.feature_importances_</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}).sort_values(<span class="st">"importance"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.barh(importance_df[<span class="st">"feature"</span>], importance_df[<span class="st">"importance"</span>])</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Importance (higher = more useful)"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Feature"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Feature Importance from Decision Tree"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(importance_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong>Training a tree for importance analysis:</strong> - <code>tree = DecisionTreeClassifier(max_depth=5, random_state=0)</code> creates a tree with moderate depth - We use depth 5 so the tree has enough structure to make meaningful distinctions - <code>tree.fit(X_train_class, y_train_class)</code> trains the tree</p>
+<p><strong>Extracting feature importances:</strong> - <code>tree.feature_importances_</code> is a built-in attribute that contains importance scores for each feature - This returns an array with one importance value per feature, in the same order as our feature columns</p>
+<p><strong>Organizing the results:</strong> - <code>pd.DataFrame({...})</code> creates a table pairing each feature name with its importance - <code>.sort_values("importance", ascending=False)</code> sorts from most important to least important - This makes it easy to see which features matter most at a glance</p>
+<p><strong>Creating the bar chart:</strong> - <code>plt.barh(...)</code> creates a horizontal bar chart (easier to read feature names) - Longer bars mean higher importance - The bars represent how much each feature contributed to reducing prediction errors</p>
+<p><strong>Displaying both views:</strong> - <code>plt.show()</code> displays the chart - <code>print(importance_df.to_string(index=False))</code> prints the exact numbers</p>
+<p><strong>What feature importance means:</strong></p>
+<p>Feature importance values are numbers between 0 and 1 that always sum to 1.0 (or 100% total). You can think of them as showing how the tree allocated its “decision-making budget” across features:</p>
+<ul>
+<li><strong>Higher values</strong> (like 0.4 or 0.5) mean the tree used this feature frequently for important splits that significantly improved predictions</li>
+<li><strong>Lower values</strong> (like 0.05 or 0.1) mean the feature was used occasionally or only for minor refinements</li>
+<li><strong>Zero</strong> means the tree never used this feature at all</li>
+</ul>
+<p>For example, if exam_avg has an importance of 0.6, quiz_avg has 0.3, homework_rate has 0.1, and attendance has 0.0, we can interpret this as: - exam_avg was the most critical feature, responsible for 60% of the tree’s decision-making power - quiz_avg was helpful, contributing 30% - homework_rate played a minor role at 10% - attendance was completely ignored by the tree</p>
+<p><strong>Why might a feature have zero importance?</strong> This happens when other features provide the same information. In our example, if attendance was always perfectly correlated with homework_rate, the tree would only need to use one of them.</p>
+<p><strong>Key insight:</strong> Feature importance helps us understand what the model learned. If we see that attendance has zero importance, we might reconsider whether we need to collect that data at all. Conversely, if exam_avg dominates, it tells us that exam performance is the strongest predictor of pass/fail outcomes in our dataset.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

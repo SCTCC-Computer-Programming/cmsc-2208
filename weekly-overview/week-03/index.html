@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2 Assignments – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 3 Guide – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,7 +75,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../shared/assets/course.css">
-<link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
@@ -274,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Week 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-02/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-03/index.html">Week 3 (Current Week)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -362,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-03/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-03/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 3 (Current Week)</span></a>
   </div>
 </li>
@@ -379,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
@@ -469,11 +468,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2-assignments" id="toc-week-2-assignments" class="nav-link active" data-scroll-target="#week-2-assignments">Week 2 Assignments</a></li>
-  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
-  <li><a href="#part-2-week-2-demo" id="toc-part-2-week-2-demo" class="nav-link" data-scroll-target="#part-2-week-2-demo">Part 2: Week 2 Demo</a></li>
-  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L Quiz</a></li>
-  <li><a href="#completion-checklist" id="toc-completion-checklist" class="nav-link" data-scroll-target="#completion-checklist">Completion checklist</a></li>
+  <li><a href="#chapter-2-concepts-used-this-week-pages-45-70" id="toc-chapter-2-concepts-used-this-week-pages-45-70" class="nav-link active" data-scroll-target="#chapter-2-concepts-used-this-week-pages-45-70">Chapter 2 concepts used this week (pages 45-70)</a>
+  <ul class="collapse">
+  <li><a href="#what-youll-practice-in-the-demo-vs.-what-youll-learn-from-the-textbook" id="toc-what-youll-practice-in-the-demo-vs.-what-youll-learn-from-the-textbook" class="nav-link" data-scroll-target="#what-youll-practice-in-the-demo-vs.-what-youll-learn-from-the-textbook">What you’ll practice in the demo vs.&nbsp;what you’ll learn from the textbook</a></li>
+  <li><a href="#linear-models-and-the-prediction-formula" id="toc-linear-models-and-the-prediction-formula" class="nav-link" data-scroll-target="#linear-models-and-the-prediction-formula">Linear models and the prediction formula</a></li>
+  <li><a href="#understanding-l1-and-l2-regularization" id="toc-understanding-l1-and-l2-regularization" class="nav-link" data-scroll-target="#understanding-l1-and-l2-regularization">Understanding L1 and L2 regularization</a></li>
+  <li><a href="#ridge-regression-and-the-alpha-parameter" id="toc-ridge-regression-and-the-alpha-parameter" class="nav-link" data-scroll-target="#ridge-regression-and-the-alpha-parameter">Ridge Regression and the alpha parameter</a></li>
+  <li><a href="#r²-scores-for-regression" id="toc-r²-scores-for-regression" class="nav-link" data-scroll-target="#r²-scores-for-regression">R² scores for regression</a></li>
+  <li><a href="#lasso-and-sparse-models" id="toc-lasso-and-sparse-models" class="nav-link" data-scroll-target="#lasso-and-sparse-models">Lasso and sparse models</a></li>
+  <li><a href="#elasticnet-combining-both-approaches" id="toc-elasticnet-combining-both-approaches" class="nav-link" data-scroll-target="#elasticnet-combining-both-approaches">ElasticNet: combining both approaches</a></li>
+  <li><a href="#logistic-regression-for-classification" id="toc-logistic-regression-for-classification" class="nav-link" data-scroll-target="#logistic-regression-for-classification">Logistic Regression for classification</a></li>
+  <li><a href="#linear-decision-boundaries" id="toc-linear-decision-boundaries" class="nav-link" data-scroll-target="#linear-decision-boundaries">Linear decision boundaries</a></li>
+  <li><a href="#linearsvc-an-alternative-linear-classifier" id="toc-linearsvc-an-alternative-linear-classifier" class="nav-link" data-scroll-target="#linearsvc-an-alternative-linear-classifier">LinearSVC: an alternative linear classifier</a></li>
+  <li><a href="#one-vs-rest-for-multiclass-problems" id="toc-one-vs-rest-for-multiclass-problems" class="nav-link" data-scroll-target="#one-vs-rest-for-multiclass-problems">One-vs-rest for multiclass problems</a></li>
+  <li><a href="#naive-bayes-classifiers" id="toc-naive-bayes-classifiers" class="nav-link" data-scroll-target="#naive-bayes-classifiers">Naive Bayes classifiers</a></li>
+  <li><a href="#interpreting-coefficients-and-weights" id="toc-interpreting-coefficients-and-weights" class="nav-link" data-scroll-target="#interpreting-coefficients-and-weights">Interpreting coefficients and weights</a></li>
+  <li><a href="#learning-curves-and-regularization" id="toc-learning-curves-and-regularization" class="nav-link" data-scroll-target="#learning-curves-and-regularization">Learning curves and regularization</a></li>
+  </ul></li>
+  <li><a href="#reading-expectations-for-week-3" id="toc-reading-expectations-for-week-3" class="nav-link" data-scroll-target="#reading-expectations-for-week-3">Reading expectations for Week 3</a></li>
+  <li><a href="#week-3-tasks" id="toc-week-3-tasks" class="nav-link" data-scroll-target="#week-3-tasks">Week 3 tasks</a></li>
   </ul>
 </nav>
     </div>
@@ -481,10 +494,10 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-02/index.html">Week 2</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-02/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-03/index.html">Week 3 (Current Week)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 2 Assignments</h1>
-<p class="subtitle lead">Chapter 2 Reading and D2L Quiz</p>
+<h1 class="title">Week 3 Guide</h1>
+<p class="subtitle lead">Chapter 2 — Linear Models for Regression and Classification</p>
 </div>
 
 
@@ -496,7 +509,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 17, 2026</p>
+      <p class="date-modified">January 25, 2026</p>
     </div>
   </div>
     
@@ -507,54 +520,113 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="week-2-assignments" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-assignments">Week 2 Assignments</h2>
-<p><strong>Submission location:</strong> No Dropbox submission this week. All work is completed in D2L.</p>
-</section>
-<section id="part-1-reading" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h2>
-<p>Read the assigned section of <strong>Chapter 2</strong> on <strong>k-nearest neighbors (kNN)</strong>.</p>
-<p>As you read, focus on these ideas (these are also the ideas the quiz will test):</p>
+<p>This week marks a shift from instance-based learning (kNN) to <strong>model-based learning</strong> with linear models. Last week, you learned about k-Nearest Neighbors, which makes predictions by finding similar examples in the training data. kNN stores all the training data and searches through it at prediction time, but it doesn’t learn a formula or extract patterns.</p>
+<p>Linear models work differently. They <strong>learn a formula</strong> during training—a weighted combination of features—and use that same formula to make predictions for any new data point. This approach has several advantages: the models are fast, they work well with high-dimensional data, and they can tell you which features matter most by examining the learned weights.</p>
+<p>The Week 3 demo walks through two fundamental linear models: <strong>Ridge Regression</strong> (for predicting numbers like final scores) and <strong>Logistic Regression</strong> (for predicting categories like pass/fail). You’ll learn how regularization controls model complexity, how to interpret performance metrics (R² for regression, accuracy for classification), and how to understand which features the model thinks are important.</p>
+<p><strong>Week 3 Demo:</strong></p>
 <ul>
-<li><strong>Supervised learning structure:</strong> how datasets are organized as <strong>X (features)</strong> and <strong>y (target/label)</strong></li>
-<li><strong>Classification vs regression:</strong> what changes when <strong>y is a label</strong> vs <strong>y is a number</strong></li>
-<li><strong>Generalization:</strong> why we care about performance on <strong>new, unseen data</strong></li>
-<li><strong>Training set vs test set:</strong> what each one is used for and why we split the data</li>
-<li><strong>Overfitting vs underfitting:</strong> two common ways models fail to generalize</li>
-<li><strong>kNN mechanics (conceptually):</strong> neighbors, distance, and majority vote</li>
-<li><strong>The role of k:</strong> how changing k changes model behavior and can affect training vs test performance</li>
+<li>Here is the link to the <strong><a href="../../assignments/week-03/week-3-demo.html">Week 3 demo</a></strong>.</li>
+<li><a href="week-3-demo.ipynb" download="week-3-demo.ipynb"> Download Jupyter Notebook </a></li>
 </ul>
+<section id="chapter-2-concepts-used-this-week-pages-45-70" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2-concepts-used-this-week-pages-45-70">Chapter 2 concepts used this week (pages 45-70)</h2>
+<section id="what-youll-practice-in-the-demo-vs.-what-youll-learn-from-the-textbook" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-practice-in-the-demo-vs.-what-youll-learn-from-the-textbook">What you’ll practice in the demo vs.&nbsp;what you’ll learn from the textbook</h3>
+<p>The <strong>Week 3 demo</strong> teaches you the core workflow by working hands-on with two linear models: Ridge Regression (for predicting numbers) and Logistic Regression (for predicting categories). Once you understand these two, the <strong>textbook</strong> shows you several variations and extensions that follow the same principles.</p>
+<p><strong>You’ll code in the demo:</strong> - Ridge Regression (regression with L2 regularization) - Logistic Regression (classification with L2 regularization)</p>
+<p><strong>You’ll read about in the textbook:</strong> - Lasso (like Ridge, but uses L1 instead of L2) - ElasticNet (combines both L1 and L2) - LinearSVC (like LogisticRegression, but with a different optimization approach) - Naive Bayes (a different classification approach entirely)</p>
+<p>The demo gives you the foundation; the textbook shows you the variations.</p>
 </section>
-<section id="part-2-week-2-demo" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-week-2-demo">Part 2: Week 2 Demo</h2>
-<p>Use the demo to reinforce the Chapter 2 vocabulary:</p>
-<ul>
-<li>seeing <strong>X and y</strong> in a concrete dataset</li>
-<li>seeing a <strong>train/test split</strong></li>
-<li>seeing <strong>training accuracy vs test accuracy</strong></li>
-<li>seeing how changing <strong>k</strong> affects results</li>
-</ul>
+<section id="linear-models-and-the-prediction-formula" class="level3">
+<h3 class="anchored" data-anchor-id="linear-models-and-the-prediction-formula">Linear models and the prediction formula</h3>
+<p>Linear models make predictions using a <strong>weighted sum of features plus an intercept</strong>: <code>ŷ = w₀×x₀ + w₁×x₁ + ... + wₚ×xₚ + b</code>. The weights (w) show how much each feature contributes to the prediction, and the intercept (b) adjusts the baseline. During training, the model learns the optimal weights by minimizing prediction errors on the training data.</p>
+<p>This weighted formula is the foundation of all linear models. Whether you’re using Ridge, Lasso, LogisticRegression, or LinearSVC, they all make predictions using this same basic structure—they just differ in how they learn the weights and control complexity.</p>
 </section>
-<section id="part-3-d2l-quiz" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L Quiz</h2>
-<p>Complete the <strong>Week 2 D2L quiz</strong>.</p>
-<p>The quiz focuses on:</p>
-<ul>
-<li>identifying <strong>X vs y</strong> in a small scenario</li>
-<li>classification vs regression (based on what <strong>y</strong> represents)</li>
-<li>what “generalization” means in the book’s terms</li>
-<li>what training vs test accuracy mean (and what each one evaluates)</li>
-<li>recognizing overfitting vs underfitting patterns (training high/test low vs both low)</li>
-<li>kNN basics: what neighbors are and what “vote” means</li>
-<li>what happens at extreme k values (very small vs very large)</li>
-</ul>
+<section id="understanding-l1-and-l2-regularization" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-l1-and-l2-regularization">Understanding L1 and L2 regularization</h3>
+<p>Regularization means constraining the weights to prevent overfitting. There are two main types:</p>
+<p><strong>L2 regularization (used by Ridge, LogisticRegression by default):</strong> - Penalizes the <strong>sum of squared coefficients</strong>: w₁² + w₂² + w₃² + … - Think: “Punish large weights extra hard” (squaring makes big values even bigger) - Effect: Shrinks all coefficients toward zero, but never makes them exactly zero - Spreads influence across all features rather than relying heavily on any one feature</p>
+<p><strong>L1 regularization (used by Lasso):</strong> - Penalizes the <strong>sum of absolute values</strong>: |w₁| + |w₂| + |w₃| + … - Think: “Punish any nonzero weight equally” - Effect: Can drive coefficients <strong>exactly to zero</strong> (automatic feature selection) - Forces the model to pick its favorite features and ignore the rest</p>
+<p><strong>Why this matters:</strong> L2 (Ridge) keeps all features but shrinks their weights. L1 (Lasso) eliminates some features entirely by setting their weights to zero. Both prevent overfitting, but in different ways.</p>
 </section>
-<section id="completion-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="completion-checklist">Completion checklist</h2>
-<ul>
-<li>Chapter 2 reading (kNN section)</li>
-<li>Week 2 D2L quiz</li>
-</ul>
+<section id="ridge-regression-and-the-alpha-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="ridge-regression-and-the-alpha-parameter">Ridge Regression and the alpha parameter</h3>
+<p><strong>Ridge Regression</strong> is a linear model for regression tasks. It learns weights for each feature, but uses <strong>L2 regularization</strong> to keep weights small. The <code>alpha</code> parameter controls regularization strength: larger alpha forces weights toward zero (simpler model), smaller alpha allows larger weights (more complex model). Ridge helps prevent overfitting, especially with many features.</p>
+<p>The demo walks you through training Ridge models, interpreting the learned weights, and understanding what the alpha parameter does. This hands-on experience with Ridge gives you the foundation for understanding Lasso and ElasticNet in the textbook.</p>
+</section>
+<section id="r²-scores-for-regression" class="level3">
+<h3 class="anchored" data-anchor-id="r²-scores-for-regression">R² scores for regression</h3>
+<p>Ridge uses <strong>R² (R-squared)</strong> as its performance metric, returned by the <code>.score()</code> method. R² ranges from 0 to 1 and measures how much variation in the data the model explains. Higher is better, and you want training and test R² to be reasonably close together (if training R² is much higher than test R², you’re overfitting).</p>
+</section>
+<section id="lasso-and-sparse-models" class="level3">
+<h3 class="anchored" data-anchor-id="lasso-and-sparse-models">Lasso and sparse models</h3>
+<p><strong>Lasso</strong> works just like Ridge—it’s a linear regression model with regularization—but uses <strong>L1 regularization</strong> instead of L2. The key practical difference: Lasso can set coefficients exactly to zero, effectively ignoring some features. This produces <strong>sparse models</strong> that use only a subset of features, which can make models easier to interpret. Lasso is useful when you expect only a few features to be important.</p>
+<p>Since you’ll understand Ridge from the demo (L2 regularization, alpha parameter, interpreting weights), Lasso will make immediate sense—it’s the same idea with L1 instead of L2.</p>
+</section>
+<section id="elasticnet-combining-both-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="elasticnet-combining-both-approaches">ElasticNet: combining both approaches</h3>
+<p><strong>ElasticNet</strong> combines both L1 and L2 penalties, giving you both the feature selection of Lasso and the stability of Ridge. It requires tuning two parameters (one for L1, one for L2), but often provides the best performance in practice. Think of it as a hybrid that lets you dial in how much feature selection (L1) vs.&nbsp;weight shrinkage (L2) you want.</p>
+</section>
+<section id="logistic-regression-for-classification" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-for-classification">Logistic Regression for classification</h3>
+<p><strong>Logistic Regression</strong> is a linear model for classification (despite its name containing “regression”). It learns weights just like Ridge, but converts the weighted sum into a probability between 0 and 1. If the probability is above 0.5, it predicts one class; otherwise, the other.</p>
+<p>The <code>C</code> parameter controls regularization, but works <strong>opposite to alpha</strong>: larger C means less regularization (more complex), smaller C means more regularization (simpler). This backward relationship takes practice to remember.</p>
+<p>The demo walks you through training Logistic Regression models, interpreting accuracy scores and learned weights, and understanding how the C parameter affects model complexity.</p>
+</section>
+<section id="linear-decision-boundaries" class="level3">
+<h3 class="anchored" data-anchor-id="linear-decision-boundaries">Linear decision boundaries</h3>
+<p>Linear classification models create <strong>decision boundaries</strong> that are straight lines (in 2D), planes (in 3D), or hyperplanes (in higher dimensions). Any point on one side of the boundary gets one prediction, any point on the other side gets the opposite prediction. This seems restrictive, but works surprisingly well in high-dimensional spaces.</p>
+</section>
+<section id="linearsvc-an-alternative-linear-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="linearsvc-an-alternative-linear-classifier">LinearSVC: an alternative linear classifier</h3>
+<p><strong>LinearSVC</strong> is another linear classification algorithm that’s very similar to LogisticRegression. It also uses the weighted formula, the C parameter for regularization, and creates linear decision boundaries. The main difference is the mathematical approach used to find the optimal weights (support vector machines vs.&nbsp;logistic loss). In practice, they often perform similarly.</p>
+<p>Since you’ll understand LogisticRegression from the demo (C parameter, decision boundaries, multiclass classification), LinearSVC will be familiar—it’s a variation on the same theme.</p>
+</section>
+<section id="one-vs-rest-for-multiclass-problems" class="level3">
+<h3 class="anchored" data-anchor-id="one-vs-rest-for-multiclass-problems">One-vs-rest for multiclass problems</h3>
+<p>Many linear classifiers are inherently binary (two classes). To handle multiple classes, scikit-learn uses <strong>one-vs-rest (OvR)</strong>: it trains one binary classifier per class (that class vs.&nbsp;all others), then at prediction time picks whichever classifier is most confident. This results in one set of weights per class. The demo shows this briefly; the textbook provides more detail and visualizations.</p>
+</section>
+<section id="naive-bayes-classifiers" class="level3">
+<h3 class="anchored" data-anchor-id="naive-bayes-classifiers">Naive Bayes classifiers</h3>
+<p><strong>Naive Bayes</strong> is a family of fast, simple classifiers that work differently from the linear models above. Instead of learning a weighted formula, Naive Bayes calculates probabilities based on simple statistics: it counts how often each feature appears with each class, then uses those counts to predict which class a new data point belongs to.</p>
+<p>There are three variants, each suited to different data types: - <strong>GaussianNB</strong> for continuous features (assumes features follow a normal distribution per class) - <strong>BernoulliNB</strong> for binary features (counts how often each feature is 0 or 1 for each class) - <strong>MultinomialNB</strong> for count data (like word counts in text - tracks average feature values per class)</p>
+<p>The <code>alpha</code> parameter controls “smoothing”—adding virtual data points to avoid zero probabilities. Naive Bayes models are very fast and work well even with limited data, making them excellent baseline models.</p>
+<p><strong>Why “naive”?</strong> They assume features are independent (knowing one feature doesn’t tell you about others), which is often not true but works surprisingly well anyway.</p>
+</section>
+<section id="interpreting-coefficients-and-weights" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-coefficients-and-weights">Interpreting coefficients and weights</h3>
+<p>One advantage of linear models is interpretability: you can examine the learned weights to see which features matter most. Larger absolute values mean that feature has more influence. However, be cautious: coefficients can change (even flip sign) when features are correlated or when you change regularization strength. Coefficient interpretation works best when features are relatively independent.</p>
+</section>
+<section id="learning-curves-and-regularization" class="level3">
+<h3 class="anchored" data-anchor-id="learning-curves-and-regularization">Learning curves and regularization</h3>
+<p><strong>Learning curves</strong> show model performance as training set size increases. They reveal whether you’re overfitting (training score much higher than test score) or underfitting (both scores low), and whether more data would help. Regularization becomes less critical as dataset size increases—with enough data, regularized and unregularized models converge to similar performance.</p>
+</section>
+</section>
+<section id="reading-expectations-for-week-3" class="level2">
+<h2 class="anchored" data-anchor-id="reading-expectations-for-week-3">Reading expectations for Week 3</h2>
+<p>As you read Chapter 2 (pages 45-67) and work through the demo, check whether you can explain the following in your own words:</p>
+<ol type="1">
+<li>How do linear models make predictions? What does the formula look like?</li>
+<li>What is the difference between kNN (Week 2) and linear models (Week 3)?</li>
+<li>What is <strong>regularization</strong>, and why do we use it?</li>
+<li>How does the <strong>alpha parameter</strong> in Ridge affect model complexity?</li>
+<li>How does the <strong>C parameter</strong> in Logistic Regression affect model complexity?</li>
+<li>What is the difference between <strong>L1 regularization</strong> (Lasso) and <strong>L2 regularization</strong> (Ridge)?</li>
+<li>What does <strong>R²</strong> measure, and how do you interpret it?</li>
+<li>What is a <strong>decision boundary</strong>, and what shape does it have for linear classifiers?</li>
+<li>How does <strong>one-vs-rest</strong> extend binary classifiers to multiple classes?</li>
+<li>Which Naive Bayes variant should you use for which type of data?</li>
+<li>How do you interpret the <strong>learned weights</strong> (coefficients) in a linear model?</li>
+<li>Why might coefficient interpretations be misleading when features are correlated?</li>
+</ol>
+</section>
+<section id="week-3-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-3-tasks">Week 3 tasks</h2>
+<ol type="1">
+<li>Read <strong>Chapter 2, pages 45-70</strong> (Linear Models section, including Naive Bayes).</li>
+<li>Work through the <strong><a href="../../assignments/week-03/week-3-demo.html">Week 3 demo</a></strong> in your Jupyter environment.</li>
+<li>Complete the <strong>Week 3 D2L quiz</strong> (Linear Models concepts).</li>
+</ol>
 
 
 </section>
