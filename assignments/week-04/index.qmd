@@ -1,0 +1,163 @@
+---
+title: Week 4 Assignment (CMSC-2208)
+subtitle: Linear Models Case Studies and Video Reflection
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 4 dropbox).
+
+### Part 1: Case Study 1 — Predicting Student Grades with Ridge Regression
+
+#### Background
+
+A university wants to predict students' final course grades to identify students who may need additional support. They collected data from 200 students in an introductory course. For each student, they recorded four features:
+
+-   **attendance:** percentage of classes attended (0-100)
+-   **homework_rate:** percentage of homework assignments completed (0-100)
+-   **quiz_avg:** average quiz score (0-100)
+-   **exam_avg:** average exam score (0-100)
+
+The target variable is **final_grade**, a numeric score from 0 to 100.
+
+A data scientist split the data into 150 training students and 50 test students, then trained Ridge Regression models to predict final grades.
+
+#### Model Results
+
+**Model 1: Ridge(alpha=1.0)**
+
+| Metric | Value |
+|--------|-------|
+| Training R² | 0.82 |
+| Test R² | 0.79 |
+
+**Learned Coefficients:**
+
+| Feature | Weight |
+|---------|--------|
+| attendance | 0.08 |
+| homework_rate | 0.15 |
+| quiz_avg | 0.31 |
+| exam_avg | 0.52 |
+| intercept | -4.2 |
+
+**Model 2: Ridge(alpha=0.01)**
+
+| Metric | Value |
+|--------|-------|
+| Training R² | 0.92 |
+| Test R² | 0.58 |
+
+**Model 3: Ridge(alpha=100)**
+
+| Metric | Value |
+|--------|-------|
+| Training R² | 0.45 |
+| Test R² | 0.43 |
+
+#### Case Study 1 Questions
+
+As you prepare for your video reflection, consider the following:
+
+1.  This is a regression task. How can you tell from the problem description?
+2.  Looking at Model 1's coefficients, which feature has the strongest influence on predicted grades? Which has the weakest? What does this suggest about what the model learned?
+3.  What does R² measure? How do you interpret Model 1's Training R² of 0.82 and Test R² of 0.79?
+4.  Compare Models 1, 2, and 3. Which model is overfitting? Which is underfitting? How can you tell from the training and test scores?
+5.  Explain how alpha controls model complexity in Ridge Regression. What happens to the coefficients when alpha is very large? What happens when alpha is very small?
+
+### Part 2: Case Study 2 — Predicting Customer Purchases with Logistic Regression
+
+#### Background
+
+An online retailer wants to predict which customers are likely to make a purchase so they can target marketing efforts. They collected data from 1,000 past customers. For each customer, they recorded four features:
+
+-   **age:** customer's age in years
+-   **income:** annual income (in thousands of dollars)
+-   **website_visits:** number of times the customer visited the website in the past month
+-   **previous_purchases:** number of past purchases from the company
+
+The target variable is **purchase**, a binary label: "buy" or "no buy."
+
+A data scientist split the data into 750 training customers and 250 test customers, then trained Logistic Regression models to predict purchases.
+
+#### Model Results
+
+**Three models were trained with different C values:**
+
+| Model | C | Training Accuracy | Test Accuracy |
+|-------|---|-------------------|---------------|
+| Model A | 0.01 | 0.68 | 0.67 |
+| Model B | 1.0 | 0.78 | 0.76 |
+| Model C | 100 | 0.91 | 0.72 |
+
+**Coefficients from Model B (C=1.0):**
+
+| Feature | Coefficient |
+|---------|-------------|
+| age | -0.02 |
+| income | 0.45 |
+| website_visits | 0.38 |
+| previous_purchases | 0.61 |
+| intercept | -3.1 |
+
+#### Case Study 2 Questions
+
+As you prepare for your video reflection, consider the following:
+
+1.  This is a classification task. How can you tell from the problem description?
+2.  What does accuracy measure for a classification model? How is it different from R²?
+3.  Compare Models A, B, and C. Which model is overfitting? Which is underfitting? How can you tell?
+4.  Explain how the C parameter affects model complexity in Logistic Regression. How does C work differently from alpha in Ridge Regression?
+5.  Looking at Model B's coefficients, which feature is most strongly associated with making a purchase? The coefficient for age is negative (-0.02). What does a negative coefficient mean for the prediction?
+6.  If you had to choose one model to deploy for predicting new customer purchases, which would you choose? Why?
+
+### Part 3: Scenario C — Email Spam Detection (Reference Only)
+
+#### Background
+
+A company wants to automatically filter spam emails. They have 50,000 emails labeled as "spam" or "not spam." For each email, they extracted 200 features including word frequencies, sender information, and formatting characteristics.
+
+*No model results are provided for this scenario. Use it as a reference for the video reflection.*
+
+### Part 5: Video Reflection
+
+This video reflection is the primary deliverable for this assignment. You will demonstrate your understanding of linear models by discussing the case studies above. Focus on explaining concepts clearly and using correct terminology rather than reading from a script.
+
+#### Video submission instructions
+
+Record a video in which you address the four sections below. Organize your video to cover each section in order.
+
+#### Section A: Linear Model Foundations
+
+1.  Explain what a linear model does. Describe the general prediction formula and what the weights and intercept represent.
+2.  Explain the difference between classification and regression. Use Case Study 1 and Case Study 2 as examples.
+
+#### Section B: Case Study 1 Discussion (Ridge Regression)
+
+1.  Which of the three Ridge models would you recommend? Justify your choice using the training and test R² scores.
+2.  Looking at Model 1's coefficients, explain what they tell you about which features matter for predicting grades.
+3.  Explain how the alpha parameter affects model complexity. Connect this to the overfitting and underfitting patterns you observed.
+
+#### Section C: Case Study 2 Discussion (Logistic Regression)
+
+1.  Which of the three Logistic Regression models would you recommend? Justify your choice using the training and test accuracy scores.
+2.  Looking at Model B's coefficients, explain what they tell you—including what the negative coefficient for age means.
+3.  Explain how the C parameter affects model complexity. How does C work differently from alpha?
+
+#### Section D: Comparing Linear Models to kNN
+
+1.  Explain why linear models are considered more interpretable than kNN. What can you learn from examining coefficients that you cannot learn from a kNN model?
+2.  Consider Scenario C (email spam detection with 200 features). Would kNN or a linear model be a better starting point for this problem? Why?
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 4 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week04LinearModels`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week04LinearModels` in the link name

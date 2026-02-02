@@ -1,0 +1,96 @@
+---
+title: "Week 4 Guide"
+subtitle: "Applying Linear Models — Case Studies and Video Reflection"
+format:
+  html:
+    toc: true
+---
+
+## Week 4 focus
+
+This week is about **applying** the linear model concepts you learned in Week 3. Rather than introducing new algorithms, you will work through two case studies that require you to interpret model outputs, identify overfitting and underfitting patterns, and make recommendations based on the results.
+
+In Week 3, you learned how linear models work: the weighted prediction formula, regularization, and the parameters that control model complexity (alpha for Ridge, C for Logistic Regression). This week, you will practice using that knowledge to analyze realistic scenarios where a data scientist has already trained models and recorded the results.
+
+The primary deliverable this week is a **video reflection** in which you discuss both case studies and demonstrate your understanding of linear models. This format gives you practice explaining technical concepts verbally—a skill that matters in real-world data science work.
+
+**Week 4 Assignment:**
+
+- Here is the link to the **[Week 4 Assignment](../../assignments/week-04/index.qmd)**.
+
+## What you're practicing this week
+
+### Interpreting model outputs
+
+In the case studies, you will see tables of training and test scores (R² for regression, accuracy for classification) across multiple models with different parameter settings. Your job is to:
+
+-   Identify which model is **overfitting** (high training score, lower test score)
+-   Identify which model is **underfitting** (both scores low)
+-   Recommend which model to use based on **generalization** (test performance)
+
+This is the same skill you practiced in the Week 3 demo, but now applied to new scenarios.
+
+### Connecting parameters to patterns
+
+Each case study includes models trained with different values of alpha (Ridge) or C (Logistic Regression). You should be able to explain:
+
+-   How **alpha** affects Ridge Regression: larger alpha → smaller weights → simpler model
+-   How **C** affects Logistic Regression: larger C → less regularization → more complex model
+-   Why these parameters work in **opposite directions**
+
+### Reading coefficients
+
+The case studies include learned coefficients from trained models. You should be able to:
+
+-   Identify which features have the **strongest influence** (largest absolute weight)
+-   Interpret what a **negative coefficient** means (as that feature increases, the prediction decreases)
+-   Explain why this interpretability is an **advantage of linear models over kNN**
+
+### Comparing linear models to kNN
+
+The video reflection asks you to compare linear models to the kNN algorithm from Week 2. You should be able to explain:
+
+-   Why linear models are more **interpretable** (you can examine coefficients)
+-   Why linear models handle **high-dimensional data** better than kNN
+-   When you might choose one approach over the other
+
+## Key concepts to review from Week 3
+
+If any of these feel unclear, revisit the Week 3 demo and Chapter 2 (pages 45-70) before completing the assignment.
+
+### The linear prediction formula
+
+Linear models predict using: `ŷ = w₁×x₁ + w₂×x₂ + ... + wₚ×xₚ + b`
+
+-   **Weights (w):** show how much each feature contributes to the prediction
+-   **Intercept (b):** shifts the prediction baseline up or down
+-   The model **learns** these values during training
+
+### Regression vs classification
+
+-   **Regression:** predict a continuous number (use Ridge Regression, measure with R²)
+-   **Classification:** predict a category label (use Logistic Regression, measure with accuracy)
+
+### Overfitting vs underfitting
+
+-   **Overfitting:** model is too complex, fits training data well but generalizes poorly (training score >> test score)
+-   **Underfitting:** model is too simple, performs poorly on both training and test data (both scores low)
+-   **Good generalization:** training and test scores are reasonably close, with acceptable test performance
+
+### Regularization and complexity parameters
+
+-   **Ridge (alpha):** larger alpha → more regularization → simpler model → smaller coefficients
+-   **Logistic Regression (C):** larger C → less regularization → more complex model → larger coefficients
+-   These work in **opposite directions**, which takes practice to remember
+
+### R² vs accuracy
+
+-   **R² (regression):** proportion of variance explained, ranges 0 to 1, higher is better
+-   **Accuracy (classification):** proportion of correct predictions, ranges 0 to 1, higher is better
+
+## Week 4 tasks
+
+1.  Review **Chapter 2, pages 45-70** as needed (focus on Ridge and Logistic Regression sections).
+2.  Read through **Case Study 1** and **Case Study 2** in the Week 4 assignment.
+3.  Review **Scenario C** (email spam detection) for the comparison discussion.
+4.  Record and submit your **video reflection** addressing all four sections.

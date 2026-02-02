@@ -12,7 +12,7 @@ Linear models work differently. They **learn a formula** during training—a wei
 
 The Week 3 demo walks through two fundamental linear models: **Ridge Regression** (for predicting numbers like final scores) and **Logistic Regression** (for predicting categories like pass/fail). You'll learn how regularization controls model complexity, how to interpret performance metrics (R² for regression, accuracy for classification), and how to understand which features the model thinks are important.
 
-**📓 Week 3 Demo:**
+**Week 3 Demo:**
 
 - Here is the link to the **[Week 3 demo](../../assignments/week-03/week-3-demo.html)**. 
 - <a href="week-3-demo.ipynb" download="week-3-demo.ipynb"> Download Jupyter Notebook </a>
@@ -59,7 +59,7 @@ Regularization means constraining the weights to prevent overfitting. There are 
 
 **Why this matters:** L2 (Ridge) keeps all features but shrinks their weights. L1 (Lasso) eliminates some features entirely by setting their weights to zero. Both prevent overfitting, but in different ways.
 
-### Ridge Regression and the alpha parameter (in the demo)
+### Ridge Regression and the alpha parameter
 
 **Ridge Regression** is a linear model for regression tasks. It learns weights for each feature, but uses **L2 regularization** to keep weights small. The `alpha` parameter controls regularization strength: larger alpha forces weights toward zero (simpler model), smaller alpha allows larger weights (more complex model). Ridge helps prevent overfitting, especially with many features.
 
@@ -69,17 +69,17 @@ The demo walks you through training Ridge models, interpreting the learned weigh
 
 Ridge uses **R² (R-squared)** as its performance metric, returned by the `.score()` method. R² ranges from 0 to 1 and measures how much variation in the data the model explains. Higher is better, and you want training and test R² to be reasonably close together (if training R² is much higher than test R², you're overfitting).
 
-### Lasso and sparse models (textbook extension of Ridge)
+### Lasso and sparse models
 
 **Lasso** works just like Ridge—it's a linear regression model with regularization—but uses **L1 regularization** instead of L2. The key practical difference: Lasso can set coefficients exactly to zero, effectively ignoring some features. This produces **sparse models** that use only a subset of features, which can make models easier to interpret. Lasso is useful when you expect only a few features to be important.
 
 Since you'll understand Ridge from the demo (L2 regularization, alpha parameter, interpreting weights), Lasso will make immediate sense—it's the same idea with L1 instead of L2.
 
-### ElasticNet: combining both approaches (textbook only)
+### ElasticNet: combining both approaches
 
 **ElasticNet** combines both L1 and L2 penalties, giving you both the feature selection of Lasso and the stability of Ridge. It requires tuning two parameters (one for L1, one for L2), but often provides the best performance in practice. Think of it as a hybrid that lets you dial in how much feature selection (L1) vs. weight shrinkage (L2) you want.
 
-### Logistic Regression for classification (in the demo)
+### Logistic Regression for classification
 
 **Logistic Regression** is a linear model for classification (despite its name containing "regression"). It learns weights just like Ridge, but converts the weighted sum into a probability between 0 and 1. If the probability is above 0.5, it predicts one class; otherwise, the other.
 
@@ -91,7 +91,7 @@ The demo walks you through training Logistic Regression models, interpreting acc
 
 Linear classification models create **decision boundaries** that are straight lines (in 2D), planes (in 3D), or hyperplanes (in higher dimensions). Any point on one side of the boundary gets one prediction, any point on the other side gets the opposite prediction. This seems restrictive, but works surprisingly well in high-dimensional spaces.
 
-### LinearSVC: an alternative linear classifier (textbook extension of LogisticRegression)
+### LinearSVC: an alternative linear classifier
 
 **LinearSVC** is another linear classification algorithm that's very similar to LogisticRegression. It also uses the weighted formula, the C parameter for regularization, and creates linear decision boundaries. The main difference is the mathematical approach used to find the optimal weights (support vector machines vs. logistic loss). In practice, they often perform similarly.
 
@@ -101,7 +101,7 @@ Since you'll understand LogisticRegression from the demo (C parameter, decision 
 
 Many linear classifiers are inherently binary (two classes). To handle multiple classes, scikit-learn uses **one-vs-rest (OvR)**: it trains one binary classifier per class (that class vs. all others), then at prediction time picks whichever classifier is most confident. This results in one set of weights per class. The demo shows this briefly; the textbook provides more detail and visualizations.
 
-### Naive Bayes classifiers (textbook only - different approach)
+### Naive Bayes classifiers
 
 **Naive Bayes** is a family of fast, simple classifiers that work differently from the linear models above. Instead of learning a weighted formula, Naive Bayes calculates probabilities based on simple statistics: it counts how often each feature appears with each class, then uses those counts to predict which class a new data point belongs to.
 
@@ -113,10 +113,6 @@ There are three variants, each suited to different data types:
 The `alpha` parameter controls "smoothing"—adding virtual data points to avoid zero probabilities. Naive Bayes models are very fast and work well even with limited data, making them excellent baseline models.
 
 **Why "naive"?** They assume features are independent (knowing one feature doesn't tell you about others), which is often not true but works surprisingly well anyway.
-
-### Naive Bayes classifiers
-
-**Naive Bayes** is a family of fast, simple classifiers based on probability. There are three variants: **GaussianNB** (for continuous features), **BernoulliNB** (for binary features), and **MultinomialNB** (for count data like text). They're called "naive" because they assume features are independent, which often isn't true but works surprisingly well anyway.
 
 ### Interpreting coefficients and weights
 
