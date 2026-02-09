@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 Assignment (CMSC-2208) – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 5 Guide – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -308,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 1 Assignment (CMSC-2208)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-03/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-05/index.html">Week 5 (Starts - 09 FEB)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -402,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 5 (Starts - 09 FEB)</span></a>
   </div>
 </li>
@@ -515,11 +480,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link active" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
-  <li><a href="#part-2-jupyter-notebook-verification" id="toc-part-2-jupyter-notebook-verification" class="nav-link" data-scroll-target="#part-2-jupyter-notebook-verification">Part 2: Jupyter Notebook Verification</a></li>
-  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L quiz</a></li>
-  <li><a href="#part-4-video-reflection-graded" id="toc-part-4-video-reflection-graded" class="nav-link" data-scroll-target="#part-4-video-reflection-graded">Part 4: Video reflection (graded)</a></li>
-  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L submission checklist</a></li>
+  <li><a href="#chapter-2-concepts-used-this-week-decision-trees-section" id="toc-chapter-2-concepts-used-this-week-decision-trees-section" class="nav-link active" data-scroll-target="#chapter-2-concepts-used-this-week-decision-trees-section">Chapter 2 concepts used this week (decision trees section)</a>
+  <ul class="collapse">
+  <li><a href="#decision-trees-learning-a-hierarchy-of-questions" id="toc-decision-trees-learning-a-hierarchy-of-questions" class="nav-link" data-scroll-target="#decision-trees-learning-a-hierarchy-of-questions">Decision trees: learning a hierarchy of questions</a></li>
+  <li><a href="#decisiontreeclassifier-and-how-trees-are-built" id="toc-decisiontreeclassifier-and-how-trees-are-built" class="nav-link" data-scroll-target="#decisiontreeclassifier-and-how-trees-are-built">DecisionTreeClassifier and how trees are built</a></li>
+  <li><a href="#controlling-complexity-with-max_depth" id="toc-controlling-complexity-with-max_depth" class="nav-link" data-scroll-target="#controlling-complexity-with-max_depth">Controlling complexity with max_depth</a></li>
+  <li><a href="#feature-importance-understanding-which-features-matter" id="toc-feature-importance-understanding-which-features-matter" class="nav-link" data-scroll-target="#feature-importance-understanding-which-features-matter">Feature importance: understanding which features matter</a></li>
+  <li><a href="#decision-boundaries-and-axis-parallel-splits" id="toc-decision-boundaries-and-axis-parallel-splits" class="nav-link" data-scroll-target="#decision-boundaries-and-axis-parallel-splits">Decision boundaries and axis-parallel splits</a></li>
+  <li><a href="#trees-dont-require-feature-scaling" id="toc-trees-dont-require-feature-scaling" class="nav-link" data-scroll-target="#trees-dont-require-feature-scaling">Trees don’t require feature scaling</a></li>
+  <li><a href="#overfitting-in-decision-trees" id="toc-overfitting-in-decision-trees" class="nav-link" data-scroll-target="#overfitting-in-decision-trees">Overfitting in decision trees</a></li>
+  <li><a href="#comparing-trees-to-prior-algorithms" id="toc-comparing-trees-to-prior-algorithms" class="nav-link" data-scroll-target="#comparing-trees-to-prior-algorithms">Comparing trees to prior algorithms</a></li>
+  <li><a href="#tree-visualization-with-graphviz" id="toc-tree-visualization-with-graphviz" class="nav-link" data-scroll-target="#tree-visualization-with-graphviz">Tree visualization with graphviz</a></li>
+  <li><a href="#decisiontreeregressor-for-regression" id="toc-decisiontreeregressor-for-regression" class="nav-link" data-scroll-target="#decisiontreeregressor-for-regression">DecisionTreeRegressor for regression</a></li>
+  <li><a href="#ensemble-methods-random-forests-and-gradient-boosting" id="toc-ensemble-methods-random-forests-and-gradient-boosting" class="nav-link" data-scroll-target="#ensemble-methods-random-forests-and-gradient-boosting">Ensemble methods: Random Forests and Gradient Boosting</a></li>
+  <li><a href="#additional-complexity-parameters" id="toc-additional-complexity-parameters" class="nav-link" data-scroll-target="#additional-complexity-parameters">Additional complexity parameters</a></li>
+  </ul></li>
+  <li><a href="#reading-expectations-for-week-5" id="toc-reading-expectations-for-week-5" class="nav-link" data-scroll-target="#reading-expectations-for-week-5">Reading expectations for Week 5</a></li>
+  <li><a href="#week-5-tasks" id="toc-week-5-tasks" class="nav-link" data-scroll-target="#week-5-tasks">Week 5 tasks</a></li>
   </ul>
 </nav>
     </div>
@@ -527,10 +504,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-03/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-05/index.html">Week 5 (Starts - 09 FEB)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 1 Assignment (CMSC-2208)</h1>
-<p class="subtitle lead">Course Workflow, Miniconda, Jupyter, and Chapter 1 Foundations</p>
+<h1 class="title">Week 5 Guide</h1>
+<p class="subtitle lead">Chapter 2 — Decision Trees</p>
 </div>
 
 
@@ -542,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 8, 2026</p>
+      <p class="date-modified">February 8, 2026</p>
     </div>
   </div>
     
@@ -553,108 +530,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Submission location:</strong> <strong>All items are submitted in D2L</strong> (Week 1 dropboxes). <strong>Reading:</strong> Chapter 1.</p>
-<section id="part-1-reading" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h3>
-<p>Read <strong>all of Chapter 1</strong> of <em>Introduction to Machine Learning with Python</em> (Müller &amp; Guido).</p>
-<p>Pay special attention to:</p>
+<p>This week introduces decision trees, a fundamentally different approach to supervised learning from anything we’ve seen so far. You’ve now worked with two very different types of algorithms: k-Nearest Neighbors (Week 2) makes predictions by storing all training data and searching for similar examples, while linear models (Week 3) learn a weighted formula that applies globally to all predictions.</p>
+<p>Decision trees work differently from both. They learn a hierarchy of if-else questions during training, building a tree structure where each internal node asks a question about a feature, and each leaf node provides a prediction. Think of it like playing 20 Questions—the tree learns which questions to ask, in what order, to arrive at the best prediction.</p>
+<p>The Week 5 demo walks you through DecisionTreeClassifier for classification tasks. You’ll learn how the max_depth parameter controls tree complexity, how to interpret feature importance to see which features the tree used most, and how decision trees compare to the algorithms you’ve learned in prior weeks.</p>
+<p><strong>Week 5 Assignments:</strong></p>
 <ul>
-<li><strong>Essential libraries and tools</strong> (what the course uses and why)</li>
-<li><strong>Key terms used in the chapter</strong>: dataset, features (<strong>X</strong>), target/labels (<strong>y</strong>), training set, test set</li>
-<li>The chapter’s first workflow idea: <strong>split data → train a model → evaluate results</strong></li>
+<li>Here is the link to the <strong><a href="../../assignments/week-05/index.html">Week 5 Assignments</a></strong>.</li>
 </ul>
+<section id="chapter-2-concepts-used-this-week-decision-trees-section" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2-concepts-used-this-week-decision-trees-section">Chapter 2 concepts used this week (decision trees section)</h2>
+<section id="decision-trees-learning-a-hierarchy-of-questions" class="level3">
+<h3 class="anchored" data-anchor-id="decision-trees-learning-a-hierarchy-of-questions">Decision trees: learning a hierarchy of questions</h3>
+<p>Decision trees make predictions by asking a series of yes-or-no questions about the features. During training, the algorithm automatically determines which questions to ask and in what order. Each question splits the data into two groups, and the process continues recursively until reaching a final prediction.</p>
+<p>For example, predicting whether a student passes might involve questions like: “Is exam_avg above 70?” If yes, then “Is quiz_avg above 65?” If no, then “Is homework_rate above 80?” The tree structure encodes this hierarchy—each path from root to leaf represents a different rule.</p>
+<p><strong>Key advantage:</strong> Unlike linear models that learn one global formula for all predictions, trees can create different rules for different regions of the feature space. This makes them naturally good at capturing complex patterns and feature interactions.</p>
 </section>
-<section id="part-2-jupyter-notebook-verification" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-jupyter-notebook-verification">Part 2: Jupyter Notebook Verification</h3>
-<section id="a-launch-jupyter-notebook-in-the-correct-folder" class="level4">
-<h4 class="anchored" data-anchor-id="a-launch-jupyter-notebook-in-the-correct-folder">A) Launch Jupyter Notebook in the correct folder</h4>
-<p>From <strong>Anaconda Prompt / Miniconda Prompt</strong>:</p>
+<section id="decisiontreeclassifier-and-how-trees-are-built" class="level3">
+<h3 class="anchored" data-anchor-id="decisiontreeclassifier-and-how-trees-are-built">DecisionTreeClassifier and how trees are built</h3>
+<p><strong>DecisionTreeClassifier</strong> (from sklearn.tree) is scikit-learn’s implementation for classification tasks. During training, the algorithm builds the tree by repeatedly choosing the best question to ask at each node. “Best” means the question that most effectively separates the classes—moving students who pass into one group and students who fail into another.</p>
+<p>The recursive process: 1. At the root, examine all possible questions (every feature, every threshold) 2. Pick the question that best separates the classes 3. Split the data based on that question 4. For each resulting group, repeat steps 1-3 5. Stop when each leaf is “pure” (all examples have the same label) or other stopping criteria are met</p>
+<p>By default, trees grow until all leaves are pure, which can lead to overfitting—the tree memorizes training examples rather than learning general patterns.</p>
+</section>
+<section id="controlling-complexity-with-max_depth" class="level3">
+<h3 class="anchored" data-anchor-id="controlling-complexity-with-max_depth">Controlling complexity with max_depth</h3>
+<p>The most important parameter for decision trees is max_depth, which limits how many questions the tree can ask in sequence. This directly controls model complexity:</p>
+<ul>
+<li><strong>max_depth=1:</strong> The tree asks only one question total. Very simple, may underfit.</li>
+<li><strong>max_depth=5:</strong> The tree can ask up to 5 questions in a row. Moderate complexity.</li>
+<li><strong>max_depth=None (default):</strong> No limit—the tree grows until all leaves are pure. Very complex, prone to overfitting.</li>
+</ul>
+<p>Deeper trees can capture more detailed patterns but risk memorizing noise in the training data. Finding the right depth balances fitting training data with generalizing to test data—just like choosing k in kNN or alpha/C in linear models.</p>
+<p>The demo walks you through training trees with different max_depth values and comparing their performance. You’ll see how training accuracy improves with depth while test accuracy may peak at a moderate depth.</p>
+</section>
+<section id="feature-importance-understanding-which-features-matter" class="level3">
+<h3 class="anchored" data-anchor-id="feature-importance-understanding-which-features-matter">Feature importance: understanding which features matter</h3>
+<p>One major advantage of decision trees is feature importance, a way to see which features the tree used most for making decisions. After training, you can access the feature_importances_ attribute, which provides a score between 0 and 1 for each feature. Higher values mean that feature was more important in the tree’s decision-making.</p>
+<p>Feature importance is calculated by measuring how much each feature improves predictions across all the splits where it’s used. Features that appear higher in the tree (affecting more examples) and create better separations between classes receive higher importance scores. All importance values sum to 1.0.</p>
+<p><strong>Example:</strong> If exam_avg has importance 0.539, it means about 54% of the tree’s decision-making power comes from that feature. A feature with importance 0.0 was never used in the tree.</p>
+<p>This is similar to examining coefficients in linear models—both let you understand what drives predictions—but feature importance only tells you which features matter, not the direction of their effect.</p>
+</section>
+<section id="decision-boundaries-and-axis-parallel-splits" class="level3">
+<h3 class="anchored" data-anchor-id="decision-boundaries-and-axis-parallel-splits">Decision boundaries and axis-parallel splits</h3>
+<p>Decision trees create axis-parallel decision boundaries. Each question looks at one feature at a time: “Is feature_x greater than threshold_y?” This creates rectangular regions in the feature space—each region corresponds to a different path through the tree.</p>
+<p>This differs from linear models, which create decision boundaries that are straight lines or planes at any angle. Trees can only split parallel to the axes, but by combining multiple splits, they can approximate complex decision boundaries that linear models cannot capture.</p>
+<p>Trees naturally handle feature interactions because the hierarchy of questions captures “if X is true AND Y is true” patterns automatically. Linear models require you to manually create interaction features.</p>
+</section>
+<section id="trees-dont-require-feature-scaling" class="level3">
+<h3 class="anchored" data-anchor-id="trees-dont-require-feature-scaling">Trees don’t require feature scaling</h3>
+<p>Unlike kNN and linear models, decision trees don’t require feature scaling. Since each split examines one feature independently (“Is attendance &gt; 75?”), the scale of other features doesn’t matter. This makes trees very convenient when features are on different scales or have different units.</p>
+</section>
+<section id="overfitting-in-decision-trees" class="level3">
+<h3 class="anchored" data-anchor-id="overfitting-in-decision-trees">Overfitting in decision trees</h3>
+<p>Decision trees are prone to overfitting, especially when allowed to grow without depth limits. A tree with no max_depth can create a leaf for every training example, achieving perfect training accuracy but poor test accuracy.</p>
+<p><strong>Signs of overfitting:</strong> - Training accuracy is 1.0 (perfect) - Test accuracy is significantly lower - The tree has many leaves with very few examples each</p>
+<p><strong>Preventing overfitting:</strong> - Set max_depth to limit tree complexity - Use other parameters (max_leaf_nodes, min_samples_split) - Use ensemble methods (Random Forests, Gradient Boosting from the textbook)</p>
+</section>
+<section id="comparing-trees-to-prior-algorithms" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-trees-to-prior-algorithms">Comparing trees to prior algorithms</h3>
+<p><strong>Decision trees vs.&nbsp;kNN:</strong> - Trees learn a hierarchy of rules; kNN stores all training data - Trees are fast at prediction (follow one path); kNN is slow (search all neighbors) - Trees show feature importance; kNN doesn’t reveal which features matter - Trees don’t require feature scaling; kNN requires scaling</p>
+<p><strong>Decision trees vs.&nbsp;linear models:</strong> - Trees learn local rules for different regions; linear models learn one global formula - Trees create axis-parallel boundaries; linear models create straight-line boundaries at any angle - Trees capture feature interactions automatically; linear models need you to create interaction terms - Trees don’t require feature scaling; linear models work better with scaled features - Both can show feature importance, but interpret it differently</p>
+<p><strong>When to use trees:</strong> - Features are on different scales and you want to avoid scaling - You need a model you can explain to non-technical people (show the decision path) - Feature interactions are important and you want the model to find them automatically - You have a mix of numeric and categorical features</p>
+</section>
+<section id="tree-visualization-with-graphviz" class="level3">
+<h3 class="anchored" data-anchor-id="tree-visualization-with-graphviz">Tree visualization with graphviz</h3>
+<p>The textbook shows how to visualize the actual tree structure using graphviz—you can see each node, each question being asked, and each path to a leaf. This makes trees among the most interpretable machine learning models.</p>
+</section>
+<section id="decisiontreeregressor-for-regression" class="level3">
+<h3 class="anchored" data-anchor-id="decisiontreeregressor-for-regression">DecisionTreeRegressor for regression</h3>
+<p>The demo uses DecisionTreeClassifier for classification (predicting pass/fail). The textbook also covers DecisionTreeRegressor for regression tasks (predicting numbers like final scores). The mechanics are the same—building a tree of questions—but leaves predict numeric values by averaging the training examples in that leaf rather than voting on a class.</p>
+</section>
+<section id="ensemble-methods-random-forests-and-gradient-boosting" class="level3">
+<h3 class="anchored" data-anchor-id="ensemble-methods-random-forests-and-gradient-boosting">Ensemble methods: Random Forests and Gradient Boosting</h3>
+<p>Single decision trees tend to overfit on complex, noisy data. The textbook’s solution: ensemble methods that combine many trees.</p>
+<p><strong>Random Forests:</strong> - Build hundreds of trees, each slightly different - Each tree sees a random subset of data and features - Average all predictions - Much more robust, much less prone to overfitting - Currently among the most widely used ML methods</p>
+<p><strong>Gradient Boosting:</strong> - Build trees one at a time in sequence - Each new tree focuses on correcting the mistakes of previous trees - Often achieves the best performance but requires careful parameter tuning - Used extensively in practice for tabular data</p>
+<p>Both approaches keep the benefits of trees (no scaling needed, can handle mixed features, interpretable through feature importance) while dramatically reducing overfitting.</p>
+</section>
+<section id="additional-complexity-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="additional-complexity-parameters">Additional complexity parameters</h3>
+<p>Beyond max_depth, the textbook covers other parameters for controlling tree complexity: - <strong>max_leaf_nodes:</strong> Limit the total number of leaves - <strong>min_samples_split:</strong> Minimum examples required to split a node - <strong>min_samples_leaf:</strong> Minimum examples required in each leaf - <strong>min_impurity_decrease:</strong> Minimum improvement needed to make a split</p>
+<p>These provide additional ways to prevent overfitting beyond max_depth alone.</p>
+</section>
+</section>
+<section id="reading-expectations-for-week-5" class="level2">
+<h2 class="anchored" data-anchor-id="reading-expectations-for-week-5">Reading expectations for Week 5</h2>
+<p>As you read the decision trees section of Chapter 2 and work through the demo, check whether you can explain the following in your own words:</p>
 <ol type="1">
-<li>Activate the cmsc-2208 environment</li>
+<li>How do decision trees make predictions? What is the hierarchy of questions?</li>
+<li>What does the algorithm do during training to build the tree structure?</li>
+<li>What does <strong>max_depth</strong> control, and how does it affect model complexity?</li>
+<li>What is a “pure” leaf, and why does growing until all leaves are pure cause overfitting?</li>
+<li>What does <strong>feature importance</strong> tell you, and how is it different from linear model coefficients?</li>
+<li>Why don’t decision trees require feature scaling?</li>
+<li>How do decision trees differ from kNN? From linear models?</li>
+<li>What are <strong>axis-parallel</strong> decision boundaries?</li>
+<li>How do trees capture <strong>feature interactions</strong> automatically?</li>
+<li>What signs indicate a decision tree is overfitting?</li>
+<li>What are <strong>Random Forests</strong>, and why do they reduce overfitting compared to single trees?</li>
+<li>What is <strong>Gradient Boosting</strong>, and how does it differ from Random Forests?</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda activate cmsc<span class="at">-2208</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><em>If you are using a new terminal window, you must activate the environment again.</em></p>
-<ol start="2" type="1">
-<li>Navigate to the course-work folder</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> C:\cmsc-2208\course-work</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Start jupyter notebook</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>jupyter notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A browser tab will open showing the contents of <code>C:\cmsc-2208\course-work\</code>.</p>
 </section>
-<section id="b-create-a-week01-folder-and-a-verification-notebook" class="level4">
-<h4 class="anchored" data-anchor-id="b-create-a-week01-folder-and-a-verification-notebook">B) Create a <code>week01</code> folder and a verification notebook</h4>
+<section id="week-5-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-5-tasks">Week 5 tasks</h2>
 <ol type="1">
-<li>In the Jupyter file list, create a folder named: <code>week01</code></li>
-<li>Open the <code>week01</code> folder</li>
-<li>Create a new notebook</li>
-<li>Save the notebook as: <code>lastname-nb-verification.ipynb</code></li>
+<li>Read <strong>Chapter 2, decision trees section</strong> (through Random Forests and Gradient Boosting).</li>
+<li>Work through the <strong><a href="../../assignments/week-05/week-5-demo.html">Week 5 demo</a></strong> in your Jupyter environment.</li>
+<li>Complete the <strong>Week 5 D2L quiz</strong> (Decision Trees concepts).</li>
 </ol>
-</section>
-<section id="c-run-these-cells-in-order" class="level4">
-<h4 class="anchored" data-anchor-id="c-run-these-cells-in-order">C) Run these cells (in order)</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sys.executable</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm that a built-in dataset can be loaded</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris[<span class="st">"data"</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris[<span class="st">"target"</span>]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>X.shape, y.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm that train/test splitting works (a core workflow step)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>X_train.shape, X_test.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="part-3-d2l-quiz" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L quiz</h3>
-<p>Complete the <strong>D2L Chapter 1 quiz</strong>.</p>
-</section>
-<section id="part-4-video-reflection-graded" class="level3">
-<h3 class="anchored" data-anchor-id="part-4-video-reflection-graded">Part 4: Video reflection (graded)</h3>
-<section id="video-submission-instructions" class="level4">
-<h4 class="anchored" data-anchor-id="video-submission-instructions">Video submission instructions</h4>
-<p>Record a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.</p>
-<p>In your video, address:</p>
-<ul>
-<li>What feels different from running <code>.py</code> scripts in an editor compared to running code in a notebook</li>
-<li>What the <strong>kernel</strong> is (in the context of jupyter notebooks)</li>
-<li>Why “restart the kernel” and “run all” are useful habits</li>
-<li>One concept from Chapter 1 you can explain accurately</li>
-</ul>
-<p><strong>Requirements</strong></p>
-<ul>
-<li>Clear video and audio quality</li>
-<li>Intro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the [Assignment Name] for CMSC 2208.”</li>
-<li>Name your video file: <code>lastname_Week01Reflection</code></li>
-<li>Upload your video to <strong>Kaltura</strong></li>
-<li><strong>Do not</strong> embed the video in the Dropbox submission</li>
-<li>Paste the <strong>share link</strong> into the D2L assignment text submission box</li>
-<li>Make sure the link text includes <code>lastname_Week01Reflection</code> in the link name (this will appear if you copy the link)</li>
-</ul>
-</section>
-</section>
-<section id="d2l-submission-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="d2l-submission-checklist">D2L submission checklist</h3>
-<p>Submit the following items to the Week 1 D2L dropboxes.</p>
-<section id="video-submission-link-only" class="level4">
-<h4 class="anchored" data-anchor-id="video-submission-link-only">Video submission (link only)</h4>
-<ul>
-<li>Video filename: <code>lastname_Week01Reflection</code></li>
-<li>Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)</li>
-<li>Submit your <code>lastname-nb-verification.ipynb</code> file</li>
-</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

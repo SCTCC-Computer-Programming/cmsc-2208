@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-04/index.html</loc>
-    <lastmod>2026-01-31T02:42:03.523Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-05/index.html</loc>
+    <lastmod>2026-02-09T00:41:21.238Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-02/index.html</loc>
-    <lastmod>2026-01-19T06:40:09.728Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-03/index.html</loc>
+    <lastmod>2026-01-26T05:13:08.630Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/office-hours.html</loc>
-    <lastmod>2025-12-29T06:36:44.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-01/index.html</loc>
+    <lastmod>2026-01-04T07:00:21.276Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/general-policies.html</loc>
-    <lastmod>2026-01-04T08:04:50.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/homework-coursework.html</loc>
+    <lastmod>2025-12-31T02:01:14.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/miniconda.html</loc>
-    <lastmod>2026-01-12T03:34:17.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/ai-policy.html</loc>
+    <lastmod>2026-01-04T08:02:05.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/environment-setup-guide-vscode.html</loc>
-    <lastmod>2025-12-31T19:16:43.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/jupyter-learning-links.html</loc>
+    <lastmod>2026-01-11T07:09:14.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html</loc>
-    <lastmod>2026-01-18T03:41:28.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-2208/week-03/cmsc-2208-chap-02-learining-resources-week-3.html</loc>
+    <lastmod>2026-01-23T03:17:16.329Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html</loc>
-    <lastmod>2026-01-19T06:22:00.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html</loc>
+    <lastmod>2026-01-21T08:31:01.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/syllabus.html</loc>
-    <lastmod>2026-01-12T03:05:48.524Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/index.html</loc>
+    <lastmod>2026-01-01T20:19:42.410Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/week-5-demo.html</loc>
-    <lastmod>2026-01-31T00:23:57.984Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/schedule.html</loc>
+    <lastmod>2026-01-22T04:39:09.430Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/index.html</loc>
+    <lastmod>2026-02-03T05:56:40.669Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-03/week-3-demo.html</loc>
@@ -69,39 +73,43 @@
     <lastmod>2026-01-31T00:31:25.706Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/schedule.html</loc>
-    <lastmod>2026-01-22T04:39:09.430Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/week-5-demo.html</loc>
+    <lastmod>2026-02-05T21:10:27.965Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/index.html</loc>
-    <lastmod>2026-01-01T20:19:42.410Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/syllabus.html</loc>
+    <lastmod>2026-01-12T03:05:48.524Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html</loc>
-    <lastmod>2026-01-21T08:31:01.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html</loc>
+    <lastmod>2026-01-19T06:22:00.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-2208/week-03/cmsc-2208-chap-02-learining-resources-week-3.html</loc>
-    <lastmod>2026-01-23T03:17:16.329Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html</loc>
+    <lastmod>2026-01-18T03:41:28.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/jupyter-learning-links.html</loc>
-    <lastmod>2026-01-11T07:09:14.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/environment-setup-guide-vscode.html</loc>
+    <lastmod>2025-12-31T19:16:43.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/ai-policy.html</loc>
-    <lastmod>2026-01-04T08:02:05.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/guides/setup/miniconda.html</loc>
+    <lastmod>2026-01-12T03:34:17.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/homework-coursework.html</loc>
-    <lastmod>2025-12-31T02:01:14.000Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/general-policies.html</loc>
+    <lastmod>2026-01-04T08:04:50.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-01/index.html</loc>
-    <lastmod>2026-01-04T07:00:21.276Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/shared/policies/office-hours.html</loc>
+    <lastmod>2025-12-29T06:36:44.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-03/index.html</loc>
-    <lastmod>2026-01-26T05:13:08.630Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-02/index.html</loc>
+    <lastmod>2026-01-19T06:40:09.728Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-04/index.html</loc>
+    <lastmod>2026-01-31T02:42:03.523Z</lastmod>
   </url>
 </urlset>
