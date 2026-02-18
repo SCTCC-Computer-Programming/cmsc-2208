@@ -1,0 +1,170 @@
+---
+title: "Week 5 Guide"
+subtitle: "Chapter 2 — Decision Trees"
+format:
+  html:
+    toc: true
+---
+
+This week introduces decision trees, a fundamentally different approach to supervised learning from anything we've seen so far. You've now worked with two very different types of algorithms: k-Nearest Neighbors (Week 2) makes predictions by storing all training data and searching for similar examples, while linear models (Week 3) learn a weighted formula that applies globally to all predictions.
+
+Decision trees work differently from both. They learn a hierarchy of if-else questions during training, building a tree structure where each internal node asks a question about a feature, and each leaf node provides a prediction. Think of it like playing 20 Questions—the tree learns which questions to ask, in what order, to arrive at the best prediction.
+
+The Week 5 demo walks you through DecisionTreeClassifier for classification tasks. You'll learn how the max_depth parameter controls tree complexity, how to interpret feature importance to see which features the tree used most, and how decision trees compare to the algorithms you've learned in prior weeks.
+
+**Week 5 Assignments:**
+
+- Here is the link to the **[Week 5 Assignments](../../assignments/week-05/index.html)**.
+
+
+## Chapter 2 concepts used this week (decision trees section)
+
+### Decision trees: learning a hierarchy of questions
+
+Decision trees make predictions by asking a series of yes-or-no questions about the features. During training, the algorithm automatically determines which questions to ask and in what order. Each question splits the data into two groups, and the process continues recursively until reaching a final prediction.
+
+For example, predicting whether a student passes might involve questions like: "Is exam_avg above 70?" If yes, then "Is quiz_avg above 65?" If no, then "Is homework_rate above 80?" The tree structure encodes this hierarchy—each path from root to leaf represents a different rule.
+
+**Key advantage:** Unlike linear models that learn one global formula for all predictions, trees can create different rules for different regions of the feature space. This makes them naturally good at capturing complex patterns and feature interactions.
+
+### DecisionTreeClassifier and how trees are built
+
+**DecisionTreeClassifier** (from sklearn.tree) is scikit-learn's implementation for classification tasks. During training, the algorithm builds the tree by repeatedly choosing the best question to ask at each node. "Best" means the question that most effectively separates the classes—moving students who pass into one group and students who fail into another.
+
+The recursive process:
+1. At the root, examine all possible questions (every feature, every threshold)
+2. Pick the question that best separates the classes
+3. Split the data based on that question
+4. For each resulting group, repeat steps 1-3
+5. Stop when each leaf is "pure" (all examples have the same label) or other stopping criteria are met
+
+By default, trees grow until all leaves are pure, which can lead to overfitting—the tree memorizes training examples rather than learning general patterns.
+
+### Controlling complexity with max_depth
+
+The most important parameter for decision trees is max_depth, which limits how many questions the tree can ask in sequence. This directly controls model complexity:
+
+- **max_depth=1:** The tree asks only one question total. Very simple, may underfit.
+- **max_depth=5:** The tree can ask up to 5 questions in a row. Moderate complexity.
+- **max_depth=None (default):** No limit—the tree grows until all leaves are pure. Very complex, prone to overfitting.
+
+Deeper trees can capture more detailed patterns but risk memorizing noise in the training data. Finding the right depth balances fitting training data with generalizing to test data—just like choosing k in kNN or alpha/C in linear models.
+
+The demo walks you through training trees with different max_depth values and comparing their performance. You'll see how training accuracy improves with depth while test accuracy may peak at a moderate depth.
+
+### Feature importance: understanding which features matter
+
+One major advantage of decision trees is feature importance, a way to see which features the tree used most for making decisions. After training, you can access the feature_importances_ attribute, which provides a score between 0 and 1 for each feature. Higher values mean that feature was more important in the tree's decision-making.
+
+Feature importance is calculated by measuring how much each feature improves predictions across all the splits where it's used. Features that appear higher in the tree (affecting more examples) and create better separations between classes receive higher importance scores. All importance values sum to 1.0.
+
+**Example:** If exam_avg has importance 0.539, it means about 54% of the tree's decision-making power comes from that feature. A feature with importance 0.0 was never used in the tree.
+
+This is similar to examining coefficients in linear models—both let you understand what drives predictions—but feature importance only tells you which features matter, not the direction of their effect.
+
+### Decision boundaries and axis-parallel splits
+
+Decision trees create axis-parallel decision boundaries. Each question looks at one feature at a time: "Is feature_x greater than threshold_y?" This creates rectangular regions in the feature space—each region corresponds to a different path through the tree.
+
+This differs from linear models, which create decision boundaries that are straight lines or planes at any angle. Trees can only split parallel to the axes, but by combining multiple splits, they can approximate complex decision boundaries that linear models cannot capture.
+
+Trees naturally handle feature interactions because the hierarchy of questions captures "if X is true AND Y is true" patterns automatically. Linear models require you to manually create interaction features.
+
+### Trees don't require feature scaling
+
+Unlike kNN and linear models, decision trees don't require feature scaling. Since each split examines one feature independently ("Is attendance > 75?"), the scale of other features doesn't matter. This makes trees very convenient when features are on different scales or have different units.
+
+### Overfitting in decision trees
+
+Decision trees are prone to overfitting, especially when allowed to grow without depth limits. A tree with no max_depth can create a leaf for every training example, achieving perfect training accuracy but poor test accuracy.
+
+**Signs of overfitting:**
+- Training accuracy is 1.0 (perfect)
+- Test accuracy is significantly lower
+- The tree has many leaves with very few examples each
+
+**Preventing overfitting:**
+- Set max_depth to limit tree complexity
+- Use other parameters (max_leaf_nodes, min_samples_split)
+- Use ensemble methods (Random Forests, Gradient Boosting from the textbook)
+
+### Comparing trees to prior algorithms
+
+**Decision trees vs. kNN:**
+- Trees learn a hierarchy of rules; kNN stores all training data
+- Trees are fast at prediction (follow one path); kNN is slow (search all neighbors)
+- Trees show feature importance; kNN doesn't reveal which features matter
+- Trees don't require feature scaling; kNN requires scaling
+
+**Decision trees vs. linear models:**
+- Trees learn local rules for different regions; linear models learn one global formula
+- Trees create axis-parallel boundaries; linear models create straight-line boundaries at any angle
+- Trees capture feature interactions automatically; linear models need you to create interaction terms
+- Trees don't require feature scaling; linear models work better with scaled features
+- Both can show feature importance, but interpret it differently
+
+**When to use trees:**
+- Features are on different scales and you want to avoid scaling
+- You need a model you can explain to non-technical people (show the decision path)
+- Feature interactions are important and you want the model to find them automatically
+- You have a mix of numeric and categorical features
+
+### Tree visualization with graphviz
+
+The textbook shows how to visualize the actual tree structure using graphviz—you can see each node, each question being asked, and each path to a leaf. This makes trees among the most interpretable machine learning models. 
+
+### DecisionTreeRegressor for regression
+
+The demo uses DecisionTreeClassifier for classification (predicting pass/fail). The textbook also covers DecisionTreeRegressor for regression tasks (predicting numbers like final scores). The mechanics are the same—building a tree of questions—but leaves predict numeric values by averaging the training examples in that leaf rather than voting on a class.
+
+### Ensemble methods: Random Forests and Gradient Boosting
+
+Single decision trees tend to overfit on complex, noisy data. The textbook's solution: ensemble methods that combine many trees.
+
+**Random Forests:**
+- Build hundreds of trees, each slightly different
+- Each tree sees a random subset of data and features
+- Average all predictions
+- Much more robust, much less prone to overfitting
+- Currently among the most widely used ML methods
+
+**Gradient Boosting:**
+- Build trees one at a time in sequence
+- Each new tree focuses on correcting the mistakes of previous trees
+- Often achieves the best performance but requires careful parameter tuning
+- Used extensively in practice for tabular data
+
+Both approaches keep the benefits of trees (no scaling needed, can handle mixed features, interpretable through feature importance) while dramatically reducing overfitting.
+
+### Additional complexity parameters
+
+Beyond max_depth, the textbook covers other parameters for controlling tree complexity:
+- **max_leaf_nodes:** Limit the total number of leaves
+- **min_samples_split:** Minimum examples required to split a node
+- **min_samples_leaf:** Minimum examples required in each leaf
+- **min_impurity_decrease:** Minimum improvement needed to make a split
+
+These provide additional ways to prevent overfitting beyond max_depth alone.
+
+## Reading expectations for Week 5
+
+As you read the decision trees section of Chapter 2 and work through the demo, check whether you can explain the following in your own words:
+
+1. How do decision trees make predictions? What is the hierarchy of questions?
+2. What does the algorithm do during training to build the tree structure?
+3. What does **max_depth** control, and how does it affect model complexity?
+4. What is a "pure" leaf, and why does growing until all leaves are pure cause overfitting?
+5. What does **feature importance** tell you, and how is it different from linear model coefficients?
+6. Why don't decision trees require feature scaling?
+7. How do decision trees differ from kNN? From linear models?
+8. What are **axis-parallel** decision boundaries?
+9. How do trees capture **feature interactions** automatically?
+10. What signs indicate a decision tree is overfitting?
+11. What are **Random Forests**, and why do they reduce overfitting compared to single trees?
+12. What is **Gradient Boosting**, and how does it differ from Random Forests?
+
+## Week 5 tasks
+
+1. Read **Chapter 2, decision trees section** (through Random Forests and Gradient Boosting).
+2. Work through the **[Week 5 demo](../../assignments/week-05/week-5-demo.html)** in your Jupyter environment.
+3. Complete the **Week 5 D2L quiz** (Decision Trees concepts).

@@ -1,0 +1,163 @@
+---
+title: Week 6 Assignment (CMSC-2208)
+subtitle: Decision Tree Case Studies and Video Reflection
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 6 dropbox).
+
+### Part 1: Case Study 1 — Predicting Employee Turnover with Decision Trees
+
+#### Background
+
+A company wants to predict which employees are likely to leave so they can intervene early with retention efforts. They collected data from 500 employees. For each employee, they recorded four features:
+
+-   **satisfaction_score:** employee satisfaction rating (1–10)
+-   **monthly_hours:** average monthly hours worked
+-   **last_evaluation:** most recent performance evaluation score (0–100)
+-   **years_at_company:** tenure in years
+
+The target variable is **turnover**, a binary label: "stay" or "leave."
+
+A data scientist split the data into 375 training employees and 125 test employees, then trained DecisionTreeClassifier models with different max_depth values.
+
+#### Model Results
+
+**Four models were trained with different max_depth values:**
+
+| Model | max_depth | Training Accuracy | Test Accuracy |
+|-------|-----------|-------------------|---------------|
+| Model 1 | 1 | 0.72 | 0.70 |
+| Model 2 | 3 | 0.85 | 0.82 |
+| Model 3 | 5 | 0.93 | 0.80 |
+| Model 4 | None (unlimited) | 1.00 | 0.74 |
+
+**Feature importance from Model 2 (max_depth=3):**
+
+| Feature | Importance |
+|---------|------------|
+| satisfaction_score | 0.45 |
+| monthly_hours | 0.28 |
+| last_evaluation | 0.18 |
+| years_at_company | 0.09 |
+
+#### Case Study 1 Questions
+
+As you prepare for your video reflection, consider the following:
+
+1.  This is a classification task. How can you tell from the problem description?
+2.  Compare all four models. Which model is overfitting? Which is underfitting? How can you tell from the training and test accuracy scores?
+3.  Which model would you recommend deploying? Justify your choice using the training and test accuracy scores.
+4.  Looking at Model 2's feature importance, which feature matters most for predicting employee turnover? Which matters least? What does this suggest about what drives employees to leave?
+5.  How does feature importance differ from the coefficients that linear models learn? What can coefficients tell you that feature importance cannot?
+6.  Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you see in the results.
+
+### Part 2: Case Study 2 — Comparing Algorithms on Customer Churn
+
+#### Background
+
+A telecom company wants to predict which customers are likely to cancel their subscriptions so they can target retention offers. They collected data from 800 customers. For each customer, they recorded four features:
+
+-   **monthly_charges:** monthly bill amount in dollars
+-   **tenure_months:** how long they have been a customer
+-   **support_calls:** number of support calls in the past 6 months
+-   **contract_length:** contract duration in months
+
+The target variable is **churn**, a binary label: "stay" or "churn."
+
+A data scientist split the data into 600 training customers and 200 test customers, then trained three different algorithms on the same data.
+
+#### Model Results
+
+**Three algorithms trained on the same data:**
+
+| Algorithm | Key Parameter | Training Accuracy | Test Accuracy |
+|-----------|---------------|-------------------|---------------|
+| kNN | k=5 | 0.84 | 0.75 |
+| Logistic Regression | C=1.0 | 0.78 | 0.76 |
+| Decision Tree | max_depth=4 | 0.88 | 0.83 |
+
+**Logistic Regression coefficients (C=1.0):**
+
+| Feature | Coefficient |
+|---------|-------------|
+| monthly_charges | 0.52 |
+| tenure_months | -0.41 |
+| support_calls | 0.35 |
+| contract_length | -0.28 |
+| intercept | -1.5 |
+
+**Decision Tree feature importance (max_depth=4):**
+
+| Feature | Importance |
+|---------|------------|
+| monthly_charges | 0.38 |
+| tenure_months | 0.31 |
+| support_calls | 0.22 |
+| contract_length | 0.09 |
+
+#### Case Study 2 Questions
+
+As you prepare for your video reflection, consider the following:
+
+1.  Compare the three algorithms. Which would you recommend? Justify your choice using the training and test accuracy scores.
+2.  Look at the Logistic Regression coefficient for tenure_months (-0.41) and the Decision Tree feature importance for tenure_months (0.31). What does the coefficient tell you that the importance value does not?
+3.  Why can kNN not tell you anything about which features matter for predictions?
+4.  What practical trade-offs beyond test accuracy might influence which algorithm you choose?
+
+### Part 3: Scenario C — Hospital Readmission Prediction (Reference Only)
+
+#### Background
+
+A hospital wants to predict which patients will be readmitted within 30 days of discharge. They have data from 5,000 patients with 50 features, including numeric vitals (blood pressure, heart rate, lab values), categorical diagnoses (diabetes, heart disease), length of stay, number of prior admissions, and age. Clinical staff need to understand *why* the model flags a patient so they can plan appropriate follow-up care.
+
+*No model results are provided for this scenario. Use it as a reference for the video reflection.*
+
+### Part 4: Video Reflection
+
+This video reflection is the primary deliverable for this assignment. You will demonstrate your understanding of decision trees by discussing the case studies above. Focus on explaining concepts clearly and using correct terminology rather than reading from a script.
+
+#### Video submission instructions
+
+Record a video in which you address the four sections below. Organize your video to cover each section in order.
+
+**Requirements**
+
+-   Clear video and audio quality
+-   Intro (required): Start your video by saying: "Hello, my name is [Your Name]. This is the Week 6 Decision Trees assignment for CMSC 2208."
+
+#### Section A: Decision Tree Foundations
+
+1.  Explain how a decision tree makes predictions. How is this fundamentally different from kNN and from linear models?
+2.  What does max_depth control, and why is it important?
+
+#### Section B: Case Study 1 Discussion (Decision Tree Depth)
+
+1.  Which of the four Decision Tree models would you recommend? Justify your choice using the training and test accuracy scores.
+2.  Looking at Model 2's feature importance, explain what it tells you about what drives employee turnover.
+3.  Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you observed.
+
+#### Section C: Case Study 2 Discussion (Algorithm Comparison)
+
+1.  Which algorithm would you recommend for predicting customer churn? Justify your choice using the results.
+2.  Compare the Logistic Regression coefficients to the Decision Tree feature importance. What can you learn from coefficients that you cannot learn from importance? Use tenure_months as a specific example.
+3.  Why does kNN not provide any information about which features matter?
+
+#### Section D: When to Use Decision Trees
+
+1.  Consider Scenario C (hospital readmission with 50 features and mixed feature types). Would a decision tree be a good starting point for this problem? Why or why not?
+2.  What advantages would a decision tree have over kNN and linear models for this specific problem?
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 6 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week06DecisionTrees`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week06DecisionTrees` in the link name

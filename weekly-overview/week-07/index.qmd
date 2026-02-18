@@ -1,0 +1,207 @@
+---
+title: "Week 7 Guide"
+subtitle: "Chapter 2 — Uncertainty Estimates from Classifiers"
+format:
+  html:
+    toc: true
+---
+
+This week completes Chapter 2 by introducing **uncertainty estimates**, methods that reveal how confident a classifier is in each individual prediction. Every classifier you've used so far has been accessed through the same two methods: `.predict()` returns a class label, and `.score()` returns a single accuracy number. Both are useful, but they hide something important: the model may be highly confident about some predictions and barely decided on others.
+
+Consider two students who both receive a "fail" prediction. One might have a 95% probability of failing, while the other has a 52% probability. The label is the same, but these are very different situations. Uncertainty estimates let you see this difference, turning every prediction from a flat label into a measure of how much you should trust it.
+
+The Week 7 demo walks you through two scikit-learn methods for extracting uncertainty: **`predict_proba`** (which returns probabilities) and **`decision_function`** (which returns raw confidence scores). You'll apply both to the familiar student performance dataset using LogisticRegression, compare their outputs, and see how prediction confidence connects to actual accuracy.
+
+**Week 7 Demo:**
+
+- Here is the link to the **[Week 7 demo](../../assignments/week-07/week-7-demo.html)**.
+- <a href="week-7-demo.ipynb" download="week-7-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Chapter 2 concepts used this week (uncertainty estimates section)
+
+### What the demo covers vs. what the textbook covers
+
+The Week 7 demo shows you how to extract and interpret uncertainty from classifiers you already know, using LogisticRegression on a binary pass/fail problem. The textbook applies the same methods to GradientBoostingClassifier with 2D visualizations, extends to multiclass problems, and introduces the concept of calibration.
+
+**The demo covers:**
+
+- `predict_proba` for probability estimates per class
+- `decision_function` for raw confidence scores
+- Comparing both methods side by side
+- Analyzing prediction accuracy by confidence level
+- Visualizing the distribution of correct vs incorrect predictions by confidence
+
+**The textbook covers:**
+
+- GradientBoostingClassifier examples with 2D datasets
+- How `predict_proba` and `decision_function` extend to multiclass problems (three or more classes)
+- Visualizing uncertainty as color maps over decision boundaries
+- Calibration (whether reported probabilities match actual outcomes)
+- The complete Chapter 2 Summary and Outlook, comparing all supervised learning algorithms
+
+The demo gives you the practical foundation with binary classification; the textbook provides the full picture with additional classifiers, multiclass extensions, and the chapter wrap-up.
+
+### predict_proba: probability estimates for each class
+
+Most scikit-learn classifiers provide a **`predict_proba`** method that returns a probability for each class rather than a single label. For a binary pass/fail problem, each student gets two numbers: the probability the model assigns to "fail" and the probability it assigns to "pass." These probabilities are always between 0 and 1, and they always sum to 1.0 across the row.
+
+This is the most intuitive form of uncertainty. Saying "the model thinks there's an 83% chance this student passes" is immediately meaningful. Saying "the model predicts pass" hides whether that prediction was a strong 99% or a borderline 51%.
+
+`predict_proba` is available on most classifiers you've already used, including `LogisticRegression`, `DecisionTreeClassifier`, and `KNeighborsClassifier`. Not all classifiers support it, however. The textbook mentions `LinearSVC` as a classifier that only provides `decision_function`.
+
+### Output shape and the classes_ attribute
+
+For a test set of 75 students with 2 classes, `predict_proba` returns a (75, 2) array: one row per student, one column per class. The column order is not alphabetical. It matches the **`classes_`** attribute of the trained model. If `logreg.classes_` is `['fail', 'pass']`, then column 0 is P(fail) and column 1 is P(pass).
+
+Checking `classes_` is important because different models may order classes differently. Always verify which column corresponds to which class rather than assuming.
+
+### How predict_proba connects to .predict()
+
+Behind the scenes, `.predict()` is actually using `predict_proba`. It gets the probabilities for each class, finds whichever class has the higher probability, and returns that class name. The threshold is 0.5: if P(pass) >= 0.5, the prediction is "pass."
+
+This means `.predict()` is just the final step of a probability calculation. `predict_proba` lets you see the full picture before that final step. In the demo, you'll verify this by comparing the two outputs side by side and confirming they always agree.
+
+### decision_function: raw confidence scores
+
+Scikit-learn provides a second method for measuring confidence called **`decision_function`**. Instead of returning probabilities for each class, it returns a single raw score per sample. This score is not bounded between 0 and 1. It can be any number, positive or negative.
+
+The score works like this: positive values mean the model favors one class, negative values mean it favors the other, values near zero mean the model is uncertain, and large absolute values mean the model is confident. The threshold that separates the two predicted classes is 0, not 0.5.
+
+The scale of `decision_function` is arbitrary and depends on the specific model and data. A score of 7.2 means the model is very confident, but you cannot say "that means 99% confident" without converting it to a probability. You also cannot compare scores across different models or datasets.
+
+### Positive class, negative class, and the sign of the score
+
+Scikit-learn uses the terms **positive class** and **negative class** for the two sides of `decision_function`. The positive class is always the second entry in `classes_`, and the negative class is the first. In our model, `logreg.classes_` is `['fail', 'pass']`, so "fail" is the negative class and "pass" is the positive class.
+
+This explains why positive `decision_function` values point toward "pass" and negative values point toward "fail." The connection to `.predict()` is the sign: if the score is positive, `.predict()` returns the positive class; if negative, it returns the negative class.
+
+For binary classification, `decision_function` returns only one value per sample, not two. This is because the two `predict_proba` columns always sum to 1.0, making one redundant. A single number encodes everything: the sign tells you which class, and the magnitude tells you how confident. The textbook shows that with three or more classes, `decision_function` returns one score per class, similar to `predict_proba`.
+
+### Comparing predict_proba and decision_function
+
+Both methods express the same underlying confidence, but in different formats. `predict_proba` gives bounded values (0 to 1) with a direct interpretation as probabilities. `decision_function` gives unbounded values on an arbitrary scale. Both always agree on the predicted class.
+
+When both are available, `predict_proba` is generally the better choice because probabilities have a natural meaning. "The model thinks there's an 83% chance this student passes" is more useful than "the decision function score is 1.837." However, `decision_function` is the more universally available method since some classifiers (like `LinearSVC`) only support it.
+
+### Why confidence matters: not all predictions are equally trustworthy
+
+The demo groups students by confidence level and checks accuracy within each group. The pattern is consistent: high-confidence predictions are almost always correct, while uncertain predictions (near 50%) are barely better than guessing.
+
+This matters for practical applications. If you were building a system to flag at-risk students, you would want to know which fail predictions are strong (95% confident) versus which are borderline (52% confident). You could set a confidence threshold, only acting on predictions above a certain level, and sending uncertain cases for human review instead of automatic action.
+
+Uncertainty estimates turn a flat list of predictions into a ranked list where you can decide how much to trust each one.
+
+The confidence tier analysis in the demo introduces a NumPy technique called **boolean indexing** that you may not have seen before. Boolean indexing lets you use a True/False array to select specific elements from another array. For example, you can compare every student's confidence to a threshold like 0.9, which produces an array of True and False values, then use that array to pull out only the students who meet the condition. The demo builds on this technique across several operations: creating boolean arrays from comparisons, using them to filter data, combining multiple conditions with `&`, flipping True to False with `~`, and using `np.sum` and `np.mean` on boolean arrays to count and calculate proportions. The demo includes a full walkthrough of how each operation works before the code that uses it, so read through that explanation carefully if the technique is new to you.
+
+### Calibration: does reported confidence match actual accuracy?
+
+A model is **calibrated** if its reported confidence matches how often it is actually correct. If the model says "90% confidence" on a set of predictions, those predictions should be correct about 90% of the time. If the model says "70% confidence," those predictions should be correct about 70% of the time.
+
+Not all models are well-calibrated. Some are **overconfident**, reporting high probabilities but being wrong more often than expected. Others are **underconfident**, being correct more often than their probabilities suggest. The textbook discusses calibration in more detail and shows how different classifiers vary in how well-calibrated they are.
+
+### GradientBoostingClassifier examples
+
+The textbook demonstrates both `predict_proba` and `decision_function` using **GradientBoostingClassifier** rather than LogisticRegression. GradientBoostingClassifier is an ensemble method built from many decision trees (introduced in the Week 5 reading). The same methods work the same way regardless of which classifier you use, which is one of the strengths of scikit-learn's consistent API.
+
+### Multiclass uncertainty estimates
+
+The demo uses binary classification (two classes). The textbook extends to multiclass problems with three or more classes. In the multiclass case, `predict_proba` returns one column per class (e.g., a (50, 3) array for 50 samples and 3 classes), and `decision_function` returns one score per class as well. You recover the prediction by finding the class with the highest probability or score (using `np.argmax`). The `classes_` attribute maps column indices to actual class names.
+
+### Visualizing uncertainty
+
+The textbook includes 2D visualizations that show decision boundaries alongside uncertainty. Using color maps, you can see not just which class the model predicts in each region, but how confident it is. Areas near the decision boundary show low confidence (lighter colors), while areas far from the boundary show high confidence (darker colors). These visualizations are possible because the textbook uses 2D datasets where the entire feature space can be plotted.
+
+### Chapter 2 Summary and Outlook
+
+The textbook closes Chapter 2 with a summary comparing all supervised learning algorithms covered in the chapter. This includes guidance on when to use each model type: nearest neighbors, linear models, decision trees, random forests, gradient boosting, SVMs, and neural networks. This summary is a useful reference for understanding the tradeoffs between different approaches.
+
+## Looking back: what Chapter 2 accomplished
+
+Week 7 is the final week of Chapter 2, and it is worth stepping back to see how the pieces fit together. Over the past six weeks, you have built a complete supervised learning toolkit, starting from the basics and adding layers of capability at each step.
+
+### Three algorithm families
+
+You worked with three fundamentally different approaches to supervised learning, each with its own way of making predictions:
+
+**k-Nearest Neighbors (Week 2)** stores all training data and predicts by searching for the most similar examples. It is intuitive and requires no training in the traditional sense, but it is slow at prediction time and every feature contributes equally unless you scale them.
+
+**Linear models (Weeks 3-4)** learn a weighted formula during training that applies globally to every prediction. Ridge Regression and Logistic Regression let you interpret coefficients to understand which features drive predictions and in which direction. Regularization parameters (alpha for Ridge, C for Logistic Regression) control how complex the formula can be.
+
+**Decision trees (Weeks 5-6)** learn a hierarchy of if-else questions, creating different rules for different regions of the feature space. They handle feature interactions automatically, don't require scaling, and provide feature importance scores. Ensemble methods like Random Forests and Gradient Boosting combine many trees for better performance.
+
+Each family has different strengths and weaknesses, and understanding all three gives you the ability to choose the right approach for a given problem.
+
+### The shared workflow
+
+Despite the differences between algorithms, the scikit-learn workflow stayed the same every time:
+
+1. Prepare features (X) and target (y)
+2. Split into training and test sets with `train_test_split`
+3. Create a model object with parameters
+4. Train with `.fit(X_train, y_train)`
+5. Evaluate with `.score(X_test, y_test)`
+6. Predict with `.predict(X_test)`
+
+You have now used this workflow with `KNeighborsClassifier`, `LogisticRegression`, `DecisionTreeClassifier`, and seen it applied to `GradientBoostingClassifier` in the textbook. The API pattern is consistent even when the internal mechanics are completely different. This is by design: scikit-learn's common interface means that switching between algorithms requires changing only one or two lines of code.
+
+### Complexity and overfitting
+
+Every algorithm had its own version of the complexity tradeoff, and every week reinforced the same pattern: too simple leads to underfitting, too complex leads to overfitting, and the goal is to find the balance that generalizes best to new data.
+
+- **kNN:** small k = complex (follow local noise), large k = simple (smooth over details)
+- **Ridge/Logistic Regression:** small alpha or large C = complex (large coefficients), large alpha or small C = simple (shrink coefficients)
+- **Decision trees:** large max_depth = complex (memorize training data), small max_depth = simple (limited questions)
+
+The parameter names and mechanisms are different, but the underlying idea is the same. Training accuracy alone is misleading because a sufficiently complex model can memorize the training data. Test accuracy tells you whether the model has actually learned patterns that generalize.
+
+### From predictions to confidence
+
+Chapter 2 built your capabilities in layers. First you learned to make predictions (`.predict()`), then to evaluate them (`.score()` and comparing training vs test accuracy), and this week you learned to assess how much to trust each individual prediction (`predict_proba` and `decision_function`). This final step completes the picture: you can now train a model, evaluate its overall performance, and understand which specific predictions are reliable and which are uncertain.
+
+### What you can now do
+
+By the end of Chapter 2, you can:
+
+- Train classifiers and regressors using scikit-learn's fit/predict/score workflow
+- Evaluate models using train/test split and compare training vs test accuracy
+- Tune complexity parameters to balance underfitting and overfitting
+- Interpret model behavior through coefficients (linear models) and feature importance (trees)
+- Assess prediction confidence using `predict_proba` and `decision_function`
+- Identify which predictions are trustworthy and which are uncertain
+
+This is the complete supervised learning toolkit. Every concept from Chapter 2 applies whenever you have labeled data and want to predict outcomes for new examples.
+
+## Looking ahead: Chapter 3
+
+Chapter 3 shifts to **unsupervised learning and preprocessing**, which represents a fundamental change in what you're trying to accomplish.
+
+In Chapter 2, every dataset had labels: pass/fail, a numeric score, a class to predict. The question was always "given these features, what is the outcome?" and you could measure success with accuracy or R².
+
+Chapter 3 removes the labels. **Unsupervised learning** works with data that has no target column. Instead of predicting outcomes, the goal is to find structure in the data itself. This includes techniques like **clustering** (grouping similar data points together without being told what the groups are) and **dimensionality reduction** (compressing many features into fewer features while preserving important patterns).
+
+Chapter 3 also introduces **preprocessing and scaling**, techniques for transforming your input data before feeding it to a model. You saw hints of this in prior weeks: kNN and linear models work better with scaled features, while decision trees don't need scaling. Chapter 3 formalizes these ideas and shows you when and how to apply different transformations.
+
+The supervised learning skills from Chapter 2 don't go away. Preprocessing directly improves the supervised models you've already learned, and the evaluation mindset (training vs test, overfitting vs underfitting) still applies. Chapter 3 adds new tools to your toolkit rather than replacing what you've built.
+
+## Reading expectations for Week 7
+
+As you read the Uncertainty Estimates section of Chapter 2 (pages 119-128) and work through the demo, check whether you can explain the following in your own words:
+
+1. What does **`predict_proba`** return, and what do the values represent?
+2. How do you determine which column of `predict_proba` output corresponds to which class?
+3. What is the relationship between `predict_proba` and `.predict()`?
+4. What does **`decision_function`** return, and how is its output different from `predict_proba`?
+5. What do the **positive class** and **negative class** mean in the context of `decision_function`, and how does `classes_` determine which is which?
+6. Why does `decision_function` return only one value per sample in binary classification?
+7. When would you use `predict_proba` over `decision_function`, and when might `decision_function` be your only option?
+8. Why are high-confidence predictions typically more accurate than low-confidence predictions?
+9. What is **calibration**, and what does it mean for a model to be overconfident or underconfident?
+10. How do `predict_proba` and `decision_function` extend to **multiclass** problems with three or more classes?
+11. Looking back at Chapter 2, what are the three algorithm families you learned, and how does each one make predictions?
+12. What changes in **Chapter 3** when you shift from supervised learning to unsupervised learning?
+
+## Week 7 tasks
+
+1. Read **Chapter 2, Uncertainty Estimates section** (pages 119-128, through the Chapter 2 Summary and Outlook).
+2. Work through the **[Week 7 demo](../../assignments/week-07/week-7-demo.html)** in your Jupyter environment.
+3. Complete the **Week 7 D2L quiz** (Uncertainty Estimates concepts).

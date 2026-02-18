@@ -1,0 +1,101 @@
+---
+title: "Week 6 Guide"
+subtitle: "Applying Decision Trees — Case Studies and Video Reflection"
+format:
+  html:
+    toc: true
+---
+
+## Week 6 focus
+
+This week is about **applying** the decision tree concepts you learned in Week 5. Rather than introducing new algorithms, you will work through two case studies that require you to interpret decision tree outputs, identify overfitting and underfitting patterns from different max_depth values, and compare decision trees to the other algorithms you've learned.
+
+In Week 5, you learned how decision trees work: they learn a hierarchy of if-else questions during training, the max_depth parameter controls tree complexity, and feature importance shows which features the tree used most for making decisions. This week, you will practice using that knowledge to analyze realistic scenarios where a data scientist has already trained models and recorded the results.
+
+The primary deliverable this week is a **video reflection** in which you discuss both case studies and demonstrate your understanding of decision trees. This format gives you practice explaining technical concepts verbally—a skill that matters in real-world data science work.
+
+**Week 6 Assignment:**
+
+- Here is the link to the **[Week 6 Assignment](../../assignments/week-06/index.qmd)**.
+
+## What you're practicing this week
+
+### Interpreting decision tree outputs
+
+In Case Study 1, you will see a table of training and test accuracy scores across four decision tree models trained with different max_depth values. Your job is to:
+
+-   Identify which model is **overfitting** (high training accuracy, lower test accuracy)
+-   Identify which model is **underfitting** (both scores low)
+-   Recommend which model to use based on **generalization** (test performance)
+
+This is the same skill you practiced in the Week 5 demo when comparing trees at different depths, and in Week 4 when comparing models with different parameter settings.
+
+### Interpreting feature importance
+
+Case Study 1 also includes a feature importance table from the best model. You should be able to:
+
+-   Identify which features the tree used **most** and **least** for making decisions
+-   Explain that importance values are always between 0 and 1 and sum to 1.0
+-   Explain the key limitation: feature importance shows **magnitude only, not direction** — unlike linear model coefficients, which show both
+
+### Comparing algorithms
+
+Case Study 2 presents results from three different algorithms (kNN, Logistic Regression, and Decision Tree) trained on the same data. You should be able to:
+
+-   Compare performance across algorithms using training and test accuracy
+-   Explain what **coefficients** tell you that **feature importance** cannot (direction of effect)
+-   Explain why **kNN** provides no information about which features matter
+-   Discuss practical trade-offs beyond accuracy: interpretability, feature scaling, feature interactions, prediction speed
+
+## Key concepts to review from Week 5
+
+If any of these feel unclear, revisit the Week 5 demo and the decision trees section of Chapter 2 before completing the assignment.
+
+### How decision trees make predictions
+
+Decision trees learn a **hierarchy of if-else questions** during training. Each internal node asks a question about a feature, and each leaf provides a prediction. This is fundamentally different from kNN (which stores data and searches for similar examples) and linear models (which learn a global weighted formula).
+
+### max_depth and complexity control
+
+The **max_depth** parameter controls how many questions the tree can ask in sequence:
+
+-   **Small max_depth** (e.g., 1): very simple, may underfit
+-   **Moderate max_depth** (e.g., 3–5): balanced, often generalizes well
+-   **No limit** (None): tree grows until all leaves are pure, often overfits
+
+Larger max_depth → more complex model → more risk of overfitting. This is similar to how alpha controls Ridge complexity and C controls Logistic Regression complexity, though the direction differs.
+
+### Feature importance
+
+After training a decision tree, you can access **feature_importances_** to see which features the tree relied on most. Key properties:
+
+-   Values are always between 0 and 1
+-   All values sum to 1.0
+-   A value of 0 means the feature was not used in the tree
+-   Higher values mean the feature was more important in the tree's decisions
+-   **Limitation:** importance does not tell you the *direction* of a feature's effect
+
+### Overfitting vs underfitting
+
+The same patterns from prior weeks apply to decision trees:
+
+-   **Overfitting:** training accuracy much higher than test accuracy (tree memorizes training data)
+-   **Underfitting:** both training and test accuracy are low (tree is too simple)
+-   **Good generalization:** training and test accuracy are reasonably close, with strong test performance
+
+A tree with no depth limit can achieve perfect training accuracy (1.0) by creating a leaf for every training example — but this typically hurts test performance.
+
+### Decision trees vs kNN vs linear models
+
+You have now learned three fundamentally different approaches to supervised learning:
+
+-   **kNN:** stores all training data, searches for similar examples at prediction time, no learned parameters to inspect
+-   **Linear models:** learn a weighted formula (coefficients + intercept), coefficients show direction and magnitude of each feature's effect
+-   **Decision trees:** learn a hierarchy of questions, feature importance shows magnitude only, no feature scaling required, captures feature interactions automatically
+
+## Week 6 tasks
+
+1.  Review **Chapter 2, decision trees section** as needed (focus on max_depth, feature importance, and how trees compare to other algorithms).
+2.  Read through **Case Study 1** and **Case Study 2** in the Week 6 assignment.
+3.  Review **Scenario C** (hospital readmission) for the comparison discussion.
+4.  Record and submit your **video reflection** addressing all four sections.

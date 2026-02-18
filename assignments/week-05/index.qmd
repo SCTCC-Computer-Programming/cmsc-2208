@@ -1,0 +1,51 @@
+---
+title: "Week 5 Assignments"
+subtitle: "Textbook Chapter 2 (Decision Trees), Decision Trees Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 5 demo](../../assignments/week-05/week-5-demo.html)**. 
+- <a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **Chapter 2, decision trees section** (70 - 119).
+
+This section introduces decision trees as a fundamentally different approach to supervised learning. Unlike kNN (which stores data) or linear models (which learn a global formula), decision trees learn a hierarchy of if-else questions. The demo provides a hands-on walkthrough of DecisionTreeClassifier with detailed explanations of how to control tree complexity and interpret feature importance.
+
+## Part 2: Work through the Week 5 Demo
+
+The Week 5 demo covers:
+
+1. Understanding what decision trees are and how they differ from kNN and linear models
+2. Training DecisionTreeClassifier models for classification
+3. Understanding the `max_depth` parameter for controlling tree complexity
+4. Interpreting tree depth and number of leaves
+5. Recognizing overfitting patterns in decision trees
+6. Comparing different max_depth values and their effect on performance
+7. Understanding and interpreting `feature_importances_` to see which features matter most
+8. Comparing decision trees to prior algorithms (kNN and linear models)
+
+## Part 3: D2L Quiz
+
+Complete the **Week 5 D2L quiz** (Decision Trees concepts).
+
+The quiz covers:
+
+* Core concepts: hierarchy of questions, how trees are built during training, pure leaves
+* DecisionTreeClassifier: sklearn.tree module, default behavior, tree structure
+* max_depth parameter: how it controls complexity, overfitting vs underfitting patterns
+* Feature importance: what it tells you, how to interpret values, differences from linear model coefficients
+* Tree characteristics: depth vs number of leaves, axis-parallel boundaries, no scaling needed
+* Comparisons: decision trees vs kNN, decision trees vs linear models, when to use trees
+* Advanced awareness: Random Forests and Gradient Boosting (ensemble methods from textbook)
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 5 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 2 (decision trees section), understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding how decision trees work, how they differ from kNN and linear models, and how max_depth controls tree complexity.
