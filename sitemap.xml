@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-07/week-07-overview.html</loc>
+    <lastmod>2026-02-18T03:04:39.823Z</lastmod>
+  </url>
+  <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-06/week-06-overview.html</loc>
     <lastmod>2026-02-12T03:08:56.950Z</lastmod>
   </url>
@@ -43,6 +47,14 @@
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/schedule.html</loc>
     <lastmod>2026-01-22T04:39:09.430Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-7-demo.html</loc>
+    <lastmod>2026-02-17T02:17:38.078Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/index.html</loc>
+    <lastmod>2026-02-23T00:33:22.949Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-06/index.html</loc>
@@ -89,6 +101,14 @@
     <lastmod>2026-02-12T02:30:20.587Z</lastmod>
   </url>
   <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-07-assignments.html</loc>
+    <lastmod>2026-02-23T00:30:48.857Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-08/week-08-assignments.html</loc>
+    <lastmod>2026-02-20T20:27:10.444Z</lastmod>
+  </url>
+  <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/syllabus.html</loc>
     <lastmod>2026-01-12T03:05:48.524Z</lastmod>
   </url>
@@ -127,5 +147,9 @@
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-06/index.html</loc>
     <lastmod>2026-02-12T04:37:02.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-07/index.html</loc>
+    <lastmod>2026-02-22T23:36:10.061Z</lastmod>
   </url>
 </urlset>

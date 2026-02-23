@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 6 Assignment (CMSC-2208) – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 7 Guide – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 6 Assignment (CMSC-2208)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 7 Guide</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -468,11 +468,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-case-study-1-predicting-employee-turnover-with-decision-trees" id="toc-part-1-case-study-1-predicting-employee-turnover-with-decision-trees" class="nav-link active" data-scroll-target="#part-1-case-study-1-predicting-employee-turnover-with-decision-trees">Part 1: Case Study 1 — Predicting Employee Turnover with Decision Trees</a></li>
-  <li><a href="#part-2-case-study-2-comparing-algorithms-on-customer-churn" id="toc-part-2-case-study-2-comparing-algorithms-on-customer-churn" class="nav-link" data-scroll-target="#part-2-case-study-2-comparing-algorithms-on-customer-churn">Part 2: Case Study 2 — Comparing Algorithms on Customer Churn</a></li>
-  <li><a href="#part-3-scenario-c-hospital-readmission-prediction-reference-only" id="toc-part-3-scenario-c-hospital-readmission-prediction-reference-only" class="nav-link" data-scroll-target="#part-3-scenario-c-hospital-readmission-prediction-reference-only">Part 3: Scenario C — Hospital Readmission Prediction (Reference Only)</a></li>
-  <li><a href="#part-4-video-reflection" id="toc-part-4-video-reflection" class="nav-link" data-scroll-target="#part-4-video-reflection">Part 4: Video Reflection</a></li>
-  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L Submission Checklist</a></li>
+  <li><a href="#chapter-2-concepts-used-this-week-uncertainty-estimates-section" id="toc-chapter-2-concepts-used-this-week-uncertainty-estimates-section" class="nav-link active" data-scroll-target="#chapter-2-concepts-used-this-week-uncertainty-estimates-section">Chapter 2 concepts used this week (uncertainty estimates section)</a>
+  <ul class="collapse">
+  <li><a href="#what-the-demo-covers-vs.-what-the-textbook-covers" id="toc-what-the-demo-covers-vs.-what-the-textbook-covers" class="nav-link" data-scroll-target="#what-the-demo-covers-vs.-what-the-textbook-covers">What the demo covers vs.&nbsp;what the textbook covers</a></li>
+  <li><a href="#predict_proba-probability-estimates-for-each-class" id="toc-predict_proba-probability-estimates-for-each-class" class="nav-link" data-scroll-target="#predict_proba-probability-estimates-for-each-class">predict_proba: probability estimates for each class</a></li>
+  <li><a href="#output-shape-and-the-classes_-attribute" id="toc-output-shape-and-the-classes_-attribute" class="nav-link" data-scroll-target="#output-shape-and-the-classes_-attribute">Output shape and the classes_ attribute</a></li>
+  <li><a href="#how-predict_proba-connects-to-.predict" id="toc-how-predict_proba-connects-to-.predict" class="nav-link" data-scroll-target="#how-predict_proba-connects-to-.predict">How predict_proba connects to .predict()</a></li>
+  <li><a href="#decision_function-raw-confidence-scores" id="toc-decision_function-raw-confidence-scores" class="nav-link" data-scroll-target="#decision_function-raw-confidence-scores">decision_function: raw confidence scores</a></li>
+  <li><a href="#positive-class-negative-class-and-the-sign-of-the-score" id="toc-positive-class-negative-class-and-the-sign-of-the-score" class="nav-link" data-scroll-target="#positive-class-negative-class-and-the-sign-of-the-score">Positive class, negative class, and the sign of the score</a></li>
+  <li><a href="#comparing-predict_proba-and-decision_function" id="toc-comparing-predict_proba-and-decision_function" class="nav-link" data-scroll-target="#comparing-predict_proba-and-decision_function">Comparing predict_proba and decision_function</a></li>
+  <li><a href="#why-confidence-matters-not-all-predictions-are-equally-trustworthy" id="toc-why-confidence-matters-not-all-predictions-are-equally-trustworthy" class="nav-link" data-scroll-target="#why-confidence-matters-not-all-predictions-are-equally-trustworthy">Why confidence matters: not all predictions are equally trustworthy</a></li>
+  <li><a href="#calibration-does-reported-confidence-match-actual-accuracy" id="toc-calibration-does-reported-confidence-match-actual-accuracy" class="nav-link" data-scroll-target="#calibration-does-reported-confidence-match-actual-accuracy">Calibration: does reported confidence match actual accuracy?</a></li>
+  <li><a href="#gradientboostingclassifier-examples" id="toc-gradientboostingclassifier-examples" class="nav-link" data-scroll-target="#gradientboostingclassifier-examples">GradientBoostingClassifier examples</a></li>
+  <li><a href="#multiclass-uncertainty-estimates" id="toc-multiclass-uncertainty-estimates" class="nav-link" data-scroll-target="#multiclass-uncertainty-estimates">Multiclass uncertainty estimates</a></li>
+  <li><a href="#visualizing-uncertainty" id="toc-visualizing-uncertainty" class="nav-link" data-scroll-target="#visualizing-uncertainty">Visualizing uncertainty</a></li>
+  <li><a href="#chapter-2-summary-and-outlook" id="toc-chapter-2-summary-and-outlook" class="nav-link" data-scroll-target="#chapter-2-summary-and-outlook">Chapter 2 Summary and Outlook</a></li>
+  </ul></li>
+  <li><a href="#looking-back-what-chapter-2-accomplished" id="toc-looking-back-what-chapter-2-accomplished" class="nav-link" data-scroll-target="#looking-back-what-chapter-2-accomplished">Looking back: what Chapter 2 accomplished</a>
+  <ul class="collapse">
+  <li><a href="#three-algorithm-families" id="toc-three-algorithm-families" class="nav-link" data-scroll-target="#three-algorithm-families">Three algorithm families</a></li>
+  <li><a href="#the-shared-workflow" id="toc-the-shared-workflow" class="nav-link" data-scroll-target="#the-shared-workflow">The shared workflow</a></li>
+  <li><a href="#complexity-and-overfitting" id="toc-complexity-and-overfitting" class="nav-link" data-scroll-target="#complexity-and-overfitting">Complexity and overfitting</a></li>
+  <li><a href="#from-predictions-to-confidence" id="toc-from-predictions-to-confidence" class="nav-link" data-scroll-target="#from-predictions-to-confidence">From predictions to confidence</a></li>
+  <li><a href="#what-you-can-now-do" id="toc-what-you-can-now-do" class="nav-link" data-scroll-target="#what-you-can-now-do">What you can now do</a></li>
+  </ul></li>
+  <li><a href="#looking-ahead-chapter-3" id="toc-looking-ahead-chapter-3" class="nav-link" data-scroll-target="#looking-ahead-chapter-3">Looking ahead: Chapter 3</a></li>
+  <li><a href="#reading-expectations-for-week-7" id="toc-reading-expectations-for-week-7" class="nav-link" data-scroll-target="#reading-expectations-for-week-7">Reading expectations for Week 7</a></li>
+  <li><a href="#week-7-tasks" id="toc-week-7-tasks" class="nav-link" data-scroll-target="#week-7-tasks">Week 7 tasks</a></li>
   </ul>
 </nav>
     </div>
@@ -482,8 +504,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 6 Assignment (CMSC-2208)</h1>
-<p class="subtitle lead">Decision Tree Case Studies and Video Reflection</p>
+<h1 class="title">Week 7 Guide</h1>
+<p class="subtitle lead">Chapter 2 — Uncertainty Estimates from Classifiers</p>
 </div>
 
 
@@ -495,7 +517,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 11, 2026</p>
+      <p class="date-modified">February 17, 2026</p>
     </div>
   </div>
     
@@ -506,284 +528,186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Submission location:</strong> <strong>All items are submitted in D2L</strong> (Week 6 dropbox).</p>
-<section id="part-1-case-study-1-predicting-employee-turnover-with-decision-trees" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-case-study-1-predicting-employee-turnover-with-decision-trees">Part 1: Case Study 1 — Predicting Employee Turnover with Decision Trees</h3>
-<section id="background" class="level4">
-<h4 class="anchored" data-anchor-id="background">Background</h4>
-<p>A company wants to predict which employees are likely to leave so they can intervene early with retention efforts. They collected data from 500 employees. For each employee, they recorded four features:</p>
+<p>This week completes Chapter 2 by introducing <strong>uncertainty estimates</strong>, methods that reveal how confident a classifier is in each individual prediction. Every classifier you’ve used so far has been accessed through the same two methods: <code>.predict()</code> returns a class label, and <code>.score()</code> returns a single accuracy number. Both are useful, but they hide something important: the model may be highly confident about some predictions and barely decided on others.</p>
+<p>Consider two students who both receive a “fail” prediction. One might have a 95% probability of failing, while the other has a 52% probability. The label is the same, but these are very different situations. Uncertainty estimates let you see this difference, turning every prediction from a flat label into a measure of how much you should trust it.</p>
+<p>The Week 7 demo walks you through two scikit-learn methods for extracting uncertainty: <strong><code>predict_proba</code></strong> (which returns probabilities) and <strong><code>decision_function</code></strong> (which returns raw confidence scores). You’ll apply both to the familiar student performance dataset using LogisticRegression, compare their outputs, and see how prediction confidence connects to actual accuracy.</p>
+<p><strong>Week 7 Demo:</strong></p>
 <ul>
-<li><strong>satisfaction_score:</strong> employee satisfaction rating (1–10)</li>
-<li><strong>monthly_hours:</strong> average monthly hours worked</li>
-<li><strong>last_evaluation:</strong> most recent performance evaluation score (0–100)</li>
-<li><strong>years_at_company:</strong> tenure in years</li>
+<li>Here is the link to the <strong><a href="../../assignments/week-07/week-7-demo.html">Week 7 demo</a></strong>.</li>
+<li><a href="week-7-demo.ipynb" download="week-7-demo.ipynb"> Download Jupyter Notebook </a></li>
 </ul>
-<p>The target variable is <strong>turnover</strong>, a binary label: “stay” or “leave.”</p>
-<p>A data scientist split the data into 375 training employees and 125 test employees, then trained DecisionTreeClassifier models with different max_depth values.</p>
-</section>
-<section id="model-results" class="level4">
-<h4 class="anchored" data-anchor-id="model-results">Model Results</h4>
-<p><strong>Four models were trained with different max_depth values:</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>max_depth</th>
-<th>Training Accuracy</th>
-<th>Test Accuracy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Model 1</td>
-<td>1</td>
-<td>0.72</td>
-<td>0.70</td>
-</tr>
-<tr class="even">
-<td>Model 2</td>
-<td>3</td>
-<td>0.85</td>
-<td>0.82</td>
-</tr>
-<tr class="odd">
-<td>Model 3</td>
-<td>5</td>
-<td>0.93</td>
-<td>0.80</td>
-</tr>
-<tr class="even">
-<td>Model 4</td>
-<td>None (unlimited)</td>
-<td>1.00</td>
-<td>0.74</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Feature importance from Model 2 (max_depth=3):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Importance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>satisfaction_score</td>
-<td>0.45</td>
-</tr>
-<tr class="even">
-<td>monthly_hours</td>
-<td>0.28</td>
-</tr>
-<tr class="odd">
-<td>last_evaluation</td>
-<td>0.18</td>
-</tr>
-<tr class="even">
-<td>years_at_company</td>
-<td>0.09</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="case-study-1-questions" class="level4">
-<h4 class="anchored" data-anchor-id="case-study-1-questions">Case Study 1 Questions</h4>
-<p>As you prepare for your video reflection, consider the following:</p>
-<ol type="1">
-<li>This is a classification task. How can you tell from the problem description?</li>
-<li>Compare all four models. Which model is overfitting? Which is underfitting? How can you tell from the training and test accuracy scores?</li>
-<li>Which model would you recommend deploying? Justify your choice using the training and test accuracy scores.</li>
-<li>Looking at Model 2’s feature importance, which feature matters most for predicting employee turnover? Which matters least? What does this suggest about what drives employees to leave?</li>
-<li>How does feature importance differ from the coefficients that linear models learn? What can coefficients tell you that feature importance cannot?</li>
-<li>Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you see in the results.</li>
-</ol>
-</section>
-</section>
-<section id="part-2-case-study-2-comparing-algorithms-on-customer-churn" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-case-study-2-comparing-algorithms-on-customer-churn">Part 2: Case Study 2 — Comparing Algorithms on Customer Churn</h3>
-<section id="background-1" class="level4">
-<h4 class="anchored" data-anchor-id="background-1">Background</h4>
-<p>A telecom company wants to predict which customers are likely to cancel their subscriptions so they can target retention offers. They collected data from 800 customers. For each customer, they recorded four features:</p>
+<section id="chapter-2-concepts-used-this-week-uncertainty-estimates-section" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2-concepts-used-this-week-uncertainty-estimates-section">Chapter 2 concepts used this week (uncertainty estimates section)</h2>
+<section id="what-the-demo-covers-vs.-what-the-textbook-covers" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-demo-covers-vs.-what-the-textbook-covers">What the demo covers vs.&nbsp;what the textbook covers</h3>
+<p>The Week 7 demo shows you how to extract and interpret uncertainty from classifiers you already know, using LogisticRegression on a binary pass/fail problem. The textbook applies the same methods to GradientBoostingClassifier with 2D visualizations, extends to multiclass problems, and introduces the concept of calibration.</p>
+<p><strong>The demo covers:</strong></p>
 <ul>
-<li><strong>monthly_charges:</strong> monthly bill amount in dollars</li>
-<li><strong>tenure_months:</strong> how long they have been a customer</li>
-<li><strong>support_calls:</strong> number of support calls in the past 6 months</li>
-<li><strong>contract_length:</strong> contract duration in months</li>
+<li><code>predict_proba</code> for probability estimates per class</li>
+<li><code>decision_function</code> for raw confidence scores</li>
+<li>Comparing both methods side by side</li>
+<li>Analyzing prediction accuracy by confidence level</li>
+<li>Visualizing the distribution of correct vs incorrect predictions by confidence</li>
 </ul>
-<p>The target variable is <strong>churn</strong>, a binary label: “stay” or “churn.”</p>
-<p>A data scientist split the data into 600 training customers and 200 test customers, then trained three different algorithms on the same data.</p>
-</section>
-<section id="model-results-1" class="level4">
-<h4 class="anchored" data-anchor-id="model-results-1">Model Results</h4>
-<p><strong>Three algorithms trained on the same data:</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Algorithm</th>
-<th>Key Parameter</th>
-<th>Training Accuracy</th>
-<th>Test Accuracy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>kNN</td>
-<td>k=5</td>
-<td>0.84</td>
-<td>0.75</td>
-</tr>
-<tr class="even">
-<td>Logistic Regression</td>
-<td>C=1.0</td>
-<td>0.78</td>
-<td>0.76</td>
-</tr>
-<tr class="odd">
-<td>Decision Tree</td>
-<td>max_depth=4</td>
-<td>0.88</td>
-<td>0.83</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Logistic Regression coefficients (C=1.0):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Coefficient</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>monthly_charges</td>
-<td>0.52</td>
-</tr>
-<tr class="even">
-<td>tenure_months</td>
-<td>-0.41</td>
-</tr>
-<tr class="odd">
-<td>support_calls</td>
-<td>0.35</td>
-</tr>
-<tr class="even">
-<td>contract_length</td>
-<td>-0.28</td>
-</tr>
-<tr class="odd">
-<td>intercept</td>
-<td>-1.5</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Decision Tree feature importance (max_depth=4):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Importance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>monthly_charges</td>
-<td>0.38</td>
-</tr>
-<tr class="even">
-<td>tenure_months</td>
-<td>0.31</td>
-</tr>
-<tr class="odd">
-<td>support_calls</td>
-<td>0.22</td>
-</tr>
-<tr class="even">
-<td>contract_length</td>
-<td>0.09</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="case-study-2-questions" class="level4">
-<h4 class="anchored" data-anchor-id="case-study-2-questions">Case Study 2 Questions</h4>
-<p>As you prepare for your video reflection, consider the following:</p>
-<ol type="1">
-<li>Compare the three algorithms. Which would you recommend? Justify your choice using the training and test accuracy scores.</li>
-<li>Look at the Logistic Regression coefficient for tenure_months (-0.41) and the Decision Tree feature importance for tenure_months (0.31). What does the coefficient tell you that the importance value does not?</li>
-<li>Why can kNN not tell you anything about which features matter for predictions?</li>
-<li>What practical trade-offs beyond test accuracy might influence which algorithm you choose?</li>
-</ol>
-</section>
-</section>
-<section id="part-3-scenario-c-hospital-readmission-prediction-reference-only" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-scenario-c-hospital-readmission-prediction-reference-only">Part 3: Scenario C — Hospital Readmission Prediction (Reference Only)</h3>
-<section id="background-2" class="level4">
-<h4 class="anchored" data-anchor-id="background-2">Background</h4>
-<p>A hospital wants to predict which patients will be readmitted within 30 days of discharge. They have data from 5,000 patients with 50 features, including numeric vitals (blood pressure, heart rate, lab values), categorical diagnoses (diabetes, heart disease), length of stay, number of prior admissions, and age. Clinical staff need to understand <em>why</em> the model flags a patient so they can plan appropriate follow-up care.</p>
-<p><em>No model results are provided for this scenario. Use it as a reference for the video reflection.</em></p>
-</section>
-</section>
-<section id="part-4-video-reflection" class="level3">
-<h3 class="anchored" data-anchor-id="part-4-video-reflection">Part 4: Video Reflection</h3>
-<p>This video reflection is the primary deliverable for this assignment. You will demonstrate your understanding of decision trees by discussing the case studies above. Focus on explaining concepts clearly and using correct terminology rather than reading from a script.</p>
-<section id="video-submission-instructions" class="level4">
-<h4 class="anchored" data-anchor-id="video-submission-instructions">Video submission instructions</h4>
-<p>Record a video in which you address the four sections below. Organize your video to cover each section in order.</p>
-<p><strong>Requirements</strong></p>
+<p><strong>The textbook covers:</strong></p>
 <ul>
-<li>Clear video and audio quality</li>
-<li>Intro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the Week 6 Decision Trees assignment for CMSC 2208.”</li>
+<li>GradientBoostingClassifier examples with 2D datasets</li>
+<li>How <code>predict_proba</code> and <code>decision_function</code> extend to multiclass problems (three or more classes)</li>
+<li>Visualizing uncertainty as color maps over decision boundaries</li>
+<li>Calibration (whether reported probabilities match actual outcomes)</li>
+<li>The complete Chapter 2 Summary and Outlook, comparing all supervised learning algorithms</li>
 </ul>
+<p>The demo gives you the practical foundation with binary classification; the textbook provides the full picture with additional classifiers, multiclass extensions, and the chapter wrap-up.</p>
 </section>
-<section id="section-a-decision-tree-foundations" class="level4">
-<h4 class="anchored" data-anchor-id="section-a-decision-tree-foundations">Section A: Decision Tree Foundations</h4>
+<section id="predict_proba-probability-estimates-for-each-class" class="level3">
+<h3 class="anchored" data-anchor-id="predict_proba-probability-estimates-for-each-class">predict_proba: probability estimates for each class</h3>
+<p>Most scikit-learn classifiers provide a <strong><code>predict_proba</code></strong> method that returns a probability for each class rather than a single label. For a binary pass/fail problem, each student gets two numbers: the probability the model assigns to “fail” and the probability it assigns to “pass.” These probabilities are always between 0 and 1, and they always sum to 1.0 across the row.</p>
+<p>This is the most intuitive form of uncertainty. Saying “the model thinks there’s an 83% chance this student passes” is immediately meaningful. Saying “the model predicts pass” hides whether that prediction was a strong 99% or a borderline 51%.</p>
+<p><code>predict_proba</code> is available on most classifiers you’ve already used, including <code>LogisticRegression</code>, <code>DecisionTreeClassifier</code>, and <code>KNeighborsClassifier</code>. Not all classifiers support it, however. The textbook mentions <code>LinearSVC</code> as a classifier that only provides <code>decision_function</code>.</p>
+</section>
+<section id="output-shape-and-the-classes_-attribute" class="level3">
+<h3 class="anchored" data-anchor-id="output-shape-and-the-classes_-attribute">Output shape and the classes_ attribute</h3>
+<p>For a test set of 75 students with 2 classes, <code>predict_proba</code> returns a (75, 2) array: one row per student, one column per class. The column order is not alphabetical. It matches the <strong><code>classes_</code></strong> attribute of the trained model. If <code>logreg.classes_</code> is <code>['fail', 'pass']</code>, then column 0 is P(fail) and column 1 is P(pass).</p>
+<p>Checking <code>classes_</code> is important because different models may order classes differently. Always verify which column corresponds to which class rather than assuming.</p>
+</section>
+<section id="how-predict_proba-connects-to-.predict" class="level3">
+<h3 class="anchored" data-anchor-id="how-predict_proba-connects-to-.predict">How predict_proba connects to .predict()</h3>
+<p>Behind the scenes, <code>.predict()</code> is actually using <code>predict_proba</code>. It gets the probabilities for each class, finds whichever class has the higher probability, and returns that class name. The threshold is 0.5: if P(pass) &gt;= 0.5, the prediction is “pass.”</p>
+<p>This means <code>.predict()</code> is just the final step of a probability calculation. <code>predict_proba</code> lets you see the full picture before that final step. In the demo, you’ll verify this by comparing the two outputs side by side and confirming they always agree.</p>
+</section>
+<section id="decision_function-raw-confidence-scores" class="level3">
+<h3 class="anchored" data-anchor-id="decision_function-raw-confidence-scores">decision_function: raw confidence scores</h3>
+<p>Scikit-learn provides a second method for measuring confidence called <strong><code>decision_function</code></strong>. Instead of returning probabilities for each class, it returns a single raw score per sample. This score is not bounded between 0 and 1. It can be any number, positive or negative.</p>
+<p>The score works like this: positive values mean the model favors one class, negative values mean it favors the other, values near zero mean the model is uncertain, and large absolute values mean the model is confident. The threshold that separates the two predicted classes is 0, not 0.5.</p>
+<p>The scale of <code>decision_function</code> is arbitrary and depends on the specific model and data. A score of 7.2 means the model is very confident, but you cannot say “that means 99% confident” without converting it to a probability. You also cannot compare scores across different models or datasets.</p>
+</section>
+<section id="positive-class-negative-class-and-the-sign-of-the-score" class="level3">
+<h3 class="anchored" data-anchor-id="positive-class-negative-class-and-the-sign-of-the-score">Positive class, negative class, and the sign of the score</h3>
+<p>Scikit-learn uses the terms <strong>positive class</strong> and <strong>negative class</strong> for the two sides of <code>decision_function</code>. The positive class is always the second entry in <code>classes_</code>, and the negative class is the first. In our model, <code>logreg.classes_</code> is <code>['fail', 'pass']</code>, so “fail” is the negative class and “pass” is the positive class.</p>
+<p>This explains why positive <code>decision_function</code> values point toward “pass” and negative values point toward “fail.” The connection to <code>.predict()</code> is the sign: if the score is positive, <code>.predict()</code> returns the positive class; if negative, it returns the negative class.</p>
+<p>For binary classification, <code>decision_function</code> returns only one value per sample, not two. This is because the two <code>predict_proba</code> columns always sum to 1.0, making one redundant. A single number encodes everything: the sign tells you which class, and the magnitude tells you how confident. The textbook shows that with three or more classes, <code>decision_function</code> returns one score per class, similar to <code>predict_proba</code>.</p>
+</section>
+<section id="comparing-predict_proba-and-decision_function" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-predict_proba-and-decision_function">Comparing predict_proba and decision_function</h3>
+<p>Both methods express the same underlying confidence, but in different formats. <code>predict_proba</code> gives bounded values (0 to 1) with a direct interpretation as probabilities. <code>decision_function</code> gives unbounded values on an arbitrary scale. Both always agree on the predicted class.</p>
+<p>When both are available, <code>predict_proba</code> is generally the better choice because probabilities have a natural meaning. “The model thinks there’s an 83% chance this student passes” is more useful than “the decision function score is 1.837.” However, <code>decision_function</code> is the more universally available method since some classifiers (like <code>LinearSVC</code>) only support it.</p>
+</section>
+<section id="why-confidence-matters-not-all-predictions-are-equally-trustworthy" class="level3">
+<h3 class="anchored" data-anchor-id="why-confidence-matters-not-all-predictions-are-equally-trustworthy">Why confidence matters: not all predictions are equally trustworthy</h3>
+<p>The demo groups students by confidence level and checks accuracy within each group. The pattern is consistent: high-confidence predictions are almost always correct, while uncertain predictions (near 50%) are barely better than guessing.</p>
+<p>This matters for practical applications. If you were building a system to flag at-risk students, you would want to know which fail predictions are strong (95% confident) versus which are borderline (52% confident). You could set a confidence threshold, only acting on predictions above a certain level, and sending uncertain cases for human review instead of automatic action.</p>
+<p>Uncertainty estimates turn a flat list of predictions into a ranked list where you can decide how much to trust each one.</p>
+<p>The confidence tier analysis in the demo introduces a NumPy technique called <strong>boolean indexing</strong> that you may not have seen before. Boolean indexing lets you use a True/False array to select specific elements from another array. For example, you can compare every student’s confidence to a threshold like 0.9, which produces an array of True and False values, then use that array to pull out only the students who meet the condition. The demo builds on this technique across several operations: creating boolean arrays from comparisons, using them to filter data, combining multiple conditions with <code>&amp;</code>, flipping True to False with <code>~</code>, and using <code>np.sum</code> and <code>np.mean</code> on boolean arrays to count and calculate proportions. The demo includes a full walkthrough of how each operation works before the code that uses it, so read through that explanation carefully if the technique is new to you.</p>
+</section>
+<section id="calibration-does-reported-confidence-match-actual-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="calibration-does-reported-confidence-match-actual-accuracy">Calibration: does reported confidence match actual accuracy?</h3>
+<p>A model is <strong>calibrated</strong> if its reported confidence matches how often it is actually correct. If the model says “90% confidence” on a set of predictions, those predictions should be correct about 90% of the time. If the model says “70% confidence,” those predictions should be correct about 70% of the time.</p>
+<p>Not all models are well-calibrated. Some are <strong>overconfident</strong>, reporting high probabilities but being wrong more often than expected. Others are <strong>underconfident</strong>, being correct more often than their probabilities suggest. The textbook discusses calibration in more detail and shows how different classifiers vary in how well-calibrated they are.</p>
+</section>
+<section id="gradientboostingclassifier-examples" class="level3">
+<h3 class="anchored" data-anchor-id="gradientboostingclassifier-examples">GradientBoostingClassifier examples</h3>
+<p>The textbook demonstrates both <code>predict_proba</code> and <code>decision_function</code> using <strong>GradientBoostingClassifier</strong> rather than LogisticRegression. GradientBoostingClassifier is an ensemble method built from many decision trees (introduced in the Week 5 reading). The same methods work the same way regardless of which classifier you use, which is one of the strengths of scikit-learn’s consistent API.</p>
+</section>
+<section id="multiclass-uncertainty-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="multiclass-uncertainty-estimates">Multiclass uncertainty estimates</h3>
+<p>The demo uses binary classification (two classes). The textbook extends to multiclass problems with three or more classes. In the multiclass case, <code>predict_proba</code> returns one column per class (e.g., a (50, 3) array for 50 samples and 3 classes), and <code>decision_function</code> returns one score per class as well. You recover the prediction by finding the class with the highest probability or score (using <code>np.argmax</code>). The <code>classes_</code> attribute maps column indices to actual class names.</p>
+</section>
+<section id="visualizing-uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-uncertainty">Visualizing uncertainty</h3>
+<p>The textbook includes 2D visualizations that show decision boundaries alongside uncertainty. Using color maps, you can see not just which class the model predicts in each region, but how confident it is. Areas near the decision boundary show low confidence (lighter colors), while areas far from the boundary show high confidence (darker colors). These visualizations are possible because the textbook uses 2D datasets where the entire feature space can be plotted.</p>
+</section>
+<section id="chapter-2-summary-and-outlook" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-2-summary-and-outlook">Chapter 2 Summary and Outlook</h3>
+<p>The textbook closes Chapter 2 with a summary comparing all supervised learning algorithms covered in the chapter. This includes guidance on when to use each model type: nearest neighbors, linear models, decision trees, random forests, gradient boosting, SVMs, and neural networks. This summary is a useful reference for understanding the tradeoffs between different approaches.</p>
+</section>
+</section>
+<section id="looking-back-what-chapter-2-accomplished" class="level2">
+<h2 class="anchored" data-anchor-id="looking-back-what-chapter-2-accomplished">Looking back: what Chapter 2 accomplished</h2>
+<p>Week 7 is the final week of Chapter 2, and it is worth stepping back to see how the pieces fit together. Over the past six weeks, you have built a complete supervised learning toolkit, starting from the basics and adding layers of capability at each step.</p>
+<section id="three-algorithm-families" class="level3">
+<h3 class="anchored" data-anchor-id="three-algorithm-families">Three algorithm families</h3>
+<p>You worked with three fundamentally different approaches to supervised learning, each with its own way of making predictions:</p>
+<p><strong>k-Nearest Neighbors (Week 2)</strong> stores all training data and predicts by searching for the most similar examples. It is intuitive and requires no training in the traditional sense, but it is slow at prediction time and every feature contributes equally unless you scale them.</p>
+<p><strong>Linear models (Weeks 3-4)</strong> learn a weighted formula during training that applies globally to every prediction. Ridge Regression and Logistic Regression let you interpret coefficients to understand which features drive predictions and in which direction. Regularization parameters (alpha for Ridge, C for Logistic Regression) control how complex the formula can be.</p>
+<p><strong>Decision trees (Weeks 5-6)</strong> learn a hierarchy of if-else questions, creating different rules for different regions of the feature space. They handle feature interactions automatically, don’t require scaling, and provide feature importance scores. Ensemble methods like Random Forests and Gradient Boosting combine many trees for better performance.</p>
+<p>Each family has different strengths and weaknesses, and understanding all three gives you the ability to choose the right approach for a given problem.</p>
+</section>
+<section id="the-shared-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-shared-workflow">The shared workflow</h3>
+<p>Despite the differences between algorithms, the scikit-learn workflow stayed the same every time:</p>
 <ol type="1">
-<li>Explain how a decision tree makes predictions. How is this fundamentally different from kNN and from linear models?</li>
-<li>What does max_depth control, and why is it important?</li>
+<li>Prepare features (X) and target (y)</li>
+<li>Split into training and test sets with <code>train_test_split</code></li>
+<li>Create a model object with parameters</li>
+<li>Train with <code>.fit(X_train, y_train)</code></li>
+<li>Evaluate with <code>.score(X_test, y_test)</code></li>
+<li>Predict with <code>.predict(X_test)</code></li>
 </ol>
+<p>You have now used this workflow with <code>KNeighborsClassifier</code>, <code>LogisticRegression</code>, <code>DecisionTreeClassifier</code>, and seen it applied to <code>GradientBoostingClassifier</code> in the textbook. The API pattern is consistent even when the internal mechanics are completely different. This is by design: scikit-learn’s common interface means that switching between algorithms requires changing only one or two lines of code.</p>
 </section>
-<section id="section-b-case-study-1-discussion-decision-tree-depth" class="level4">
-<h4 class="anchored" data-anchor-id="section-b-case-study-1-discussion-decision-tree-depth">Section B: Case Study 1 Discussion (Decision Tree Depth)</h4>
-<ol type="1">
-<li>Which of the four Decision Tree models would you recommend? Justify your choice using the training and test accuracy scores.</li>
-<li>Looking at Model 2’s feature importance, explain what it tells you about what drives employee turnover.</li>
-<li>Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you observed.</li>
-</ol>
-</section>
-<section id="section-c-case-study-2-discussion-algorithm-comparison" class="level4">
-<h4 class="anchored" data-anchor-id="section-c-case-study-2-discussion-algorithm-comparison">Section C: Case Study 2 Discussion (Algorithm Comparison)</h4>
-<ol type="1">
-<li>Which algorithm would you recommend for predicting customer churn? Justify your choice using the results.</li>
-<li>Compare the Logistic Regression coefficients to the Decision Tree feature importance. What can you learn from coefficients that you cannot learn from importance? Use tenure_months as a specific example.</li>
-<li>Why does kNN not provide any information about which features matter?</li>
-</ol>
-</section>
-<section id="section-d-when-to-use-decision-trees" class="level4">
-<h4 class="anchored" data-anchor-id="section-d-when-to-use-decision-trees">Section D: When to Use Decision Trees</h4>
-<ol type="1">
-<li>Consider Scenario C (hospital readmission with 50 features and mixed feature types). Would a decision tree be a good starting point for this problem? Why or why not?</li>
-<li>What advantages would a decision tree have over kNN and linear models for this specific problem?</li>
-</ol>
-</section>
-</section>
-<section id="d2l-submission-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="d2l-submission-checklist">D2L Submission Checklist</h3>
-<p>Submit the following items to the Week 6 D2L dropbox.</p>
-<section id="video-submission-link-only" class="level4">
-<h4 class="anchored" data-anchor-id="video-submission-link-only">Video submission (link only)</h4>
+<section id="complexity-and-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="complexity-and-overfitting">Complexity and overfitting</h3>
+<p>Every algorithm had its own version of the complexity tradeoff, and every week reinforced the same pattern: too simple leads to underfitting, too complex leads to overfitting, and the goal is to find the balance that generalizes best to new data.</p>
 <ul>
-<li>Video filename: <code>lastname_Week06DecisionTrees</code></li>
-<li>Upload your video to Kaltura</li>
-<li>Do not embed the video in the Dropbox submission</li>
-<li>Paste the share link into the D2L text submission box</li>
-<li>Make sure the link text includes <code>lastname_Week06DecisionTrees</code> in the link name</li>
+<li><strong>kNN:</strong> small k = complex (follow local noise), large k = simple (smooth over details)</li>
+<li><strong>Ridge/Logistic Regression:</strong> small alpha or large C = complex (large coefficients), large alpha or small C = simple (shrink coefficients)</li>
+<li><strong>Decision trees:</strong> large max_depth = complex (memorize training data), small max_depth = simple (limited questions)</li>
 </ul>
+<p>The parameter names and mechanisms are different, but the underlying idea is the same. Training accuracy alone is misleading because a sufficiently complex model can memorize the training data. Test accuracy tells you whether the model has actually learned patterns that generalize.</p>
+</section>
+<section id="from-predictions-to-confidence" class="level3">
+<h3 class="anchored" data-anchor-id="from-predictions-to-confidence">From predictions to confidence</h3>
+<p>Chapter 2 built your capabilities in layers. First you learned to make predictions (<code>.predict()</code>), then to evaluate them (<code>.score()</code> and comparing training vs test accuracy), and this week you learned to assess how much to trust each individual prediction (<code>predict_proba</code> and <code>decision_function</code>). This final step completes the picture: you can now train a model, evaluate its overall performance, and understand which specific predictions are reliable and which are uncertain.</p>
+</section>
+<section id="what-you-can-now-do" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-can-now-do">What you can now do</h3>
+<p>By the end of Chapter 2, you can:</p>
+<ul>
+<li>Train classifiers and regressors using scikit-learn’s fit/predict/score workflow</li>
+<li>Evaluate models using train/test split and compare training vs test accuracy</li>
+<li>Tune complexity parameters to balance underfitting and overfitting</li>
+<li>Interpret model behavior through coefficients (linear models) and feature importance (trees)</li>
+<li>Assess prediction confidence using <code>predict_proba</code> and <code>decision_function</code></li>
+<li>Identify which predictions are trustworthy and which are uncertain</li>
+</ul>
+<p>This is the complete supervised learning toolkit. Every concept from Chapter 2 applies whenever you have labeled data and want to predict outcomes for new examples.</p>
+</section>
+</section>
+<section id="looking-ahead-chapter-3" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead-chapter-3">Looking ahead: Chapter 3</h2>
+<p>Chapter 3 shifts to <strong>unsupervised learning and preprocessing</strong>, which represents a fundamental change in what you’re trying to accomplish.</p>
+<p>In Chapter 2, every dataset had labels: pass/fail, a numeric score, a class to predict. The question was always “given these features, what is the outcome?” and you could measure success with accuracy or R².</p>
+<p>Chapter 3 removes the labels. <strong>Unsupervised learning</strong> works with data that has no target column. Instead of predicting outcomes, the goal is to find structure in the data itself. This includes techniques like <strong>clustering</strong> (grouping similar data points together without being told what the groups are) and <strong>dimensionality reduction</strong> (compressing many features into fewer features while preserving important patterns).</p>
+<p>Chapter 3 also introduces <strong>preprocessing and scaling</strong>, techniques for transforming your input data before feeding it to a model. You saw hints of this in prior weeks: kNN and linear models work better with scaled features, while decision trees don’t need scaling. Chapter 3 formalizes these ideas and shows you when and how to apply different transformations.</p>
+<p>The supervised learning skills from Chapter 2 don’t go away. Preprocessing directly improves the supervised models you’ve already learned, and the evaluation mindset (training vs test, overfitting vs underfitting) still applies. Chapter 3 adds new tools to your toolkit rather than replacing what you’ve built.</p>
+</section>
+<section id="reading-expectations-for-week-7" class="level2">
+<h2 class="anchored" data-anchor-id="reading-expectations-for-week-7">Reading expectations for Week 7</h2>
+<p>As you read the Uncertainty Estimates section of Chapter 2 (pages 119-128) and work through the demo, check whether you can explain the following in your own words:</p>
+<ol type="1">
+<li>What does <strong><code>predict_proba</code></strong> return, and what do the values represent?</li>
+<li>How do you determine which column of <code>predict_proba</code> output corresponds to which class?</li>
+<li>What is the relationship between <code>predict_proba</code> and <code>.predict()</code>?</li>
+<li>What does <strong><code>decision_function</code></strong> return, and how is its output different from <code>predict_proba</code>?</li>
+<li>What do the <strong>positive class</strong> and <strong>negative class</strong> mean in the context of <code>decision_function</code>, and how does <code>classes_</code> determine which is which?</li>
+<li>Why does <code>decision_function</code> return only one value per sample in binary classification?</li>
+<li>When would you use <code>predict_proba</code> over <code>decision_function</code>, and when might <code>decision_function</code> be your only option?</li>
+<li>Why are high-confidence predictions typically more accurate than low-confidence predictions?</li>
+<li>What is <strong>calibration</strong>, and what does it mean for a model to be overconfident or underconfident?</li>
+<li>How do <code>predict_proba</code> and <code>decision_function</code> extend to <strong>multiclass</strong> problems with three or more classes?</li>
+<li>Looking back at Chapter 2, what are the three algorithm families you learned, and how does each one make predictions?</li>
+<li>What changes in <strong>Chapter 3</strong> when you shift from supervised learning to unsupervised learning?</li>
+</ol>
+</section>
+<section id="week-7-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-7-tasks">Week 7 tasks</h2>
+<ol type="1">
+<li>Read <strong>Chapter 2, Uncertainty Estimates section</strong> (pages 119-128, through the Chapter 2 Summary and Outlook).</li>
+<li>Work through the <strong><a href="../../assignments/week-07/week-7-demo.html">Week 7 demo</a></strong> in your Jupyter environment.</li>
+<li>Complete the <strong>Week 7 D2L quiz</strong> (Uncertainty Estimates concepts).</li>
+</ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

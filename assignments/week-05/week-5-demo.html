@@ -393,14 +393,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 (Starts - 09 FEB)</span></a>
+  <a href="../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts - 16 FEB)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 (Starts - 16 FEB)</span></a>
+  <a href="../../weekly-overview/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts - 23 FEB)</span></a>
   </div>
 </li>
       </ul>
@@ -416,14 +416,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 (Starts - 09 FEB)</span></a>
+  <a href="../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts - 16 FEB)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 (Starts - 16 FEB)</span></a>
+  <a href="../../assignments/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts - 23 FEB)</span></a>
   </div>
 </li>
       </ul>
@@ -609,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="part-1-creating-the-dataset">Part 1: Creating the Dataset</h2>
 <p>This section continues using the student performance dataset from previous weeks. Using the same dataset helps focus on understanding the new algorithm without having to learn a new domain.</p>
 <p>The dataset contains 300 students, each with four features: attendance percentage, homework completion rate, quiz average, and exam average. The target predicts whether each student passes or fails the course.</p>
-<div id="7466e566" class="cell" data-execution_count="1">
+<div id="1b11041e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -784,7 +784,7 @@ Name: count, dtype: int64
 <p>This section builds a decision tree classifier following the same workflow from previous weeks: 1. Split data into training and test sets 2. Create the model 3. Train it on training data 4. Evaluate it on both training and test data</p>
 <section id="step-1-prepare-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-prepare-the-data">Step 1: Prepare the data</h3>
-<div id="2e09b260" class="cell" data-execution_count="2">
+<div id="a16709cf" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select features (X) and target (y)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[<span class="st">"attendance"</span>, <span class="st">"homework_rate"</span>, <span class="st">"quiz_avg"</span>, <span class="st">"exam_avg"</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"pass_fail"</span>]</span>
@@ -807,7 +807,7 @@ Test set size: 75 students</code></pre>
 </section>
 <section id="step-2-create-and-train-the-decision-tree" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-create-and-train-the-decision-tree">Step 2: Create and train the decision tree</h3>
-<div id="af8a0a54" class="cell" data-execution_count="3">
+<div id="2cd17e4a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a decision tree with default settings</span></span>
@@ -838,7 +838,7 @@ Number of leaves: 39</code></pre>
 </section>
 <section id="step-3-evaluate-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-evaluate-the-model">Step 3: Evaluate the model</h3>
-<div id="0d098e9f" class="cell" data-execution_count="4">
+<div id="67e9f7fe" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate accuracy on training data</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> tree.score(X_train, y_train)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
@@ -860,7 +860,7 @@ Test accuracy: 0.813</code></pre>
 <section id="step-4-making-predictions" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-making-predictions">Step 4: Making predictions</h3>
 <p>This section examines how the tree makes predictions for a few test students:</p>
-<div id="1aa927a4" class="cell" data-execution_count="5">
+<div id="0066f3f5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at first 5 test students</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sample_students <span class="op">=</span> X_test.head(<span class="dv">5</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sample_predictions <span class="op">=</span> tree.predict(sample_students)</span>
@@ -911,7 +911,7 @@ Student 4: ✓</code></pre>
 <p><strong>Deeper trees</strong> = more questions = more detailed decisions = more complex model</p>
 <p><strong>Shallower trees</strong> = fewer questions = simpler decisions = simpler model</p>
 <p>This section trains trees with different depth limits and compares them:</p>
-<div id="e52cd661" class="cell" data-execution_count="6">
+<div id="a2b53660" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train trees with different max_depth values</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>depths <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="va">None</span>]  <span class="co"># None means no limit</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
@@ -963,7 +963,7 @@ unlimited          39           1.000000       0.813333</code></pre>
 <p>This is similar to the k parameter in kNN and the alpha/C parameters in linear models - they all control the balance between simplicity and complexity.</p>
 <section id="visualizing-the-comparison" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-comparison">Visualizing the comparison</h3>
-<div id="1528e529" class="cell" data-execution_count="7">
+<div id="37b50751" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualization comparing train vs test accuracy</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1006,7 +1006,7 @@ unlimited          39           1.000000       0.813333</code></pre>
 <p>One of the most useful aspects of decision trees is <strong>feature importance</strong> - they indicate which features matter most for making predictions.</p>
 <p>Feature importance is a number between 0 and 1 for each feature: - <strong>0</strong> means the feature was never used in the tree - <strong>1</strong> would mean this feature alone perfectly separates the classes - <strong>Higher values</strong> mean the feature is more important - The importances always <strong>sum to 1.0</strong></p>
 <p>This section extracts and visualizes feature importance from one of the trees:</p>
-<div id="20f4b030" class="cell" data-execution_count="8">
+<div id="317d0c1f" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a tree with reasonable depth for interpretation</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tree.fit(X_train, y_train)</span>
@@ -1048,7 +1048,7 @@ Total importance: 1.000 (should always be 1.0)</code></pre>
 <p>Features used higher in the tree (for the first questions) and features that create good separations get higher importance scores.</p>
 <section id="visualizing-feature-importance" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-feature-importance">Visualizing feature importance</h3>
-<div id="28af5a24" class="cell" data-execution_count="9">
+<div id="68201d67" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a horizontal bar plot</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>

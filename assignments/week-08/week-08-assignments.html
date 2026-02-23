@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 6 Assignment (CMSC-2208) – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 8 Assignment (CMSC-2208) – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 6 Assignment (CMSC-2208)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 8 Assignment (CMSC-2208)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -468,10 +468,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-case-study-1-predicting-employee-turnover-with-decision-trees" id="toc-part-1-case-study-1-predicting-employee-turnover-with-decision-trees" class="nav-link active" data-scroll-target="#part-1-case-study-1-predicting-employee-turnover-with-decision-trees">Part 1: Case Study 1 — Predicting Employee Turnover with Decision Trees</a></li>
-  <li><a href="#part-2-case-study-2-comparing-algorithms-on-customer-churn" id="toc-part-2-case-study-2-comparing-algorithms-on-customer-churn" class="nav-link" data-scroll-target="#part-2-case-study-2-comparing-algorithms-on-customer-churn">Part 2: Case Study 2 — Comparing Algorithms on Customer Churn</a></li>
-  <li><a href="#part-3-scenario-c-hospital-readmission-prediction-reference-only" id="toc-part-3-scenario-c-hospital-readmission-prediction-reference-only" class="nav-link" data-scroll-target="#part-3-scenario-c-hospital-readmission-prediction-reference-only">Part 3: Scenario C — Hospital Readmission Prediction (Reference Only)</a></li>
-  <li><a href="#part-4-video-reflection" id="toc-part-4-video-reflection" class="nav-link" data-scroll-target="#part-4-video-reflection">Part 4: Video Reflection</a></li>
+  <li><a href="#the-scenario" id="toc-the-scenario" class="nav-link active" data-scroll-target="#the-scenario">The Scenario</a></li>
+  <li><a href="#understanding-the-cost-structure" id="toc-understanding-the-cost-structure" class="nav-link" data-scroll-target="#understanding-the-cost-structure">Understanding the Cost Structure</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link" data-scroll-target="#your-task">Your Task</a></li>
   <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L Submission Checklist</a></li>
   </ul>
 </nav>
@@ -482,8 +482,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 6 Assignment (CMSC-2208)</h1>
-<p class="subtitle lead">Decision Tree Case Studies and Video Reflection</p>
+<h1 class="title">Week 8 Assignment (CMSC-2208)</h1>
+<p class="subtitle lead">Chapter 2 Capstone, Predictive Maintenance Consultation</p>
 </div>
 
 
@@ -495,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 11, 2026</p>
+      <p class="date-modified">February 20, 2026</p>
     </div>
   </div>
     
@@ -506,280 +506,183 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Submission location:</strong> <strong>All items are submitted in D2L</strong> (Week 6 dropbox).</p>
-<section id="part-1-case-study-1-predicting-employee-turnover-with-decision-trees" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-case-study-1-predicting-employee-turnover-with-decision-trees">Part 1: Case Study 1 — Predicting Employee Turnover with Decision Trees</h3>
-<section id="background" class="level4">
-<h4 class="anchored" data-anchor-id="background">Background</h4>
-<p>A company wants to predict which employees are likely to leave so they can intervene early with retention efforts. They collected data from 500 employees. For each employee, they recorded four features:</p>
-<ul>
-<li><strong>satisfaction_score:</strong> employee satisfaction rating (1–10)</li>
-<li><strong>monthly_hours:</strong> average monthly hours worked</li>
-<li><strong>last_evaluation:</strong> most recent performance evaluation score (0–100)</li>
-<li><strong>years_at_company:</strong> tenure in years</li>
-</ul>
-<p>The target variable is <strong>turnover</strong>, a binary label: “stay” or “leave.”</p>
-<p>A data scientist split the data into 375 training employees and 125 test employees, then trained DecisionTreeClassifier models with different max_depth values.</p>
+<p><strong>Submission location:</strong> <strong>All items are submitted in D2L</strong> (Week 8 dropbox).</p>
+<section id="the-scenario" class="level3">
+<h3 class="anchored" data-anchor-id="the-scenario">The Scenario</h3>
+<p>You are a data science consultant. A manufacturing plant manager named Rivera has hired you to build a predictive maintenance system. Here is what Rivera tells you in your first meeting:</p>
+<blockquote class="blockquote">
+<p>“We run 200 machines across three production lines. Right now, maintenance is reactive. We fix machines after they break. Emergency repairs cost us $40,000 or more per incident when you factor in the repair itself, unplanned downtime, and the production we lose. I want to get ahead of this. I want a system that looks at our data and tells us which machines are likely to fail within the next 30 days so we can schedule maintenance proactively. But pulling a machine offline for preventive maintenance is not free either. That costs us about $5,000 per day in lost production. So I do not want to pull machines unnecessarily. And one more thing: I need to understand what the model is telling me. If your system flags a machine, I need to know why, and I need to know how sure you are. I am not a data scientist. I need this explained in terms I can act on.”</p>
+</blockquote>
 </section>
-<section id="model-results" class="level4">
-<h4 class="anchored" data-anchor-id="model-results">Model Results</h4>
-<p><strong>Four models were trained with different max_depth values:</strong></p>
+<section id="understanding-the-cost-structure" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-the-cost-structure">Understanding the Cost Structure</h3>
+<p>Rivera’s problem has two types of errors, and they are not equally expensive:</p>
+<ul>
+<li><strong>Missing a real failure</strong> (the model says “no” but the machine fails): This costs $40,000 or more in emergency repairs and unplanned downtime.</li>
+<li><strong>Unnecessary maintenance</strong> (the model says “yes” but the machine would have been fine): This costs about $5,000 per day in lost production while the machine is offline.</li>
+</ul>
+<p>Missing a failure is roughly <strong>8 times more expensive</strong> than pulling a machine unnecessarily. This kind of imbalance is called <strong>cost asymmetry</strong>, and it affects how you use a model’s predictions. When one type of mistake is far more costly than the other, you do not need to be highly confident before taking the safer action. In Rivera’s case, the safer action is pulling a machine for maintenance. Even if the model is only moderately sure a machine will fail, the cost of ignoring that warning and being wrong is much worse than the cost of acting on it and being wrong.</p>
+<p>This does not mean you pull every machine at the slightest hint of trouble. It means you weigh the model’s confidence against the consequences. A machine with a 90% chance of failure is an obvious pull. A machine with a 55% chance is a harder call, but the math still favors caution because the downside of doing nothing is so much larger.</p>
+<p>This reasoning will come up throughout your video. Keep Rivera’s cost structure in mind as you work through each section.</p>
+</section>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The Data</h3>
+<p>Your team has assembled a historical dataset of 1,200 machine records from the past three years. Each record represents a machine at a point in time, with a known outcome (whether it actually failed within 30 days).</p>
+<p><strong>Features recorded for each machine:</strong></p>
+<ul>
+<li><strong>machine_age:</strong> how old the machine is, in years</li>
+<li><strong>vibration_level:</strong> sensor reading measuring vibration intensity (units vary by machine type)</li>
+<li><strong>operating_temp:</strong> average operating temperature in Fahrenheit</li>
+<li><strong>hours_since_maintenance:</strong> hours of operation since last scheduled maintenance</li>
+<li><strong>prior_breakdowns:</strong> number of previous breakdowns on record</li>
+<li><strong>machine_type:</strong> type of machine (press, lathe, or CNC mill)</li>
+</ul>
+<p><strong>Target variable:</strong> <code>failed_within_30_days</code>, a binary label: “yes” or “no”</p>
+<p>Here is a sample of the data:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 18%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Model</th>
-<th>max_depth</th>
-<th>Training Accuracy</th>
-<th>Test Accuracy</th>
+<th>machine_age</th>
+<th>vibration_level</th>
+<th>operating_temp</th>
+<th>hours_since_maintenance</th>
+<th>prior_breakdowns</th>
+<th>machine_type</th>
+<th>failed_within_30_days</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Model 1</td>
-<td>1</td>
-<td>0.72</td>
-<td>0.70</td>
-</tr>
-<tr class="even">
-<td>Model 2</td>
-<td>3</td>
-<td>0.85</td>
-<td>0.82</td>
-</tr>
-<tr class="odd">
-<td>Model 3</td>
+<td>12</td>
+<td>4.8</td>
+<td>187</td>
+<td>3200</td>
 <td>5</td>
-<td>0.93</td>
-<td>0.80</td>
+<td>press</td>
+<td>yes</td>
 </tr>
 <tr class="even">
-<td>Model 4</td>
-<td>None (unlimited)</td>
-<td>1.00</td>
-<td>0.74</td>
+<td>3</td>
+<td>1.2</td>
+<td>162</td>
+<td>800</td>
+<td>0</td>
+<td>CNC mill</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>3.1</td>
+<td>201</td>
+<td>2100</td>
+<td>2</td>
+<td>lathe</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>6.3</td>
+<td>195</td>
+<td>4800</td>
+<td>7</td>
+<td>press</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>2.4</td>
+<td>174</td>
+<td>1500</td>
+<td>1</td>
+<td>CNC mill</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>5.1</td>
+<td>210</td>
+<td>3900</td>
+<td>4</td>
+<td>lathe</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Feature importance from Model 2 (max_depth=3):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Importance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>satisfaction_score</td>
-<td>0.45</td>
-</tr>
-<tr class="even">
-<td>monthly_hours</td>
-<td>0.28</td>
-</tr>
-<tr class="odd">
-<td>last_evaluation</td>
-<td>0.18</td>
-</tr>
-<tr class="even">
-<td>years_at_company</td>
-<td>0.09</td>
-</tr>
-</tbody>
-</table>
+<p>Notice that the features are on very different scales (age in single digits, temperature in the hundreds, hours in the thousands). The data includes both numeric and categorical features, and some factors may interact. For example, an old machine with high vibration might be at higher risk than either factor alone would suggest.</p>
 </section>
-<section id="case-study-1-questions" class="level4">
-<h4 class="anchored" data-anchor-id="case-study-1-questions">Case Study 1 Questions</h4>
-<p>As you prepare for your video reflection, consider the following:</p>
-<ol type="1">
-<li>This is a classification task. How can you tell from the problem description?</li>
-<li>Compare all four models. Which model is overfitting? Which is underfitting? How can you tell from the training and test accuracy scores?</li>
-<li>Which model would you recommend deploying? Justify your choice using the training and test accuracy scores.</li>
-<li>Looking at Model 2’s feature importance, which feature matters most for predicting employee turnover? Which matters least? What does this suggest about what drives employees to leave?</li>
-<li>How does feature importance differ from the coefficients that linear models learn? What can coefficients tell you that feature importance cannot?</li>
-<li>Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you see in the results.</li>
-</ol>
-</section>
-</section>
-<section id="part-2-case-study-2-comparing-algorithms-on-customer-churn" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-case-study-2-comparing-algorithms-on-customer-churn">Part 2: Case Study 2 — Comparing Algorithms on Customer Churn</h3>
-<section id="background-1" class="level4">
-<h4 class="anchored" data-anchor-id="background-1">Background</h4>
-<p>A telecom company wants to predict which customers are likely to cancel their subscriptions so they can target retention offers. They collected data from 800 customers. For each customer, they recorded four features:</p>
-<ul>
-<li><strong>monthly_charges:</strong> monthly bill amount in dollars</li>
-<li><strong>tenure_months:</strong> how long they have been a customer</li>
-<li><strong>support_calls:</strong> number of support calls in the past 6 months</li>
-<li><strong>contract_length:</strong> contract duration in months</li>
-</ul>
-<p>The target variable is <strong>churn</strong>, a binary label: “stay” or “churn.”</p>
-<p>A data scientist split the data into 600 training customers and 200 test customers, then trained three different algorithms on the same data.</p>
-</section>
-<section id="model-results-1" class="level4">
-<h4 class="anchored" data-anchor-id="model-results-1">Model Results</h4>
-<p><strong>Three algorithms trained on the same data:</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Algorithm</th>
-<th>Key Parameter</th>
-<th>Training Accuracy</th>
-<th>Test Accuracy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>kNN</td>
-<td>k=5</td>
-<td>0.84</td>
-<td>0.75</td>
-</tr>
-<tr class="even">
-<td>Logistic Regression</td>
-<td>C=1.0</td>
-<td>0.78</td>
-<td>0.76</td>
-</tr>
-<tr class="odd">
-<td>Decision Tree</td>
-<td>max_depth=4</td>
-<td>0.88</td>
-<td>0.83</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Logistic Regression coefficients (C=1.0):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Coefficient</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>monthly_charges</td>
-<td>0.52</td>
-</tr>
-<tr class="even">
-<td>tenure_months</td>
-<td>-0.41</td>
-</tr>
-<tr class="odd">
-<td>support_calls</td>
-<td>0.35</td>
-</tr>
-<tr class="even">
-<td>contract_length</td>
-<td>-0.28</td>
-</tr>
-<tr class="odd">
-<td>intercept</td>
-<td>-1.5</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Decision Tree feature importance (max_depth=4):</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Importance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>monthly_charges</td>
-<td>0.38</td>
-</tr>
-<tr class="even">
-<td>tenure_months</td>
-<td>0.31</td>
-</tr>
-<tr class="odd">
-<td>support_calls</td>
-<td>0.22</td>
-</tr>
-<tr class="even">
-<td>contract_length</td>
-<td>0.09</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="case-study-2-questions" class="level4">
-<h4 class="anchored" data-anchor-id="case-study-2-questions">Case Study 2 Questions</h4>
-<p>As you prepare for your video reflection, consider the following:</p>
-<ol type="1">
-<li>Compare the three algorithms. Which would you recommend? Justify your choice using the training and test accuracy scores.</li>
-<li>Look at the Logistic Regression coefficient for tenure_months (-0.41) and the Decision Tree feature importance for tenure_months (0.31). What does the coefficient tell you that the importance value does not?</li>
-<li>Why can kNN not tell you anything about which features matter for predictions?</li>
-<li>What practical trade-offs beyond test accuracy might influence which algorithm you choose?</li>
-</ol>
-</section>
-</section>
-<section id="part-3-scenario-c-hospital-readmission-prediction-reference-only" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-scenario-c-hospital-readmission-prediction-reference-only">Part 3: Scenario C — Hospital Readmission Prediction (Reference Only)</h3>
-<section id="background-2" class="level4">
-<h4 class="anchored" data-anchor-id="background-2">Background</h4>
-<p>A hospital wants to predict which patients will be readmitted within 30 days of discharge. They have data from 5,000 patients with 50 features, including numeric vitals (blood pressure, heart rate, lab values), categorical diagnoses (diabetes, heart disease), length of stay, number of prior admissions, and age. Clinical staff need to understand <em>why</em> the model flags a patient so they can plan appropriate follow-up care.</p>
-<p><em>No model results are provided for this scenario. Use it as a reference for the video reflection.</em></p>
-</section>
-</section>
-<section id="part-4-video-reflection" class="level3">
-<h3 class="anchored" data-anchor-id="part-4-video-reflection">Part 4: Video Reflection</h3>
-<p>This video reflection is the primary deliverable for this assignment. You will demonstrate your understanding of decision trees by discussing the case studies above. Focus on explaining concepts clearly and using correct terminology rather than reading from a script.</p>
-<section id="video-submission-instructions" class="level4">
-<h4 class="anchored" data-anchor-id="video-submission-instructions">Video submission instructions</h4>
-<p>Record a video in which you address the four sections below. Organize your video to cover each section in order.</p>
+<section id="your-task" class="level3">
+<h3 class="anchored" data-anchor-id="your-task">Your Task</h3>
+<p>Record a video in which you present your recommendation to Manager Rivera. Organize your video to address each of the five sections below in order. You are acting as the consultant. Explain your reasoning clearly, use correct terminology, and connect your recommendations to what you know about the data and the problem.</p>
+<p>Do not read from a script. Focus on demonstrating that you understand the concepts and can apply them to a realistic situation.</p>
 <p><strong>Requirements</strong></p>
 <ul>
 <li>Clear video and audio quality</li>
-<li>Intro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the Week 6 Decision Trees assignment for CMSC 2208.”</li>
+<li>Intro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the Week 8 Chapter 2 Capstone assignment for CMSC 2208.”</li>
 </ul>
-</section>
-<section id="section-a-decision-tree-foundations" class="level4">
-<h4 class="anchored" data-anchor-id="section-a-decision-tree-foundations">Section A: Decision Tree Foundations</h4>
+<section id="section-a-defining-the-problem" class="level4">
+<h4 class="anchored" data-anchor-id="section-a-defining-the-problem">Section A: Defining the Problem</h4>
+<p>Present your initial assessment to Rivera. Address the following:</p>
 <ol type="1">
-<li>Explain how a decision tree makes predictions. How is this fundamentally different from kNN and from linear models?</li>
-<li>What does max_depth control, and why is it important?</li>
+<li>Is this a classification task or a regression task? How can you tell from the problem description?</li>
+<li>Identify the features (X) and the target (y) for this problem.</li>
+<li>Using the cost structure described above, explain why the cost asymmetry matters for how you would use the model’s predictions. How does knowing that missing a failure is 8 times more expensive than an unnecessary pull affect your approach?</li>
 </ol>
 </section>
-<section id="section-b-case-study-1-discussion-decision-tree-depth" class="level4">
-<h4 class="anchored" data-anchor-id="section-b-case-study-1-discussion-decision-tree-depth">Section B: Case Study 1 Discussion (Decision Tree Depth)</h4>
+<section id="section-b-choosing-an-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="section-b-choosing-an-algorithm">Section B: Choosing an Algorithm</h4>
+<p>Present your algorithm recommendation to Rivera. Address the following:</p>
 <ol type="1">
-<li>Which of the four Decision Tree models would you recommend? Justify your choice using the training and test accuracy scores.</li>
-<li>Looking at Model 2’s feature importance, explain what it tells you about what drives employee turnover.</li>
-<li>Explain how max_depth controls tree complexity. Connect this to the overfitting and underfitting patterns you observed.</li>
+<li>Which algorithm from Chapter 2 would you recommend as a starting point for this problem? Justify your choice based on the specific characteristics of Rivera’s data, including the mixed feature types, the different scales, and the possibility of feature interactions.</li>
+<li>What is the key complexity parameter for your chosen algorithm, and what does it control? Describe what overfitting and underfitting would look like in this specific context. Connect it to predicting machine failures, not just general definitions.</li>
 </ol>
 </section>
-<section id="section-c-case-study-2-discussion-algorithm-comparison" class="level4">
-<h4 class="anchored" data-anchor-id="section-c-case-study-2-discussion-algorithm-comparison">Section C: Case Study 2 Discussion (Algorithm Comparison)</h4>
+<section id="section-c-prediction-confidence-with-probabilities" class="level4">
+<h4 class="anchored" data-anchor-id="section-c-prediction-confidence-with-probabilities">Section C: Prediction Confidence with Probabilities</h4>
+<p>Rivera asked: “How sure is your model when it flags a machine?” Address the following:</p>
 <ol type="1">
-<li>Which algorithm would you recommend for predicting customer churn? Justify your choice using the results.</li>
-<li>Compare the Logistic Regression coefficients to the Decision Tree feature importance. What can you learn from coefficients that you cannot learn from importance? Use tenure_months as a specific example.</li>
-<li>Why does kNN not provide any information about which features matter?</li>
+<li>If you only use the basic prediction method that returns a label (“yes” or “no”), what information is Rivera missing? Why is a label alone not enough for his decision-making?</li>
+<li>Scikit-learn provides a method that returns probability estimates for each class. What is this method called, and what does its output look like for a binary problem like this one? Explain how Rivera could use these probabilities to decide which machines to pull offline.</li>
+<li>Consider two machines that are both predicted to fail. Machine A has a 91% predicted probability of failure. Machine B has a 54% predicted probability of failure. How should Rivera treat these two machines differently, and why?</li>
 </ol>
 </section>
-<section id="section-d-when-to-use-decision-trees" class="level4">
-<h4 class="anchored" data-anchor-id="section-d-when-to-use-decision-trees">Section D: When to Use Decision Trees</h4>
+<section id="section-d-raw-confidence-scores" class="level4">
+<h4 class="anchored" data-anchor-id="section-d-raw-confidence-scores">Section D: Raw Confidence Scores</h4>
+<p>Scikit-learn provides a second method for measuring model confidence that works differently from probability estimates. Address the following:</p>
 <ol type="1">
-<li>Consider Scenario C (hospital readmission with 50 features and mixed feature types). Would a decision tree be a good starting point for this problem? Why or why not?</li>
-<li>What advantages would a decision tree have over kNN and linear models for this specific problem?</li>
+<li>What is this method called, and how is its output different from the probability estimates you described in Section C? Be specific about the format and scale of the output.</li>
+<li>When might this method be your only option for getting confidence information from a classifier?</li>
+</ol>
+</section>
+<section id="section-e-explaining-the-model-to-rivera" class="level4">
+<h4 class="anchored" data-anchor-id="section-e-explaining-the-model-to-rivera">Section E: Explaining the Model to Rivera</h4>
+<p>Rivera asks: “Which factors are driving these failure predictions?” Address the following:</p>
+<ol type="1">
+<li>Using the algorithm you recommended in Section B, what tools does it provide for answering Rivera’s question? Be specific about what these tools are called in scikit-learn and what they tell you. What is one important limitation of what they can show?</li>
+<li>What is one thing about feature behavior that your chosen algorithm’s interpretability tools cannot show? Is there another algorithm from Chapter 2 that could provide this missing insight?</li>
+<li>Rivera points to a specific machine where the model’s predicted probability is close to 50/50. He asks whether he should pull it for maintenance or leave it running. What do you recommend, and why? Connect your answer to the cost structure from Section A.</li>
 </ol>
 </section>
 </section>
 <section id="d2l-submission-checklist" class="level3">
 <h3 class="anchored" data-anchor-id="d2l-submission-checklist">D2L Submission Checklist</h3>
-<p>Submit the following items to the Week 6 D2L dropbox.</p>
+<p>Submit the following items to the Week 8 D2L dropbox.</p>
 <section id="video-submission-link-only" class="level4">
 <h4 class="anchored" data-anchor-id="video-submission-link-only">Video submission (link only)</h4>
 <ul>
-<li>Video filename: <code>lastname_Week06DecisionTrees</code></li>
+<li>Video filename: <code>lastname_Week08Ch2Capstone</code></li>
 <li>Upload your video to Kaltura</li>
 <li>Do not embed the video in the Dropbox submission</li>
 <li>Paste the share link into the D2L text submission box</li>
-<li>Make sure the link text includes <code>lastname_Week06DecisionTrees</code> in the link name</li>
+<li>Make sure the link text includes <code>lastname_Week08Ch2Capstone</code> in the link name</li>
 </ul>
 
 
