@@ -15,7 +15,6 @@ The Week 7 demo walks you through two scikit-learn methods for extracting uncert
 **Week 7 Demo:**
 
 - Here is the link to the **[Week 7 demo](../../assignments/week-07/week-7-demo.html)**.
-- <a href="week-7-demo.ipynb" download="week-7-demo.ipynb"> Download Jupyter Notebook </a>
 
 ## Chapter 2 concepts used this week (uncertainty estimates section)
 

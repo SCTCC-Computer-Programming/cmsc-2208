@@ -69,6 +69,7 @@ website:
              text: Week 6 (Starts - 16 FEB)
            - href: weekly-overview/week-07/index.qmd
              text: Week 7 (Starts - 23 FEB)
+           
 
       - section: "Weekly Assignments"
         contents:

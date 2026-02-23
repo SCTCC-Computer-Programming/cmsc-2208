@@ -1,0 +1,117 @@
+---
+title: Week 8 Assignment (CMSC-2208)
+subtitle: Chapter 2 Capstone, Predictive Maintenance Consultation
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 8 dropbox).
+
+### The Scenario
+
+You are a data science consultant. A manufacturing plant manager named Rivera has hired you to build a predictive maintenance system. Here is what Rivera tells you in your first meeting:
+
+> "We run 200 machines across three production lines. Right now, maintenance is reactive. We fix machines after they break. Emergency repairs cost us $40,000 or more per incident when you factor in the repair itself, unplanned downtime, and the production we lose. I want to get ahead of this. I want a system that looks at our data and tells us which machines are likely to fail within the next 30 days so we can schedule maintenance proactively. But pulling a machine offline for preventive maintenance is not free either. That costs us about $5,000 per day in lost production. So I do not want to pull machines unnecessarily. And one more thing: I need to understand what the model is telling me. If your system flags a machine, I need to know why, and I need to know how sure you are. I am not a data scientist. I need this explained in terms I can act on."
+
+### Understanding the Cost Structure
+
+Rivera's problem has two types of errors, and they are not equally expensive:
+
+-   **Missing a real failure** (the model says "no" but the machine fails): This costs $40,000 or more in emergency repairs and unplanned downtime.
+-   **Unnecessary maintenance** (the model says "yes" but the machine would have been fine): This costs about $5,000 per day in lost production while the machine is offline.
+
+Missing a failure is roughly **8 times more expensive** than pulling a machine unnecessarily. This kind of imbalance is called **cost asymmetry**, and it affects how you use a model's predictions. When one type of mistake is far more costly than the other, you do not need to be highly confident before taking the safer action. In Rivera's case, the safer action is pulling a machine for maintenance. Even if the model is only moderately sure a machine will fail, the cost of ignoring that warning and being wrong is much worse than the cost of acting on it and being wrong.
+
+This does not mean you pull every machine at the slightest hint of trouble. It means you weigh the model's confidence against the consequences. A machine with a 90% chance of failure is an obvious pull. A machine with a 55% chance is a harder call, but the math still favors caution because the downside of doing nothing is so much larger.
+
+This reasoning will come up throughout your video. Keep Rivera's cost structure in mind as you work through each section.
+
+### The Data
+
+Your team has assembled a historical dataset of 1,200 machine records from the past three years. Each record represents a machine at a point in time, with a known outcome (whether it actually failed within 30 days).
+
+**Features recorded for each machine:**
+
+-   **machine_age:** how old the machine is, in years
+-   **vibration_level:** sensor reading measuring vibration intensity (units vary by machine type)
+-   **operating_temp:** average operating temperature in Fahrenheit
+-   **hours_since_maintenance:** hours of operation since last scheduled maintenance
+-   **prior_breakdowns:** number of previous breakdowns on record
+-   **machine_type:** type of machine (press, lathe, or CNC mill)
+
+**Target variable:** `failed_within_30_days`, a binary label: "yes" or "no"
+
+Here is a sample of the data:
+
+| machine_age | vibration_level | operating_temp | hours_since_maintenance | prior_breakdowns | machine_type | failed_within_30_days |
+|-------------|-----------------|----------------|-------------------------|------------------|--------------|------------------------|
+| 12 | 4.8 | 187 | 3200 | 5 | press | yes |
+| 3 | 1.2 | 162 | 800 | 0 | CNC mill | no |
+| 8 | 3.1 | 201 | 2100 | 2 | lathe | no |
+| 15 | 6.3 | 195 | 4800 | 7 | press | yes |
+| 5 | 2.4 | 174 | 1500 | 1 | CNC mill | no |
+| 10 | 5.1 | 210 | 3900 | 4 | lathe | yes |
+
+Notice that the features are on very different scales (age in single digits, temperature in the hundreds, hours in the thousands). The data includes both numeric and categorical features, and some factors may interact. For example, an old machine with high vibration might be at higher risk than either factor alone would suggest.
+
+### Your Task
+
+Record a video in which you present your recommendation to Manager Rivera. Organize your video to address each of the five sections below in order. You are acting as the consultant. Explain your reasoning clearly, use correct terminology, and connect your recommendations to what you know about the data and the problem.
+
+Do not read from a script. Focus on demonstrating that you understand the concepts and can apply them to a realistic situation.
+
+**Requirements**
+
+-   Clear video and audio quality
+-   Intro (required): Start your video by saying: "Hello, my name is [Your Name]. This is the Week 8 Chapter 2 Capstone assignment for CMSC 2208."
+
+#### Section A: Defining the Problem
+
+Present your initial assessment to Rivera. Address the following:
+
+1.  Is this a classification task or a regression task? How can you tell from the problem description?
+2.  Identify the features (X) and the target (y) for this problem.
+3.  Using the cost structure described above, explain why the cost asymmetry matters for how you would use the model's predictions. How does knowing that missing a failure is 8 times more expensive than an unnecessary pull affect your approach?
+
+#### Section B: Choosing an Algorithm
+
+Present your algorithm recommendation to Rivera. Address the following:
+
+1.  Which algorithm from Chapter 2 would you recommend as a starting point for this problem? Justify your choice based on the specific characteristics of Rivera's data, including the mixed feature types, the different scales, and the possibility of feature interactions.
+2.  What is the key complexity parameter for your chosen algorithm, and what does it control? Describe what overfitting and underfitting would look like in this specific context. Connect it to predicting machine failures, not just general definitions.
+
+#### Section C: Prediction Confidence with Probabilities
+
+Rivera asked: "How sure is your model when it flags a machine?" Address the following:
+
+1.  If you only use the basic prediction method that returns a label ("yes" or "no"), what information is Rivera missing? Why is a label alone not enough for his decision-making?
+2.  Scikit-learn provides a method that returns probability estimates for each class. What is this method called, and what does its output look like for a binary problem like this one? Explain how Rivera could use these probabilities to decide which machines to pull offline.
+3.  Consider two machines that are both predicted to fail. Machine A has a 91% predicted probability of failure. Machine B has a 54% predicted probability of failure. How should Rivera treat these two machines differently, and why?
+
+#### Section D: Raw Confidence Scores
+
+Scikit-learn provides a second method for measuring model confidence that works differently from probability estimates. Address the following:
+
+1.  What is this method called, and how is its output different from the probability estimates you described in Section C? Be specific about the format and scale of the output.
+2.  When might this method be your only option for getting confidence information from a classifier?
+
+#### Section E: Explaining the Model to Rivera
+
+Rivera asks: "Which factors are driving these failure predictions?" Address the following:
+
+1.  Using the algorithm you recommended in Section B, what tools does it provide for answering Rivera's question? Be specific about what these tools are called in scikit-learn and what they tell you. What is one important limitation of what they can show?
+2.  What is one thing about feature behavior that your chosen algorithm's interpretability tools cannot show? Is there another algorithm from Chapter 2 that could provide this missing insight?
+3.  Rivera points to a specific machine where the model's predicted probability is close to 50/50. He asks whether he should pull it for maintenance or leave it running. What do you recommend, and why? Connect your answer to the cost structure from Section A.
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 8 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week08Ch2Capstone`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week08Ch2Capstone` in the link name
