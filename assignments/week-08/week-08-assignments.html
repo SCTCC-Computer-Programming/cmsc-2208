@@ -365,6 +365,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Week 7 (Starts - 23 FEB)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -386,6 +392,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-07/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 7 (Starts - 23 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
   </div>
 </li>
       </ul>
@@ -495,7 +507,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 20, 2026</p>
+      <p class="date-modified">February 28, 2026</p>
     </div>
   </div>
     
@@ -518,11 +530,10 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="understanding-the-cost-structure">Understanding the Cost Structure</h3>
 <p>Rivera’s problem has two types of errors, and they are not equally expensive:</p>
 <ul>
-<li><strong>Missing a real failure</strong> (the model says “no” but the machine fails): This costs $40,000 or more in emergency repairs and unplanned downtime.</li>
-<li><strong>Unnecessary maintenance</strong> (the model says “yes” but the machine would have been fine): This costs about $5,000 per day in lost production while the machine is offline.</li>
+<li><strong>Missing a real failure</strong> (the system predicts “no failure” but the machine fails): This costs $40,000 or more in emergency repairs and unplanned downtime.</li>
+<li><strong>Unnecessary maintenance</strong> (the system predicts “failure” but the machine would have been fine): This costs about $5,000 per day in lost production while the machine is offline.</li>
 </ul>
-<p>Missing a failure is roughly <strong>8 times more expensive</strong> than pulling a machine unnecessarily. This kind of imbalance is called <strong>cost asymmetry</strong>, and it affects how you use a model’s predictions. When one type of mistake is far more costly than the other, you do not need to be highly confident before taking the safer action. In Rivera’s case, the safer action is pulling a machine for maintenance. Even if the model is only moderately sure a machine will fail, the cost of ignoring that warning and being wrong is much worse than the cost of acting on it and being wrong.</p>
-<p>This does not mean you pull every machine at the slightest hint of trouble. It means you weigh the model’s confidence against the consequences. A machine with a 90% chance of failure is an obvious pull. A machine with a 55% chance is a harder call, but the math still favors caution because the downside of doing nothing is so much larger.</p>
+<p>Missing a failure is roughly <strong>8 times more expensive</strong> than pulling a machine unnecessarily. This kind of imbalance is called <strong>cost asymmetry</strong>.</p>
 <p>This reasoning will come up throughout your video. Keep Rivera’s cost structure in mind as you work through each section.</p>
 </section>
 <section id="the-data" class="level3">
