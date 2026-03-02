@@ -16,14 +16,8 @@ You are a data science consultant. A manufacturing plant manager named Rivera ha
 
 ### Understanding the Cost Structure
 
-Rivera's problem has two types of errors, and they are not equally expensive:
-
--   **Missing a real failure** (the system predicts "no failure" but the machine fails): This costs $40,000 or more in emergency repairs and unplanned downtime.
--   **Unnecessary maintenance** (the system predicts "failure" but the machine would have been fine): This costs about $5,000 per day in lost production while the machine is offline.
-
-Missing a failure is roughly **8 times more expensive** than pulling a machine unnecessarily. This kind of imbalance is called **cost asymmetry**.
-
-This reasoning will come up throughout your video. Keep Rivera's cost structure in mind as you work through each section.
+When a model makes predictions, it can be wrong in different ways, and those different types of prediction errors do not always carry the same cost. A hospital that fails to identify a serious illness faces a very different consequence than one that orders an unnecessary test. When one type of prediction error is significantly more expensive than another, this imbalance is called cost asymmetry. It affects how you interpret and act on a model's predictions.
+Rivera's scenario involves cost asymmetry. An emergency repair after a missed failure costs $40,000 or more, while pulling a machine offline for preventive maintenance costs about $5,000 per day. Keep this cost structure in mind as you work through each section.
 
 ### The Data
 

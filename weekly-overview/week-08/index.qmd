@@ -1,0 +1,39 @@
+---
+title: "Week 8 Guide"
+subtitle: "Chapter 2 Capstone, Predictive Maintenance Consultation"
+format:
+  html:
+    toc: true
+---
+
+## Week 8 focus
+
+This week closes Chapter 2 with a capstone assignment. Rather than introducing new concepts, you will apply everything you have learned across Weeks 2 through 7 to a single realistic scenario: advising a manufacturing plant manager on building a predictive maintenance system.
+
+In Weeks 4 and 6, you worked with case studies where a data scientist had already trained models and recorded the results. Your job was to interpret those results. This week is different. There are no pre-built accuracy tables or feature importance values to read. Instead, you are given a problem, a dataset description, and a stakeholder who needs answers. You decide which algorithm to recommend, explain how uncertainty estimates work, and justify your reasoning using the concepts you have built up over the past six weeks.
+
+The primary deliverable is a video in which you present your recommendation to the plant manager. The assignment walks you through five sections covering problem definition, algorithm selection, prediction confidence, raw confidence scores, and model interpretability. Your goal is to demonstrate that you can connect these concepts to a practical situation and explain them clearly.
+
+**Week 8 Assignment:**
+
+-   Here is the link to the **[Week 8 Assignment](../../assignments/week-08/index.qmd)**.
+
+## What the capstone tests
+
+This assignment draws on the full Chapter 2 toolkit. You should be comfortable with the following areas before starting.
+
+**Defining problems and choosing algorithms.** You need to identify whether a problem is classification or regression, recognize the features and target in a dataset, and recommend an algorithm based on the specific characteristics of the data. This is not about memorizing which algorithm is "best." It is about understanding each algorithm's strengths and limitations well enough to justify a choice for a particular situation.
+
+**Understanding model complexity.** You need to name the key complexity parameter for your chosen algorithm, explain what it controls, and describe what overfitting and underfitting look like in a concrete scenario rather than as abstract definitions.
+
+**Explaining prediction confidence.** The assignment asks you to go beyond basic predictions and explain how scikit-learn provides confidence information. You need to know what methods are available, what their outputs look like, and how a decision-maker would use that information. This was the focus of the Week 7 demo and reading.
+
+**Interpreting model behavior.** You need to explain what tools your chosen algorithm provides for understanding which features drive predictions, what those tools can and cannot show, and how different algorithms offer different kinds of insight. This connects the interpretability concepts from Weeks 3 and 5.
+
+**Making practical recommendations.** The assignment introduces a cost structure where different types of errors have different consequences. You need to integrate this with your understanding of prediction confidence to make and justify a recommendation that a non-technical stakeholder can act on.
+
+## Week 8 tasks
+
+1.  Review your **prior demo notebooks and overview pages** as needed, especially Weeks 5 and 7.
+2.  Read through the **Week 8 assignment scenario** carefully, including the cost structure section and the sample data.
+3.  Record and submit your **video** addressing all five sections.
