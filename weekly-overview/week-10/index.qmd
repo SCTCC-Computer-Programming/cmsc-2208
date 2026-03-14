@@ -1,0 +1,52 @@
+---
+title: "Week 10 Guide"
+subtitle: "Chapter 3: Preprocessing and Scaling"
+format:
+  html:
+    toc: true
+---
+
+Week 7 closed Chapter 2 and previewed what Chapter 3 would bring: a shift away from labeled data and toward finding structure in features alone. This week begins that shift with preprocessing and scaling, the techniques that prepare raw data before any modeling step begins.
+
+Scaling is the entry point into Chapter 3 for a practical reason. The algorithms you learned in Chapter 2 are sensitive to the numeric range of features in ways you may not have noticed yet. Features measured in thousands and features measured in fractions sit in the same dataset and get treated as equals. For distance-based algorithms like kNN, that imbalance matters. This week makes that problem concrete and shows you how to fix it.
+
+The Week 10 demo works through the problem using the Wine dataset, a built-in scikit-learn dataset with 13 chemical measurements spanning dramatically different ranges. You will see the accuracy cost of unscaled features, apply two scalers to correct it, and practice the fit-on-training rule that must carry forward into every remaining week of the course.
+
+**Week 10 Assignment:**
+
+-   Here is the link to the **[Week 10 assignments page](../../assignments/week-10/index.qmd)**.
+
+## Demo and textbook coverage
+
+**In the demo you will:**
+
+-   Examine feature ranges in the Wine dataset and observe the scale problem directly
+-   Train a kNN baseline on unscaled data and record the accuracy cost
+-   Apply `StandardScaler` to training and test sets using the three-step fit/transform workflow
+-   Apply `MinMaxScaler` using the same workflow and compare results to `StandardScaler`
+-   Practice the fit-on-training rule and see what the scaler stores after fitting
+-   Compare kNN accuracy before and after scaling
+
+**In the textbook you will read about:**
+
+-   `RobustScaler`, which uses the median and quartiles instead of mean and standard deviation
+-   `Normalizer`, which scales rows rather than columns
+-   How scaling improves SVM accuracy on the cancer dataset
+-   What goes wrong visually when the fit-on-training rule is broken
+
+## Reading expectations
+
+After completing the demo and reading, you should be able to explain the following in your own words:
+
+1.  Why does feature scale affect kNN but not decision trees?
+2.  What does `StandardScaler` compute during fit, and what does the transformed data look like?
+3.  What does `MinMaxScaler` compute during fit, and what range does the transformed data fall within?
+4.  What is the fit-on-training rule, and what goes wrong when it is violated?
+5.  What problem does `RobustScaler` solve that `StandardScaler` does not?
+6.  How does `Normalizer` differ from the other three scalers in what it operates on?
+
+## Week 10 tasks
+
+1.  Read **Chapter 3, preprocessing and scaling section** (pages 131--139).
+2.  Work through the **[Week 10 demo](../../assignments/week-10/index.qmd)** in your Jupyter environment.
+3.  Complete the **Week 10 D2L quiz**.

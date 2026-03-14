@@ -1,0 +1,51 @@
+---
+title: "Week 10 Assignments"
+subtitle: "Textbook Chapter 3 (Preprocessing and Scaling), Preprocessing and Scaling Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 10 demo](../../assignments/week-10/week-10-demo.html)**.
+- <a href="week-10-demo.ipynb" download="week-10-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **Chapter 3, preprocessing and scaling section** (pages 131--139).
+
+This section opens Chapter 3 by introducing preprocessing as the step that prepares raw data for modeling. Unlike the supervised algorithms covered in Chapter 2, preprocessing only looks at the feature data and does not involve a target column. The demo provides a hands-on walkthrough of `StandardScaler` and `MinMaxScaler` with detailed explanations of why feature scale matters and how to apply the fit-on-training rule correctly.
+
+## Part 2: Work through the Week 10 Demo
+
+The Week 10 demo covers:
+
+1. Understanding what preprocessing is and how it differs from the training step
+2. Understanding why feature scale affects distance-based algorithms like kNN
+3. Training `StandardScaler` using the fit/transform workflow and applying it to training and test sets
+4. Understanding what `StandardScaler` computes during fit (mean and standard deviation) and what it produces (mean 0, standard deviation 1)
+5. Training `MinMaxScaler` using the same three-step pattern and comparing its output to `StandardScaler`
+6. Recognizing which algorithms benefit from scaling and which do not
+7. Understanding the fit-on-training rule: why the scaler must be fit on training data only and what goes wrong when the rule is broken
+8. Comparing kNN classification accuracy on the wine dataset before and after scaling
+
+## Part 3: D2L Quiz
+
+Complete the **Week 10 D2L quiz** (Preprocessing and Scaling concepts).
+
+The quiz covers:
+
+-   Core concepts: what preprocessing is, why it is considered unsupervised, what scaling does and does not change about the data
+-   `StandardScaler`: `sklearn.preprocessing` module, what it computes during fit, what the transformed values look like
+-   `MinMaxScaler`: what it computes during fit, the guaranteed output range, how the three-step fit/transform workflow applies
+-   The fit-on-training rule: what it requires, what goes wrong when the scaler is fit on the full dataset, where the learned statistics are stored
+-   Algorithm comparisons: which algorithms benefit from scaling, why decision trees do not require it
+-   Scaler comparisons: how `StandardScaler` and `MinMaxScaler` differ in what they compute and what they produce, accuracy before and after scaling on the wine dataset
+-   Advanced awareness: `RobustScaler` and `Normalizer` (textbook only, pages 131--139)
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+-   **Week 10 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 3 (pages 131--139), understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding why feature scale affects distance-based algorithms, how `StandardScaler` and `MinMaxScaler` transform features differently, and why the fit-on-training rule must be followed.
