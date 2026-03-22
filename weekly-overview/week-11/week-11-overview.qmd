@@ -1,0 +1,31 @@
+---
+title: "Week 11 Guide"
+subtitle: "Chapter 3: Preprocessing and Scaling Application"
+format:
+  html:
+    toc: true
+---
+
+Week 10 gave you the foundational workflow for preprocessing: what scaling is, why it matters for distance-based algorithms, how `StandardScaler` and `MinMaxScaler` each transform features, and the fit-on-training rule that governs how scalers must be applied. This week you apply those concepts in a new context.
+
+The assignment puts you in the role of a consultant advising a data scientist on a medical classification problem. You will need to look at a dataset, identify where the scale problem exists and why it matters for the algorithm being used, choose and justify a scaler, describe the correct workflow for applying it, and evaluate whether a colleague's approach is sound. Each of those tasks draws directly on what you built in Week 10.
+
+**Week 11 Assignment:**
+
+-   Here is the link to the **[Week 11 assignments page](../../assignments/week-11/index.qmd)**.
+
+## What you will be demonstrating in the assignment
+
+**The scale problem in context.** You need to look at the specific features in this dataset, identify where the scale differences are most dramatic, and explain what that means for `kNN`. Knowing that scale affects distance-based algorithms is not enough. You need to connect that knowledge to this dataset and this algorithm specifically.
+
+**Scaler selection and justification.** You will choose between `StandardScaler` and `MinMaxScaler` and explain your choice. Both are valid options for this problem. You will explain what your chosen scaler does during fit, what the transformed data looks like, and why that behavior fits the situation.
+
+**Correct application of the three-step workflow.** You need to walk through how to apply the scaler correctly to training and test sets and explain what each step accomplishes and why the order matters.
+
+**Diagnosing a violation of the fit-on-training rule.** The colleague's approach in one section has a plausible-sounding justification. You need to explain what is actually wrong with it and what effect it would have on the reported accuracy.
+
+## Week 11 tasks
+
+1.  Review your **Week 10 demo notebook and textbook reading** as needed before working through the assignment.
+2.  Read through the **[Week 11 assignment](../../assignments/week-11/index.qmd)** carefully, including the full scenario and all four sections, before recording.
+3.  Record and submit your **video** addressing all four sections.

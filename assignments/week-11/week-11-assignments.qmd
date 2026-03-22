@@ -1,0 +1,80 @@
+---
+title: "Week 11 Assignment (CMSC-2208)"
+subtitle: "Preprocessing and Scaling Consultation and Video Reflection"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 11 dropbox).
+
+### The Scenario
+
+A health clinic wants to build a system to predict whether patients are at risk for Type 2 diabetes so that care teams can intervene early. A data scientist has assembled a historical dataset of 950 patient records. Each record represents a patient at the time of a clinic visit, with a known outcome recorded at a follow-up appointment six months later.
+
+**Features recorded for each patient:**
+
+-   **age:** patient age in years (range: 21 to 81)
+-   **bmi:** body mass index (range: 18 to 67)
+-   **blood_glucose:** fasting blood glucose level in mg/dL (range: 70 to 200)
+-   **insulin:** fasting insulin level in μU/mL (range: 2 to 846)
+-   **blood_pressure:** diastolic blood pressure in mmHg (range: 24 to 122)
+-   **pregnancies:** number of prior pregnancies (range: 0 to 17)
+
+**Target variable:** `at_risk`, a binary label: "yes" or "no"
+
+The data scientist plans to use kNN to classify patients as at risk or not at risk.
+
+### Your Task
+
+Record a video in which you advise the data scientist on how to prepare this data for kNN. Organize your video to address each of the four sections below in order. You are acting as a consultant who has reviewed the dataset and the plan. Explain your reasoning clearly, use correct terminology, and connect your recommendations to the specific features and algorithm described.
+
+Do not read from a script. Focus on demonstrating that you understand the concepts and can apply them to a realistic situation.
+
+**Requirements**
+
+-   Clear video and audio quality
+-   Intro (required): Start your video by saying: "Hello, my name is [Your Name]. This is the Week 11 Preprocessing and Scaling assignment for CMSC 2208."
+
+#### Section A: The Scale Problem
+
+Before the data scientist trains a single model, they need to understand what the raw feature data looks like and what that means for kNN.
+
+1.  Look at the feature ranges listed above. Which features have the most dramatic differences in scale? Be specific about which features you are comparing and what the range difference is.
+2.  Explain why those scale differences are a problem for kNN specifically. What happens to the distance calculation when features are on very different scales? Which features would dominate, and which would be drowned out?
+3.  Why is this not a problem the data scientist caused? What does it mean that two features can have very different ranges and both still be valid, useful measurements?
+
+#### Section B: Choosing a Scaler
+
+The data scientist needs to choose between `StandardScaler` and `MinMaxScaler` before training.
+
+1.  Which scaler would you recommend for this problem? State your choice clearly.
+2.  Explain what your chosen scaler computes during the fit step and what the transformed data looks like after transformation.
+3.  Justify your choice. Why is this scaler appropriate for this dataset and this algorithm?
+
+#### Section C: Applying the Scaler
+
+The data scientist knows which scaler to use but is not sure how to apply it correctly.
+
+1.  Walk the data scientist through the correct three-step workflow for applying the scaler to the training and test sets. Be specific about what happens at each step and what data is involved.
+2.  Explain why the scaler is fit on the training data only. What does the scaler learn during fit, and why would it be wrong to include the test set in that step?
+
+#### Section D: A Colleague's Mistake
+
+A second data scientist on the team reviews the plan and suggests a shortcut: fit the scaler on the full dataset first, then split into training and test sets afterward. They argue that using more data during fit will give the scaler better statistics to work with.
+
+1.  Is this colleague correct? Explain what is wrong with this approach.
+2.  What effect would this mistake have on the accuracy score the data scientist reports for the kNN model? Explain why.
+3.  Why does the size of the dataset used during fit not justify this approach?
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 11 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week11Scaling`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week11Scaling` in the link name
