@@ -25,6 +25,19 @@ A health clinic wants to build a system to predict whether patients are at risk 
 
 The data scientist plans to use kNN to classify patients as at risk or not at risk.
 
+Here is a sample of the data:
+
+| age | bmi | blood_glucose | insulin | blood_pressure | pregnancies | at_risk |
+|-----|-----|---------------|---------|----------------|-------------|---------|
+| 45 | 33.2 | 148 | 742 | 88 | 2 | yes |
+| 28 | 22.1 | 84 | 18 | 64 | 0 | no |
+| 61 | 38.7 | 162 | 510 | 96 | 5 | yes |
+| 34 | 27.4 | 91 | 31 | 72 | 1 | no |
+| 52 | 30.9 | 105 | 95 | 80 | 3 | no |
+| 40 | 25.6 | 78 | 24 | 70 | 0 | no |
+
+Notice that insulin values range from 18 to 742 across just these six records, while pregnancies ranges from 0 to 5. Both are valid clinical measurements, but their numeric scales are dramatically different.
+
 ### Your Task
 
 Record a video in which you advise the data scientist on how to prepare this data for kNN. Organize your video to address each of the four sections below in order. You are acting as a consultant who has reviewed the dataset and the plan. Explain your reasoning clearly, use correct terminology, and connect your recommendations to the specific features and algorithm described.
