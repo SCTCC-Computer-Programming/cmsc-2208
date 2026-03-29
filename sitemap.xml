@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-12/week-12-overview.html</loc>
+    <lastmod>2026-03-26T03:45:16.514Z</lastmod>
+  </url>
+  <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-11/week-11-overview.html</loc>
     <lastmod>2026-03-20T07:07:09.001Z</lastmod>
   </url>
@@ -61,88 +65,100 @@
     <lastmod>2026-01-22T04:39:09.430Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-11/index.html</loc>
-    <lastmod>2026-03-23T00:37:46.413Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-12/week-12-assignments (1).html</loc>
+    <lastmod>2026-03-26T03:48:31.722Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-10/week-10-assignments.html</loc>
-    <lastmod>2026-03-07T08:32:39.627Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-08/week-08-assignments.html</loc>
-    <lastmod>2026-02-28T06:18:53.511Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-7-demo.html</loc>
-    <lastmod>2026-02-17T02:17:38.078Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/index.html</loc>
-    <lastmod>2026-02-23T00:33:22.949Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-06/index.html</loc>
-    <lastmod>2026-02-12T02:32:25.842Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/index.html</loc>
-    <lastmod>2026-02-03T05:56:40.669Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-03/week-3-demo.html</loc>
-    <lastmod>2026-01-23T01:37:54.470Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-02/week-2-demo.html</loc>
-    <lastmod>2026-01-14T02:18:31.314Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-01/index.html</loc>
-    <lastmod>2026-01-08T06:57:54.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/about.html</loc>
-    <lastmod>2026-01-01T20:19:42.409Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-02/index.html</loc>
-    <lastmod>2026-01-18T03:59:31.085Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-03/index.html</loc>
-    <lastmod>2026-01-23T02:40:51.325Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-04/index.html</loc>
-    <lastmod>2026-01-31T00:31:25.706Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/week-5-demo.html</loc>
-    <lastmod>2026-02-05T21:10:27.965Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-06/week-06-assignments.html</loc>
-    <lastmod>2026-02-12T02:30:20.587Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-07-assignments.html</loc>
-    <lastmod>2026-02-23T00:30:48.857Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-08/index.html</loc>
-    <lastmod>2026-02-28T06:31:16.508Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-10/index.html</loc>
-    <lastmod>2026-03-08T03:14:38.252Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-11/week-11-assignments.html</loc>
+    <lastmod>2026-03-23T00:37:11.935Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-10/week-10-demo.html</loc>
     <lastmod>2026-03-06T19:59:45.931Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-11/week-11-assignments.html</loc>
-    <lastmod>2026-03-23T00:37:11.935Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-10/index.html</loc>
+    <lastmod>2026-03-08T03:14:38.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-08/index.html</loc>
+    <lastmod>2026-02-28T06:31:16.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-07-assignments.html</loc>
+    <lastmod>2026-02-23T00:30:48.857Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-06/week-06-assignments.html</loc>
+    <lastmod>2026-02-12T02:30:20.587Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/week-5-demo.html</loc>
+    <lastmod>2026-02-05T21:10:27.965Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-04/index.html</loc>
+    <lastmod>2026-01-31T00:31:25.706Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-03/index.html</loc>
+    <lastmod>2026-01-23T02:40:51.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-02/index.html</loc>
+    <lastmod>2026-01-18T03:59:31.085Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/about.html</loc>
+    <lastmod>2026-01-01T20:19:42.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-01/index.html</loc>
+    <lastmod>2026-01-08T06:57:54.366Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-02/week-2-demo.html</loc>
+    <lastmod>2026-01-14T02:18:31.314Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-03/week-3-demo.html</loc>
+    <lastmod>2026-01-23T01:37:54.470Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-05/index.html</loc>
+    <lastmod>2026-02-03T05:56:40.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-06/index.html</loc>
+    <lastmod>2026-02-12T02:32:25.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/index.html</loc>
+    <lastmod>2026-02-23T00:33:22.949Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-07/week-7-demo.html</loc>
+    <lastmod>2026-02-17T02:17:38.078Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-08/week-08-assignments.html</loc>
+    <lastmod>2026-02-28T06:18:53.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-10/week-10-assignments.html</loc>
+    <lastmod>2026-03-07T08:32:39.627Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-11/index.html</loc>
+    <lastmod>2026-03-23T00:37:46.413Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-12/index.html</loc>
+    <lastmod>2026-03-26T03:52:30.640Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/assignments/week-12/week-12-demo.html</loc>
+    <lastmod>2026-03-25T06:07:24.423Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/course/syllabus.html</loc>
@@ -199,5 +215,9 @@
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-11/index.html</loc>
     <lastmod>2026-03-22T22:20:59.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-2208/weekly-overview/week-12/index.html</loc>
+    <lastmod>2026-03-26T03:54:00.698Z</lastmod>
   </url>
 </urlset>
