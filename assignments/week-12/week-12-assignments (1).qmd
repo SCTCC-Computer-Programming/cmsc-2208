@@ -1,0 +1,52 @@
+---
+title: "Week 12 Assignments"
+subtitle: "Textbook Chapter 3 (Dimensionality Reduction), Dimensionality Reduction Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 12 demo](../../assignments/week-12/week-12-demo.html)**.
+- <a href="week-12-demo.ipynb" download="week-12-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **Chapter 3, dimensionality reduction section** (pages 140--165).
+
+This section introduces dimensionality reduction as a technique for finding compact representations of high-dimensional data. The primary method covered is Principal Component Analysis (PCA), which identifies the directions of maximum variance in a dataset and re-expresses each sample in terms of those directions. The textbook extends beyond the demo by covering NMF (Non-negative Matrix Factorization), t-SNE, and PCA applied to image data using the faces dataset.
+
+## Part 2: Work through the Week 12 Demo
+
+The Week 12 demo covers:
+
+1.  Understanding feature correlations in the Wine dataset and why redundancy in a dataset motivates dimensionality reduction
+2.  Understanding what PCA does: finding directions of maximum variance and re-expressing samples in terms of those directions rather than the original features
+3.  Applying `PCA` from `sklearn.decomposition` using the fit/transform workflow: why scaling is required before PCA, how the fit-on-training rule applies to the `PCA` object the same way it applies to scalers, and what the `PCA` object learns during fit
+4.  Understanding what the PCA output represents: how the data shape changes after transformation and what the values in the new columns mean
+5.  Understanding the `n_components` parameter and how it controls how many principal components are retained
+6.  Interpreting `explained_variance_ratio_` to understand how much of the total variance each component captures
+7.  Using PCA for visualization: reducing 13 features to 2 principal components and observing class separation in a scatter plot
+8.  Using PCA as preprocessing for kNN: comparing accuracy on scaled features versus PCA-reduced data across different numbers of components
+
+## Part 3: D2L Quiz
+
+Complete the **Week 12 D2L quiz** (Dimensionality Reduction concepts).
+
+The quiz covers:
+
+-   Core concepts: what dimensionality reduction is, what PCA does, and how it differs from scaling
+-   Feature correlations: what a correlation coefficient measures and how redundancy between features motivates dimensionality reduction
+-   `PCA` from `sklearn.decomposition`: the fit/transform workflow, the fit-on-training rule applied to PCA, what the `PCA` object learns during fit, how the data shape changes after transformation, and what the values in the output columns represent
+-   `n_components`: what it controls, how to choose a reasonable value based on explained variance
+-   `explained_variance_ratio_`: what it measures, how cumulative variance is used to evaluate how many components to retain
+-   PCA for visualization versus PCA as preprocessing: two different uses of the same workflow and what each produces
+-   Accuracy comparison: kNN on all scaled features versus kNN on PCA-reduced components, and why fewer components can outperform more
+-   Advanced awareness: NMF, t-SNE, and `inverse_transform` (textbook only, pages 140--165)
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+-   **Week 12 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 3 (pages 140--165), understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding what PCA does, how the fit/transform workflow and fit-on-training rule extend to dimensionality reduction, and how to interpret explained variance ratio when choosing the number of components.

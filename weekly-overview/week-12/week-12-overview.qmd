@@ -1,0 +1,52 @@
+---
+title: "Week 12 Guide"
+subtitle: "Chapter 3: Dimensionality Reduction"
+format:
+  html:
+    toc: true
+---
+
+Week 10 covered preprocessing and scaling, the first section of Chapter 3. This week moves to the second section: dimensionality reduction.
+
+Scaling addressed a specific problem with raw feature data: when features span very different numeric ranges, distance-based algorithms cannot evaluate them fairly. Dimensionality reduction addresses a different problem. When features overlap in what they measure, the dataset contains redundant information. The Wine dataset has 13 chemical features, and several of them are strongly correlated with each other. That redundancy means the 13 features do not each contribute independent information. Dimensionality reduction finds a more compact representation of the data that retains the important variation while using fewer dimensions.
+
+The demo uses the same Wine dataset from Week 10 and introduces `PCA` from `sklearn.decomposition`. The fit-on-training rule that governed scalers in Week 10 applies to PCA in exactly the same way.
+
+**Week 12 Assignment:**
+
+-   Here is the link to the **[Week 12 assignments page](../../assignments/week-12/index.qmd)**.
+
+## Demo and textbook coverage
+
+**In the demo you will:**
+
+-   Look at which Wine dataset features tend to move together and why that overlap is a reason to work with fewer dimensions
+-   Apply `PCA` from `sklearn.decomposition` using the fit/transform workflow and the fit-on-training rule
+-   Use `n_components` to control how many principal components are retained
+-   Interpret `explained_variance_ratio_` to understand how much variance each component captures
+-   Reduce the Wine dataset's 13 chemical features to 2 principal components and visualize how the three wine classes separate in the resulting scatter plot
+-   See how much of the dataset's total variation each principal component captures and use that information to reason about how many components are worth keeping
+-   Compare kNN accuracy on all 13 scaled features versus PCA-reduced data across different numbers of components
+
+**In the textbook you will read about:**
+
+-   NMF (Non-negative Matrix Factorization), an alternative to PCA for non-negative data
+-   t-SNE, a visualization method that cannot transform new data after fitting
+-   PCA applied to the faces dataset with image reconstruction using `inverse_transform`
+
+## Reading expectations
+
+After completing the demo and reading, you should be able to explain the following in your own words:
+
+1.  Why does feature correlation motivate dimensionality reduction, and what does PCA do about it?
+2.  Why must data be scaled before applying PCA, and how does the fit-on-training rule apply to the `PCA` object?
+3.  What does `explained_variance_ratio_` tell you, and how would you use it to choose a value for `n_components`?
+4.  In the Week 12 demo, kNN on 2 PCA components outperformed kNN on all 13 scaled features. What explains that result?
+5.  What is the key difference between t-SNE and PCA that makes t-SNE unsuitable as a preprocessing step for a supervised model?
+6.  What does `inverse_transform` do, and what does the result tell you about what PCA keeps versus what it discards?
+
+## Week 12 tasks
+
+1.  Read **Chapter 3, dimensionality reduction section** (pages 140--165).
+2.  Work through the **[Week 12 demo](../../assignments/week-12/index.qmd)** in your Jupyter environment.
+3.  Complete the **Week 12 D2L quiz**.
