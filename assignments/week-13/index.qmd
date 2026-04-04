@@ -1,0 +1,142 @@
+---
+title: "Week 13 Assignment (CMSC-2208)"
+subtitle: "Dimensionality Reduction Application and Video Reflection"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 13 dropbox).
+
+### The Scenario
+
+A game studio is building a personalization system for its flagship multiplayer title. The studio has identified four player archetypes and wants to use those archetypes to deliver personalized in-game content recommendations:
+
+-   Explorer
+-   Competitor
+-   Socializer
+-   Achiever
+
+A prior survey-based study established archetype labels for a subset of the player base, giving the team a labeled dataset to work with.
+
+A data scientist has been brought in to build the classifier. They have assembled 90 days of behavioral telemetry on 2,000 labeled players and plan to use kNN to predict which archetype each player belongs to. Before training, they reviewed the feature table and noticed that the features span dramatically different numeric ranges. They applied `StandardScaler` to address that and are now asking whether the dataset is ready for training.
+
+There is one more thing the data scientist has flagged. Looking at the features, several of them appear to track overlapping aspects of player behavior. Players who spend more time in the game tend to complete more missions. Players who join more party sessions tend to send more chat messages. The data scientist suspects this overlap is worth addressing before training but is not sure how.
+
+**Features recorded for each player:**
+
+| Feature | Description | Range |
+|---|---|---|
+| `hours_per_week` | Average hours played per week | 1--62 |
+| `missions_completed` | Total missions completed in 90 days | 8--1,847 |
+| `deaths_per_session` | Average deaths per play session | 0.2--28.4 |
+| `items_purchased` | Total in-game items purchased | 0--634 |
+| `chat_messages_sent` | Total chat messages sent | 0--9,203 |
+| `party_sessions` | Multiplayer party sessions joined | 0--412 |
+| `map_regions_visited` | Unique map regions visited | 3--287 |
+| `achievements_unlocked` | Total achievements unlocked | 1--318 |
+| `distance_traveled_km` | Total in-game distance traveled | 0.4--18,293 |
+| `difficulty_rating` | Average self-selected difficulty (1--5 scale) | 1.0--5.0 |
+| `daily_login_streak` | Longest login streak in days | 1--90 |
+
+**Here is a sample of the data:**
+
+::: {style="overflow-x: auto;"}
+| hours_per_week | missions_completed | deaths_per_session | items_purchased | chat_messages_sent | party_sessions | map_regions_visited | achievements_unlocked | distance_traveled_km | difficulty_rating | daily_login_streak |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 42 | 1,203 | 3.1 | 287 | 142 | 38 | 94 | 241 | 8,847 | 3.5 | 74 |
+| 11 | 89 | 1.4 | 23 | 7,841 | 389 | 19 | 22 | 412 | 2.0 | 31 |
+| 38 | 614 | 5.8 | 91 | 67 | 12 | 261 | 88 | 17,204 | 2.5 | 58 |
+| 29 | 743 | 22.4 | 412 | 203 | 67 | 41 | 134 | 3,102 | 4.8 | 45 |
+| 6 | 44 | 0.9 | 8 | 31 | 4 | 11 | 9 | 183 | 1.5 | 12 |
+| 19 | 381 | 4.2 | 156 | 1,204 | 144 | 72 | 67 | 2,891 | 3.0 | 43 |
+:::
+
+Notice that `distance_traveled_km` reaches into the tens of thousands while `difficulty_rating` tops out at 5.0. `chat_messages_sent` exceeds 7,800 in one record while `deaths_per_session` stays in the single digits. Both are valid behavioral measurements, but their numeric scales differ by orders of magnitude.
+
+---
+
+### Your Task
+
+Record a video in which you advise the data scientist throughout the project. Address each of the four sections below in order. You are acting as a consultant who has reviewed the data, the plan, and the results. Explain your reasoning clearly, use correct terminology, and connect your answers to the specific features and scenario described.
+
+Do not read from a script. Focus on demonstrating that you understand the concepts and can apply them to this situation.
+
+**Requirements**
+
+-   Clear video and audio quality
+-   Intro (required): Start your video by saying: "Hello, my name is [Your Name]. This is the Week 13 Dimensionality Reduction assignment for CMSC 2208."
+
+---
+
+#### Section A: Is Scaling Enough?
+
+The data scientist has reviewed the feature table and noticed the scale differences. They send you the following message:
+
+> "I've applied `StandardScaler` to all 11 features. The data is scaled and I'm ready to train kNN. Is there anything else I need to do before training?"
+
+1.  Look at the feature table and identify at least two pairs of features you would expect to be correlated. For each pair, explain the behavioral logic. Why would those two measurements tend to move together across players?
+2.  The data scientist says they are ready to train. Are they? Identify what they are missing and explain why scaling alone does not fully prepare this dataset for kNN. Use the correlation pairs you identified to support your answer, and be specific about what problem scaling solved and what different problem remains.
+
+---
+
+#### Section B: A Flaw in the Plan
+
+After your conversation, the data scientist sends you their revised preprocessing plan:
+
+> "Here is what I am going to do. First I will split the data into training and test sets. Then I will fit `StandardScaler` on the training data and transform both sets. Then, since more data should give me better components, I will fit `PCA` on the combined scaled training and test data before transforming each set separately."
+
+1.  There is a mistake in this plan. Your answer should cover all four of the following: identify the mistake precisely, explain what goes wrong as a result, describe what the correct sequence looks like, and address what `PCA` learns during the fit step and why that makes fitting on combined data a problem.
+2.  The data scientist asks why they cannot skip `StandardScaler` and just fit `PCA` directly on the raw features to save a step. Look at the feature ranges in the table and name the specific features that make this shortcut most damaging. Explain what happens to the principal components as a result.
+
+---
+
+#### Section C: How Many Components?
+
+The data scientist followed your recommendations and fit `PCA` on the scaled training data. They share the following explained variance table and ask for your advice:
+
+| Component | Individual | Cumulative |
+|---|---|---|
+| PC1 | 29.3% | 29.3% |
+| PC2 | 18.7% | 48.0% |
+| PC3 | 12.4% | 60.4% |
+| PC4 | 9.1% | 69.5% |
+| PC5 | 7.6% | 77.1% |
+| PC6 | 5.8% | 82.9% |
+| PC7 | 4.3% | 87.2% |
+| PC8 | 3.9% | 91.1% |
+| PC9 | 3.4% | 94.5% |
+| PC10 | 3.1% | 97.6% |
+| PC11 | 2.4% | 100.0% |
+
+1.  The data scientist needs to choose a value for `n_components` before training kNN. What do you recommend and why? State the tradeoff you are accepting and connect your reasoning to what the table shows.
+2.  The data scientist's manager reviews the plan and says: "Just keep all 11 components so you do not lose any information." How do you respond? What does the manager misunderstand about what the later components contain?
+
+---
+
+#### Section D: Results and Next Steps
+
+The data scientist trains two kNN models and shares the results:
+
+-   kNN on all 11 scaled features: **0.847**
+-   kNN on 5 PCA components (77.1% variance retained): **0.891**
+
+The studio also has two additional requests. The creative director wants a visualization showing how the four player archetypes cluster before the model is deployed. The data scientist wants to understand what the PCA components actually represent in terms of the original player behaviors. Questions 2 and 3 below address each of these requests in turn.
+
+1.  The data scientist is surprised by the accuracy results. They expected that using more features would give kNN more information to work with. Explain why the PCA-reduced model outperformed the full-feature model. Be specific about what the discarded components contain and what effect that has on how kNN computes distances.
+2.  For the creative director's request, the data scientist plans to reduce to 2 PCA components and plot the archetypes in a scatter plot. A colleague suggests there is a method better suited to this specific task. Advise the data scientist: what is the better method and what does it offer for visualization? Then explain why that same method cannot be used as the preprocessing step in the production classifier. Specifically, what happens when a new player joins the game after the model has been deployed?
+3.  For the data scientist's interpretability request, what would you recommend they use to connect the PCA components back to the original 11 player behaviors? Explain what it does and what the result reveals.
+
+---
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 13 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week13DimReduction`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week13DimReduction` in the link name
