@@ -1,0 +1,50 @@
+---
+title: "Week 14 Assignments"
+subtitle: "Textbook Chapter 3 (Clustering), Clustering Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 14 demo](../../assignments/week-14/week-14-demo.html)**.
+- <a href="week-14-demo.ipynb" download="week-14-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **Chapter 3, clustering section** (pages 166--207).
+
+This section covers the third and final topic in Chapter 3, building on the preprocessing and dimensionality reduction concepts from Weeks 10 and 12. The textbook introduces three clustering algorithms: k-Means, agglomerative clustering, and DBSCAN. It then compares them using both the adjusted rand index and the silhouette score on real-world datasets, including a face image dataset that illustrates how clustering results require manual interpretation.
+
+## Part 2: Work through the Week 14 Demo
+
+The Week 14 demo covers:
+
+1.  What clustering is and how it differs from supervised learning: no target column `y`, no ground truth to evaluate against, and cluster numbers that are arbitrary labels rather than meaningful categories
+2.  Applying `KMeans` from `sklearn.cluster`: the `fit` workflow, the `labels_` and `cluster_centers_` attributes, and using `predict` to assign new data points to clusters
+3.  Understanding the k-Means assign/update cycle: how the algorithm alternates between assigning points to the nearest center and updating each center to the average position of its assigned points
+4.  What happens when `n_clusters` is wrong: how k-Means divides the data as best it can without detecting a mismatch, and why this is entirely the user's responsibility
+5.  Where k-Means fails: why it cannot find clusters with complex shapes like crescents or rings, and how this connects to its center-based design
+6.  Applying `AgglomerativeClustering` from `sklearn.cluster`: the `fit_predict` workflow, the hierarchical tree structure, ward linkage, and why there is no `predict` method for new points
+7.  Applying `DBSCAN` from `sklearn.cluster`: the `eps` and `min_samples` parameters, how core, boundary, and noise points are classified, the -1 noise label, and why data must be scaled before DBSCAN
+8.  Evaluating clustering with the silhouette score from `sklearn.metrics`: what cohesion and separation measure, how to interpret the score range, and why the silhouette score can rank a visually wrong clustering higher than a correct one when the true clusters are not blob-shaped
+
+## Part 3: D2L Quiz
+
+Complete the **Week 14 D2L quiz** (Clustering concepts).
+
+The quiz covers:
+
+-   Clustering fundamentals: how clustering differs from supervised classification, why cluster numbers are arbitrary, and why clustering cannot be evaluated with an accuracy score
+-   `KMeans` from `sklearn.cluster`: the assign/update cycle, `labels_` and `cluster_centers_` attributes, the `predict` method, and what happens when `n_clusters` does not match the data
+-   `AgglomerativeClustering` from `sklearn.cluster`: bottom-up merging, the hierarchical tree structure, ward linkage, and why there is no `predict` method
+-   `DBSCAN` from `sklearn.cluster`: the `eps` and `min_samples` parameters, core points, boundary points, and noise points labeled -1, and why scaling is required before applying DBSCAN
+-   Silhouette score from `sklearn.metrics`: what cohesion and separation measure, how to interpret the score range, and why the metric systematically favors k-Means even when k-Means produces the wrong clustering
+-   Advanced awareness: adjusted rand index (ARI) as a ground-truth-based alternative to silhouette, vector quantization as a way of understanding k-Means as a decomposition method, and DBSCAN applied to outlier detection (textbook only, pages 166--207)
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+-   **Week 14 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 3 (pages 166--207), understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding how each clustering algorithm finds groups in data, when each algorithm is the right choice, and why the silhouette score requires careful interpretation rather than treating it as a definitive measure of quality.

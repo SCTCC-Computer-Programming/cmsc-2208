@@ -1,0 +1,113 @@
+Week 13 Assignment Rubric
+Course: Sp26 CMSC 2208-22 Introduction to Machine Learning
+Total: / 10
+
+---
+
+Criterion 1: Video format and delivery (/ 1)
+
+Pass (1.0): Required intro is present and complete, audio and video are clear, and delivery is conversational.
+
+Needs Improvement (0.6): Intro is present but incomplete, or audio/video quality creates difficulty following the content.
+
+Fail (0.0): Intro is missing, audio is unintelligible, or delivery is a verbatim reading of a script.
+
+---
+
+Criterion 2: Feature correlation and behavioral reasoning (/ 1)
+
+Pass (1.0): Demonstrates accurate understanding with reasoning that is specific and grounded in the scenario.
+
+Needs Improvement (0.6): Shows partial understanding but reasoning is generic or lacks connection to the scenario.
+
+Fail (0.0): Understanding is absent or reasoning is fundamentally incorrect.
+
+---
+
+Criterion 3: Distinguishing two separate preprocessing problems (/ 1)
+
+Pass (1.0): Demonstrates clear and accurate understanding of both problems with reasoning supported by evidence from the scenario.
+
+Needs Improvement (0.6): Shows awareness that a distinction exists but explanation lacks precision or conflates the two problems.
+
+Fail (0.0): Understanding is absent, or explanation is fundamentally incorrect.
+
+---
+
+Criterion 4: Identifying and explaining the flaw in the preprocessing plan (/ 2)
+
+Pass (2.0): Demonstrates accurate and complete understanding across all four required parts, with specific and well-reasoned explanation throughout.
+
+Needs Improvement (1.2): Demonstrates partial understanding — some parts are addressed accurately but others are vague, incomplete, or missing.
+
+Fail (0.0): Understanding is absent, or explanation is fundamentally incorrect.
+
+---
+
+Criterion 5: Why scaling must precede PCA (/ 1)
+
+Pass (1.0): Demonstrates accurate understanding with reasoning grounded in the specific features of this dataset rather than stated as a general rule.
+
+Needs Improvement (0.6): Shows awareness of the requirement but reasoning remains general and is not connected to this dataset.
+
+Fail (0.0): Understanding is absent, or explanation is fundamentally incorrect.
+
+---
+
+Criterion 6: Reading explained variance and choosing components (/ 1)
+
+Pass (1.0): Demonstrates accurate understanding with a specific, well-reasoned position that accounts for the tradeoff involved.
+
+Needs Improvement (0.6): Shows partial understanding — a position is taken but reasoning is incomplete or the tradeoff is not addressed.
+
+Fail (0.0): No position taken, or reasoning contradicts the evidence provided.
+
+---
+
+Criterion 7: Understanding what low-variance components contain (/ 1)
+
+Pass (1.0): Demonstrates accurate and specific understanding of the concept with well-reasoned explanation.
+
+Needs Improvement (0.6): Shows partial understanding but explanation lacks precision or depth.
+
+Fail (0.0): Understanding is absent or incorrect.
+
+---
+
+Criterion 8: Explaining why fewer components outperformed more features (/ 1)
+
+Pass (1.0): Demonstrates accurate causal understanding with reasoning that is specific and connected to how the algorithm works in this scenario.
+
+Needs Improvement (0.6): Shows awareness that the result is meaningful but explanation of the cause is incomplete or stated only in general terms.
+
+Fail (0.0): Understanding is absent, or explanation attributes the result to an incorrect cause.
+
+---
+
+Criterion 9: Visualization method and its production limitation (/ 1)
+
+Pass (1.0): Demonstrates accurate understanding of both the method's purpose and its limitation, with clear reasoning about the practical consequence.
+
+Needs Improvement (0.6): Shows partial understanding — either the method's purpose or the consequence of its limitation is explained incompletely.
+
+Fail (0.0): Understanding is absent, or an incorrect method is named.
+
+---
+
+Criterion 10: Interpretability recommendation (/ 1)
+
+Pass (1.0): Demonstrates accurate understanding of the tool and its relevance to the specific request, with explanation that connects what the tool does to why it is useful here.
+
+Needs Improvement (0.6): Names the correct tool but explanation of its relevance to the specific request is incomplete.
+
+Fail (0.0): Understanding is absent, or an incorrect tool is named.
+
+---
+
+Overall Score
+
+A: 9.0 and above
+B: 8.0 and above
+C: 7.0 and above
+D: 6.0 and above
+F: Below 6.0
