@@ -393,12 +393,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../weekly-overview/week-10/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 10 (Starts - 16 MAR)</span></a>
   </div>
@@ -421,6 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 13 (Starts - 06 APR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts - 13 APR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -432,12 +432,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link">
@@ -460,6 +454,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-13/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 13 (Starts - 06 APR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts - 13 APR)</span></a>
   </div>
 </li>
       </ul>
@@ -653,7 +653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="part-1-the-wine-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="part-1-the-wine-dataset">Part 1: The Wine Dataset</h2>
 <p>This demo continues with the Wine dataset from Week 10. The dataset has 178 samples, 13 chemical features, and 3 class labels. You have already seen that its features span dramatically different numeric ranges, which made it a good demonstration of why scaling matters. Those same scale differences make it a good demonstration of why dimensionality reduction matters: when features are correlated and span different ranges, the 13-dimensional feature space contains a great deal of redundant information.</p>
-<div id="90563436" class="cell" data-execution_count="1">
+<div id="1923252e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_wine</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -796,7 +796,7 @@ Class distribution:
 <section id="part-2-feature-correlations" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-feature-correlations">Part 2: Feature Correlations</h2>
 <p>The code below computes the correlation between every pair of features and prints the pairs with correlation above 0.6.</p>
-<div id="58981214" class="cell" data-execution_count="2">
+<div id="9221180f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the correlation matrix</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> df.corr().<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -842,7 +842,7 @@ Class distribution:
 <h2 class="anchored" data-anchor-id="part-3-scaling-before-pca">Part 3: Scaling Before PCA</h2>
 <p>PCA must be applied to scaled data. The reason is the same as in Week 10: features with larger numeric ranges produce larger variance, and PCA finds directions of maximum variance. Without scaling, PCA would be driven primarily by <code>proline</code> (range 1,402) and would largely ignore <code>nonflavanoid_phenols</code> (range 0.53).</p>
 <p>The fit-on-training rule applies here exactly as it did with scalers. The scaler is fit on training data only, and the same training statistics are used to transform both sets.</p>
-<div id="82198d11" class="cell" data-execution_count="3">
+<div id="5835c49c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -877,7 +877,7 @@ Std learned from training (first 3 features): [0.827 1.095 0.28 ]</code></pre>
 <h2 class="anchored" data-anchor-id="part-4-pca-for-visualization">Part 4: PCA for Visualization</h2>
 <p>The most immediate use of PCA is visualization. With 13 features, you cannot plot the full dataset. By reducing to 2 principal components, you can create a scatter plot that shows how the three wine classes are distributed in the space defined by the two most important directions of variation.</p>
 <p>Setting <code>n_components=2</code> tells PCA to keep only the first two principal components and discard the rest.</p>
-<div id="0916e8ad" class="cell" data-execution_count="4">
+<div id="d2490c33" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -906,7 +906,7 @@ Total variance explained by 2 components: 0.550 (55.0%)</code></pre>
 <p><strong><code>n_components=2</code>:</strong> This tells PCA to keep only the first 2 principal components. The original 13 features become 2 new features. The data goes from shape (133, 13) to shape (133, 2). The values in these two new columns are not named chemical measurements. Each value is the coordinate of that wine sample along the corresponding principal component. A value of 2.5 in the first column means that sample is 2.5 units along the direction of maximum variance. The actual numbers have no direct chemical interpretation, but their relative positions to each other are what determines how samples cluster in the scatter plot.</p>
 <p><strong><code>explained_variance_ratio_</code>:</strong> This attribute is available after fitting. It is an array with one value per component, showing what fraction of the total variance in the dataset that component captures. PC1 captures 36.4% of the total variance, PC2 captures 18.6%, and together they capture 55.0%. The remaining 45.0% of variance is in the 11 components we discarded.</p>
 <p>Now plot the training samples in the 2-component PCA space:</p>
-<div id="51fc87a8" class="cell" data-execution_count="5">
+<div id="1fdbbb55" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># o = circle, ^ = triangle, s = square</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'steelblue'</span>, <span class="st">'tomato'</span>, <span class="st">'seagreen'</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>markers <span class="op">=</span> [<span class="st">'o'</span>, <span class="st">'^'</span>, <span class="st">'s'</span>]</span>
@@ -939,7 +939,7 @@ Total variance explained by 2 components: 0.550 (55.0%)</code></pre>
 <p>The scatter plot shows all 133 training samples projected onto the first two principal components. The three wine classes separate clearly in this two-dimensional space. class_0 (blue circles) clusters toward the right. class_2 (green squares) clusters toward the left. class_1 (red triangles) falls in the middle with some overlap.</p>
 <p>This separation was found without using the class labels. PCA only looked at the feature values, not the wine cultivar. The fact that the classes separate in PCA space means the chemical properties that differ most between wine cultivars happen to align with the directions of maximum variance in the data.</p>
 <p>Now look at the full picture of how variance is distributed across all 13 components:</p>
-<div id="e5f89db9" class="cell" data-execution_count="6">
+<div id="e4dd7b5c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit PCA with all components to see full explained variance</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pca_full <span class="op">=</span> PCA()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pca_full.fit(X_train_scaled)</span>
@@ -981,7 +981,7 @@ PC13                0.7%      100.0%</code></pre>
 <h2 class="anchored" data-anchor-id="part-5-pca-as-preprocessing-for-knn">Part 5: PCA as Preprocessing for kNN</h2>
 <p>Beyond visualization, PCA can be used as a preprocessing step before training a supervised model. By reducing the number of features, you remove dimensions that contribute little information and may contain noise. This can improve model accuracy and reduce training time.</p>
 <p>Here we compare kNN accuracy on the original 13 scaled features against kNN accuracy on PCA-reduced data with different numbers of components. This shows how the choice of <code>n_components</code> affects accuracy and what the tradeoff looks like between variance retained and dimensions used.</p>
-<div id="01a06805" class="cell" data-execution_count="7">
+<div id="61a38a18" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline: kNN on all 13 scaled features</span></span>

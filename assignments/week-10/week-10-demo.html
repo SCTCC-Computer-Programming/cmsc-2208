@@ -393,12 +393,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../weekly-overview/week-10/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 10 (Starts - 16 MAR)</span></a>
   </div>
@@ -421,6 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 13 (Starts - 06 APR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts - 13 APR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -432,12 +432,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 (Starts - 02 MAR)</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link">
@@ -460,6 +454,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-13/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 13 (Starts - 06 APR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts - 13 APR)</span></a>
   </div>
 </li>
       </ul>
@@ -613,7 +613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="part-1-loading-the-wine-dataset">Part 1: Loading the Wine Dataset</h2>
 <p>This demo uses the Wine dataset, a built-in scikit-learn dataset containing 178 wine samples described by 13 chemical measurements. Each sample belongs to one of three classes, representing three different cultivars of wine from the same region in Italy.</p>
 <p>The wine dataset is a good choice for this demo because its 13 features span dramatically different numeric ranges, which makes the effect of scaling easy to see and measure.</p>
-<div id="4ded977e" class="cell" data-execution_count="1">
+<div id="90c0d20d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -766,7 +766,7 @@ Class distribution:
 <p><strong>Building a DataFrame:</strong> - <code>pd.DataFrame(wine.data, columns=wine.feature_names)</code> places the numeric data into a table with readable column names. This is the same pattern used in prior weeks.</p>
 <hr>
 <p>Now look at the feature ranges. This is the central observation that motivates everything in this demo.</p>
-<div id="72deb27b" class="cell" data-execution_count="2">
+<div id="25a44520" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the range of each feature</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Feature ranges in the Wine dataset:</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Feature'</span><span class="sc">:&lt;35}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Min'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Max'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Range'</span><span class="sc">:&gt;8}</span><span class="ss">"</span>)</span>
@@ -803,7 +803,7 @@ proline                              278.000 1680.000 1402.000</code></pre>
 <section id="part-2-the-problem-with-unscaled-features" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-the-problem-with-unscaled-features">Part 2: The Problem with Unscaled Features</h2>
 <p>Before applying any scaling, establish a baseline by training kNN on the raw, unscaled data.</p>
-<div id="e6219c8f" class="cell" data-execution_count="3">
+<div id="18192e06" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare features and target</span></span>
@@ -853,7 +853,7 @@ kNN accuracy on unscaled data (n_neighbors=5):
 <p><code>StandardScaler</code> is the most commonly used preprocessing method. It transforms each feature so that the values in that column have a <strong>mean of 0</strong> and a <strong>standard deviation of 1</strong>. This is sometimes called standardization or z-score normalization.</p>
 <p>The <strong>mean</strong> is the average value of a column: the sum of all values divided by the count. The <strong>standard deviation</strong> measures how spread out the values are around that mean. A small standard deviation means values cluster tightly around the mean; a large standard deviation means they are spread widely. After StandardScaler transforms a feature, its mean is exactly 0 (the values are centered) and its standard deviation is exactly 1 (the spread is normalized to a common unit).</p>
 <p>The formula for each value is: subtract the column mean, then divide by the column standard deviation. After this transformation, every feature is on the same statistical footing regardless of its original units or range.</p>
-<div id="5ff7d994" class="cell" data-execution_count="4">
+<div id="0c43abe1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create the scaler</span></span>
@@ -895,7 +895,7 @@ alcohol                               0.0000   1.0038   -2.350    2.246</code></
 <p>After scaling, <code>proline</code> has a mean of approximately 0.0 and a standard deviation of approximately 1.0, and so does <code>nonflavanoid_phenols</code>, and so does <code>alcohol</code>. Every feature is now on the same scale. The original difference in range (1,402 vs.&nbsp;0.53) no longer affects distance calculations.</p>
 <hr>
 <p>Now retrain kNN on the scaled data.</p>
-<div id="56578086" class="cell" data-execution_count="5">
+<div id="e6565a01" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train kNN on StandardScaler-transformed data</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>knn_standard <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>knn_standard.fit(X_train_standard, y_train)</span>
@@ -915,7 +915,7 @@ alcohol                               0.0000   1.0038   -2.350    2.246</code></
 <section id="part-4-minmaxscaler" class="level2">
 <h2 class="anchored" data-anchor-id="part-4-minmaxscaler">Part 4: MinMaxScaler</h2>
 <p><code>MinMaxScaler</code> is an alternative that transforms each feature so that all values fall between <strong>0 and 1</strong>. It does this by subtracting the minimum value of each feature and dividing by the range (maximum minus minimum). After this transformation, the smallest value in each column becomes 0 and the largest becomes 1.</p>
-<div id="6fdb7fd1" class="cell" data-execution_count="6">
+<div id="e1fc875a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Same three-step pattern</span></span>
@@ -947,7 +947,7 @@ alcohol                                0.000    1.000</code></pre>
 <p><code>StandardScaler</code> computes mean and standard deviation during fit. After transforming, features are centered at 0 with values typically between about -3 and +3, but there are no guaranteed minimum or maximum values.</p>
 <p><code>MinMaxScaler</code> computes minimum and maximum during fit. After transforming, training data features are guaranteed to fall between 0 and 1. The values are bounded, which some models and visualizations prefer.</p>
 <hr>
-<div id="c22e151d" class="cell" data-execution_count="7">
+<div id="a254719c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train kNN on MinMaxScaler-transformed data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>knn_minmax <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>knn_minmax.fit(X_train_minmax, y_train)</span>
@@ -969,7 +969,7 @@ alcohol                                0.000    1.000</code></pre>
 <p>The three-step pattern used in Parts 3 and 4 (<code>fit</code> on training data, <code>transform</code> both sets) is not arbitrary. It enforces an important rule that must carry forward into every week of the course.</p>
 <p><strong>The rule:</strong> a scaler must be fit only on training data, then used to transform both the training set and the test set.</p>
 <p>This rule exists because the test set represents new, unseen data. In a real deployment, you would not have access to future data when building your model. If you fit the scaler on the full dataset (training and test combined), you are using information about the test set to influence how the training data is prepared. This leaks test information into training and gives an overly optimistic view of how the model will perform on truly new data.</p>
-<div id="2bc8017b" class="cell" data-execution_count="8">
+<div id="4bc8c6c1" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrating the correct pattern explicitly</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CORRECT: fit on training data only</span></span>
@@ -1003,7 +1003,7 @@ What the scaler learned from training data (first 3 features):
 <p><code>scaler.mean_</code> and <code>scaler.var_</code> are attributes that store what the scaler computed during <code>fit</code>. They reflect only the training data. When <code>transform</code> is called on the test set, these same training values are used; the test set is shifted and scaled using the training set’s statistics, not its own.</p>
 <p>This is the same mindset as train/test splitting for supervised models: you evaluate performance on data the model has not seen. The scaler follows the same principle: it should only learn from data the model has not seen.</p>
 <hr>
-<div id="a3f797c6" class="cell" data-execution_count="9">
+<div id="99d51696" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the before/after effect for two features with very different scales</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
