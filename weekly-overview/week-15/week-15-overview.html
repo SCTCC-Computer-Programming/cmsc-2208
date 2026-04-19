@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Office Hours – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Week 15 Guide – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 15 Guide</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -320,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
@@ -511,14 +511,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-you-will-be-demonstrating-in-the-assignment" id="toc-what-you-will-be-demonstrating-in-the-assignment" class="nav-link active" data-scroll-target="#what-you-will-be-demonstrating-in-the-assignment">What you will be demonstrating in the assignment</a></li>
+  <li><a href="#week-15-tasks" id="toc-week-15-tasks" class="nav-link" data-scroll-target="#week-15-tasks">Week 15 tasks</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Office Hours</h1>
+<h1 class="title">Week 15 Guide</h1>
+<p class="subtitle lead">Chapter 3: Clustering Application</p>
 </div>
 
 
@@ -530,7 +540,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 29, 2025</p>
+      <p class="date-modified">April 15, 2026</p>
     </div>
   </div>
     
@@ -541,15 +551,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Mondays</strong> - <strong>3:00–4:00 PM</strong> and <strong>6:00–7:00 PM</strong></p>
-<p><strong>Persistent Zoom link:</strong> <a href="https://minnstate.zoom.us/j/9906791485">Join Zoom meeting</a></p>
-<section id="no-office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="no-office-hours">No office hours</h2>
-<p>Office hours are <strong>not held</strong> on:</p>
-<p><strong>Jan 19</strong> — Martin Luther King — No Classes — College Closed<br>
-<strong>Feb 16</strong> — President’s Day — No Classes — College Closed<br>
-<strong>Mar 9–13</strong> — Spring Break — No Classes<br>
-<strong>May 11–15</strong> — Final Exams</p>
+<p>Week 14 introduced clustering through three algorithms and a hands-on demo. Week 15 is an application week: no new algorithms, no demo, no quiz. The assignment puts the Week 14 concepts to work in a new context.</p>
+<p>The scenario places you in the role of a consultant advising a data scientist who has recovered a document archive from Umbrella Corporation, a pharmaceutical company under investigation for illegal biological research. The archive contains no labels and no program identifiers. The data scientist needs to find structure in the documents without any guidance from labeled examples. The assignment asks you to reason through the clustering task from start to finish: identifying what kind of problem this is, choosing and justifying an approach, addressing what a specific algorithm reveals that others cannot, evaluating the results critically, and handling a practical constraint that emerges after the initial analysis.</p>
+<p>Before recording, review your Week 14 demo notebook and the clustering section of the textbook. The assignment draws on all three algorithms covered in Week 14.</p>
+<p><strong>Week 15 Assignment:</strong></p>
+<ul>
+<li>Here is the link to the <strong><a href="../../assignments/week-15/index.html">Week 15 assignments page</a></strong>.</li>
+</ul>
+<section id="what-you-will-be-demonstrating-in-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-be-demonstrating-in-the-assignment">What you will be demonstrating in the assignment</h2>
+<p><strong>Recognizing the problem type and its constraints.</strong> Clustering without labels is structurally different from every supervised learning task in Weeks 2 through 8. The assignment tests whether you can identify that difference, explain what it means for algorithm choice, and explain what it means for how results can and cannot be evaluated.</p>
+<p><strong>Algorithm selection and justification.</strong> The assignment asks you to choose an algorithm for an initial grouping and justify that choice in the context of the scenario. A stated choice without reasoning, or reasoning that does not connect to the specific dataset and goal, is not sufficient.</p>
+<p><strong>Understanding what each algorithm uniquely offers.</strong> The assignment addresses all three algorithms from Week 14. Each has capabilities and limitations the others do not share. Demonstrating understanding means explaining those differences in terms of this scenario, not as abstract definitions.</p>
+<p><strong>Evaluating clustering results critically.</strong> The assignment presents a situation where a numeric evaluation metric produces a result the data scientist interprets confidently. Evaluating that interpretation requires understanding what the metric actually measures and what it cannot tell you about whether a clustering result is meaningful for a specific goal.</p>
+<p><strong>Handling a practical constraint.</strong> The final section introduces a constraint that arises after the initial analysis is complete. Addressing it requires knowing which algorithms support a specific capability and which do not, and reasoning about the practical consequences of that distinction.</p>
+</section>
+<section id="week-15-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-15-tasks">Week 15 tasks</h2>
+<ol type="1">
+<li>Review your <strong>Week 14 demo notebook and textbook reading</strong> as needed before working through the assignment.</li>
+<li>Read through the <strong><a href="../../assignments/week-15/index.html">Week 15 assignment</a></strong> carefully, including the full scenario and all five sections, before recording.</li>
+<li>Record and submit your <strong>video</strong> addressing all five sections.</li>
+</ol>
 
 
 </section>
