@@ -1,0 +1,35 @@
+---
+title: "Week 15 Guide"
+subtitle: "Chapter 3: Clustering Application"
+format:
+  html:
+    toc: true
+---
+
+Week 14 introduced clustering through three algorithms and a hands-on demo. Week 15 is an application week: no new algorithms, no demo, no quiz. The assignment puts the Week 14 concepts to work in a new context.
+
+The scenario places you in the role of a consultant advising a data scientist who has recovered a document archive from Umbrella Corporation, a pharmaceutical company under investigation for illegal biological research. The archive contains no labels and no program identifiers. The data scientist needs to find structure in the documents without any guidance from labeled examples. The assignment asks you to reason through the clustering task from start to finish: identifying what kind of problem this is, choosing and justifying an approach, addressing what a specific algorithm reveals that others cannot, evaluating the results critically, and handling a practical constraint that emerges after the initial analysis.
+
+Before recording, review your Week 14 demo notebook and the clustering section of the textbook. The assignment draws on all three algorithms covered in Week 14.
+
+**Week 15 Assignment:**
+
+-   Here is the link to the **[Week 15 assignments page](../../assignments/week-15/index.qmd)**.
+
+## What you will be demonstrating in the assignment
+
+**Recognizing the problem type and its constraints.** Clustering without labels is structurally different from every supervised learning task in Weeks 2 through 8. The assignment tests whether you can identify that difference, explain what it means for algorithm choice, and explain what it means for how results can and cannot be evaluated.
+
+**Algorithm selection and justification.** The assignment asks you to choose an algorithm for an initial grouping and justify that choice in the context of the scenario. A stated choice without reasoning, or reasoning that does not connect to the specific dataset and goal, is not sufficient.
+
+**Understanding what each algorithm uniquely offers.** The assignment addresses all three algorithms from Week 14. Each has capabilities and limitations the others do not share. Demonstrating understanding means explaining those differences in terms of this scenario, not as abstract definitions.
+
+**Evaluating clustering results critically.** The assignment presents a situation where a numeric evaluation metric produces a result the data scientist interprets confidently. Evaluating that interpretation requires understanding what the metric actually measures and what it cannot tell you about whether a clustering result is meaningful for a specific goal.
+
+**Handling a practical constraint.** The final section introduces a constraint that arises after the initial analysis is complete. Addressing it requires knowing which algorithms support a specific capability and which do not, and reasoning about the practical consequences of that distinction.
+
+## Week 15 tasks
+
+1.  Review your **Week 14 demo notebook and textbook reading** as needed before working through the assignment.
+2.  Read through the **[Week 15 assignment](../../assignments/week-15/index.qmd)** carefully, including the full scenario and all five sections, before recording.
+3.  Record and submit your **video** addressing all five sections.

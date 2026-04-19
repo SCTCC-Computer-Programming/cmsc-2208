@@ -1,0 +1,100 @@
+---
+title: "Week 15 Assignment (CMSC-2208)"
+subtitle: "Clustering Consultation and Video Reflection"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** **All items are submitted in D2L** (Week 15 dropbox).
+
+### The Scenario
+
+Umbrella Corporation is a powerful pharmaceutical company with a history of conducting classified biological research. Following a catastrophic incident at one of its facilities, a digital forensics team has recovered a large archive of research documents from Umbrella's internal servers. The documents include laboratory reports, internal memos, experimental logs, and project summaries spanning multiple research programs.
+
+A data scientist on the recovery team has converted each document into a row of numeric measurements capturing writing style, keyword patterns, citation structure, and document length. The resulting dataset contains 4,200 documents, each described by 18 numeric features. Because Umbrella organized their internal files to resist outside analysis, none of the documents carry category labels or program identifiers. There is no target column, no labels identifying which program each document belongs to, and no external reference the algorithm can evaluate its results against. The goal is to find structure in the archive: to discover which documents belong together and what that grouping might reveal about Umbrella's research programs.
+
+**Features recorded for each document:**
+
+-   **avg_sentence_length:** average number of words per sentence (range: 8 to 47)
+-   **technical_term_density:** proportion of words classified as technical terminology (range: 0.02 to 0.61)
+-   **citation_count:** number of references to other documents (range: 0 to 84)
+-   **document_length:** total word count (range: 120 to 9,400)
+-   **revision_count:** number of tracked revisions (range: 0 to 31)
+-   **author_count:** number of listed contributors (range: 1 to 12)
+-   14 additional features capturing keyword frequency across scientific domains
+
+Here is a sample of six documents from the archive:
+
+| doc_id | avg_sentence_length | technical_term_density | citation_count | document_length | revision_count | author_count |
+|--------|-------------------|----------------------|----------------|-----------------|----------------|--------------|
+| DOC-0041 | 18.2 | 0.48 | 62 | 7,840 | 14 | 8 |
+| DOC-0117 | 31.4 | 0.09 | 3 | 290 | 1 | 1 |
+| DOC-0203 | 22.7 | 0.51 | 55 | 6,120 | 19 | 6 |
+| DOC-0388 | 29.1 | 0.11 | 1 | 180 | 0 | 1 |
+| DOC-0502 | 19.8 | 0.44 | 48 | 5,670 | 11 | 5 |
+| DOC-0619 | 12.3 | 0.06 | 0 | 145 | 0 | 1 |
+
+Notice that DOC-0117, DOC-0388, and DOC-0619 share a pattern: short documents, low technical density, few citations, and single authors. DOC-0041, DOC-0203, and DOC-0502 are the opposite: long, technically dense, heavily cited, and collaborative. Whether these represent distinct research programs, document types, or something else is exactly what the clustering analysis is meant to reveal.
+
+### Your Task
+
+Record a video in which you advise the data scientist on how to approach the clustering analysis. Organize your video to address each of the five sections below in order. You are acting as a consultant who has reviewed the dataset and the goal. Explain your reasoning clearly, use correct terminology, and connect your recommendations to the specific features and context described.
+
+Do not read from a script. Focus on demonstrating that you understand the concepts and can apply them to this situation.
+
+**Requirements**
+
+-   Clear video and audio quality
+-   Intro (required): Start your video by saying: "Hello, my name is [Your Name]. This is the Week 15 Clustering assignment for CMSC 2208."
+
+#### Section A: Understanding the Task
+
+Before choosing any algorithm, the data scientist needs to understand what kind of problem this is.
+
+1.  Is this a supervised or unsupervised problem? Explain what makes it one or the other, using specific details from the scenario.
+2.  The data scientist asks: "How will we know if the clustering worked?" How do you respond? What does it mean that there are no labels to evaluate against, and what does that change about how the results need to be interpreted?
+3.  The documents will be assigned cluster numbers when the algorithm runs. What do those numbers mean, and what do they not mean?
+
+#### Section B: Choosing an Algorithm for the Initial Grouping
+
+The data scientist wants to start by grouping the 4,200 documents into a manageable number of clusters to get a broad picture of Umbrella's research programs.
+
+1.  Which algorithm would you recommend for this initial grouping: `KMeans`, `AgglomerativeClustering`, or `DBSCAN`? State your choice clearly.
+2.  What parameter does your chosen algorithm require you to set before running it, and what does that parameter control? How would you approach choosing a value for it in this scenario?
+3.  What will the output look like? Describe what the data scientist will have after the algorithm runs, and what they will need to do next to make sense of it.
+
+#### Section C: What DBSCAN Reveals
+
+Regardless of which algorithm you recommended in Section B, the data scientist also wants to run DBSCAN on the archive.
+
+1.  DBSCAN assigns some documents a label of -1. What does that label mean, and why is it particularly meaningful in this scenario? What might a document labeled -1 represent in the context of Umbrella's archive?
+2.  The data scientist sets `eps` very small and finds that nearly every document is labeled -1. Then they set `eps` very large and finds that all documents end up in a single cluster. Explain what is happening in each case and what it tells you about how `eps` controls the algorithm's behavior.
+3.  Before running DBSCAN, you tell the data scientist to scale the features using `StandardScaler`. They ask why scaling is required before DBSCAN but not before `KMeans` or `AgglomerativeClustering`. Explain the difference.
+
+#### Section D: Evaluating the Results
+
+The data scientist runs `KMeans`, `AgglomerativeClustering`, and `DBSCAN` on the archive, then computes the silhouette score for each result. `KMeans` produces a noticeably higher silhouette score than `DBSCAN`.
+
+1.  What does the silhouette score actually measure? Describe what cohesion and separation mean in plain terms.
+2.  The data scientist concludes that `KMeans` found better clusters because its silhouette score is higher. Do you agree? Explain what the silhouette score can and cannot tell you about whether a clustering result is meaningful for this specific goal.
+3.  The recovery team's goal is to understand Umbrella's research programs. Given that goal, what would you recommend the data scientist do in addition to computing the silhouette score to evaluate whether the clustering is actually useful? Think about what examining the actual documents in each cluster would reveal that a numeric score cannot.
+
+#### Section E: New Documents Arrive
+
+Two weeks after the initial analysis, the forensics team recovers an additional 300 documents from a previously inaccessible server partition.
+
+1.  The data scientist wants to assign each new document to one of the clusters found in the initial analysis using the `predict` method. Which of the three algorithms supports `predict` and which do not? Explain why the algorithms that do not support it are unable to make that assignment.
+2.  What are the practical consequences of this limitation for the recovery team's ongoing work? What options does the data scientist have for handling the new documents? One option is to rerun the algorithm on the full expanded dataset. What are the tradeoffs of that approach, and are there other paths worth considering?
+
+### D2L Submission Checklist
+
+Submit the following items to the Week 15 D2L dropbox.
+
+#### Video submission (link only)
+
+-   Video filename: `lastname_Week15Clustering`
+-   Upload your video to Kaltura
+-   Do not embed the video in the Dropbox submission
+-   Paste the share link into the D2L text submission box
+-   Make sure the link text includes `lastname_Week15Clustering` in the link name
