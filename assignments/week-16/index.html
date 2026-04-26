@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Office Hours – CMSC 2208 : Introduction to Machine Learning</title>
+<title>Final Project (CMSC-2208) – CMSC 2208 : Introduction to Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Final Project (CMSC-2208)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -320,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
@@ -523,14 +523,47 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#how-ai-fits-into-this-project" id="toc-how-ai-fits-into-this-project" class="nav-link" data-scroll-target="#how-ai-fits-into-this-project">How AI Fits Into This Project</a></li>
+  <li><a href="#picking-your-dataset-and-question" id="toc-picking-your-dataset-and-question" class="nav-link" data-scroll-target="#picking-your-dataset-and-question">Picking Your Dataset and Question</a>
+  <ul class="collapse">
+  <li><a href="#what-makes-a-workable-dataset" id="toc-what-makes-a-workable-dataset" class="nav-link" data-scroll-target="#what-makes-a-workable-dataset">What makes a workable dataset</a></li>
+  <li><a href="#what-makes-a-workable-question" id="toc-what-makes-a-workable-question" class="nav-link" data-scroll-target="#what-makes-a-workable-question">What makes a workable question</a></li>
+  <li><a href="#where-to-find-data" id="toc-where-to-find-data" class="nav-link" data-scroll-target="#where-to-find-data">Where to find data</a></li>
+  <li><a href="#some-example-pairings-to-spark-ideas" id="toc-some-example-pairings-to-spark-ideas" class="nav-link" data-scroll-target="#some-example-pairings-to-spark-ideas">Some example pairings to spark ideas</a></li>
+  </ul></li>
+  <li><a href="#the-notebook" id="toc-the-notebook" class="nav-link" data-scroll-target="#the-notebook">The Notebook</a></li>
+  <li><a href="#the-video" id="toc-the-video" class="nav-link" data-scroll-target="#the-video">The Video</a></li>
+  <li><a href="#suggested-timeline" id="toc-suggested-timeline" class="nav-link" data-scroll-target="#suggested-timeline">Suggested Timeline</a></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
+  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a>
+  <ul class="collapse">
+  <li><a href="#criterion-1-video-format-and-delivery-1" id="toc-criterion-1-video-format-and-delivery-1" class="nav-link" data-scroll-target="#criterion-1-video-format-and-delivery-1">Criterion 1: Video format and delivery (/ 1)</a></li>
+  <li><a href="#criterion-2-dataset-quality-and-fit-2" id="toc-criterion-2-dataset-quality-and-fit-2" class="nav-link" data-scroll-target="#criterion-2-dataset-quality-and-fit-2">Criterion 2: Dataset quality and fit (/ 2)</a></li>
+  <li><a href="#criterion-3-question-and-approach-alignment-3" id="toc-criterion-3-question-and-approach-alignment-3" class="nav-link" data-scroll-target="#criterion-3-question-and-approach-alignment-3">Criterion 3: Question and approach alignment (/ 3)</a></li>
+  <li><a href="#criterion-4-notebook-execution-and-ai-use-2" id="toc-criterion-4-notebook-execution-and-ai-use-2" class="nav-link" data-scroll-target="#criterion-4-notebook-execution-and-ai-use-2">Criterion 4: Notebook execution and AI use (/ 2)</a></li>
+  <li><a href="#criterion-5-video-explanation-matches-notebook-3-assignment-level-fail-possible" id="toc-criterion-5-video-explanation-matches-notebook-3-assignment-level-fail-possible" class="nav-link" data-scroll-target="#criterion-5-video-explanation-matches-notebook-3-assignment-level-fail-possible">Criterion 5: Video explanation matches notebook (/ 3) (Assignment-Level Fail Possible)</a></li>
+  <li><a href="#criterion-6-conclusions-follow-from-results-3-assignment-level-fail-possible" id="toc-criterion-6-conclusions-follow-from-results-3-assignment-level-fail-possible" class="nav-link" data-scroll-target="#criterion-6-conclusions-follow-from-results-3-assignment-level-fail-possible">Criterion 6: Conclusions follow from results (/ 3) (Assignment-Level Fail Possible)</a></li>
+  <li><a href="#overall-score" id="toc-overall-score" class="nav-link" data-scroll-target="#overall-score">Overall Score</a></li>
+  <li><a href="#assignment-level-fail-policy" id="toc-assignment-level-fail-policy" class="nav-link" data-scroll-target="#assignment-level-fail-policy">Assignment-Level Fail Policy</a></li>
+  </ul></li>
+  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L Submission Checklist</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Office Hours</h1>
+<h1 class="title">Final Project (CMSC-2208)</h1>
+<p class="subtitle lead">End-to-End Machine Learning with AI-Assisted Implementation</p>
 </div>
 
 
@@ -542,7 +575,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 29, 2025</p>
+      <p class="date-modified">April 23, 2026</p>
     </div>
   </div>
     
@@ -553,15 +586,327 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Mondays</strong> - <strong>3:00–4:00 PM</strong> and <strong>6:00–7:00 PM</strong></p>
-<p><strong>Persistent Zoom link:</strong> <a href="https://minnstate.zoom.us/j/9906791485">Join Zoom meeting</a></p>
-<section id="no-office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="no-office-hours">No office hours</h2>
-<p>Office hours are <strong>not held</strong> on:</p>
-<p><strong>Jan 19</strong> — Martin Luther King — No Classes — College Closed<br>
-<strong>Feb 16</strong> — President’s Day — No Classes — College Closed<br>
-<strong>Mar 9–13</strong> — Spring Break — No Classes<br>
-<strong>May 11–15</strong> — Final Exams</p>
+<p><strong>Submission location:</strong> All items are submitted in D2L (Final Project dropbox).</p>
+<p><strong>Timeline:</strong> Available April 27. Due May 11 at 11:59 PM.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This semester, you have learned how machine learning works conceptually. You can identify whether a problem is classification or regression, explain how different algorithms make predictions, recognize overfitting, and interpret feature importance. The final project asks you to apply that understanding to an investigation of your own choosing.</p>
+<p>You will pick a dataset that interests you, frame a question you want to answer about that dataset, and use AI to help you build a notebook that investigates that question. You will then record a video walking through your notebook and explaining what you did, why you did it, and what you found.</p>
+<p><strong>An honest note about where your time will go.</strong> The hardest parts of this project are not the code. The hardest parts are picking a dataset that can actually support an interesting investigation, framing a question that the data can answer, and figuring out what approach makes sense for your question. The code itself, with AI assistance, is the easy part once those decisions are made. Plan accordingly.</p>
+</section>
+<section id="how-ai-fits-into-this-project" class="level2">
+<h2 class="anchored" data-anchor-id="how-ai-fits-into-this-project">How AI Fits Into This Project</h2>
+<p>This assignment uses AI as your primary implementation tool. You are expected to use an AI assistant (Claude, ChatGPT, Copilot, or similar) to generate the notebook code. You may use AI as much as you like.</p>
+<p>Your responsibility is to:</p>
+<ol type="1">
+<li>Make the decisions AI cannot make for you: what to investigate, what data to use, what approach makes sense for your question.</li>
+<li>Get the notebook to run cleanly from top to bottom.</li>
+<li>Record a video in which you walk through the notebook and explain your work in a way that demonstrates you understood what you did.</li>
+</ol>
+<p>Video explanations that contradict the notebook’s actual output will not pass, regardless of how well-spoken they are. The skill being tested is whether you can direct an AI to produce working code on a problem you defined, and accurately interpret what came out.</p>
+</section>
+<section id="picking-your-dataset-and-question" class="level2">
+<h2 class="anchored" data-anchor-id="picking-your-dataset-and-question">Picking Your Dataset and Question</h2>
+<p>This is the most important part of the project. A good dataset paired with a good question makes everything else easier. A bad pairing makes everything else miserable.</p>
+<section id="what-makes-a-workable-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-a-workable-dataset">What makes a workable dataset</h3>
+<ul>
+<li><strong>Big enough to be meaningful.</strong> A dataset with 50 rows cannot support a real investigation. Aim for at least 1,000 rows, ideally several thousand. More features generally means more interesting work, but anything fewer than five features will limit what you can do.</li>
+<li><strong>Has a clear structure.</strong> Tabular data (rows and columns, like a spreadsheet) is what you have learned to work with. Avoid raw text, raw images, or audio data unless you are prepared to handle a lot of preprocessing AI alone won’t get right.</li>
+<li><strong>Has something you can predict, group, or analyze.</strong> A dataset of random measurements with no clear target or pattern won’t give you anything to investigate.</li>
+<li><strong>You can actually download it.</strong> Kaggle, UCI, and government open data portals let you download CSV files directly. APIs (Steam, Spotify, etc.) require more setup and can introduce delays you can’t afford in a two-week window.</li>
+</ul>
+</section>
+<section id="what-makes-a-workable-question" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-a-workable-question">What makes a workable question</h3>
+<ul>
+<li><strong>The data can actually answer it.</strong> “Can I predict X from Y” only works if your dataset contains both X and Y, and there’s a plausible relationship between them.</li>
+<li><strong>It’s specific enough to be answered.</strong> “What can I learn about Spotify songs?” is too vague. “Can I predict whether a song will be in the top 10% by popularity based on its audio features?” is specific.</li>
+<li><strong>It’s scoped to two weeks of work.</strong> You are not writing a thesis. Pick something you can investigate, not solve.</li>
+<li><strong>It interests you.</strong> You are going to be looking at this dataset for two weeks. Pick something you actually want to know about.</li>
+</ul>
+</section>
+<section id="where-to-find-data" class="level3">
+<h3 class="anchored" data-anchor-id="where-to-find-data">Where to find data</h3>
+<p>These are all free. None require payment. Some require a free account.</p>
+<ul>
+<li><strong>Kaggle</strong> (kaggle.com) — Largest collection of public datasets. Free account required to download. Search by topic or browse trending datasets.</li>
+<li><strong>UCI Machine Learning Repository</strong> (archive.ics.uci.edu) — Curated datasets used in research and teaching. No account needed.</li>
+<li><strong>data.gov</strong> and city-level open data portals (NYC, Chicago, etc.) — Government data on everything from crime to transit to public health.</li>
+<li><strong>Inside Airbnb</strong> (insideairbnb.com) — Airbnb listing data by city.</li>
+<li><strong>Sports databases</strong> — Basketball-Reference, FBref, PyBaseball (Python library) for sports stats.</li>
+</ul>
+</section>
+<section id="some-example-pairings-to-spark-ideas" class="level3">
+<h3 class="anchored" data-anchor-id="some-example-pairings-to-spark-ideas">Some example pairings to spark ideas</h3>
+<p>You are not required to use any of these. They are here to show you what a good dataset/question pairing looks like.</p>
+<ul>
+<li><strong>Steam Games Dataset</strong> (Kaggle): Can you predict whether a game will be highly rated based on its price, genre, and platform support?</li>
+<li><strong>Spotify Tracks Dataset</strong> (Kaggle): Can you predict song popularity from audio features like danceability, energy, and tempo?</li>
+<li><strong>NBA Player Stats</strong> (Kaggle or basketball-reference): Can you predict a player’s position from their season stats?</li>
+<li><strong>FIFA Player Ratings</strong> (Kaggle): Can you predict a player’s market value from their attribute ratings?</li>
+<li><strong>Airbnb Listings for [Your City]</strong> (Inside Airbnb): Can you predict the price of a listing from its location and property features?</li>
+<li><strong>Wine Reviews</strong> (Kaggle): Can you predict a wine’s rating from its price, country, and variety?</li>
+<li><strong>Pokémon Stats</strong> (Kaggle): Can you predict whether a Pokémon is legendary from its base stats?</li>
+<li><strong>TMDB Movies</strong> (Kaggle): Can you predict a movie’s revenue from its budget, runtime, and genre?</li>
+</ul>
+</section>
+</section>
+<section id="the-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="the-notebook">The Notebook</h2>
+<p>Build a Jupyter notebook that investigates your question. You may use AI to generate the code. You are responsible for making sure the notebook runs cleanly from the first cell to the last with no errors, and that all cells have been executed with output visible.</p>
+<p>Your notebook must include:</p>
+<ol type="1">
+<li><p><strong>A markdown cell at the top</strong> that states:</p>
+<ul>
+<li>The dataset you used and where you got it</li>
+<li>The question you are investigating</li>
+<li>Why you picked this dataset and this question</li>
+</ul></li>
+<li><p><strong>Basic data exploration cells.</strong> Show the shape of your dataset, the first few rows, and a description of what the columns represent.</p></li>
+<li><p><strong>The work itself.</strong> Whatever code is needed to investigate your question. This will look different depending on what you chose. You might train and compare several algorithms, go deep on one, or use clustering or other unsupervised methods. The right approach depends on your question.</p></li>
+<li><p><strong>A markdown cell at the end</strong> that summarizes what you found.</p></li>
+</ol>
+<p>The notebook must be a <code>.ipynb</code> file. Do not submit a notebook with un-run cells, error tracebacks, or missing output.</p>
+</section>
+<section id="the-video" class="level2">
+<h2 class="anchored" data-anchor-id="the-video">The Video</h2>
+<p>Record a video in which you walk through your notebook and explain your investigation. You must share your screen and have the notebook open. As you discuss results, point to the actual cell outputs in your notebook so that what you say is visible on screen.</p>
+<p>Do not read from a script. Focus on showing that you understood what you did and that your work actually addresses the question you posed.</p>
+<p><strong>Your video should convince me that:</strong></p>
+<ul>
+<li>The dataset and question were a good pairing</li>
+<li>The approach you took fits the question you asked</li>
+<li>You understand what your notebook produced</li>
+<li>The conclusions you draw follow from what your notebook actually shows</li>
+</ul>
+<p>There is no time limit. Take as long as you need to make your case, but no longer. A focused, well-organized video is more convincing than a long, meandering one.</p>
+<p><strong>Requirements</strong></p>
+<ul>
+<li>Clear video and audio quality</li>
+<li>Screen share showing your notebook open with all outputs visible</li>
+<li>Intro (required): Start your video by saying: “Hello, my name is [Your Name]. This is the Final Project for CMSC 2208.”</li>
+</ul>
+</section>
+<section id="suggested-timeline" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-timeline">Suggested Timeline</h2>
+<p>This is a guideline, not a strict schedule. Adjust based on how the work is going.</p>
+<p><strong>Week 1 (April 27 – May 4):</strong> Find your dataset. Refine your question. Download the data and explore it. Make sure the dataset actually supports the question you want to answer. If it doesn’t, change one or the other before you commit.</p>
+<p><strong>Week 2 (May 5 – May 11):</strong> Build the notebook with AI assistance. Work through whatever issues come up. Run your analysis. Write up your findings. Record and submit your video.</p>
+<p>If you find yourself in Week 2 still trying to pick a dataset, that is a sign you need to make a decision and move on. A good-enough dataset you commit to is better than a perfect dataset you never start working with.</p>
+</section>
+<section id="grading" class="level2">
+<h2 class="anchored" data-anchor-id="grading">Grading</h2>
+<p>Your grade is based on the following:</p>
+<ul>
+<li><strong>Was the dataset robust enough to support your investigation?</strong> Tiny datasets, datasets without clear structure, or datasets that don’t actually contain the information needed to answer your question will limit what you can show.</li>
+<li><strong>Did your question and approach fit each other?</strong> A regression question with a clustering approach, or a classification question with a dataset that has no clear target, will not work.</li>
+<li><strong>Did the notebook actually do what your video says it did?</strong> Your spoken claims must match your notebook’s actual output.</li>
+<li><strong>Did you understand your own work?</strong> The video should demonstrate that you can explain what you did and why, not just read what is on screen.</li>
+<li><strong>Did your conclusions follow from your results?</strong> Conclusions that contradict or overstate what your notebook shows will not pass.</li>
+</ul>
+</section>
+<section id="rubric" class="level2">
+<h2 class="anchored" data-anchor-id="rubric">Rubric</h2>
+<p><strong>Total: / 14</strong></p>
+<hr>
+<section id="criterion-1-video-format-and-delivery-1" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-1-video-format-and-delivery-1">Criterion 1: Video format and delivery (/ 1)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (1.0)</th>
+<th>Needs Improvement (0.6)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Required intro is present and complete, audio and video are clear, screen share shows the notebook, and delivery is conversational.</td>
+<td>Intro is present but incomplete, or audio/video quality creates difficulty following the content.</td>
+<td>Intro is missing, audio is unintelligible, screen is not shared, or delivery is a verbatim reading of a script.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="criterion-2-dataset-quality-and-fit-2" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-2-dataset-quality-and-fit-2">Criterion 2: Dataset quality and fit (/ 2)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (2.0)</th>
+<th>Needs Improvement (1.2)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dataset is robust enough to support the investigation: adequate size, clear structure, and contains the information needed to answer the question. Source is legitimate and the choice is explained in the notebook.</td>
+<td>Dataset is workable but limited in ways that weaken the investigation, such as smaller than ideal size, incomplete structure, or a weaker fit to the question than it should be.</td>
+<td>Dataset is too small, too messy, or does not contain the information needed to answer the question. Source is unclear or not stated.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="criterion-3-question-and-approach-alignment-3" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-3-question-and-approach-alignment-3">Criterion 3: Question and approach alignment (/ 3)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (3.0)</th>
+<th>Needs Improvement (1.8)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Question is specific and answerable from the data. The analytical approach (algorithm choice, methodology) is clearly appropriate for the question. Student can articulate why their approach fits.</td>
+<td>Question is reasonable but vague, or the approach partially fits but has a mismatch the student does not acknowledge.</td>
+<td>Question is not answerable from the data, or the approach does not fit the question at all (e.g., a classification approach on data with no clear target).</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="criterion-4-notebook-execution-and-ai-use-2" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-4-notebook-execution-and-ai-use-2">Criterion 4: Notebook execution and AI use (/ 2)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (2.0)</th>
+<th>Needs Improvement (1.2)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Notebook runs cleanly from top to bottom with all cells executed and output visible. Required markdown cells (question, dataset description, findings) are present. Basic data exploration (shape, head, column info) is included.</td>
+<td>Notebook runs but has issues: missing required markdown cells, incomplete data exploration, or some cells were not re-executed after changes.</td>
+<td>Notebook does not run, contains error tracebacks, cells are not executed, or required markdown framing is absent.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="criterion-5-video-explanation-matches-notebook-3-assignment-level-fail-possible" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-5-video-explanation-matches-notebook-3-assignment-level-fail-possible">Criterion 5: Video explanation matches notebook (/ 3) (Assignment-Level Fail Possible)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (3.0)</th>
+<th>Needs Improvement (1.8)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Spoken claims in the video are accurate to the notebook’s actual output. Student points to specific cells and explains what they show. Numbers, algorithm names, and results stated in the video match what is on screen.</td>
+<td>Small inaccuracies or vague references, where claims are mostly aligned with the notebook but one or two points are overstated, misremembered, or generic.</td>
+<td><strong>Assignment-level fail possible.</strong> Video claims directly contradict the notebook’s output (wrong algorithm named as best, made-up numbers, results described that do not appear in the notebook).</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="criterion-6-conclusions-follow-from-results-3-assignment-level-fail-possible" class="level3">
+<h3 class="anchored" data-anchor-id="criterion-6-conclusions-follow-from-results-3-assignment-level-fail-possible">Criterion 6: Conclusions follow from results (/ 3) (Assignment-Level Fail Possible)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pass (3.0)</th>
+<th>Needs Improvement (1.8)</th>
+<th>Fail (0.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conclusions are grounded in what the notebook actually shows. Student acknowledges what the work does and does not support. Level of confidence matches the strength of the evidence.</td>
+<td>Conclusions are mostly reasonable but overstate the evidence in places, or miss important caveats the results clearly warrant.</td>
+<td><strong>Assignment-level fail possible.</strong> Conclusions contradict the notebook’s results, or claims are made that the analysis does not support at all.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="overall-score" class="level3">
+<h3 class="anchored" data-anchor-id="overall-score">Overall Score</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Grade</th>
+<th>Minimum Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>12.6</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>11.2</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>9.8</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>8.4</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="assignment-level-fail-policy" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-level-fail-policy">Assignment-Level Fail Policy</h3>
+<p>Criteria marked “Assignment-Level Fail Possible” represent the integrity checks at the center of this assignment. A Fail (0.0) on either Criterion 5 or Criterion 6 caps the overall assignment grade at F regardless of total points, and triggers a required resubmission conversation with the instructor. These are reserved for egregious cases where the student’s claims and the student’s actual work do not match.</p>
+</section>
+</section>
+<section id="d2l-submission-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L Submission Checklist</h2>
+<p>Submit the following items to the Final Project D2L dropbox:</p>
+<ul>
+<li>Your Jupyter notebook, named <code>lastname-final-project.ipynb</code>, with all cells executed and outputs visible.</li>
+<li>Your video reflection, uploaded to Kaltura. Paste the share link into the D2L text submission box. Make sure the link text includes <code>lastname-final-project</code> in the link name. Do not embed the video in the Dropbox submission.</li>
+</ul>
+<p>Both items must be submitted by May 11 at 11:59 PM.</p>
 
 
 </section>
